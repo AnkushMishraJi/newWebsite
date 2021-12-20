@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@700&display=swap");
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+a {
+  color: black !important;
+}
+
+.brand-logo,
+h2 {
+  font-family: "Source Code Pro", monospace;
+}
+
+.auth-card {
+  padding: 20px;
+  text-align: center;
+}
+
+.card {
+  max-width: 400px;
+  margin: 70px auto;
+}
+.btn {
+  margin-top: 15px;
+}
+.input-field input[type="text"]:focus {
+  border-bottom: 1px solid rgb(84, 132, 196) !important;
+  box-shadow: 0 1px 0 0 rgb(42, 157, 252) !important;
+}
+
+.profilebox {
+  margin: 40px 80px;
+  padding-bottom: 40px;
+  justify-content: space-around;
+  display: flex;
+  border-bottom: solid 2px gray;
+}
+.profilebox img {
+  width: 160px;
+  height: 160px;
+  border-radius: 80px;
+}
+.gallery {
+  width: 800px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+  gap: 10px;
+}
+.gallery img {
+  width: 300px;
+  height: 300px;
+}
+
+.post-bar {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  padding: 10px;
+}
+
+.home-card {
+  max-width: 800px;
+}
+
+.checkbox {
+  padding: 10px !important;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  margin: 0px auto;
+  padding: 0px auto;
+  background-color: whitesmoke;
+}
+.left-sidebar {
+  margin: 10px;
+  font-size: 20px;
+  background-color: white;
+  height: 100vh;
+  box-shadow: gray 1px 1px 2px 1px;
+  position: sticky;
+  top: 0;
+  text-align: center;
+}
+
+.left-sidebar h6 {
+  text-align: center;
+  position: fixed;
+  bottom: 50px;
+  left: 100px;
+}
+
+.center-bar {
+  margin: 10px;
+  background-color: white;
+  min-height: 100vh;
+  margin: 10px;
+  box-shadow: gray 1px 1px 2px 1px;
+}
+
+.booking-box {
+  padding: 20px;
+  width: 90%;
+  margin: 30px auto;
+  background-color: white;
+  box-shadow: gray 1px 1px 2px 1px;
+}
