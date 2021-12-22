@@ -30,6 +30,21 @@ const razorpay = new Razorpay({
 const userBookings = require("../models/userBookings");
 const confirmedUserBooking = mongoose.model("UserBookings", userBookings);
 
+const nodemailer = require("nodemailer");
+const sendGridTransport = require("nodemailer-sendgrid-transport");
+
+const transporter = nodemailer.createTransport(
+  sendGridTransport({
+    auth: {
+      api_key:
+        "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",
+    },
+  })
+);
+
+// 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
+
+//RazorPay
 router.post("/razorpay", async (req, res) => {
   console.log(req.body);
 
@@ -423,6 +438,36 @@ router.post("/addConfirmBookingsUser", (req, res) => {
   });
   UserBookings.save()
     .then((UserBookings) => {
+      transporter
+        .sendMail({
+          to: "meraaddacontact@gmail.com",
+          from: "meraaddacontact@gmail.com",
+          subject: "New Booking Recieved",
+          html:
+            "<p>" +
+            " Hotel: " +
+            Hotel +
+            "| Date Of Booking: " +
+            DateOfBooking +
+            "| ArrivalTime:  " +
+            ArrivalTime +
+            "| Total Persons " +
+            TotalPersons +
+            "| BillingAmount " +
+            BillingAmount +
+            "| OrderId " +
+            OrderId +
+            "| PaymentTime " +
+            PaymentTime +
+            "| TimeSlot " +
+            TimeSlot +
+            "| Type " +
+            Type +
+            "</p>",
+        })
+        .catch((err) => {
+          console.log(err);
+        });
       res.status(201).json({
         message: "new confirmed booking saved to database",
       });
