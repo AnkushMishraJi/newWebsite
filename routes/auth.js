@@ -33,16 +33,16 @@ const confirmedUserBooking = mongoose.model("UserBookings", userBookings);
 const nodemailer = require("nodemailer");
 const sendGridTransport = require("nodemailer-sendgrid-transport");
 
+require("dotenv").config();
+console.log(process.env.EMAIL_API_KEY);
+
 const transporter = nodemailer.createTransport(
   sendGridTransport({
     auth: {
-      api_key:
-        "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",
+      api_key: process.env.EMAIL_API_KEY,
     },
   })
 );
-
-// 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
 
 //RazorPay
 router.post("/razorpay", async (req, res) => {
