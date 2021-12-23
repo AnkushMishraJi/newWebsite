@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 const HotelList = () => {
   const [hotels, setHotels] = useState([]);
-  const [priceToShow, setPriceToShow] = useState();
 
   useEffect(() => {
     const date = localStorage.getItem("date");
@@ -23,8 +22,8 @@ const HotelList = () => {
       .then((res) => res.json())
       .then((data) => {
         setHotels(data);
-        console.log(data);
-        console.log(totalPersons);
+        // console.log(data);
+        // console.log(totalPersons);
       });
   }, []);
 
@@ -41,20 +40,20 @@ const HotelList = () => {
 
         const newtotal = parseInt(localStorage.getItem("totalPersons"));
 
-        console.log(newtotal, " is new total");
-        console.log(smallCap, medCap, largeCap);
+        // console.log(newtotal, " is new total");
+        // console.log(smallCap, medCap, largeCap);
 
         const price = () => {
           if (newtotal <= smallCap) {
-            console.log("small running");
+            // console.log("small running");
             return smallPrice;
           }
           if (newtotal <= medCap) {
-            console.log("med running");
+            // console.log("med running");
             return medPrice;
           }
           if (newtotal <= largeCap) {
-            console.log("large running");
+            // console.log("large running");
             return largePrice;
           }
         };

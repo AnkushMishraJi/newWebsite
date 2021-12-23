@@ -28,7 +28,7 @@ const UserPhoneCheck = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.isUser == true) {
           history.push("/usignin");
           localStorage.setItem("phone", data.phoneNumber);
@@ -37,7 +37,7 @@ const UserPhoneCheck = () => {
         }
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
   return (

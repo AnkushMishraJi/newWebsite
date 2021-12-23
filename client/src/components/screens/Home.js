@@ -11,7 +11,7 @@ import { faCalendar } from "@fortawesome/free-solid-svg-icons";
 import logo from "../../images/logo_ma.jpeg";
 
 const Home = () => {
-  const newdate = new Date();
+  // const newdate = new Date();
   const history = useHistory();
   const [date, setDate] = useState(newdate.toLocaleDateString());
   const [time, setTime] = useState(new Date());
@@ -22,9 +22,9 @@ const Home = () => {
     localStorage.setItem("totalPersons", totalPersons);
     localStorage.setItem("girls", girls);
     localStorage.setItem("bookingDate", date);
-    console.log(time.toLocaleTimeString());
+    // console.log(time.toLocaleTimeString());
     //console.log(isNightParty);
-    console.log(time.toLocaleTimeString("en-US").includes("PM"));
+    // console.log(time.toLocaleTimeString("en-US").includes("PM"));
     localStorage.setItem("time", time.toLocaleTimeString("en-US"));
     if (time.getHours() >= 18 || time.getHours() < 8) {
       localStorage.setItem("isNightParty", true);
@@ -105,8 +105,10 @@ const Home = () => {
               console.log(girls);
             }}
           />
+
           <span className="mt-1 text-light">Ladies Included?</span>
         </label>
+
       </div>
       <button
         className="text-light w-70 mt-3"

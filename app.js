@@ -4,11 +4,12 @@ const mongoose = require("mongoose");
 const { MONGOURI } = require("./config/keys");
 const PORT = process.env.PORT || 6000;
 
-// require("./models/post");
-
 app.use(express.json());
 app.use(require("./routes/auth"));
-// app.use(require("./routes/post"));
+app.use(require("./routes/bookings"));
+app.use(require("./routes/businessUsers"));
+app.use(require("./routes/cloudinary"));
+app.use(require("./routes/userBooking"));
 
 if (process.env.NODE_ENV == "production") {
   app.use(express.static("client/build"));
@@ -21,13 +22,13 @@ if (process.env.NODE_ENV == "production") {
 mongoose.connect(MONGOURI);
 
 mongoose.connection.on("connected", () => {
-  console.log("Connectd to MONGODB");
+  // console.log("Connectd to MONGODB");
 });
 
 mongoose.connection.on("error", (err) => {
-  console.log("Error in connection", err);
+  // console.log("Error in connection", err);
 });
 
 app.listen(PORT, () => {
-  console.log("Server is running on ", PORT);
+  // console.log("Server is running on ", PORT);
 });

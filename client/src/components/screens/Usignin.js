@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { getAuth, RecaptchaVerifier } from "firebase/auth";
 import firebase from "../../firebase";
 import M from "materialize-css";
 import { useHistory } from "react-router";
@@ -28,7 +27,7 @@ const UserSignin = () => {
         callback: (response) => {
           // reCAPTCHA solved, allow signInWithPhoneNumber.
           onSignInSubmit();
-          console.log("Captcha verified");
+          // console.log("Captcha verified");
         },
         defaultCountry: "IN",
       }
@@ -37,7 +36,7 @@ const UserSignin = () => {
   const onSignInSubmit = (e) => {
     configureCaptcha();
     const phoneNumber = "+91" + localStorage.getItem("phone");
-    console.log(phoneNumber);
+    // console.log(phoneNumber);
     const appVerifier = window.recaptchaVerifier;
     firebase
       .auth()
@@ -46,30 +45,30 @@ const UserSignin = () => {
         // SMS sent. Prompt user to type the code from the message, then sign the
         // user in with confirmationResult.confirm(code).
         window.confirmationResult = confirmationResult;
-        console.log("OTP has been sent");
+        // console.log("OTP has been sent");
         // ...
       })
       .catch((error) => {
         // Error; SMS not sent
         // ...
-        console.log(error);
+        // console.log(error);
       });
   };
   const onSubmitOtp = (e) => {
     e.preventDefault();
     const code = otp;
-    console.log(code);
+    // console.log(code);
     window.confirmationResult
       .confirm(code)
       .then((result) => {
         // User signed in successfully.
         const user = result.user;
-        console.log(JSON.stringify(user));
+        // console.log(JSON.stringify(user));
         M.toast({
           html: "User is verified",
           classes: "#d32f2f green darken-2",
         });
-        console.log(JSON.stringify(user.providerId));
+        // console.log(JSON.stringify(user.providerId));
         history.push("/");
         // ...
       })
