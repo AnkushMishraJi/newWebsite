@@ -1,11 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@700&display=swap");
 
+:root {
+  background-color: #1a1b41;
+}
+
 * {
   margin: 0px;
   padding: 0px;
-}
-a {
-  color: black !important;
+  color: "white";
 }
 
 .brand-logo,
@@ -108,4 +110,71 @@ h2 {
   margin: 30px auto;
   background-color: white;
   box-shadow: gray 1px 1px 2px 1px;
+}
+
+.w-20 {
+  width: 20%;
+}
+
+.w-40 {
+  width: 40%;
+}
+
+.w-60 {
+  width: 60%;
+}
+
+.w-70 {
+  width: 70%;
+}
+.w-80 {
+  width: 80%;
+}
+
+.title_text {
+  color: #fe9124;
+}
+
+.f-12 {
+  font-size: 12px;
+}
+
+.f-14 {
+  font-size: 14px;
+}
+
+.f-16 {
+  font-size: 16px;
+}
+
+.f-18 {
+  font-size: 18px;
+}
+
+.f-20 {
+  font-size: 20px;
+}
+
+.f-24 {
+  font-size: 24px;
+}
+
+.f-32 {
+  font-size: 32px;
+}
+
+.font-weight-lighter {
+  font-weight: 200;
+}
+
+.font-weight-ligh {
+  font-weight: 300;
+}
+
+.font-weight-bold {
+  font-weight: 500;
+}
+
+.font-weight-bolder {
+  font-weight: 600;
 }

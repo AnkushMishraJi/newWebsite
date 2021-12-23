@@ -10,6 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.16",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^5.1.3",
     "dotenv": "^10.0.0",
@@ -22,6 +25,7 @@
     "nodemon": "^2.0.15",
     "razorpay": "^2.8.0",
     "react-bootstrap": "^2.0.2",
+    "react-fontawesome": "^1.7.1",
     "shortid": "^2.2.16"
   },
   "devDependencies": {}
