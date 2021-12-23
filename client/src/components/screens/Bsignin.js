@@ -25,7 +25,7 @@ function Signin() {
       });
     }
     localStorage.setItem("email", email);
-    console.log("btn press", localStorage.getItem("email"));
+    // console.log( localStorage.getItem("email"));
     fetch("/bsignin", {
       method: "post",
       headers: {
@@ -39,7 +39,7 @@ function Signin() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.error) {
           M.toast({ html: data.error, classes: "#d32f2f red darken-2" });
         } else {
@@ -55,7 +55,7 @@ function Signin() {
         }
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 
@@ -77,7 +77,7 @@ function Signin() {
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
-            console.log(setPassword);
+            // console.log(setPassword);
           }}
         />
         <button

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import M from "materialize-css";
 import { Container, DatePicker } from "react-materialize";
 
@@ -14,7 +14,7 @@ function UserSignup() {
   }, []);
 
   const PostData = () => {
-    console.log(name, email, dob, localStorage.getItem("phone"));
+    // console.log(name, email, dob, localStorage.getItem("phone"));
 
     if (
       !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
@@ -32,7 +32,7 @@ function UserSignup() {
         classes: "#d32f2f red darken-2",
       });
     }
-    console.log("btn press");
+    // console.log("btn press");
     fetch("/usignup", {
       method: "put",
       headers: {
@@ -47,7 +47,7 @@ function UserSignup() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         localStorage.setItem("name", data.name);
         if (data.error) {
           M.toast({ html: data.error, classes: "#d32f2f red darken-2" });
@@ -60,7 +60,7 @@ function UserSignup() {
         }
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 

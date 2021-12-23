@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { Button } from "react-bootstrap";
 import M from "materialize-css";
-import { textAlign } from "@mui/system";
 
 function UploadPhoto() {
   const [file, setFile] = useState("");
@@ -20,10 +17,10 @@ function UploadPhoto() {
       .then((res) => res.json())
       .then((data) => {
         setPicUrl(data.url);
-        console.log(data.url);
-        console.log(JSON.stringify(data));
-        console.log("photo is uploaded");
-        console.log(picUrl);
+        // console.log(data.url);
+        // console.log(JSON.stringify(data));
+        // console.log("photo is uploaded");
+        // console.log(picUrl);
       })
       .then(
         fetch("/photoUpload", {
@@ -50,10 +47,10 @@ function UploadPhoto() {
           })
       )
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 

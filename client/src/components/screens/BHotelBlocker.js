@@ -15,7 +15,7 @@ const HotelBlocker = () => {
       .then((res) => res.json())
       .then((data) => {
         setIsBlockedOn(data[0].isBlockedOn);
-        console.log(data[0].isBlockedOn);
+        // console.log(data[0].isBlockedOn);
       });
   }, []);
 
@@ -25,7 +25,7 @@ const HotelBlocker = () => {
 
       return new Date(dateWithoutTime.setHours(0, 0, 0, 0)).toDateString();
     });
-    console.log(arrOfDates);
+    // console.log(arrOfDates);
     fetch("/blockUnblock", {
       method: "post",
       headers: {
@@ -38,7 +38,7 @@ const HotelBlocker = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
       });
   };
 

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import M from "materialize";
 
 const AllBookings = () => {
   const history = useHistory();
@@ -16,11 +15,11 @@ const AllBookings = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.error) {
-          console.log(data.error);
+          // console.log(data.error);
         } else {
-          console.log("Searched Successfuly");
+          // console.log("Searched Successfuly");
           setBooking(data);
-          console.log(data);
+          // console.log(data);
         }
       });
   }, []);

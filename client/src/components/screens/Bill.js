@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Bill = () => {
@@ -47,9 +47,9 @@ const Bill = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.error) {
-          console.log(data.error);
+          // console.log(data.error);
         } else {
-          console.log("Added Successfuly");
+          // console.log("Added Successfuly");
         }
       });
   }, []);

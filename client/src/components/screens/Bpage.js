@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import sideNav from "./BpageComponent/BpageNavbar";
 import { Link, useHistory } from "react-router-dom";
 
 const HotelDashboard = () => {
@@ -44,16 +43,16 @@ const HotelDashboard = () => {
       .then((res) => res.json())
       .then((data) => {
         setMyBookings(data);
-        console.log(data);
+        // console.log(data);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }, []);
 
   const clickHandler = () => {
     history.push("/bsignin");
-    console.log("signout");
+    // console.log("signout");
   };
   return (
     <div className="wrapper">

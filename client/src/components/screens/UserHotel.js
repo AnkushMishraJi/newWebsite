@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import M from "materialize";
 import { useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
@@ -46,7 +45,7 @@ const UserHotel = () => {
   }, []);
 
   async function displayRazorpay() {
-    console.log("rzp Running");
+    // console.log("rzp Running");
 
     const data = await fetch("/razorpay", {
       method: "POST",
@@ -58,7 +57,7 @@ const UserHotel = () => {
         receipt: shortid.generate(),
       }),
     }).then((res) => res.json());
-    console.log(data);
+    // console.log(data);
     localStorage.setItem("Hotel", hotelName);
 
     const options = {
@@ -74,7 +73,7 @@ const UserHotel = () => {
         alert(response.razorpay_payment_id);
         alert(response.razorpay_order_id);
         alert(response.razorpay_signature);
-        console.log(JSON.stringify(response));
+        // console.log(JSON.stringify(response));
         history.push("/bill");
       },
       prefill: {
