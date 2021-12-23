@@ -26,6 +26,7 @@ const AllBookings = () => {
 
   return (
     <div>
+      <h1 className="brand-logo f-18 text-center mt-4">Booking History</h1>
       {booking.map((oneBooking) => {
         const Hotel = oneBooking.Hotel;
         const DateOfBooking = oneBooking.DateOfBooking;
@@ -55,10 +56,26 @@ const AllBookings = () => {
 
         return (
           <div>
-            <div class="card-panel white" onClick={previewFullBill}>
-              <p>Hotel: {Hotel}</p>
-              <p>Date Of Booking: {DateOfBooking}</p>
-              <p>Billing Amount: Rs. {BillingAmount}</p>
+            <style>{"body { background-color: #1a1b41; }"}</style>
+            <div
+              className="hlist p-2 pt-4 "
+              style={{
+                gridGap: "8px",
+              }}
+              onClick={previewFullBill}
+            >
+              <div>
+                <p className="f-10 font-weight-bolder ">Hotel</p>
+                <p className="f-14">{Hotel}</p>
+              </div>
+              <div>
+                <p className="f-10 font-weight-bolder">Date Of Booking</p>
+                <p className="f-12">{DateOfBooking}</p>
+              </div>
+              <div>
+                <p className="f-10 font-weight-bolder">Billing Amount</p>
+                <p className="f-12">Rs. {BillingAmount}</p>
+              </div>
             </div>
           </div>
         );

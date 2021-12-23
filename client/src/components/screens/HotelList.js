@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+
 const HotelList = () => {
   const [hotels, setHotels] = useState([]);
 
@@ -29,6 +32,12 @@ const HotelList = () => {
 
   return (
     <>
+      <div
+        className="brand-logo f-16"
+        style={{ margin: "20px", marginLeft: "20px" }}
+      >
+        HOTEL LIST
+      </div>
       {hotels.map((oneHotel) => {
         const smallPrice = oneHotel.roomSmallData.smallPrice;
         const medPrice = oneHotel.roomMediumData.mediumPrice;
@@ -39,6 +48,15 @@ const HotelList = () => {
         const largeCap = parseInt(oneHotel.roomLargeData.largeCapacity);
 
         const newtotal = parseInt(localStorage.getItem("totalPersons"));
+
+        var maxPersons;
+        if (largeCap) {
+          maxPersons = largeCap;
+        } else if (medCap) {
+          maxPersons = medCap;
+        } else {
+          maxPersons = smallCap;
+        }
 
         // console.log(newtotal, " is new total");
         // console.log(smallCap, medCap, largeCap);
@@ -60,27 +78,37 @@ const HotelList = () => {
 
         return (
           <Link to={"/userHotel/" + oneHotel._id}>
-            <div className="mycard card">
+            <div className="hlist">
+              <style>{"body { background-color: #1a1b41; }"}</style>
               <img
+                className=""
                 src={oneHotel.mainPicUrl}
                 alt={"hotel" + oneHotel.hotelName}
-                style={{ width: 200, height: 200 }}
+                style={{
+                  width: "100%",
+                  height: 150,
+                  borderStartEndRadius: "08px",
+                  borderStartStartRadius: "08px",
+                }}
               />
-              <h5>{oneHotel.hotelName}</h5>
-              <h6>{oneHotel.address}</h6>
-              <h6>
-                Small Room : {smallPrice} Capacity:
-                {smallCap}
-              </h6>
-              <h6>
-                MEd Room: {medPrice} Capacity:
-                {medCap}
-              </h6>
-              <h6>
-                LArge Room :{largePrice} Capacity:
-                {largeCap}
-              </h6>
-              <h5>Price:{price()}</h5>
+              <div className="half-card">
+                <h5 className="f-16 font-weight-bolder ">
+                  {oneHotel.hotelName}
+                </h5>
+                <h6 className="f-12 font-weight-light">{oneHotel.address}</h6>
+                <div
+                  style={{
+                    display: "grid ",
+                    gridTemplateColumns: " 10fr 1fr 6fr",
+                  }}
+                >
+                  <h5 className="f-12">Starting from Rs.{price()}</h5>
+                  <FontAwesomeIcon className="mx-auto" icon={faUser} />
+                  <h5 className="f-12" style={{ textAlign: "right" }}>
+                    Upto {maxPersons} people
+                  </h5>
+                </div>
+              </div>
             </div>
           </Link>
         );

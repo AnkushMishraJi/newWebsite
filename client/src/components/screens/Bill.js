@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+
 const Bill = () => {
   const payment_info = JSON.parse(localStorage.getItem("razor"));
   const isNightParty = localStorage.getItem("isNightParty");
@@ -56,19 +59,51 @@ const Bill = () => {
 
   return (
     <>
-      <div>Payment Successful</div>
-      <div>
-        <p>Hotel : {Hotel}</p>
-        <p>Date of Booking : {DateOfBooking}</p>
-        <p>Time of Arrival : {ArrivalTime}</p>
-        <p>Total Persons : {TotalPersons}</p>
-        <p>Billing Amount : Rs. {BillingAmount}</p>
-        <p>Order ID : {OrderId}</p>
-        <p>Date and time of payment :{PaymentTime}</p>
-        <p>Time Slot : {time_slot} Hrs</p>
-        <p>Type : {type}</p>
+      <style>{"body { background-color: #1a1b41; }"}</style>
+      <div className="brand-logo text-center mt-4 ">Payment Successful</div>
+      <FontAwesomeIcon
+        className="title_text mx-auto d-flex my-3"
+        icon={faCheckCircle}
+      />
+      <p className="text-center brand-logo">Bill</p>
+      <div className="bill text-light f-12">
+        <div>
+          <p className="f-10 font-weight-bolder">Hotel</p>
+          <p>{Hotel}</p>
+        </div>
+        <div>
+          <p className="f-10 font-weight-bolder">Date of Booking</p>
+          <p>{DateOfBooking}</p>
+        </div>
+        <div>
+          <p className="f-10 font-weight-bolder">Time of Arrival</p>
+          <p>{ArrivalTime}</p>
+        </div>
+        <div>
+          <p className="f-10 font-weight-bolder">Total Persons</p>
+          <p>{TotalPersons}</p>
+        </div>
+        <div>
+          <p className="f-10 font-weight-bolder">Billing Amount</p>
+          <p>Rs. {BillingAmount}</p>
+        </div>
+        <div>
+          <p className="f-10 font-weight-bolder">Order ID</p>
+          <p>{OrderId}</p>
+        </div>
+        <div>
+          <p className="f-10 font-weight-bolder">Date and time of payment</p>
+          <p>{PaymentTime}</p>
+        </div>
+        <div>
+          <p className="f-10 font-weight-bolder">Time Slot</p>
+          <p>{time_slot} Hrs</p>
+        </div>
+        <div>
+          <p className="f-10 font-weight-bolder">Type</p>
+          <p>{type}</p>
+        </div>
       </div>
-      <Link to="/allBookings">All Bookings</Link>
     </>
   );
 };

@@ -11,7 +11,7 @@ import { faCalendar } from "@fortawesome/free-solid-svg-icons";
 import logo from "../../images/logo_ma.jpeg";
 
 const Home = () => {
-  // const newdate = new Date();
+  const newdate = new Date();
   const history = useHistory();
   const [date, setDate] = useState(newdate.toLocaleDateString());
   const [time, setTime] = useState(new Date());
@@ -41,8 +41,12 @@ const Home = () => {
       style={{ backgroundColor: "#1a1b41" }}
     >
       <img className="w-20 mb-4" src={logo} alt="Logo" />
-      <h5 className="text-light f-16 mb-0">HEY THERE!</h5>
-      <h1 className="title_text font-weight-bolder f-32">LET'S PARTY</h1>
+      <h5 className="text-light font-weight-bolder f-36 mb-0 brand-logo">
+        HEY THERE!
+      </h5>
+      <h1 className="title_text font-weight-bolder f-44 brand-logo">
+        LET'S PARTY
+      </h1>
       <p className="text-light">When are you coming to party?</p>
       <div
         className="w-70 bg-white d-flex align-items-center"
@@ -108,7 +112,6 @@ const Home = () => {
 
           <span className="mt-1 text-light">Ladies Included?</span>
         </label>
-
       </div>
       <button
         className="text-light w-70 mt-3"
