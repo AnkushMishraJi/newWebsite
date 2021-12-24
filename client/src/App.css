@@ -201,6 +201,7 @@ h2 {
 ::-moz-placeholder {
   /*firefox*/
   text-align: center;
+  padding: 1em;
 }
 
 .w-20 {

@@ -85,7 +85,7 @@ function NavigationBar() {
       <Link to="/" className="mx-auto ">
         <FontAwesomeIcon className=" opacity-60" icon={faHome} />
       </Link>
-      <Link className="mx-auto">
+      <Link to="#" className="mx-auto">
         <FontAwesomeIcon
           className="mx-auto opacity-50"
           icon={faConciergeBell}
@@ -94,7 +94,7 @@ function NavigationBar() {
       <Link to="/allBookings" className="mx-auto">
         <FontAwesomeIcon className="mx-auto opacity-50" icon={faBookmark} />
       </Link>
-      <Link className="mx-auto">
+      <Link to="#" className="mx-auto">
         <FontAwesomeIcon className="opacity-50" icon={faUser} />
       </Link>
     </div>

@@ -5,6 +5,7 @@ import { Container, DatePicker } from "react-materialize";
 import TextField from "@mui/material/TextField";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import MobileTimePicker from "@mui/lab/MobileTimePicker";
 import TimePicker from "@mui/lab/TimePicker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar } from "@fortawesome/free-solid-svg-icons";
@@ -70,7 +71,7 @@ const Home = () => {
       </div>
       <div className="container-input">
         <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <TimePicker
+          <MobileTimePicker
             style={{ border: "none" }}
             value={time}
             onChange={(time) => {
