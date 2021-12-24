@@ -13,7 +13,7 @@ const UserHotel = () => {
 
   const location = useLocation();
   const history = useHistory();
-
+  const isAuthenticated = localStorage.getItem("isAuthenticated");
   useEffect(() => {
     fetch(location.pathname, {
       method: "get",
@@ -111,15 +111,14 @@ const UserHotel = () => {
         <h4>Night Slot</h4>
         <h5>Price - Rs {nightPrice}</h5>
       </div>
-      <a className="btn-floating btn-large waves-effect waves-light red">
-        <i className="material-icons">+</i>
-      </a>
-      <a
-        onClick={displayRazorpay}
+      <button
+        onClick={() => {
+          isAuthenticated ? displayRazorpay() : history.push("/usignin");
+        }}
         className="waves-effect waves-dark btn #64b5f6 blue lighten-2"
       >
         Pay Rs. {price}
-      </a>
+      </button>
     </>
   );
 };

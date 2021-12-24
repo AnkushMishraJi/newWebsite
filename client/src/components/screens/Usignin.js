@@ -4,7 +4,6 @@ import M from "materialize-css";
 import { useHistory } from "react-router";
 
 const UserSignin = () => {
-  localStorage.clear();
   const [otp, setOtp] = useState("");
   useEffect(() => {
     if (!localStorage.getItem("phone")) {
@@ -70,6 +69,7 @@ const UserSignin = () => {
         });
         // console.log(JSON.stringify(user.providerId));
         history.push("/");
+        localStorage.setItem("isAuthenticated", "true");
         // ...
       })
       .catch((error) => {

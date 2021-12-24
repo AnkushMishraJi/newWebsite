@@ -9,10 +9,6 @@ function UserSignup() {
   const [email, setEmail] = useState("");
   const [dob, setDob] = useState(new Date());
 
-  useEffect(() => {
-    localStorage.clear();
-  }, []);
-
   const PostData = () => {
     // console.log(name, email, dob, localStorage.getItem("phone"));
 
