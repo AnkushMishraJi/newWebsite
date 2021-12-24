@@ -11,6 +11,7 @@ import {
 
 function NavigationBar() {
   const login = localStorage.getItem("businessLoggedIn");
+  const history = useHistory();
   return (
     // <ReactBootStrap.Navbar
     //   collapseOnSelect
@@ -71,19 +72,31 @@ function NavigationBar() {
     //   </ReactBootStrap.Navbar.Collapse>
     // </ReactBootStrap.Navbar>
     <div
-      className="d-flex w-100 align-items-center"
+      className="d-flex w-100 align-items-center "
       style={{
         position: "fixed",
         bottom: "0",
         backgroundColor: "white",
-        height: "5%",
+        height: "10vh",
         fontSize: "18px",
+        zIndex: 5,
       }}
     >
-      <FontAwesomeIcon className="mx-auto" icon={faHome} />
-      <FontAwesomeIcon className="mx-auto" icon={faConciergeBell} />
-      <FontAwesomeIcon className="mx-auto" icon={faBookmark} />
-      <FontAwesomeIcon className="mx-auto" icon={faUser} />
+      <Link to="/" className="mx-auto ">
+        <FontAwesomeIcon className=" opacity-60" icon={faHome} />
+      </Link>
+      <Link className="mx-auto">
+        <FontAwesomeIcon
+          className="mx-auto opacity-50"
+          icon={faConciergeBell}
+        />
+      </Link>
+      <Link to="/allBookings" className="mx-auto">
+        <FontAwesomeIcon className="mx-auto opacity-50" icon={faBookmark} />
+      </Link>
+      <Link className="mx-auto">
+        <FontAwesomeIcon className="opacity-50" icon={faUser} />
+      </Link>
     </div>
   );
 }

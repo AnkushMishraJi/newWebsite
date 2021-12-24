@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useReducer } from "react";
 import { useHistory } from "react-router-dom";
 import M from "materialize-css";
 import { Container, DatePicker } from "react-materialize";
@@ -7,7 +7,7 @@ function UserSignup() {
   const history = useHistory();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [dob, setDob] = useState(new Date());
+  const [dob, setDob] = useState();
 
   const PostData = () => {
     // console.log(name, email, dob, localStorage.getItem("phone"));
@@ -61,10 +61,15 @@ function UserSignup() {
   };
 
   return (
-    <div className="mycard card">
-      <div className="auth-card input-field">
-        <h2>User Sign-up</h2>
+    <div>
+      <style>{"body { background-color: #1a1b41; }"}</style>
+      <div
+        className="auth-card input-field"
+        style={{ display: "grid", gridGap: "25px" }}
+      >
+        <h2>Welcome</h2>
         <input
+          className="w-70 bg-white d-flex align-items-center rounded-7 mx-auto"
           type="text"
           placeholder="Name"
           value={name}
@@ -73,6 +78,7 @@ function UserSignup() {
           }}
         />
         <input
+          className="w-70 bg-white d-flex align-items-center rounded-7 mx-auto"
           type="text"
           placeholder="email"
           value={email}
@@ -81,22 +87,21 @@ function UserSignup() {
           }}
         />
         <Container>
-          <p className="mb-0 mt-2">Enter Date of Birth</p>
           <DatePicker
-            className="mt-0"
+            className="w-80 bg-white d-flex align-items-center rounded-7 mx-auto"
+            placeholder="Date of Birth"
             selected={dob}
             onChange={(dob) => {
-              setDob(dob);
+              setDob(dob.toDateString());
             }}
-            placeholder="Enter Date"
-            value={dob.toDateString()}
+            value={dob}
           />
         </Container>
         <a
-          className="waves-effect btn #1976d2 blue darken-2"
+          className="orange w-75 btn text-light font-weight-bolder  mx-auto rounded-7 "
           onClick={PostData}
         >
-          Submit
+          Register
         </a>
       </div>
     </div>

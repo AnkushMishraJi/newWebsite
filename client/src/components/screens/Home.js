@@ -38,27 +38,25 @@ const Home = () => {
   return (
     <div
       className="d-flex flex-column align-items-center p-5"
-      style={{ backgroundColor: "#1a1b41" }}
+      style={{ backgroundColor: "#1a1b41", height: "100%", height: "90vh" }}
     >
-      <img className="w-20 mb-4" src={logo} alt="Logo" />
-      <h5 className="text-light font-weight-bolder f-36 mb-0 brand-logo">
+      <img
+        className=" mb-4"
+        src={logo}
+        alt="Logo"
+        style={{ width: "5em", height: "5em" }}
+      />
+      <h5 className="text-light font-weight-bolder f-18 mb-0 brand-logo">
         HEY THERE!
       </h5>
-      <h1 className="title_text font-weight-bolder f-44 brand-logo">
+      <h1 className="title_text font-weight-bolder f-32 brand-logo">
         LET'S PARTY
       </h1>
       <p className="text-light">When are you coming to party?</p>
-      <div
-        className="w-70 bg-white d-flex align-items-center"
-        style={{ height: "40px" }}
-      >
+      <div className="container-input">
         <DatePicker
-          className="ml-2"
-          style={{
-            border: "none",
-            backgroundColor: "white",
-            height: "0%",
-          }}
+          className="text-center inside-box"
+          style={{ border: "none" }}
           selected={date}
           placeholder="date of party"
           onChange={(date) => {
@@ -69,25 +67,24 @@ const Home = () => {
           }}
           value={date}
         />
-        <FontAwesomeIcon className="mx-3" icon={faCalendar} />
       </div>
-      <div className="w-70 mt-3 bg-light">
-        <LocalizationProvider
-          style={{ border: "none" }}
-          dateAdapter={AdapterDateFns}
-        >
+      <div className="container-input">
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
           <TimePicker
+            style={{ border: "none" }}
             value={time}
             onChange={(time) => {
               setTime(time);
             }}
-            renderInput={(params) => <TextField {...params} />}
+            renderInput={(params) => (
+              <TextField className="text-center inside-box" {...params} />
+            )}
           />
         </LocalizationProvider>
       </div>
 
       <div className="w-70 d-inline-flex mt-3">
-        <p className="p-0 mt-2 mb-0 text-light f-12 w-100">Total Persons</p>
+        <p className="p-0 mt-2 mb-0 text-light f-14 w-100 ">Total Persons</p>
         <input
           style={{ border: "none", height: "15px", width: "60px" }}
           className="p-0 mt-2 f-12 text-center bg-light"

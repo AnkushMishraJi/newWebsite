@@ -22,13 +22,13 @@ if (process.env.NODE_ENV == "production") {
 mongoose.connect(MONGOURI);
 
 mongoose.connection.on("connected", () => {
-  // console.log("Connectd to MONGODB");
+  console.log("Connectd to MONGODB");
 });
 
 mongoose.connection.on("error", (err) => {
-  // console.log("Error in connection", err);
+  console.log("Error in connection", err);
 });
 
 app.listen(PORT, () => {
-  // console.log("Server is running on ", PORT);
+  console.log("Server is running on ", PORT);
 });

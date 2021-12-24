@@ -32,12 +32,7 @@ const HotelList = () => {
 
   return (
     <>
-      <div
-        className="brand-logo f-16"
-        style={{ margin: "20px", marginLeft: "20px" }}
-      >
-        HOTEL LIST
-      </div>
+      <div className="brand-logo f-18 m-4 ml-4 ">HOTEL LIST</div>
       {hotels.map((oneHotel) => {
         const smallPrice = oneHotel.roomSmallData.smallPrice;
         const medPrice = oneHotel.roomMediumData.mediumPrice;
@@ -81,30 +76,24 @@ const HotelList = () => {
             <div className="hlist">
               <style>{"body { background-color: #1a1b41; }"}</style>
               <img
-                className=""
+                className="hlist-img"
                 src={oneHotel.mainPicUrl}
                 alt={"hotel" + oneHotel.hotelName}
-                style={{
-                  width: "100%",
-                  height: 150,
-                  borderStartEndRadius: "08px",
-                  borderStartStartRadius: "08px",
-                }}
               />
               <div className="half-card">
                 <h5 className="f-16 font-weight-bolder ">
                   {oneHotel.hotelName}
                 </h5>
-                <h6 className="f-12 font-weight-light">{oneHotel.address}</h6>
+                <h6 className="f-16 font-weight-light">{oneHotel.address}</h6>
                 <div
                   style={{
                     display: "grid ",
                     gridTemplateColumns: " 10fr 1fr 6fr",
                   }}
                 >
-                  <h5 className="f-12">Starting from Rs.{price()}</h5>
+                  <h5 className="f-14">Starting from Rs.{price()}</h5>
                   <FontAwesomeIcon className="mx-auto" icon={faUser} />
-                  <h5 className="f-12" style={{ textAlign: "right" }}>
+                  <h5 className="f-14" style={{ textAlign: "right" }}>
                     Upto {maxPersons} people
                   </h5>
                 </div>

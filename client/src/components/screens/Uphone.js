@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import M from "materialize-css";
 import { useHistory } from "react-router-dom";
+import sign_in from "../../images/login.svg";
 
 const UserPhoneCheck = () => {
   const history = useHistory();
@@ -42,19 +43,41 @@ const UserPhoneCheck = () => {
   };
   return (
     <>
-      <div className="mycard card">
+      <style>{"body { background-color: #1a1b41; }"}</style>
+
+      <div className="">
+        <p className="text-center brand-logo f-24 mt-5   ">HEY THERE!</p>
+        <div className="imgDot d-flex mx-auto">
+          <img
+            className="w-20 mb-4 d-flex mx-auto my-auto w-80"
+            src={sign_in}
+            alt="sign_in_img"
+          />
+        </div>
+
         <div className="auth-card input-field">
-          <h2>User Sign-in</h2>
           <div>
-            <div id="sign-in-button"></div>
             <input
+              className="input-field-name bg-white align-items-center rounded-7 w-60"
+              style={{}}
               name="phoneNumber"
               type="text"
               placeholder="Enter your phone number"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
             />
-            <button onClick={onSubmitPhone}>Submit</button>
+            <button
+              className="text-light w-60 mt-3"
+              style={{
+                backgroundColor: "#fe9124",
+                height: "40px",
+                borderRadius: "18px",
+                border: "none",
+              }}
+              onClick={onSubmitPhone}
+            >
+              Sign-in / Sign-up
+            </button>
           </div>
         </div>
       </div>

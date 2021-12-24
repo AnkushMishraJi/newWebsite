@@ -26,7 +26,7 @@ const AllBookings = () => {
 
   return (
     <div>
-      <h1 className="brand-logo f-18 text-center mt-4">Booking History</h1>
+      <h1 className="brand-logo f-20 text-center mt-4">Booking History</h1>
       {booking.map((oneBooking) => {
         const Hotel = oneBooking.Hotel;
         const DateOfBooking = oneBooking.DateOfBooking;
@@ -65,16 +65,16 @@ const AllBookings = () => {
               onClick={previewFullBill}
             >
               <div>
-                <p className="f-10 font-weight-bolder ">Hotel</p>
+                <p className="f-14 font-weight-bolder ">Hotel</p>
                 <p className="f-14">{Hotel}</p>
               </div>
               <div>
-                <p className="f-10 font-weight-bolder">Date Of Booking</p>
-                <p className="f-12">{DateOfBooking}</p>
+                <p className="f-14 font-weight-bolder">Date Of Booking</p>
+                <p className="f-14">{DateOfBooking}</p>
               </div>
               <div>
-                <p className="f-10 font-weight-bolder">Billing Amount</p>
-                <p className="f-12">Rs. {BillingAmount}</p>
+                <p className="f-14 font-weight-bolder">Billing Amount</p>
+                <p className="f-14">Rs. {BillingAmount}</p>
               </div>
             </div>
           </div>

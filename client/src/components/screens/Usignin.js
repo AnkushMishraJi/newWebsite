@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import firebase from "../../firebase";
 import M from "materialize-css";
 import { useHistory } from "react-router";
+import sign_in from "../../images/login.svg";
 
 const UserSignin = () => {
   const [otp, setOtp] = useState("");
@@ -14,6 +15,7 @@ const UserSignin = () => {
       classes: "#43a047 green darken-1",
     });
     onSignInSubmit();
+    localStorage.clear();
   }, []);
 
   const history = useHistory();
@@ -79,11 +81,20 @@ const UserSignin = () => {
   };
   return (
     <>
-      <div className="mycard card">
-        <div className="auth-card input-field">
-          <h2>User Sign-in</h2>
+      <style>{"body { background-color: #1a1b41; }"}</style>
+      <p className="brand-logo f-24 text-center mt-5">SUBMIT OTP</p>
+      <div className="imgDot d-flex mx-auto">
+        <img
+          className="w-20 mb-4 d-flex mx-auto my-auto w-80"
+          src={sign_in}
+          alt="sign_in_img"
+        />
+      </div>
+      <div className="auth-card input-field ">
+        <div className="">
           <form onSubmit={onSubmitOtp}>
             <input
+              className="w-70 bg-white d-flex align-items-center rounded-7 mx-auto"
               name="otp"
               type="text"
               placeholder="Enter OTP"
@@ -91,7 +102,18 @@ const UserSignin = () => {
               value={otp}
               onChange={(e) => setOtp(e.target.value)}
             />
-            <button type="submit">Submit</button>
+            <button
+              type="submit"
+              className="text-light w-70 mt-3"
+              style={{
+                backgroundColor: "#fe9124",
+                height: "40px",
+                borderRadius: "18px",
+                border: "none",
+              }}
+            >
+              Submit
+            </button>
           </form>
           <div id="sign-in-button"></div>
         </div>

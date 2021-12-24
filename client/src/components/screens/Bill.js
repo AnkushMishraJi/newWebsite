@@ -60,47 +60,49 @@ const Bill = () => {
   return (
     <>
       <style>{"body { background-color: #1a1b41; }"}</style>
-      <div className="brand-logo text-center mt-4 ">Payment Successful</div>
+      <div className="brand-logo text-center mt-4 f-18 ">
+        Payment Successful
+      </div>
       <FontAwesomeIcon
         className="title_text mx-auto d-flex my-3"
         icon={faCheckCircle}
       />
       <p className="text-center brand-logo">Bill</p>
-      <div className="bill text-light f-12">
+      <div className="bill text-light f-20">
         <div>
-          <p className="f-10 font-weight-bolder">Hotel</p>
+          <p className="f-12 font-weight-bolder">Hotel</p>
           <p>{Hotel}</p>
         </div>
         <div>
-          <p className="f-10 font-weight-bolder">Date of Booking</p>
+          <p className="f-12 font-weight-bolder">Date of Booking</p>
           <p>{DateOfBooking}</p>
         </div>
         <div>
-          <p className="f-10 font-weight-bolder">Time of Arrival</p>
+          <p className="f-12 font-weight-bolder">Time of Arrival</p>
           <p>{ArrivalTime}</p>
         </div>
         <div>
-          <p className="f-10 font-weight-bolder">Total Persons</p>
+          <p className="f-12 font-weight-bolder">Total Persons</p>
           <p>{TotalPersons}</p>
         </div>
         <div>
-          <p className="f-10 font-weight-bolder">Billing Amount</p>
+          <p className="f-12 font-weight-bolder">Billing Amount</p>
           <p>Rs. {BillingAmount}</p>
         </div>
         <div>
-          <p className="f-10 font-weight-bolder">Order ID</p>
+          <p className="f-12 font-weight-bolder">Order ID</p>
           <p>{OrderId}</p>
         </div>
         <div>
-          <p className="f-10 font-weight-bolder">Date and time of payment</p>
+          <p className="f-12 font-weight-bolder">Date and time of payment</p>
           <p>{PaymentTime}</p>
         </div>
         <div>
-          <p className="f-10 font-weight-bolder">Time Slot</p>
+          <p className="f-12 font-weight-bolder">Time Slot</p>
           <p>{time_slot} Hrs</p>
         </div>
         <div>
-          <p className="f-10 font-weight-bolder">Type</p>
+          <p className="f-12 font-weight-bolder">Type</p>
           <p>{type}</p>
         </div>
       </div>

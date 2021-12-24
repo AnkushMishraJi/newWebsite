@@ -9,6 +9,10 @@
   text-decoration: none !important;
 }
 
+.nav-icons {
+  text-decoration: none !important;
+}
+
 .body {
   background-color: #1a1b41;
 }
@@ -30,11 +34,33 @@ h2 {
 .btn {
   margin-top: 15px;
 }
-.input-field input[type="text"]:focus {
+.input-field input:focus {
+  text-align: center;
   border-bottom: 1px solid rgb(84, 132, 196) !important;
   box-shadow: 0 1px 0 0 rgb(42, 157, 252) !important;
 }
 
+.container-input {
+  width: 70%;
+  height: 3em;
+  border-radius: 2em;
+  background-color: white;
+  margin-top: 2em;
+  text-align: center, justify;
+}
+
+.inside-box {
+  height: fit-content;
+  box-shadow: none;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  text-align: center, justify;
+}
+
+.bg-orange {
+  background-color: #fe9124;
+}
 .profilebox {
   margin: 40px 80px;
   padding-bottom: 40px;
@@ -129,6 +155,13 @@ h2 {
   text-decoration: none;
 }
 
+.hlist-img {
+  width: 100%;
+  height: 15em;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+}
+
 .half-card {
   display: block;
   margin: 10px;
@@ -140,9 +173,36 @@ h2 {
 .bill {
   margin: 20px;
   display: grid;
-  line-height: 0vmin !important;
+  line-height: 0.75vmin !important;
   grid-gap: 15px;
 }
+.imgDot {
+  width: fit-content;
+  height: fit-content;
+  margin: 20px;
+  padding: 15px;
+  border: dashed 2px;
+  border-color: grey;
+}
+
+::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  font-size: 0.75em;
+  padding: 1em;
+  text-align: center;
+}
+
+.input:placeholder-shown {
+  /* Chrome/Opera/Safari */
+  padding: 1em;
+  text-align: center;
+}
+
+::-moz-placeholder {
+  /*firefox*/
+  text-align: center;
+}
+
 .w-20 {
   width: 20%;
 }
@@ -152,14 +212,14 @@ h2 {
 }
 
 .w-60 {
-  width: 60%;
+  width: 60% !important;
 }
 
 .w-70 {
-  width: 70%;
+  width: 70% !important;
 }
 .w-80 {
-  width: 80%;
+  width: 80% !important;
 }
 
 .title_text {
@@ -167,43 +227,43 @@ h2 {
 }
 
 .f-10 {
-  font-size: 10px;
+  font-size: 0.25em;
 }
 
 .f-12 {
-  font-size: 12px;
+  font-size: 0.5em;
 }
 
 .f-14 {
-  font-size: 14px;
+  font-size: 0.75em;
 }
 
 .f-16 {
-  font-size: 16px;
+  font-size: 1em;
 }
 
 .f-18 {
-  font-size: 18px;
+  font-size: 1.25em;
 }
 
 .f-20 {
-  font-size: 20px;
+  font-size: 1.5em;
 }
 
 .f-24 {
-  font-size: 24px;
+  font-size: 1.75em;
 }
 
 .f-32 {
-  font-size: 32px;
+  font-size: 2em;
 }
 
 .f-36 {
-  font-size: 36px;
+  font-size: 2.5em;
 }
 
 .f-44 {
-  font-size: 44px;
+  font-size: 3em;
 }
 
 .font-weight-lighter {
@@ -220,4 +280,7 @@ h2 {
 
 .font-weight-bolder {
   font-weight: 600;
+}
+.rounded-7 {
+  border-radius: 20px !important;
 }
