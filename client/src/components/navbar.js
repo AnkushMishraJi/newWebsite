@@ -83,7 +83,7 @@ function NavigationBar() {
       }}
     >
       <Link to="/" className="mx-auto ">
-        <FontAwesomeIcon className=" opacity-60" icon={faHome} />
+        <FontAwesomeIcon className="opacity-50" icon={faHome} />
       </Link>
       <Link to="#" className="mx-auto">
         <FontAwesomeIcon

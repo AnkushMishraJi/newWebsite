@@ -58,18 +58,18 @@ const UserSignin = () => {
   const onSubmitOtp = (e) => {
     e.preventDefault();
     const code = otp;
-    // console.log(code);
+    console.log(code);
     window.confirmationResult
       .confirm(code)
       .then((result) => {
         // User signed in successfully.
         const user = result.user;
-        // console.log(JSON.stringify(user));
+        console.log(JSON.stringify(user));
         M.toast({
           html: "User is verified",
           classes: "#d32f2f green darken-2",
         });
-        // console.log(JSON.stringify(user.providerId));
+        console.log(JSON.stringify(user.providerId));
         history.push("/");
         localStorage.setItem("isAuthenticated", "true");
         // ...

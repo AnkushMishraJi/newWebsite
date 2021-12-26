@@ -56,8 +56,7 @@ const Home = () => {
       <p className="text-light">When are you coming to party?</p>
       <div className="container-input">
         <DatePicker
-          className="text-center inside-box"
-          style={{ border: "none" }}
+          className="inside-box"
           selected={date}
           placeholder="date of party"
           onChange={(date) => {
@@ -71,14 +70,17 @@ const Home = () => {
       </div>
       <div className="container-input">
         <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <MobileTimePicker
-            style={{ border: "none" }}
+          <TimePicker
             value={time}
             onChange={(time) => {
               setTime(time);
             }}
             renderInput={(params) => (
-              <TextField className="text-center inside-box" {...params} />
+              <TextField
+                className="text-center inside-box"
+                style={{ border: "none" }}
+                {...params}
+              />
             )}
           />
         </LocalizationProvider>
