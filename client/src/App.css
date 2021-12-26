@@ -46,18 +46,39 @@ h2 {
   border-radius: 2em;
   background-color: white;
   margin-top: 2em;
-  text-align: center, justify;
 }
 
 .inside-box {
-  height: fit-content;
-  box-shadow: none;
-  border: none;
-  outline: none;
-  text-decoration: none;
-  text-align: center, justify;
+  padding-left: 1em !important;
+  padding-bottom: 1.5em !important;
+  top: 0em !important;
+  border: none !important;
+  height: 1em !important;
+}
+.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+  border: none !important;
 }
 
+input:not([type]),
+input[type="text"]:not(.browser-default),
+input[type="password"]:not(.browser-default),
+input[type="email"]:not(.browser-default),
+input[type="url"]:not(.browser-default),
+input[type="time"]:not(.browser-default),
+input[type="date"]:not(.browser-default),
+input[type="datetime"]:not(.browser-default),
+input[type="datetime-local"]:not(.browser-default),
+input[type="tel"]:not(.browser-default),
+input[type="number"]:not(.browser-default),
+input[type="search"]:not(.browser-default),
+textarea.materialize-textarea {
+  border: none !important;
+  font-family: "Montserrat", sans-serif !important ;
+  font-weight: 400;
+}
+a {
+  color: black !important;
+}
 .bg-orange {
   background-color: #fe9124;
 }
