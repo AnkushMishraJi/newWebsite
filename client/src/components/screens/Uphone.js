@@ -12,6 +12,7 @@ const UserPhoneCheck = () => {
   }, []);
 
   const onSubmitPhone = () => {
+    localStorage.setItem("phone", phone);
     if (!/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(phone)) {
       return M.toast({
         html: "Please enter a valid phone number",
@@ -29,7 +30,7 @@ const UserPhoneCheck = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         if (data.isUser == true) {
           history.push("/usignin");
           localStorage.setItem("phone", data.phoneNumber);

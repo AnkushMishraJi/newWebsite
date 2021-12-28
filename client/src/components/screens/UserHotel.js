@@ -1,19 +1,51 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+
+import {
+  faLocationArrow,
+  faCheckCircle,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const shortid = require("shortid");
 
 const UserHotel = () => {
   const [hotelName, setHotelName] = useState();
+  const [address, setAddress] = useState();
   const [locationHotel, setLocationHotel] = useState();
-  const [price, setPrice] = useState();
+
+  const [smallCap, setSmallCap] = useState();
+  const [smallPrice, setSmallPrice] = useState();
+  const [smallNightPrice, setSmallNightPrice] = useState();
+
+  const [medCap, setMedCap] = useState();
+  const [medPrice, setMedPrice] = useState();
+  const [medNightPrice, setMedNightPrice] = useState();
+
+  const [largeCap, setLargeCap] = useState();
+  const [largePrice, setLargePrice] = useState();
+  const [largeNightPrice, setLargeNightPrice] = useState();
+
+  const [totalPersons, setTotalPersons] = useState();
+
+  const [selectedRoom, setSelectedRoom] = useState("");
+
+  const isAuthenticated = localStorage.getItem("isAuthenticated");
+
   const [nightPrice, setNightPrice] = useState();
   const [pic, setPic] = useState();
 
+  //This is used by Razorpay (Shift all Razorpay functions to Confirmation Page)
+  const [price, setPrice] = useState();
+
   const location = useLocation();
   const history = useHistory();
-  const isAuthenticated = localStorage.getItem("isAuthenticated");
+
+  const MapLocation = () => {
+    history.push(locationHotel);
+  };
+
   useEffect(() => {
     fetch(location.pathname, {
       method: "get",
@@ -23,26 +55,51 @@ const UserHotel = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        const smallCap = parseInt(data[0].roomSmallData.smallCapacity);
-        const medCap = parseInt(data[0].roomMediumData.mediumCapacity);
-        const largeCap = parseInt(data[0].roomLargeData.largeCapacity);
-        const newTotal = parseInt(localStorage.getItem("totalPersons"));
+        console.log(data);
+        setSmallCap(parseInt(data[0].roomSmallData.smallCapacity));
+        setSmallPrice(parseInt(data[0].roomSmallData.smallPrice));
+        setSmallNightPrice(parseInt(data[0].roomSmallData.smallNightPrice));
+
+        setMedCap(parseInt(data[0].roomMediumData.mediumCapacity));
+        setMedPrice(parseInt(data[0].roomMediumData.medPrice));
+        setMedNightPrice(parseInt(data[0].roomMediumData.medNightPrice));
+
+        setLargeCap(parseInt(data[0].roomLargeData.largeCapacity));
+        setLargePrice(parseInt(data[0].roomLargeData.largePrice));
+        setLargeNightPrice(parseInt(data[0].roomLargeData.largeNightPrice));
+
+        setTotalPersons(parseInt(localStorage.getItem("totalPersons")));
         setHotelName(data[0].hotelName);
         setLocationHotel(data[0].location);
-        if (newTotal <= smallCap) {
-          setPrice(data[0].roomSmallData.smallPrice);
-          setNightPrice(data[0].roomSmallData.smallNightPrice);
-        } else if (newTotal <= medCap) {
-          setPrice(data[0].roomMediumData.mediumPrice);
-          setNightPrice(data[0].roomMediumData.mediumNightPrice);
-        } else if (newTotal <= largeCap) {
-          setPrice(data[0].roomLargeData.largePrice);
-          setNightPrice(data[0].roomLargeData.largeNightPrice);
-        }
-
+        setAddress(data[0].address);
         setPic(data[0].mainPicUrl);
       });
   }, []);
+
+  useEffect(() => {
+    console.log(selectedRoom);
+    if (totalPersons <= smallCap) {
+      setSelectedRoom("small");
+    } else if (totalPersons <= medCap) {
+      setSelectedRoom("med");
+    } else if (totalPersons <= largeCap) {
+      setSelectedRoom("large");
+    }
+    setPrice(1000);
+    if (selectedRoom == "small") {
+      document.getElementById(selectedRoom).focus();
+      localStorage.setItem("price", smallPrice);
+      localStorage.setItem("nightPrice", smallNightPrice);
+    } else if (selectedRoom == "med") {
+      document.getElementById(selectedRoom).focus();
+      localStorage.setItem("price", medPrice);
+      localStorage.setItem("nightPrice", medNightPrice);
+    } else if (selectedRoom == "large") {
+      document.getElementById(selectedRoom).focus();
+      localStorage.setItem("price", largePrice);
+      localStorage.setItem("nightPrice", largeNightPrice);
+    }
+  }, [selectedRoom, totalPersons]);
 
   async function displayRazorpay() {
     // console.log("rzp Running");
@@ -93,33 +150,104 @@ const UserHotel = () => {
     localStorage.setItem("razor", JSON.stringify(data));
   }
 
+  const manualSelectRoom = () => {};
+
+  const automaticSelectRoom = () => {};
+
   return (
-    <>
-      <img src={pic} alt="hotel" />
-      <h2>{hotelName}</h2>
-      <h6>{locationHotel}</h6>
-      <h4>Discaimer</h4>
-      <h5>
-        Bookings for time after 1800 hrs will fall in Night Slot therefore Night
-        Price will be charged
-      </h5>
-      <div>
-        <h4>Day Slot</h4>
-        <h5>Price - Rs {price}</h5>
+    <div className="w-100 text-light">
+      <style>{"body { background-color: #1a1b41; }"}</style>
+      <img className="w-100 h-30" src={pic} alt="hotel" />
+      <div className="w-90 p-4 pb-2 ">
+        <div className="user-hotel-box  w-90">
+          <div>
+            <h2>{hotelName}</h2>
+            <h6>{address}</h6>
+          </div>
+
+          <div className="location-border " onClick={MapLocation}>
+            <FontAwesomeIcon
+              className="d-flex mx-auto my-2"
+              style={{ color: "#fe9124", width: "2.5em", height: "2.5em" }}
+              icon={faLocationArrow}
+            />
+          </div>
+        </div>
+
+        <h4 className="f-16 w-90 text-center pt-3">
+          Bookings for time after 6 pm will fall in Night Slot therefore Night
+          Price will be charged
+        </h4>
+        <div className="d-flex pt-4">
+          <h4 className="f-16 px-2">Choose one</h4>
+          <FontAwesomeIcon
+            className=""
+            style={{ color: "#fe9124", width: "1em", height: "1em" }}
+            icon={faCheckCircle}
+          />
+        </div>
+
+        <div id="small" tabIndex="1" className="room-type w-90">
+          <p className="f-16 font-weight-bolder">Small Room</p>
+          <p>Upto {smallCap} people</p>
+          <div className="line-ht-0">
+            <p>Day-Price </p>
+            <p>Rs {smallPrice}</p>
+          </div>
+          <div className="line-ht-0">
+            <p>Night-Price</p>
+            <p>Rs {smallNightPrice}</p>
+          </div>
+        </div>
+        <div id="med" tabIndex="1" className="room-type w-90">
+          <p className="f-16 font-weight-bolder">Medium Room</p>
+          <p>Upto {medCap} people</p>
+          <div className="line-ht-0">
+            <p>Day-Price </p>
+            <p>Rs {medPrice}</p>
+          </div>
+          <div className="line-ht-0">
+            <p>Night-Price</p>
+            <p>Rs {medNightPrice}</p>
+          </div>
+        </div>
+        <div id="large" tabIndex="1" className="room-type w-90">
+          <p className="f-16 font-weight-bolder">Large Room</p>
+          <p>Upto {largeCap} people</p>
+          <div className="line-ht-0">
+            <p>Day-Price </p>
+            <p>Rs {largePrice}</p>
+          </div>
+          <div className="line-ht-0">
+            <p>Night-Price</p>
+            <p>Rs {largeNightPrice}</p>
+          </div>
+        </div>
+
+        <button
+          onClick={() => {
+            isAuthenticated ? displayRazorpay() : history.push("/usignin");
+          }}
+          className="waves-effect waves-dark btn #64b5f6 blue lighten-2"
+        >
+          Pay Rs. {price}
+        </button>
+        <button
+          type="submit"
+          className="text-light w-40 mt-5 "
+          style={{
+            backgroundColor: "#fe9124",
+            height: "40px",
+            borderRadius: "18px",
+            border: "none",
+            marginBottom: "7em",
+            marginLeft: "58vw",
+          }}
+        >
+          Confirm
+        </button>
       </div>
-      <div>
-        <h4>Night Slot</h4>
-        <h5>Price - Rs {nightPrice}</h5>
-      </div>
-      <button
-        onClick={() => {
-          isAuthenticated ? displayRazorpay() : history.push("/usignin");
-        }}
-        className="waves-effect waves-dark btn #64b5f6 blue lighten-2"
-      >
-        Pay Rs. {price}
-      </button>
-    </>
+    </div>
   );
 };
 

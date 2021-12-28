@@ -18,6 +18,7 @@ import Bill from "./components/screens/Bill";
 import AllBookings from "./components/screens/AllBookings";
 import OldBill from "./components/screens/OldBill";
 import ProtectedRoute from "./components/ProtectedRoute";
+import UserPage from "./components/screens/UserPage";
 
 // import { reducer, initialState } from "./reducers/userReducer";
 import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
@@ -63,9 +64,13 @@ function App() {
       <Route path="/BuploadPhoto">
         <UploadPhoto />
       </Route>
+      <Route path="/userpage">
+        <UserPage />
+      </Route>
       <ProtectedRoute exact path="/bill" component={Bill} />
       <ProtectedRoute exact path="/allBookings" component={AllBookings} />
       <ProtectedRoute exact path="/oldBill" component={OldBill} />
+      <ProtectedRoute exact path="/oldBill" component={UserPage} />
     </BrowserRouter>
   );
 }

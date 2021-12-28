@@ -15,7 +15,6 @@ const UserSignin = () => {
       classes: "#43a047 green darken-1",
     });
     onSignInSubmit();
-    localStorage.clear();
   }, []);
 
   const history = useHistory();
@@ -64,7 +63,7 @@ const UserSignin = () => {
       .then((result) => {
         // User signed in successfully.
         const user = result.user;
-        console.log(JSON.stringify(user));
+        // console.log(JSON.stringify(user));
         M.toast({
           html: "User is verified",
           classes: "#d32f2f green darken-2",
