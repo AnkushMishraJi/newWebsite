@@ -10,7 +10,7 @@ function UserSignup() {
   const [dob, setDob] = useState();
 
   const PostData = () => {
-    // console.log(name, email, dob, localStorage.getItem("phone"));
+    console.log(name, email, dob, localStorage.getItem("phone"));
 
     if (
       !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
@@ -28,7 +28,7 @@ function UserSignup() {
         classes: "#d32f2f red darken-2",
       });
     }
-    // console.log("btn press");
+    console.log("btn press");
     fetch("/usignup", {
       method: "put",
       headers: {

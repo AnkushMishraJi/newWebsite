@@ -145,10 +145,23 @@ router.put("/usignup", (req, res) => {
         return;
       } else {
         res.json("Saved User");
-        // console.log("Saved USer");
+        console.log("Saved USer");
       }
     }
   );
+});
+
+//Username get
+router.get("/getname", (req, res) => {
+  const { phoneNumber } = req.query;
+  clientUser
+    .findOne({ phoneNumber: phoneNumber })
+    .then((currentUser) => {
+      return res.status(200).json(currentUser.name);
+    })
+    .catch((err) => {
+      // console.log(err);
+    });
 });
 
 module.exports = router;

@@ -164,7 +164,7 @@ router.get("/getBlockedDates", (req, res) => {
     });
 });
 
-//Hote List
+//Single Hotel
 router.get("/userHotel/:id", (req, res) => {
   const _id = req.params.id;
   // console.log(req.params.id);
