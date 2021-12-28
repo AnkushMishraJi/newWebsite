@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useHistory, useLocation, NavLink } from "react-router-dom";
 import "../App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,6 +13,10 @@ function NavigationBar() {
   const login = localStorage.getItem("businessLoggedIn");
   const history = useHistory();
   const location = useLocation();
+  const [activePage, setActivePage] = useState(
+    localStorage.getItem("activePage")
+  );
+
   return (
     <div
       className="d-flex w-100 align-items-center "
@@ -25,25 +29,61 @@ function NavigationBar() {
         zIndex: 5,
       }}
     >
-      <Link to="/" className="mx-auto ">
-        <FontAwesomeIcon tabIndex="1" className="nav-icon" icon={faHome} />
+      <Link
+        to="/"
+        className="mx-auto"
+        onClick={() => {
+          setActivePage("home");
+        }}
+      >
+        <FontAwesomeIcon
+          tabIndex="1"
+          className={`nav-icon ${activePage === "home" ? "f-32" : null}`}
+          icon={faHome}
+        />
       </Link>
-      <Link to="#" className="mx-auto">
+      <Link
+        to="#"
+        className="mx-auto"
+        onClick={() => {
+          setActivePage("services");
+        }}
+      >
         <FontAwesomeIcon
           tabIndex="2"
-          className="mx-auto nav-icon"
+          className={`mx-auto nav-icon ${
+            activePage === "services" ? "f-32" : null
+          }`}
           icon={faConciergeBell}
         />
       </Link>
-      <Link to="/allBookings" className="mx-auto">
+      <Link
+        to="/allBookings"
+        className="mx-auto"
+        onClick={() => {
+          setActivePage("bookings");
+        }}
+      >
         <FontAwesomeIcon
           tabIndex="3"
-          className="mx-auto nav-icon"
+          className={`mx-auto nav-icon ${
+            activePage === "bookings" ? "f-32" : null
+          }`}
           icon={faBookmark}
         />
       </Link>
-      <Link to="/userpage" className="mx-auto">
-        <FontAwesomeIcon tabIndex="4" className="nav-icon" icon={faUser} />
+      <Link
+        to="/userpage"
+        className="mx-auto"
+        onClick={() => {
+          setActivePage("login");
+        }}
+      >
+        <FontAwesomeIcon
+          tabIndex="4"
+          className={`nav-icon ${activePage === "login" ? "f-32" : null}`}
+          icon={faUser}
+        />
       </Link>
     </div>
   );

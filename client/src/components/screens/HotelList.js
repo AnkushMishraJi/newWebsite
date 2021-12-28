@@ -8,7 +8,7 @@ const HotelList = () => {
   const [hotels, setHotels] = useState([]);
 
   useEffect(() => {
-    const date = localStorage.getItem("date");
+    const date = localStorage.getItem("bookingDate");
     const totalPersons = localStorage.getItem("totalPersons");
     const girls = localStorage.getItem("girls");
     const isNightParty = localStorage.getItem("isNightParty");
@@ -72,7 +72,7 @@ const HotelList = () => {
         };
 
         return (
-          <Link to={"/userHotel/" + oneHotel._id}>
+          <Link key={oneHotel._id} to={"/userHotel/" + oneHotel._id}>
             <div className="hlist">
               <style>{"body { background-color: #1a1b41; }"}</style>
               <img

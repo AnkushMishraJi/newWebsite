@@ -9,6 +9,7 @@ const UserPhoneCheck = () => {
 
   useEffect(() => {
     localStorage.clear();
+    localStorage.setItem("activePage", "login");
   }, []);
 
   const onSubmitPhone = () => {
