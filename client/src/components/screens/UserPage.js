@@ -38,7 +38,7 @@ const UserPage = () => {
         <div className="row my-5 text-light line-ht-8">
           <Link to="/allBookings">Check Booking History</Link>
           <Link to="/">Browse Hotels</Link>
-          <Link>Our Services</Link>
+          <Link to="#">Our Services</Link>
           <Link to="tel:91-8604601502">Customer Care</Link>
         </div>
 

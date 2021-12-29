@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import "../../App.css";
 import { Container, DatePicker } from "react-materialize";
 import TextField from "@mui/material/TextField";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import MobileTimePicker from "@mui/lab/MobileTimePicker";
 import TimePicker from "@mui/lab/TimePicker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar } from "@fortawesome/free-solid-svg-icons";
@@ -17,6 +18,10 @@ const Home = () => {
   const [time, setTime] = useState(new Date());
   const [totalPersons, setTotalPersons] = useState(0);
   const [girls, setGirls] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("activePage", "home");
+  }, []);
 
   const searchFilter = () => {
     localStorage.setItem("totalPersons", totalPersons);
@@ -57,14 +62,13 @@ const Home = () => {
         <DatePicker
           className="inside-box"
           selected={date}
-          placeholder="date of party"
+          placeholder={date}
           onChange={(date) => {
             var dateWIthoutTime = new Date(date);
             setDate(
               new Date(dateWIthoutTime.setHours(0, 0, 0, 0)).toDateString()
             );
           }}
-          value={date}
         />
       </div>
       <div className="container-input">
