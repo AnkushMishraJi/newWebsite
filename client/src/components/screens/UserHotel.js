@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import Carousel from "react-bootstrap/Carousel";
+import M from "materialize-css";
 
 import {
   faLocationArrow,
@@ -30,8 +31,12 @@ const UserHotel = () => {
   const [largeNightPrice, setLargeNightPrice] = useState();
 
   const [totalPersons, setTotalPersons] = useState();
+  const [roomType, setRoomType] = useState("small");
+  const [selectedRoom, setSelectedRoom] = useState();
 
-  const [selectedRoom, setSelectedRoom] = useState("small");
+  const [smallActive, setSmallActive] = useState("room-type");
+  const [medActive, setMedActive] = useState("room-type");
+  const [largeActive, setLargeActive] = useState("room-type");
 
   const isAuthenticated = localStorage.getItem("isAuthenticated");
 
@@ -75,33 +80,31 @@ const UserHotel = () => {
         setLocationHotel(data[0].location);
         setAddress(data[0].address);
         setPic(data[0].mainPicUrl);
+        localStorage.setItem("route", location.pathname);
+        localStorage.setItem("isBlockedOn", data[0].isBlockedOn);
       });
   }, []);
 
   useEffect(() => {
     console.log(selectedRoom);
     if (totalPersons <= smallCap) {
-      setSelectedRoom("small");
-    } else if (totalPersons <= medCap) {
-      setSelectedRoom("med");
-    } else if (totalPersons <= largeCap) {
-      setSelectedRoom("large");
-    }
-    setPrice(1000);
-    if (selectedRoom == "small") {
-      document.getElementById(selectedRoom).focus();
+      setSmallActive("room-type-active");
       localStorage.setItem("price", smallPrice);
       localStorage.setItem("nightPrice", smallNightPrice);
-    } else if (selectedRoom == "med") {
-      document.getElementById(selectedRoom).focus();
+    } else if (totalPersons <= medCap) {
+      setMedActive("room-type-active");
       localStorage.setItem("price", medPrice);
       localStorage.setItem("nightPrice", medNightPrice);
-    } else if (selectedRoom == "large") {
-      document.getElementById(selectedRoom).focus();
+    } else if (totalPersons <= largeCap) {
+      setLargeActive("room-type-active");
       localStorage.setItem("price", largePrice);
       localStorage.setItem("nightPrice", largeNightPrice);
     }
-  }, [selectedRoom, totalPersons]);
+  }, [totalPersons]);
+
+  useEffect(() => {
+    setPrice(1000);
+  }, [smallActive, medActive, largeActive, price]);
 
   async function displayRazorpay() {
     // console.log("rzp Running");
@@ -116,7 +119,7 @@ const UserHotel = () => {
         receipt: shortid.generate(),
       }),
     }).then((res) => res.json());
-    // console.log(data);
+    console.log(data);
     localStorage.setItem("Hotel", hotelName);
 
     const options = {
@@ -194,13 +197,62 @@ const UserHotel = () => {
     );
   };
 
-  const manualSelectRoom = () => {};
+  const manualSmallSelect = () => {
+    if (totalPersons <= smallCap) {
+      localStorage.setItem("price", smallPrice);
+      localStorage.setItem("nightPrice", smallNightPrice);
+      localStorage.setItem("room", "Small Room");
+      setSmallActive("room-type-active");
+      setMedActive("room-type");
+      setLargeActive("room-type");
+    } else M.toast({ html: "I am a toast!" });
+  };
 
-  const automaticSelectRoom = () => {};
+  const manualMedSelect = () => {
+    if (totalPersons <= medCap) {
+      localStorage.setItem("price", medPrice);
+      localStorage.setItem("nightPrice", medNightPrice);
+      localStorage.setItem("room", "Medium Room");
+      setSmallActive("room-type");
+      setMedActive("room-type-active");
+      setLargeActive("room-type");
+    } else M.toast({ html: "I am a toast!" });
+  };
+
+  const manualLargeSelect = () => {
+    if (totalPersons <= largeCap) {
+      localStorage.setItem("price", largePrice);
+      localStorage.setItem("nightPrice", largeNightPrice);
+      localStorage.setItem("room", "Large Room");
+      setSmallActive("room-type");
+      setMedActive("room-type");
+      setLargeActive("room-type-active");
+    }
+    M.toast({ html: "I am a toast!" });
+  };
+
+  const confirm = () => {
+    localStorage.setItem("hotel", hotelName);
+    localStorage.setItem("address", address);
+
+    localStorage.setItem("smallCap", smallCap);
+    localStorage.setItem("smallPrice", smallPrice);
+    localStorage.setItem("smallNightPrice", smallNightPrice);
+
+    localStorage.setItem("medCap", medCap);
+    localStorage.setItem("medPrice", medPrice);
+    localStorage.setItem("medNightPrice", medNightPrice);
+
+    localStorage.setItem("largeCap", largeCap);
+    localStorage.setItem("largePrice", largePrice);
+    localStorage.setItem("largeNightPrice", largeNightPrice);
+
+    history.push("/confirmBooking");
+  };
 
   return (
     <div className="w-100 text-light">
-      {carouselContent(selectedRoom)}
+      {carouselContent(roomType)}
       <style>{"body { background-color: #1a1b41; }"}</style>
 
       <div className="w-90 p-4 pb-2 ">
@@ -232,62 +284,73 @@ const UserHotel = () => {
           />
         </div>
 
-        <div
-          id="small"
-          onClick={() => {
-            setSelectedRoom("small");
-          }}
-          tabIndex="1"
-          className="room-type w-90"
-        >
-          <p className="f-16 font-weight-bolder">Small Room</p>
-          <p>Upto {smallCap} people</p>
-          <div className="line-ht-0">
-            <p>Day-Price </p>
-            <p>Rs {smallPrice}</p>
-          </div>
-          <div className="line-ht-0">
-            <p>Night-Price</p>
-            <p>Rs {smallNightPrice}</p>
-          </div>
-        </div>
-        <div
-          id="med"
-          onClick={() => {
-            setSelectedRoom("medium");
-          }}
-          tabIndex="1"
-          className="room-type w-90"
-        >
-          <p className="f-16 font-weight-bolder">Medium Room</p>
-          <p>Upto {medCap} people</p>
-          <div className="line-ht-0">
-            <p>Day-Price </p>
-            <p>Rs {medPrice}</p>
-          </div>
-          <div className="line-ht-0">
-            <p>Night-Price</p>
-            <p>Rs {medNightPrice}</p>
-          </div>
-        </div>
-        <div
-          id="large"
-          onClick={() => {
-            setSelectedRoom("large");
-          }}
-          tabIndex="1"
-          className="room-type w-90"
-        >
-          <p className="f-16 font-weight-bolder">Large Room</p>
-          <p>Upto {largeCap} people</p>
-          <div className="line-ht-0">
-            <p>Day-Price </p>
-            <p>Rs {largePrice}</p>
-          </div>
-          <div className="line-ht-0">
-            <p>Night-Price</p>
-            <p>Rs {largeNightPrice}</p>
-          </div>
+        <div className=" mx-auto">
+          {smallCap ? (
+            <div
+              id="small"
+              tabIndex="1"
+              className={`${smallActive} `}
+              onClick={(e) => {
+                manualSmallSelect();
+                setRoomType("small");
+              }}
+            >
+              <p className="f-16 font-weight-bolder">Small Room</p>
+              <p>Upto {smallCap} people</p>
+              <div className="line-ht-0">
+                <p>Day-Price </p>
+                <p>Rs {smallPrice}</p>
+              </div>
+              <div className="line-ht-0">
+                <p>Night-Price</p>
+                <p>Rs {smallNightPrice}</p>
+              </div>
+            </div>
+          ) : null}
+          {medCap ? (
+            <div
+              id="med"
+              tabIndex="1"
+              className={`${medActive}`}
+              onClick={(e) => {
+                manualMedSelect();
+                setRoomType("medium");
+              }}
+            >
+              <p className="f-16 font-weight-bolder">Medium Room</p>
+              <p>Upto {medCap} people</p>
+              <div className="line-ht-0">
+                <p>Day-Price </p>
+                <p>Rs {medPrice}</p>
+              </div>
+              <div className="line-ht-0">
+                <p>Night-Price</p>
+                <p>Rs {medNightPrice}</p>
+              </div>
+            </div>
+          ) : null}
+          {largeCap ? (
+            <div
+              id="large"
+              tabIndex="1"
+              className={`${largeActive}`}
+              onClick={(e) => {
+                manualLargeSelect();
+                setRoomType("large");
+              }}
+            >
+              <p className="f-16 font-weight-bolder">Large Room</p>
+              <p>Upto {largeCap} people</p>
+              <div className="line-ht-0">
+                <p>Day-Price </p>
+                <p>Rs {largePrice}</p>
+              </div>
+              <div className="line-ht-0">
+                <p>Night-Price</p>
+                <p>Rs {largeNightPrice}</p>
+              </div>
+            </div>
+          ) : null}
         </div>
 
         <button
@@ -309,6 +372,7 @@ const UserHotel = () => {
             marginBottom: "7em",
             marginLeft: "58vw",
           }}
+          onClick={confirm}
         >
           Confirm
         </button>
