@@ -28,6 +28,10 @@ const Home = () => {
     localStorage.setItem("activePage", "home");
   }, []);
 
+  useEffect(() => {
+    personCheck();
+  }, [totalPersons]);
+
   const searchFilter = () => {
     localStorage.setItem("totalPersons", totalPersons);
     localStorage.setItem("girls", girls);
@@ -43,6 +47,14 @@ const Home = () => {
     }
 
     history.push("/hotelList");
+  };
+
+  const personCheck = () => {
+    if (totalPersons < 1) {
+      setTotalPersons(1);
+    } else if (totalPersons > 50) {
+      setTotalPersons(50);
+    }
   };
 
   return (

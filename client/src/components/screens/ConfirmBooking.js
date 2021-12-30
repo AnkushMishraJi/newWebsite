@@ -65,17 +65,9 @@ const ConfirmBooking = () => {
   }, []);
 
   useEffect(() => {
-    partyType();
-    amountAndRoom();
     personCheck();
-    console.log(totalPersons);
-    console.log(isNightParty);
-    console.log(date);
-  }, [isNightParty, totalPersons]);
-
-  useEffect(() => {}, [price, room]);
-
-  useEffect(() => {}, [isBlockedOn]);
+    amountAndRoom();
+  }, [totalPersons]);
 
   const stringArray = isBlockedOn.split(",");
   const result = stringArray.map((date) => new Date(date));
@@ -177,7 +169,7 @@ const ConfirmBooking = () => {
         />
       </div>
       <div className="text-light text-center mt-5">
-        <p>Girls and Boys not allowed together at this venue</p>
+        <p></p>
       </div>
       <div className="confirm-page text-light w-80 mt-5 f-18">
         <p>Total Persons</p>
