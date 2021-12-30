@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import "../../App.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -12,6 +12,7 @@ import TimePicker from "@mui/lab/TimePicker";
 const ConfirmBooking = () => {
   //   stringArray.map((date) => new Date(date));
 
+  const isMounted = useRef(false);
   const [hotelName, setHotelName] = useState();
   const [address, setAddress] = useState();
 
@@ -65,9 +66,14 @@ const ConfirmBooking = () => {
   }, []);
 
   useEffect(() => {
-    personCheck();
-    amountAndRoom();
-  }, [totalPersons]);
+    if (isMounted.current) {
+      setRoom("Hello");
+    } else {
+      isMounted.current = true;
+    }
+  }, []);
+
+  useEffect(() => {}, [isNightParty]);
 
   const stringArray = isBlockedOn.split(",");
   const result = stringArray.map((date) => new Date(date));
@@ -159,6 +165,7 @@ const ConfirmBooking = () => {
         <input
           style={{ border: "none", height: "25px", width: "60px" }}
           className="p-0 mt-2 f-12 text-center bg-light"
+          z
           type="number"
           value={totalPersons}
           onChange={(e) => {
