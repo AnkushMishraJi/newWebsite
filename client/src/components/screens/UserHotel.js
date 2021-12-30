@@ -30,6 +30,7 @@ const UserHotel = () => {
   const [largePrice, setLargePrice] = useState();
   const [largeNightPrice, setLargeNightPrice] = useState();
 
+  const [isNightParty, setIsNightParty] = useState();
   const [totalPersons, setTotalPersons] = useState();
   const [roomType, setRoomType] = useState("small");
   const [selectedRoom, setSelectedRoom] = useState();
@@ -82,6 +83,7 @@ const UserHotel = () => {
         setPic(data[0].mainPicUrl);
         localStorage.setItem("route", location.pathname);
         localStorage.setItem("isBlockedOn", data[0].isBlockedOn);
+        localStorage.getItem("isNightParty");
       });
   }, []);
 

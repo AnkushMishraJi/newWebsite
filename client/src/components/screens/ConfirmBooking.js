@@ -39,6 +39,7 @@ const ConfirmBooking = () => {
   const [room, setRoom] = useState();
   const [isBlockedOn, setIsBlockedOn] = useState("");
   const [count, setCount] = useState(0);
+  const [ncount, seNcount] = useState(0);
 
   useEffect(() => {
     setHotelName(localStorage.getItem("hotel"));
@@ -62,53 +63,74 @@ const ConfirmBooking = () => {
 
     setDate(() => new Date(localStorage.getItem("bookingDate")));
     setIsBlockedOn(localStorage.getItem("isBlockedOn"));
-    setTime(localStorage.getItem("time"));
+    setTime(() => new Date(localStorage.getItem("time")));
     setRoom(localStorage.getItem("room"));
+    setType(localStorage.getItem("type"));
+    let x = localStorage.getItem("price");
+    let y = localStorage.getItem("nightPrice");
+    firstprice(x, y);
   }, []);
+
+  // useEffect(() => {}, [price, room, ]);
+
+  useEffect(() => {
+    if (count > 0) {
+      amountAndRoom();
+    }
+  }, [totalPersons, isNightParty]);
 
   useEffect(() => {
     if (count > 0) {
       partyType();
       amountAndRoom();
-      personCheck();
-      console.log(count);
-      console.log(totalPersons);
-      console.log(isNightParty);
-      console.log(date);
     }
-  }, [isNightParty, totalPersons]);
+  }, [time]);
 
-  useEffect(() => {}, [price, room]);
-
-  useEffect(() => {}, [isNightParty]);
+  useEffect(() => {
+    personCheck();
+  }, [totalPersons]);
 
   const stringArray = isBlockedOn.split(",");
   const result = stringArray.map((date) => new Date(date));
 
   const partyType = () => {
-    if (isNightParty == true) setType("Night Party");
-    else setType("Day Party");
+    if (time.getHours() >= 18 || time.getHours() < 8) {
+      setIsNightParty(true);
+      setType("Night Party");
+    } else {
+      setIsNightParty(false);
+      setType("Day Party");
+    }
+  };
+
+  const firstprice = (x, y) => {
+    if (isNightParty) setPrice(x);
+    else setPrice(y);
   };
 
   const amountAndRoom = () => {
+    console.log("amount running");
+    console.log(isNightParty);
+    console.log(totalPersons);
+
     if (totalPersons <= smallCap && isNightParty && smallCap) {
-      setPrice(smallPrice);
-      setRoom("Small Room");
-    } else if (totalPersons <= smallCap && isNightParty && smallCap) {
       setPrice(smallNightPrice);
-      setRoom("Small Room");
-    } else if (totalPersons <= medCap && isNightParty && medCap) {
-      setPrice(medPrice);
-      setRoom("Medium Room");
+      setRoom("Small room");
+    } else if (totalPersons <= smallCap && !isNightParty && smallCap) {
+      setPrice(smallPrice);
+      setRoom("Small room");
     } else if (totalPersons <= medCap && isNightParty && medCap) {
       setPrice(medNightPrice);
-      setRoom("Medium Room");
-    } else if (totalPersons <= largeCap && isNightParty && largeCap) {
-      setPrice(largePrice);
-      setRoom("Large Room");
+      setRoom("Medium room");
+    } else if (totalPersons <= medCap && !isNightParty && medCap) {
+      setPrice(medPrice);
+      setRoom("Medium room");
     } else if (totalPersons <= largeCap && isNightParty && largeCap) {
       setPrice(largeNightPrice);
-      setRoom("Large Room");
+      setRoom("Large room");
+    } else if (totalPersons <= largeCap && !isNightParty && largeCap) {
+      setPrice(largeNightPrice);
+      setRoom("Large room");
     }
   };
 
@@ -156,6 +178,7 @@ const ConfirmBooking = () => {
             value={time}
             onChange={(time) => {
               setTime(time);
+              setCount(count + 1);
             }}
             renderInput={(params) => (
               <TextField

@@ -42,8 +42,10 @@ const Home = () => {
     localStorage.setItem("time", time);
     if (time.getHours() >= 18 || time.getHours() < 8) {
       localStorage.setItem("isNightParty", true);
+      localStorage.setItem("type", "Night Party");
     } else {
       localStorage.setItem("isNightParty", false);
+      localStorage.setItem("type", "Day Party");
     }
 
     history.push("/hotelList");
