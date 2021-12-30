@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.css";
+import Carousel from "react-bootstrap/Carousel";
 
 import {
   faLocationArrow,
@@ -29,7 +31,7 @@ const UserHotel = () => {
 
   const [totalPersons, setTotalPersons] = useState();
 
-  const [selectedRoom, setSelectedRoom] = useState("");
+  const [selectedRoom, setSelectedRoom] = useState("small");
 
   const isAuthenticated = localStorage.getItem("isAuthenticated");
 
@@ -150,14 +152,57 @@ const UserHotel = () => {
     localStorage.setItem("razor", JSON.stringify(data));
   }
 
+  const carouselContent = (selectedRoom) => {
+    return (
+      <Carousel variant="dark">
+        <Carousel.Item interval={1000}>
+          <img
+            className="d-block w-100"
+            src={require(`../../images/hotels/charans/${selectedRoom}/hotel1.jpg`)}
+            alt="First slide"
+          />
+          <Carousel.Caption>
+            <h3>First slide label</h3>
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item interval={500}>
+          <img
+            className="d-block w-100"
+            src={require(`../../images/hotels/charans/${selectedRoom}/hotel2.jpg`)}
+            alt="Second slide"
+          />
+          <Carousel.Caption>
+            <h3>Second slide label</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src={require(`../../images/hotels/charans/${selectedRoom}/hotel3.jpg`)}
+            alt="Third slide"
+          />
+          <Carousel.Caption>
+            <h3>Third slide label</h3>
+            <p>
+              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+            </p>
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
+    );
+  };
+
   const manualSelectRoom = () => {};
 
   const automaticSelectRoom = () => {};
 
   return (
     <div className="w-100 text-light">
+      {carouselContent(selectedRoom)}
       <style>{"body { background-color: #1a1b41; }"}</style>
-      <img className="w-100 h-30" src={pic} alt="hotel" />
+
       <div className="w-90 p-4 pb-2 ">
         <div className="user-hotel-box  w-90">
           <div>
@@ -187,7 +232,14 @@ const UserHotel = () => {
           />
         </div>
 
-        <div id="small" tabIndex="1" className="room-type w-90">
+        <div
+          id="small"
+          onClick={() => {
+            setSelectedRoom("small");
+          }}
+          tabIndex="1"
+          className="room-type w-90"
+        >
           <p className="f-16 font-weight-bolder">Small Room</p>
           <p>Upto {smallCap} people</p>
           <div className="line-ht-0">
@@ -199,7 +251,14 @@ const UserHotel = () => {
             <p>Rs {smallNightPrice}</p>
           </div>
         </div>
-        <div id="med" tabIndex="1" className="room-type w-90">
+        <div
+          id="med"
+          onClick={() => {
+            setSelectedRoom("medium");
+          }}
+          tabIndex="1"
+          className="room-type w-90"
+        >
           <p className="f-16 font-weight-bolder">Medium Room</p>
           <p>Upto {medCap} people</p>
           <div className="line-ht-0">
@@ -211,7 +270,14 @@ const UserHotel = () => {
             <p>Rs {medNightPrice}</p>
           </div>
         </div>
-        <div id="large" tabIndex="1" className="room-type w-90">
+        <div
+          id="large"
+          onClick={() => {
+            setSelectedRoom("large");
+          }}
+          tabIndex="1"
+          className="room-type w-90"
+        >
           <p className="f-16 font-weight-bolder">Large Room</p>
           <p>Upto {largeCap} people</p>
           <div className="line-ht-0">
