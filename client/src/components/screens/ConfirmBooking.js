@@ -37,6 +37,7 @@ const ConfirmBooking = () => {
   const [type, setType] = useState();
   const [room, setRoom] = useState();
   const [isBlockedOn, setIsBlockedOn] = useState("");
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     setHotelName(localStorage.getItem("hotel"));
@@ -65,12 +66,15 @@ const ConfirmBooking = () => {
   }, []);
 
   useEffect(() => {
-    partyType();
-    amountAndRoom();
-    personCheck();
-    console.log(totalPersons);
-    console.log(isNightParty);
-    console.log(date);
+    if (count > 0) {
+      partyType();
+      amountAndRoom();
+      personCheck();
+      console.log(count);
+      console.log(totalPersons);
+      console.log(isNightParty);
+      console.log(date);
+    }
   }, [isNightParty, totalPersons]);
 
   useEffect(() => {}, [price, room]);
@@ -171,6 +175,7 @@ const ConfirmBooking = () => {
           value={totalPersons}
           onChange={(e) => {
             setTotalPersons(parseInt(e.target.value));
+            setCount(count + 1);
           }}
           min="1"
           max="50"
