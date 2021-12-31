@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
-import Carousel from "react-bootstrap/Carousel";
+import { Carousel } from "react-bootstrap";
 import M from "materialize-css";
 
 import {
@@ -159,41 +159,27 @@ const UserHotel = () => {
 
   const carouselContent = (selectedRoom) => {
     return (
-      <Carousel variant="dark">
+      <Carousel>
         <Carousel.Item interval={1000}>
           <img
             className="d-block w-100"
-            src={require(`../../images/hotels/charans/${selectedRoom}/hotel1.jpg`)}
+            src={`http://res.cloudinary.com/mera-adda/image/upload/v1640882770/hotels/charans/${selectedRoom}/hotel1.jpg`}
             alt="First slide"
           />
-          <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item interval={500}>
           <img
             className="d-block w-100"
-            src={require(`../../images/hotels/charans/${selectedRoom}/hotel2.jpg`)}
+            src={`http://res.cloudinary.com/mera-adda/image/upload/v1640882770/hotels/charans/${selectedRoom}/hotel2.jpg`}
             alt="Second slide"
           />
-          <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src={require(`../../images/hotels/charans/${selectedRoom}/hotel3.jpg`)}
+            src={`http://res.cloudinary.com/mera-adda/image/upload/v1640882770/hotels/charans/${selectedRoom}/hotel3.jpg`}
             alt="Third slide"
           />
-          <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-            </p>
-          </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
     );
@@ -254,9 +240,8 @@ const UserHotel = () => {
 
   return (
     <div className="w-100 text-light">
-      {carouselContent(roomType)}
       <style>{"body { background-color: #1a1b41; }"}</style>
-
+      {carouselContent(roomType)}
       <div className="w-90 p-4 pb-2 ">
         <div className="user-hotel-box  w-90">
           <div>

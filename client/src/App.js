@@ -20,7 +20,6 @@ import OldBill from "./components/screens/OldBill";
 import ProtectedRoute from "./components/ProtectedRoute";
 import UserPage from "./components/screens/UserPage";
 import ConfirmBooking from "./components/screens/ConfirmBooking";
-
 // import { reducer, initialState } from "./reducers/userReducer";
 import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
 
