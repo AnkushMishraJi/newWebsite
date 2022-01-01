@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+
+import M from "materialize-css";
 
 const HotelList = () => {
   const [hotels, setHotels] = useState([]);
@@ -31,8 +33,16 @@ const HotelList = () => {
   }, []);
 
   return (
-    <>
-      <div className="brand-logo f-18 m-4 ml-4 ">HOTEL LIST</div>
+    <div className="bg-brand">
+      <Link to="/">
+        <FontAwesomeIcon
+          className="back-arrow waves-effect"
+          icon={faArrowLeft}
+        />
+      </Link>
+
+      <div className="brand-logo f-20 mt-5 mb-5 m text-center ">HOTEL LIST</div>
+
       {hotels.map((oneHotel) => {
         const smallPrice = oneHotel.roomSmallData.smallPrice;
         const medPrice = oneHotel.roomMediumData.mediumPrice;
@@ -74,7 +84,6 @@ const HotelList = () => {
         return (
           <Link key={oneHotel._id} to={"/userHotel/" + oneHotel._id}>
             <div className="hlist">
-              <style>{"body { background-color: #1a1b41; }"}</style>
               <img
                 className="hlist-img"
                 src={oneHotel.mainPicUrl}
@@ -92,8 +101,8 @@ const HotelList = () => {
                   }}
                 >
                   <h5 className="f-14">Starting from Rs.{price()}</h5>
-                  <FontAwesomeIcon className="mx-auto" icon={faUser} />
-                  <h5 className="f-14" style={{ textAlign: "right" }}>
+                  <FontAwesomeIcon icon={faUser} />
+                  <h5 className="f-14" style={{ textAlign: "left" }}>
                     Upto {maxPersons} people
                   </h5>
                 </div>
@@ -102,7 +111,7 @@ const HotelList = () => {
           </Link>
         );
       })}
-    </>
+    </div>
   );
 };
 

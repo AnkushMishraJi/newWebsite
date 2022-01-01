@@ -84,7 +84,7 @@ const UserSignin = () => {
       <p className="brand-logo f-24 text-center mt-5">SUBMIT OTP</p>
       <div className="imgDot d-flex mx-auto">
         <img
-          className="w-20 mb-4 d-flex mx-auto my-auto w-80"
+          className=" mb-4 d-flex mx-auto my-auto w-82"
           src={sign_in}
           alt="sign_in_img"
         />

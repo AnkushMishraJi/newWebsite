@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,600;0,900;1,300&family=Source+Code+Pro:wght@700&display=swap");
 
 * {
@@ -11,14 +11,25 @@
 
 .nav-icons {
   text-decoration: none !important;
+  opacity: 35%;
 }
 
-.body {
-  background-color: #1a1b41;
+.back-arrow {
+  position: absolute;
+  color: white !important;
+  width: 2em !important;
+  height: 2em !important;
+  top: 3em;
+  left: 2em;
+  z-index: 5;
+}
+
+.bg-brand {
+  background-color: #1a1b41 !important;
 }
 .brand-logo,
 h2 {
-  font-family: "Source Code Pro", monospace !important;
+  font-family: "Poppins", sans-serif !important;
   color: #fe9124;
 }
 
@@ -42,12 +53,25 @@ h2 {
 
 .container-input {
   width: 70%;
-  height: 3em;
-  border-radius: 2em;
+  height: 3em !important;
+  border-radius: 0.5em;
   background-color: white;
-  margin-top: 2em;
 }
 
+.tp-box {
+  border: none;
+  width: 6em !important;
+  height: 3rem !important;
+  padding: 0;
+  text-align: center;
+  background-color: white !important;
+  font-size: 1em;
+  border-radius: 0.5em !important;
+}
+
+.carousel {
+  height: 35vh !important;
+}
 .inside-box {
   padding-left: 1em !important;
   padding-bottom: 1.5em !important;
@@ -118,6 +142,9 @@ a {
 .confirm-page {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  border: #fe9124 solid 0.1em;
+  padding: 1em;
+  border-radius: 1em;
 }
 
 .post-bar {
@@ -181,10 +208,10 @@ a {
   padding: 0px;
   height: 40%;
   width: 85%;
-  border-radius: 10px;
+  border-radius: 2em;
   line-height: 0vmin;
   display: grid;
-  grid-template-rows: 3f 1fr;
+  grid-template-rows: 1fr;
   background-color: white;
   text-decoration: none;
 }
@@ -192,8 +219,9 @@ a {
 .hlist-img {
   width: 100%;
   height: 15em;
-  border-top-left-radius: 0.5em;
-  border-top-right-radius: 0.5em;
+  border-top-left-radius: 2em;
+  border-top-right-radius: 2em;
+  padding: 0.2em;
 }
 .room-type {
   margin-top: 1em;
@@ -228,6 +256,13 @@ a {
   position: relative;
   width: 2em;
   height: 2em;
+}
+.user-page-btn {
+  border: #fe9124 solid 0.1em;
+  width: 14em !important;
+  height: 2em;
+  margin-bottom: 2.5em;
+  border-radius: 0.5em;
 }
 .nav-icon {
   opacity: 50% !important;
@@ -299,7 +334,9 @@ a {
 .w-60 {
   width: 60% !important;
 }
-
+.w-63 {
+  width: 63vw !important;
+}
 .w-70 {
   width: 70% !important;
 }
@@ -336,6 +373,10 @@ a {
 
 .f-14 {
   font-size: 0.75em;
+}
+
+.f-15 {
+  font-size: 0.85em;
 }
 
 .f-16 {

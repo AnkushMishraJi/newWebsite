@@ -38,7 +38,12 @@ function NavigationBar() {
       >
         <FontAwesomeIcon
           tabIndex="1"
-          className={`nav-icon ${activePage === "home" ? "f-32" : null}`}
+          className="nav-icons"
+          style={
+            activePage == "home"
+              ? { color: "#1B1B1B", outline: "none", opacity: "100%" }
+              : {}
+          }
           icon={faHome}
         />
       </Link>
@@ -51,9 +56,12 @@ function NavigationBar() {
       >
         <FontAwesomeIcon
           tabIndex="2"
-          className={`mx-auto nav-icon ${
-            activePage === "services" ? "f-32" : null
-          }`}
+          className="nav-icons"
+          style={
+            activePage == "services"
+              ? { color: "#1B1B1B", outline: "none", opacity: "100%" }
+              : {}
+          }
           icon={faConciergeBell}
         />
       </Link>
@@ -66,9 +74,12 @@ function NavigationBar() {
       >
         <FontAwesomeIcon
           tabIndex="3"
-          className={`mx-auto nav-icon ${
-            activePage === "bookings" ? "f-32" : null
-          }`}
+          className="nav-icons"
+          style={
+            activePage == "bookings"
+              ? { color: "#1B1B1B", outline: "none", opacity: "100%" }
+              : {}
+          }
           icon={faBookmark}
         />
       </Link>
@@ -81,7 +92,12 @@ function NavigationBar() {
       >
         <FontAwesomeIcon
           tabIndex="4"
-          className={`nav-icon ${activePage === "login" ? "f-32" : null}`}
+          className="nav-icons"
+          style={
+            activePage == "login"
+              ? { color: "#1B1B1B", outline: "none", opacity: "100%" }
+              : {}
+          }
           icon={faUser}
         />
       </Link>

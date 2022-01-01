@@ -10,6 +10,7 @@ const Bill = () => {
 
   const User = "abc@abc.com";
   const Hotel = localStorage.getItem("Hotel");
+  const HotelEmail = localStorage.getItem("hotelEmail");
   const DateOfBooking = localStorage.getItem("bookingDate");
   const ArrivalTime = localStorage.getItem("time");
   const TotalPersons = localStorage.getItem("totalPersons");
@@ -19,6 +20,11 @@ const Bill = () => {
 
   var time_slot;
   var type;
+  var splitDate = DateOfBooking.split(" ");
+  var displayDate = splitDate.splice(0, 4).join(" ");
+
+  var splitTime = ArrivalTime.split(" ");
+  var displayTime = splitTime.splice(3, 2).join(" ");
 
   if (isNightParty == true) {
     time_slot = 6;
@@ -45,6 +51,7 @@ const Bill = () => {
         PaymentTime,
         TimeSlot: time_slot,
         Type: type,
+        HotelEmail,
       }),
     })
       .then((res) => res.json())
@@ -75,11 +82,11 @@ const Bill = () => {
         </div>
         <div>
           <p className="f-12 font-weight-bolder">Date of Booking</p>
-          <p>{DateOfBooking}</p>
+          <p>{displayDate}</p>
         </div>
         <div>
           <p className="f-12 font-weight-bolder">Time of Arrival</p>
-          <p>{ArrivalTime}</p>
+          <p>{displayTime}</p>
         </div>
         <div>
           <p className="f-12 font-weight-bolder">Total Persons</p>

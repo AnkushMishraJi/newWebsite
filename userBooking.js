@@ -32,9 +32,7 @@ router.post("/addConfirmBookingsUser", (req, res) => {
     PaymentTime,
     TimeSlot,
     Type,
-    HotelEmail,
   } = req.body;
-
   const UserBookings = new confirmedUserBooking({
     User,
     Hotel,
@@ -51,57 +49,40 @@ router.post("/addConfirmBookingsUser", (req, res) => {
     .then((UserBookings) => {
       transporter
         .sendMail({
-          to: HotelEmail,
+          to: "meraaddacontact@gmail.com",
           from: "meraaddacontact@gmail.com",
           subject: "New Booking Recieved",
           html:
-            "<div>" +
-            "<b>" +
-            "You have a new booking!" +
-            "</b>" +
             "<p>" +
-            "Hotel : " +
+            " Hotel: " +
             Hotel +
-            "</p>" +
-            "<p>" +
-            "Date Of Booking : " +
+            "| Date Of Booking: " +
             DateOfBooking +
-            "</p>" +
-            "<p>" +
-            "ArrivalTime : " +
+            "| ArrivalTime:  " +
             ArrivalTime +
-            "</p>" +
-            "<p>" +
-            "Total Persons : " +
+            "| Total Persons " +
             TotalPersons +
-            "</p>" +
-            "<p>" +
-            "Billing Amount : " +
+            "| BillingAmount " +
             BillingAmount +
-            "</p>" +
-            "<p>" +
-            "Payment Time : " +
+            "| OrderId " +
+            OrderId +
+            "| PaymentTime " +
             PaymentTime +
-            "</p>" +
-            "<p>" +
-            "Time Slot : " +
+            "| TimeSlot " +
             TimeSlot +
-            "</p>" +
-            "<p>" +
-            "Type : " +
+            "| Type " +
             Type +
-            "</p>" +
-            "</div>",
+            "</p>",
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
         });
       res.status(201).json({
         message: "new confirmed booking saved to database",
       });
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
     });
 });
 

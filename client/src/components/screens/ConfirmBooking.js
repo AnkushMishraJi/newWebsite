@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
+import { Link } from "react-router-dom";
 import "../../App.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -8,6 +9,9 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 
 import TimePicker from "@mui/lab/TimePicker";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 const ConfirmBooking = () => {
   //   stringArray.map((date) => new Date(date));
@@ -39,7 +43,7 @@ const ConfirmBooking = () => {
   const [room, setRoom] = useState();
   const [isBlockedOn, setIsBlockedOn] = useState("");
   const [count, setCount] = useState(0);
-  const [ncount, seNcount] = useState(0);
+  const [route, setRoute] = useState();
 
   useEffect(() => {
     setHotelName(localStorage.getItem("hotel"));
@@ -66,9 +70,10 @@ const ConfirmBooking = () => {
     setTime(() => new Date(localStorage.getItem("time")));
     setRoom(localStorage.getItem("room"));
     setType(localStorage.getItem("type"));
-    let x = localStorage.getItem("price");
-    let y = localStorage.getItem("nightPrice");
-    firstprice(x, y);
+    setRoute(localStorage.getItem("route"));
+    let localPrice = localStorage.getItem("price");
+    let localNightPrice = localStorage.getItem("nightPrice");
+    firstprice(localPrice, localNightPrice);
   }, []);
 
   // useEffect(() => {}, [price, room, ]);
@@ -103,9 +108,9 @@ const ConfirmBooking = () => {
     }
   };
 
-  const firstprice = (x, y) => {
-    if (isNightParty) setPrice(x);
-    else setPrice(y);
+  const firstprice = (localPrice, localNightPrice) => {
+    if (isNightParty) setPrice(localPrice);
+    else setPrice(localNightPrice);
   };
 
   const amountAndRoom = () => {
@@ -135,7 +140,7 @@ const ConfirmBooking = () => {
   };
 
   const personCheck = () => {
-    if (totalPersons < 1) {
+    if (totalPersons < 1 || totalPersons > 50) {
       setTotalPersons(1);
     } else if (
       totalPersons > smallCap &&
@@ -150,18 +155,24 @@ const ConfirmBooking = () => {
 
   return (
     <div
-      className="d-flex flex-column align-items-center p-5"
-      style={{ backgroundColor: "#1a1b41", height: "100%", height: "90vh" }}
+      className="d-flex flex-column align-items-center p-5 bg-brand"
+      style={{ height: "100%", height: "90vh" }}
     >
-      <p className="text-light f-24">Confirm Booking?</p>
-      <h5 className="title_text font-weight-bolder f-32 mb-0 brand-logo">
+      <p className="text-light f-18">Confirm Booking?</p>
+      <Link to={route}>
+        <FontAwesomeIcon
+          className="back-arrow waves-effect"
+          icon={faArrowLeft}
+        />
+      </Link>
+      <h5 className="title_text font-weight-bolder f-18 mb-0 brand-logo">
         {hotelName}
       </h5>
-      <h1 className="text-light font-weight-bolder f-18 brand-logo">
+      <h1 className="text-light font-weight-bolder f-16 brand-logo">
         {address}
       </h1>
 
-      <div className="container-input">
+      <div className="container-input mt-3">
         <DatePicker
           className="px-3"
           selected={date}
@@ -171,7 +182,7 @@ const ConfirmBooking = () => {
           excludeDates={result}
         />
       </div>
-      <div className="container-input">
+      <div className="container-input mt-3">
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <TimePicker
             selected={time}
@@ -182,8 +193,8 @@ const ConfirmBooking = () => {
             }}
             renderInput={(params) => (
               <TextField
-                className="text-center inside-box"
-                style={{ border: "none" }}
+                className="text-center  "
+                style={{ border: "none", paddingLeft: "1em" }}
                 {...params}
               />
             )}
@@ -191,10 +202,9 @@ const ConfirmBooking = () => {
         </LocalizationProvider>
       </div>
       <div className="w-70 d-inline-flex mt-3">
-        <p className="p-0 mt-2 mb-0 text-light f-14 w-100 ">Total Persons</p>
+        <p className="pt-3  mb-0 text-light f-15 w-100 ">Total Persons</p>
         <input
-          style={{ border: "none", height: "25px", width: "60px" }}
-          className="p-0 mt-2 f-12 text-center bg-light"
+          className="tp-box"
           z
           type="number"
           value={totalPersons}
@@ -206,17 +216,17 @@ const ConfirmBooking = () => {
           max="50"
         />
       </div>
-      <div className="text-light text-center mt-5">
+      <div className="text-light text-center">
         <p></p>
       </div>
-      <div className="confirm-page text-light w-80 mt-5 f-18">
-        <p>Total Persons</p>
+      <div className="confirm-page text-light  w-63 f-16">
+        <p className="font-weight-bolder">Total Persons</p>
         <p className="right-text">{totalPersons}</p>
-        <p>Type</p>
+        <p className="font-weight-bolder">Type</p>
         <p className="right-text">{type}</p>
-        <p>Room</p>
+        <p className="font-weight-bolder">Room</p>
         <p className="right-text">{room}</p>
-        <p>Amount</p>
+        <p className="font-weight-bolder">Amount</p>
         <p className="right-text">Rs. {price}</p>
       </div>
     </div>

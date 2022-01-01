@@ -20,6 +20,7 @@ import OldBill from "./components/screens/OldBill";
 import ProtectedRoute from "./components/ProtectedRoute";
 import UserPage from "./components/screens/UserPage";
 import ConfirmBooking from "./components/screens/ConfirmBooking";
+import CarouselContainer from "./components/CarouselContainer";
 // import { reducer, initialState } from "./reducers/userReducer";
 import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
 
@@ -70,7 +71,10 @@ function App() {
       <Route path="/confirmBooking">
         <ConfirmBooking />
       </Route>
-      <ProtectedRoute exact path="/bill" component={Bill} />
+      <Route path="/bill">
+        <Bill />
+      </Route>
+
       <ProtectedRoute exact path="/allBookings" component={AllBookings} />
       <ProtectedRoute exact path="/oldBill" component={OldBill} />
     </BrowserRouter>

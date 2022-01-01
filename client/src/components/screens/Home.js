@@ -9,7 +9,7 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import TimePicker from "@mui/lab/TimePicker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar } from "@fortawesome/free-solid-svg-icons";
-import logo from "../../images/logo_ma.jpeg";
+import logo from "../../images/logo_ma.png";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -59,10 +59,14 @@ const Home = () => {
     }
   };
 
+  const handleClick = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div
-      className="d-flex flex-column align-items-center p-5"
-      style={{ backgroundColor: "#1a1b41", height: "100%", height: "90vh" }}
+      className="d-flex flex-column align-items-center p-4 bg-brand"
+      style={{ height: "100%", height: "90vh" }}
     >
       <img
         className=" mb-4"
@@ -77,16 +81,17 @@ const Home = () => {
         LET'S PARTY
       </h1>
       <p className="text-light">When are you coming to party?</p>
-      <div className="container-input">
+      <div className="container-input mt-3">
         <DatePicker
           className="px-3"
           selected={date}
           onChange={(date) => setDate(date)}
+          onClick={handleClick}
           dateFormat="dd-MMM-yyyy"
           minDate={new Date()}
         />
       </div>
-      <div className="container-input">
+      <div className="container-input mt-3">
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <TimePicker
             className="p-0 mt-2 f-12 text-center bg-light"
@@ -105,11 +110,10 @@ const Home = () => {
         </LocalizationProvider>
       </div>
 
-      <div className="w-70 d-inline-flex mt-4">
-        <p className="p-0 mt-2 mb-0 text-light f-14 w-100 ">Total Persons</p>
+      <div className="w-70 d-inline-flex mt-3">
+        <p className="pt-2 mt-2 mb-0 text-light f-18 w-100 ">Total Persons</p>
         <input
-          style={{ border: "none", height: "35px", width: "60px" }}
-          className="p-0 mt-2 f-12 text-center bg-light"
+          className="tp-box"
           type="number"
           value={totalPersons}
           onChange={(e) => {
@@ -129,11 +133,11 @@ const Home = () => {
             }}
           />
 
-          <span className="mt-1 text-light">Ladies Included?</span>
+          <span className="mt-2 text-light">Ladies Included?</span>
         </label>
       </div>
       <button
-        className="text-light w-70 mt-3"
+        className="text-light w-70 mt-4"
         style={{
           backgroundColor: "#fe9124",
           height: "40px",

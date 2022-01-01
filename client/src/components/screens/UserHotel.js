@@ -5,9 +5,14 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Carousel } from "react-bootstrap";
 import M from "materialize-css";
 
+import CarouselContainer from "../CarouselContainer";
+
 import {
-  faLocationArrow,
+  faMapPin,
   faCheckCircle,
+  faArrowLeft,
+  faMapMarker,
+  faMapMarkedAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -84,6 +89,7 @@ const UserHotel = () => {
         localStorage.setItem("route", location.pathname);
         localStorage.setItem("isBlockedOn", data[0].isBlockedOn);
         localStorage.getItem("isNightParty");
+        localStorage.setItem("hotelEmail", data[0].email);
       });
   }, []);
 
@@ -91,14 +97,20 @@ const UserHotel = () => {
     console.log(selectedRoom);
     if (totalPersons <= smallCap) {
       setSmallActive("room-type-active");
+      setSelectedRoom("small");
       localStorage.setItem("price", smallPrice);
       localStorage.setItem("nightPrice", smallNightPrice);
+      localStorage.setItem("room", "Small Room");
     } else if (totalPersons <= medCap) {
       setMedActive("room-type-active");
+      setSelectedRoom("medium");
       localStorage.setItem("price", medPrice);
       localStorage.setItem("nightPrice", medNightPrice);
+      localStorage.setItem("room", "Medium Room");
     } else if (totalPersons <= largeCap) {
+      setSelectedRoom("large");
       setLargeActive("room-type-active");
+      localStorage.setItem("room", "Large Room");
       localStorage.setItem("price", largePrice);
       localStorage.setItem("nightPrice", largeNightPrice);
     }
@@ -190,6 +202,7 @@ const UserHotel = () => {
       localStorage.setItem("price", smallPrice);
       localStorage.setItem("nightPrice", smallNightPrice);
       localStorage.setItem("room", "Small Room");
+      setSelectedRoom("small");
       setSmallActive("room-type-active");
       setMedActive("room-type");
       setLargeActive("room-type");
@@ -201,6 +214,7 @@ const UserHotel = () => {
       localStorage.setItem("price", medPrice);
       localStorage.setItem("nightPrice", medNightPrice);
       localStorage.setItem("room", "Medium Room");
+      setSelectedRoom("medium");
       setSmallActive("room-type");
       setMedActive("room-type-active");
       setLargeActive("room-type");
@@ -212,6 +226,7 @@ const UserHotel = () => {
       localStorage.setItem("price", largePrice);
       localStorage.setItem("nightPrice", largeNightPrice);
       localStorage.setItem("room", "Large Room");
+      setSelectedRoom("large");
       setSmallActive("room-type");
       setMedActive("room-type");
       setLargeActive("room-type-active");
@@ -239,23 +254,26 @@ const UserHotel = () => {
   };
 
   return (
-    <div className="w-100 text-light">
-      <style>{"body { background-color: #1a1b41; }"}</style>
-      {carouselContent(roomType)}
+    <div className="w-100 text-light bg-brand">
+      <Link to="/hotelList">
+        <FontAwesomeIcon className="back-arrow" icon={faArrowLeft} />
+      </Link>
+      <CarouselContainer selectedRoom={roomType} />
       <div className="w-90 p-4 pb-2 ">
         <div className="user-hotel-box  w-90">
           <div>
             <h2>{hotelName}</h2>
             <h6>{address}</h6>
           </div>
-
-          <div className="location-border " onClick={MapLocation}>
-            <FontAwesomeIcon
-              className="d-flex mx-auto my-2"
-              style={{ color: "#fe9124", width: "2.5em", height: "2.5em" }}
-              icon={faLocationArrow}
-            />
-          </div>
+          <a href={locationHotel}>
+            <div className="location-border ">
+              <FontAwesomeIcon
+                className="d-flex mx-auto my-2"
+                style={{ color: "#fe9124", width: "2.5em", height: "2.5em" }}
+                icon={faMapMarkedAlt}
+              />
+            </div>
+          </a>
         </div>
 
         <h4 className="f-16 w-90 text-center pt-3">

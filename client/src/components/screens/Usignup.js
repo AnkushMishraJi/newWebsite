@@ -1,7 +1,10 @@
 import React, { useEffect, useState, useReducer } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import M from "materialize-css";
 import { Container, DatePicker } from "react-materialize";
+
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function UserSignup() {
   const history = useHistory();
@@ -67,6 +70,9 @@ function UserSignup() {
         className="auth-card input-field"
         style={{ display: "grid", gridGap: "25px" }}
       >
+        <Link to="/uphone">
+          <FontAwesomeIcon className="back-arrow" icon={faArrowLeft} />
+        </Link>
         <h2>Welcome</h2>
         <input
           className="w-70 bg-white d-flex align-items-center rounded-7 mx-auto"

@@ -44,14 +44,14 @@ const UserPhoneCheck = () => {
       });
   };
   return (
-    <>
+    <div className="h-90">
       <style>{"body { background-color: #1a1b41; }"}</style>
 
       <div className="">
         <p className="text-center brand-logo f-24 mt-5   ">HEY THERE!</p>
         <div className="imgDot d-flex mx-auto">
           <img
-            className="w-20 mb-4 d-flex mx-auto my-auto w-80"
+            className="w-82 mb-4 d-flex mx-auto my-auto "
             src={sign_in}
             alt="sign_in_img"
           />
@@ -83,7 +83,7 @@ const UserPhoneCheck = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
