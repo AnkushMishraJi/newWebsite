@@ -120,54 +120,54 @@ const UserHotel = () => {
     setPrice(1000);
   }, [smallActive, medActive, largeActive, price]);
 
-  async function displayRazorpay() {
-    // console.log("rzp Running");
+  // async function displayRazorpay() {
+  //   // console.log("rzp Running");
 
-    const data = await fetch("/razorpay", {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify({
-        amount: price * 100,
-        currency: "INR",
-        payment_capture: 1,
-        receipt: shortid.generate(),
-      }),
-    }).then((res) => res.json());
-    console.log(data);
-    localStorage.setItem("Hotel", hotelName);
+  //   const data = await fetch("/razorpay", {
+  //     method: "POST",
+  //     headers: { "Content-type": "application/json" },
+  //     body: JSON.stringify({
+  //       amount: price * 100,
+  //       currency: "INR",
+  //       payment_capture: 1,
+  //       receipt: shortid.generate(),
+  //     }),
+  //   }).then((res) => res.json());
+  //   console.log(data);
+  //   localStorage.setItem("Hotel", hotelName);
 
-    const options = {
-      key: "rzp_test_ZwIQoXjws19gWq", // Enter the Key ID generated from the Dashboard
-      amount: data.amount.toString(), // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-      currency: data.currency,
-      name: "Acme Corp",
-      description: "Test Transaction",
-      image: "https://example.com/your_logo",
-      order_id: data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-      created_at: data.created_at,
-      handler: function (response) {
-        alert(response.razorpay_payment_id);
-        alert(response.razorpay_order_id);
-        alert(response.razorpay_signature);
-        // console.log(JSON.stringify(response));
-        history.push("/bill");
-      },
-      prefill: {
-        name: "Gaurav Kumar",
-        email: "gaurav.kumar@example.com",
-        contact: "9999999999",
-      },
-      notes: {
-        address: "Razorpay Corporate Office",
-      },
-      theme: {
-        color: "#3399cc",
-      },
-    };
-    var rzp1 = new window.Razorpay(options);
-    rzp1.open();
-    localStorage.setItem("razor", JSON.stringify(data));
-  }
+  //   const options = {
+  //     key: "rzp_test_ZwIQoXjws19gWq", // Enter the Key ID generated from the Dashboard
+  //     amount: data.amount.toString(), // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+  //     currency: data.currency,
+  //     name: "Acme Corp",
+  //     description: "Test Transaction",
+  //     image: "https://example.com/your_logo",
+  //     order_id: data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+  //     created_at: data.created_at,
+  //     handler: function (response) {
+  //       alert(response.razorpay_payment_id);
+  //       alert(response.razorpay_order_id);
+  //       alert(response.razorpay_signature);
+  //       // console.log(JSON.stringify(response));
+  //       history.push("/bill");
+  //     },
+  //     prefill: {
+  //       name: "Gaurav Kumar",
+  //       email: "gaurav.kumar@example.com",
+  //       contact: "9999999999",
+  //     },
+  //     notes: {
+  //       address: "Razorpay Corporate Office",
+  //     },
+  //     theme: {
+  //       color: "#3399cc",
+  //     },
+  //   };
+  //   var rzp1 = new window.Razorpay(options);
+  //   rzp1.open();
+  //   localStorage.setItem("razor", JSON.stringify(data));
+  // }
 
   const carouselContent = (selectedRoom) => {
     return (
@@ -358,14 +358,14 @@ const UserHotel = () => {
           ) : null}
         </div>
 
-        <button
+        {/* <button
           onClick={() => {
             isAuthenticated ? displayRazorpay() : history.push("/usignin");
           }}
           className="waves-effect waves-dark btn #64b5f6 blue lighten-2"
         >
           Pay Rs. {price}
-        </button>
+        </button> */}
         <button
           type="submit"
           className="text-light w-40 mt-5 "

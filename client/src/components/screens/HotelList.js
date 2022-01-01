@@ -86,7 +86,7 @@ const HotelList = () => {
             <div className="hlist">
               <img
                 className="hlist-img"
-                src={oneHotel.mainPicUrl}
+                src={`http://res.cloudinary.com/mera-adda/image/upload/v1640882770/hotels/charans/main.jpg`}
                 alt={"hotel" + oneHotel.hotelName}
               />
               <div className="half-card">
