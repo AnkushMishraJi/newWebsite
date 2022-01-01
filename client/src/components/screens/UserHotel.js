@@ -55,10 +55,6 @@ const UserHotel = () => {
   const location = useLocation();
   const history = useHistory();
 
-  const MapLocation = () => {
-    history.push(locationHotel);
-  };
-
   useEffect(() => {
     fetch(location.pathname, {
       method: "get",

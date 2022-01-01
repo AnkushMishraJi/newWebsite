@@ -51,6 +51,7 @@ function Signin() {
             classes: "#43a047 green darken-1",
           });
           localStorage.setItem("businessLoggedIn", "true");
+          localStorage.setItem("email", email);
           history.push("/hoteladmin");
         }
       })
