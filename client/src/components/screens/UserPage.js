@@ -11,9 +11,6 @@ const UserPage = () => {
   };
 
   useEffect(() => {
-    if (!localStorage.getItem("isAuthenticated")) {
-      history.push("/uphone");
-    }
     const phoneNumber = localStorage.getItem("phone");
     fetch(`/getname?phoneNumber=${phoneNumber}`, {
       method: "get",

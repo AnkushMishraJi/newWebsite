@@ -65,18 +65,14 @@ function App() {
       <Route path="/BuploadPhoto">
         <UploadPhoto />
       </Route>
-      <Route path="/userpage">
-        <UserPage />
-      </Route>
       <Route path="/confirmBooking">
         <ConfirmBooking />
-      </Route>
-      <Route path="/bill">
-        <Bill />
       </Route>
 
       <ProtectedRoute exact path="/allBookings" component={AllBookings} />
       <ProtectedRoute exact path="/oldBill" component={OldBill} />
+      <ProtectedRoute exact path="/bill" component={Bill} />
+      <ProtectedRoute exact path="/userpage" component={UserPage} />
     </BrowserRouter>
   );
 }
