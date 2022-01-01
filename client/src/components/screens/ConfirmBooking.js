@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "../../App.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -12,6 +12,8 @@ import TimePicker from "@mui/lab/TimePicker";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+
+const shortid = require("shortid");
 
 const ConfirmBooking = () => {
   //   stringArray.map((date) => new Date(date));
@@ -44,6 +46,8 @@ const ConfirmBooking = () => {
   const [isBlockedOn, setIsBlockedOn] = useState("");
   const [count, setCount] = useState(0);
   const [route, setRoute] = useState();
+  const isAuthenticated = localStorage.getItem("isAuthenticated");
+  const history = useHistory();
 
   useEffect(() => {
     setHotelName(localStorage.getItem("hotel"));
@@ -153,6 +157,56 @@ const ConfirmBooking = () => {
     }
   };
 
+  async function displayRazorpay() {
+    // console.log("rzp Running");
+
+    const data = await fetch("/razorpay", {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({
+        amount: price * 100,
+        currency: "INR",
+        payment_capture: 1,
+        receipt: shortid.generate(),
+      }),
+    }).then((res) => res.json());
+    console.log(data);
+    localStorage.setItem("Hotel", hotelName);
+
+    const options = {
+      key: "rzp_test_ZwIQoXjws19gWq", // Enter the Key ID generated from the Dashboard
+      amount: data.amount.toString(), // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      currency: data.currency,
+      name: "Acme Corp",
+      description: "Test Transaction",
+      image: "https://example.com/your_logo",
+      order_id: data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      created_at: data.created_at,
+      handler: function (response) {
+        alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature);
+        // console.log(JSON.stringify(response));
+        history.push("/bill");
+      },
+      prefill: {
+        name: "Gaurav Kumar",
+        email: "gaurav.kumar@example.com",
+        contact: "9999999999",
+      },
+      notes: {
+        address: "Razorpay Corporate Office",
+      },
+      theme: {
+        color: "#3399cc",
+      },
+    };
+    var rzp1 = new window.Razorpay(options);
+    rzp1.open();
+    localStorage.setItem("razor", JSON.stringify(data));
+  }
+  
+
   return (
     <div
       className="d-flex flex-column align-items-center p-5 bg-brand"
@@ -229,6 +283,21 @@ const ConfirmBooking = () => {
         <p className="font-weight-bolder">Amount</p>
         <p className="right-text">Rs. {price}</p>
       </div>
+      <button
+        onClick={() => {
+          isAuthenticated ? displayRazorpay() : history.push("/usignin");
+        }}
+          className="text-light w-40 mt-auto "
+          style={{
+            backgroundColor: "#fe9124",
+            height: "40px",
+            borderRadius: "18px",
+            border: "none",
+            marginLeft: "58vw",
+          }}
+        >
+          Pay now
+        </button>
     </div>
   );
 };
