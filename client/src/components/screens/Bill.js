@@ -14,6 +14,7 @@ const Bill = () => {
   const DateOfBooking = localStorage.getItem("bookingDate");
   const ArrivalTime = localStorage.getItem("time");
   const TotalPersons = localStorage.getItem("totalPersons");
+  const girls = localStorage.getItem("girls");
   const BillingAmount = payment_info.amount / 100;
   const OrderId = payment_info.id;
   const PaymentTime = new Date(payment_info.created_at * 1000).toLocaleString();
@@ -62,6 +63,33 @@ const Bill = () => {
           console.log("Added Successfuly");
         }
       });
+
+      fetch("/booking",{
+        method:"post",
+        headers:{
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name: User,
+          totalPersons: TotalPersons,
+          girls,
+          checkIn: ArrivalTime,
+          slot: time_slot,
+          hotelEmail: HotelEmail,
+          roomtype: type,
+          totalBill: BillingAmount
+        }),
+      })
+      .then((res)=>res.json())
+      .then((data) => {
+        if(data.error){
+          console.log(data.error);
+        }
+        else{
+          console.log("booking created successfully!");
+        }
+      });
+
   }, []);
 
   return (
