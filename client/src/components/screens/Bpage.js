@@ -31,10 +31,25 @@ const HotelDashboard = () => {
   //To refresh every minute
 
   const [myBookings, setMyBookings] = useState([]);
-
+  const DateOfBooking = localStorage.getItem("bookingDate");
+  const ArrivalTime = localStorage.getItem("time");
   const history = useHistory();
+  var splitDate = DateOfBooking.split(" ");
+  var displayDate = splitDate.splice(0, 4).join(" ");
+
+  var splitTime = ArrivalTime.split(" ");
+  var displayTime = splitTime.splice(3, 2).join(" ");
 
   useEffect(() => {
+    showbookings();
+  }, []);
+
+  const clickHandler = () => {
+    history.push("/bsignin");
+    // console.log("signout");
+  };
+
+  const showbookings = ()=>{
     const hotelEmail = localStorage.getItem("email");
     fetch(`/hotelBooking?hotelEmail=${hotelEmail}`, {
       method: "get",
@@ -50,12 +65,7 @@ const HotelDashboard = () => {
       .catch((err) => {
         // console.log(err);
       });
-  }, []);
-
-  const clickHandler = () => {
-    history.push("/bsignin");
-    // console.log("signout");
-  };
+  }
   return (
     <div className="wrapper">
       <div className="left-sidebar d-flex w-25 flex-column align-items-center">
@@ -67,7 +77,7 @@ const HotelDashboard = () => {
         </div>
         <div
           className="waves-effect waves-light btn font-weight-bolder bg-orange"
-          onClick={()=>{setActiveState("bookings")}}
+          onClick={()=>{setActiveState("bookings"); showbookings();}}
         >
           Bookings
         </div>
@@ -84,12 +94,12 @@ const HotelDashboard = () => {
         {myBookings.map((item) => {
           return (
             <div className="booking-box">
-              <p>id: {item._id}</p>
-              <p>Name: {item.name}</p>
+              <p>Phone: {item.phone}</p>
               <p>
-                Persons: {item.boys} boys, {item.girls} girls
+                Persons: {item.totalPersons}
               </p>
-              <p>Date of check in: {item.checkIn}</p>
+              <p>Date of check in: {displayDate}</p>
+              <p>Time of check in: {displayTime}</p>
               <p>Slot: Day</p>
             </div>
           );

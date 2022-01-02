@@ -70,7 +70,7 @@ const Bill = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: User,
+        phone: User,
         totalPersons: TotalPersons,
         girls,
         checkIn: ArrivalTime,

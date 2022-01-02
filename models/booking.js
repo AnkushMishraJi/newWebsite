@@ -1,9 +1,13 @@
 const mongoose = require("mongoose");
 
 const bookingSchema = new mongoose.Schema({
-  name: {
+  phone: {
     type: String,
     required: true,
+  },
+  name: {
+    type: String,
+    required: false,
   },
   totalPersons: {
     type: String,
