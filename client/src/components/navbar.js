@@ -41,7 +41,7 @@ function NavigationBar() {
           className="nav-icons"
           style={
             activePage == "home"
-              ? { color: "#1B1B1B", outline: "none", opacity: "100%" }
+              ? { color: "#1a1b41", outline: "none", opacity: "100%" }
               : {}
           }
           icon={faHome}
@@ -59,7 +59,7 @@ function NavigationBar() {
           className="nav-icons"
           style={
             activePage == "services"
-              ? { color: "#1B1B1B", outline: "none", opacity: "100%" }
+              ? { color: "#1a1b41", outline: "none", opacity: "100%" }
               : {}
           }
           icon={faConciergeBell}
@@ -78,7 +78,7 @@ function NavigationBar() {
           className="nav-icons"
           style={
             activePage == "bookings"
-              ? { color: "#1B1B1B", outline: "none", opacity: "100%" }
+              ? { color: "#1a1b41", outline: "none", opacity: "100%" }
               : {}
           }
           icon={faBookmark}
@@ -97,7 +97,7 @@ function NavigationBar() {
           className="nav-icons"
           style={
             activePage == "login"
-              ? { color: "#1B1B1B", outline: "none", opacity: "100%" }
+              ? { color: "#1a1b41", outline: "none", opacity: "100%" }
               : {}
           }
           icon={faUser}

@@ -86,6 +86,7 @@ const UserHotel = () => {
         localStorage.setItem("isBlockedOn", data[0].isBlockedOn);
         localStorage.getItem("isNightParty");
         localStorage.setItem("hotelEmail", data[0].email);
+        localStorage.setItem("back", location.pathname);
       });
   }, []);
 
@@ -268,6 +269,7 @@ const UserHotel = () => {
                 style={{ color: "#fe9124", width: "2.5em", height: "2.5em" }}
                 icon={faMapMarkedAlt}
               />
+              <p className="text-center brand-logo">Look Map</p>
             </div>
           </a>
         </div>
@@ -285,7 +287,7 @@ const UserHotel = () => {
           />
         </div>
 
-        <div className=" mx-auto">
+        <div>
           {smallCap ? (
             <div
               id="small"
@@ -300,11 +302,11 @@ const UserHotel = () => {
               <p>Upto {smallCap} people</p>
               <div className="line-ht-0">
                 <p>Day-Price </p>
-                <p>Rs {smallPrice}</p>
+                <p className="font-weight-bolder">Rs {smallPrice}</p>
               </div>
               <div className="line-ht-0">
                 <p>Night-Price</p>
-                <p>Rs {smallNightPrice}</p>
+                <p className="font-weight-bolder">Rs {smallNightPrice}</p>
               </div>
             </div>
           ) : null}
@@ -322,11 +324,11 @@ const UserHotel = () => {
               <p>Upto {medCap} people</p>
               <div className="line-ht-0">
                 <p>Day-Price </p>
-                <p>Rs {medPrice}</p>
+                <p className="font-weight-bolder">Rs {medPrice}</p>
               </div>
               <div className="line-ht-0">
                 <p>Night-Price</p>
-                <p>Rs {medNightPrice}</p>
+                <p className="font-weight-bolder">Rs {medNightPrice}</p>
               </div>
             </div>
           ) : null}
@@ -344,11 +346,11 @@ const UserHotel = () => {
               <p>Upto {largeCap} people</p>
               <div className="line-ht-0">
                 <p>Day-Price </p>
-                <p>Rs {largePrice}</p>
+                <p className="font-weight-bolder">Rs {largePrice}</p>
               </div>
               <div className="line-ht-0">
                 <p>Night-Price</p>
-                <p>Rs {largeNightPrice}</p>
+                <p className="font-weight-bolder">Rs {largeNightPrice}</p>
               </div>
             </div>
           ) : null}

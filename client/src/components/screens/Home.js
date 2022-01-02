@@ -11,6 +11,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar } from "@fortawesome/free-solid-svg-icons";
 import logo from "../../images/logo_ma.png";
 
+// import DatePicker from "react-multi-date-picker";
+
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -47,6 +49,7 @@ const Home = () => {
       localStorage.setItem("isNightParty", false);
       localStorage.setItem("type", "Day Party");
     }
+    localStorage.removeItem("activePage");
 
     history.push("/hotelList");
   };
@@ -59,8 +62,17 @@ const Home = () => {
     }
   };
 
-  const handleClick = (e) => {
-    e.preventDefault();
+  const onDatepickerRef = (el) => {
+    if (el && el.input) {
+      el.input.readOnly = true;
+    }
+  };
+
+  const closeKeyboard = (event) => {
+    if (event.key == "Enter") {
+      console.log("Enter");
+      document.getElementById("tp").blur();
+    }
   };
 
   return (
@@ -81,14 +93,32 @@ const Home = () => {
         LET'S PARTY
       </h1>
       <p className="text-light">When are you coming to party?</p>
-      <div className="container-input mt-3">
+      <div className="container-input mt-3 ">
+        {/* <DatePicker
+          className="px-3"
+          selected={date}
+          onChange={(date) => {
+            setDate(date);
+          }}
+          value={date}
+          format="dd-MM-YYYY"
+          minDate={new Date()}
+          editable={false}
+          dis
+        /> */}
         <DatePicker
           className="px-3"
           selected={date}
-          onChange={(date) => setDate(date)}
-          onClick={handleClick}
+          onClick={(date) => {
+            setDate(date);
+          }}
+          onChange={(date) => {
+            setDate(date);
+          }}
+          value={date}
           dateFormat="dd-MMM-yyyy"
           minDate={new Date()}
+          ref={(el) => onDatepickerRef(el)}
         />
       </div>
       <div className="container-input mt-3">
@@ -113,6 +143,7 @@ const Home = () => {
       <div className="w-70 d-inline-flex mt-3">
         <p className="pt-2 mt-2 mb-0 text-light f-18 w-100 ">Total Persons</p>
         <input
+          id="tp"
           className="tp-box"
           type="number"
           value={totalPersons}
@@ -121,6 +152,7 @@ const Home = () => {
           }}
           min="0"
           max="99"
+          onKeyPress={closeKeyboard}
         />
       </div>
       <div>

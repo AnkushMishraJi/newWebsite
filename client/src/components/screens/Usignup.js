@@ -1,16 +1,26 @@
 import React, { useEffect, useState, useReducer } from "react";
 import { useHistory, Link } from "react-router-dom";
 import M from "materialize-css";
-import { Container, DatePicker } from "react-materialize";
+import { Container } from "react-materialize";
 
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function UserSignup() {
   const history = useHistory();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [dob, setDob] = useState();
+
+  const closeKeyboard = (event) => {
+    if (event.key == "Enter") {
+      document.getElementById("name").blur();
+      document.getElementById("email").blur();
+    }
+  };
 
   const PostData = () => {
     console.log(name, email, dob, localStorage.getItem("phone"));
@@ -63,48 +73,71 @@ function UserSignup() {
       });
   };
 
+  const onDatepickerRef = (el) => {
+    if (el && el.input) {
+      el.input.readOnly = true;
+    }
+  };
   return (
     <div>
-      <style>{"body { background-color: #1a1b41; }"}</style>
-      <div
-        className="auth-card input-field"
-        style={{ display: "grid", gridGap: "25px" }}
-      >
+      <div className="mx-auto" style={{ display: "grid", gridGap: "25px" }}>
         <Link to="/uphone">
           <FontAwesomeIcon className="back-arrow" icon={faArrowLeft} />
         </Link>
-        <h2>Welcome</h2>
-        <input
-          className="w-70 bg-white d-flex align-items-center rounded-7 mx-auto"
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => {
-            setName(e.target.value);
-          }}
-        />
-        <input
-          className="w-70 bg-white d-flex align-items-center rounded-7 mx-auto"
-          type="text"
-          placeholder="email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
-        <Container>
-          <DatePicker
-            className="w-80 bg-white d-flex align-items-center rounded-7 mx-auto"
-            placeholder="Date of Birth"
-            selected={dob}
-            onChange={(dob) => {
-              setDob(dob.toDateString());
+        <h2 className="text-center mt-3">Welcome !</h2>
+        <div className="container-input ps-2 mx-auto">
+          <input
+            id="name"
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
             }}
-            value={dob}
+            onKeyPress={closeKeyboard}
           />
-        </Container>
+        </div>
+
+        <div className="container-input ps-2  mx-auto">
+          <input
+            id="email"
+            type="text"
+            placeholder="email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            onKeyPress={closeKeyboard}
+          />
+        </div>
+
+        <div className="container-input mx-auto">
+          <Container>
+            <DatePicker
+              selected={dob}
+              value={dob}
+              onClick={(dob) => {
+                setDob(dob);
+              }}
+              onChange={(dob) => {
+                setDob(dob);
+              }}
+              dateFormat="dd-MMM-yyyy"
+              minDate={new Date()}
+              ref={(el) => onDatepickerRef(el)}
+              placeholderText="Enter Date of Birth"
+            />
+          </Container>
+        </div>
+
         <a
-          className="orange w-75 btn text-light font-weight-bolder  mx-auto rounded-7 "
+          className="text-light w-70 mt-5 mx-auto text-center pt-2 font-weight-bolder"
+          style={{
+            backgroundColor: "#fe9124",
+            height: "40px",
+            borderRadius: "8px",
+            border: "none",
+          }}
           onClick={PostData}
         >
           Register

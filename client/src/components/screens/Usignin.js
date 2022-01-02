@@ -97,7 +97,8 @@ const UserSignin = () => {
         <div className="">
           <form onSubmit={onSubmitOtp}>
             <input
-              className="w-70 bg-white d-flex align-items-center rounded-7 mx-auto"
+              className="w-70 bg-white d-flex align-items-center mx-auto"
+              style={{ borderRadius: "0.5em" }}
               name="otp"
               type="text"
               placeholder="Enter OTP"
@@ -111,7 +112,7 @@ const UserSignin = () => {
               style={{
                 backgroundColor: "#fe9124",
                 height: "40px",
-                borderRadius: "18px",
+                borderRadius: "0.5em",
                 border: "none",
               }}
             >

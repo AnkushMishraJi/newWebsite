@@ -10,7 +10,7 @@ const HotelList = () => {
   const [hotels, setHotels] = useState([]);
 
   useEffect(() => {
-    const date = localStorage.getItem("bookingDate");
+    const date = new Date(localStorage.getItem("bookingDate")).toDateString();
     const totalPersons = localStorage.getItem("totalPersons");
     const girls = localStorage.getItem("girls");
     const isNightParty = localStorage.getItem("isNightParty");
@@ -41,7 +41,7 @@ const HotelList = () => {
         />
       </Link>
 
-      <div className="brand-logo f-20 mt-5 mb-5 m text-center ">HOTEL LIST</div>
+      <div className="brand-logo f-20 my-5   text-center ">HOTEL LIST</div>
 
       {hotels.map((oneHotel) => {
         const smallPrice = oneHotel.roomSmallData.smallPrice;
@@ -111,6 +111,8 @@ const HotelList = () => {
           </Link>
         );
       })}
+      <p className="mt-2">.</p>
+      <p className="mt-4">.</p>
     </div>
   );
 };

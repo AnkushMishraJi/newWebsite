@@ -29,8 +29,8 @@ function App() {
   script.src = "https://checkout.razorpay.com/v1/checkout.js";
   document.body.appendChild(script);
 
-  const userRoutes = ()=>{
-    return(
+  const userRoutes = () => {
+    return (
       <div>
         <NavigationBar />
         <Switch>
@@ -58,14 +58,17 @@ function App() {
           <Route path="/bill">
             <Bill />
           </Route>
+          <Route path="/oldBill">
+            <OldBill />
+          </Route>
           <ProtectedRoute exact path="/allBookings" component={AllBookings} />
           <ProtectedRoute exact path="/oldBill" component={OldBill} />
           <ProtectedRoute exact path="/bill" component={Bill} />
           <ProtectedRoute exact path="/userpage" component={UserPage} />
         </Switch>
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <BrowserRouter>
@@ -82,7 +85,7 @@ function App() {
         <Route path="/hoteladmin">
           <HotelDashboard />
         </Route>
-        <Route component={userRoutes}/>
+        <Route component={userRoutes} />
       </Switch>
     </BrowserRouter>
   );

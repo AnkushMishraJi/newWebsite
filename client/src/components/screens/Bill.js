@@ -8,7 +8,7 @@ const Bill = () => {
   const payment_info = JSON.parse(localStorage.getItem("razor"));
   const isNightParty = localStorage.getItem("isNightParty");
 
-  const User = "abc@abc.com";
+  const User = localStorage.getItem("phone");
   const Hotel = localStorage.getItem("Hotel");
   const HotelEmail = localStorage.getItem("hotelEmail");
   const DateOfBooking = localStorage.getItem("bookingDate");
@@ -64,32 +64,30 @@ const Bill = () => {
         }
       });
 
-      fetch("/booking",{
-        method:"post",
-        headers:{
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          name: User,
-          totalPersons: TotalPersons,
-          girls,
-          checkIn: ArrivalTime,
-          slot: time_slot,
-          hotelEmail: HotelEmail,
-          roomtype: type,
-          totalBill: BillingAmount
-        }),
-      })
-      .then((res)=>res.json())
+    fetch("/booking", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: User,
+        totalPersons: TotalPersons,
+        girls,
+        checkIn: ArrivalTime,
+        slot: time_slot,
+        hotelEmail: HotelEmail,
+        roomtype: type,
+        totalBill: BillingAmount,
+      }),
+    })
+      .then((res) => res.json())
       .then((data) => {
-        if(data.error){
+        if (data.error) {
           console.log(data.error);
-        }
-        else{
+        } else {
           console.log("booking created successfully!");
         }
       });
-
   }, []);
 
   return (

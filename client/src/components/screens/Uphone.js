@@ -3,9 +3,18 @@ import M from "materialize-css";
 import { useHistory } from "react-router-dom";
 import sign_in from "../../images/login.svg";
 
+import { AlertTitle, Alert } from "@mui/material";
+
 const UserPhoneCheck = () => {
   const history = useHistory();
   const [phone, setPhone] = useState("");
+
+  const closeKeyboard = (event) => {
+    if (event.key == "Enter") {
+      console.log("Enter");
+      document.getElementById("phoneNum").blur();
+    }
+  };
 
   useEffect(() => {
     // localStorage.clear();
@@ -15,10 +24,12 @@ const UserPhoneCheck = () => {
   const onSubmitPhone = () => {
     localStorage.setItem("phone", phone);
     if (!/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(phone)) {
-      return M.toast({
-        html: "Please enter a valid phone number",
-        classes: "#d32f2f red darken-2",
-      });
+      return (
+        <Alert severity="error">
+          <AlertTitle>Error</AlertTitle>
+          This is an error alert — <strong>check it out!</strong>
+        </Alert>
+      );
     }
     fetch("/checknum", {
       method: "post",
@@ -60,20 +71,22 @@ const UserPhoneCheck = () => {
         <div className="auth-card input-field">
           <div>
             <input
-              className="input-field-name bg-white align-items-center rounded-7 w-60"
-              style={{}}
+              id="phoneNum"
+              className="input-field-name bg-white align-items-center  w-60"
+              style={{ borderRadius: "0.5em" }}
               name="phoneNumber"
-              type="text"
+              type="number"
               placeholder="Enter your phone number"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
+              onKeyPress={closeKeyboard}
             />
             <button
               className="text-light w-60 mt-3"
               style={{
                 backgroundColor: "#fe9124",
                 height: "40px",
-                borderRadius: "18px",
+                borderRadius: "0.5em",
                 border: "none",
               }}
               onClick={onSubmitPhone}

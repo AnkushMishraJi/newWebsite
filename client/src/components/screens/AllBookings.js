@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 const AllBookings = () => {
+  const user = localStorage.getItem("phone");
   const history = useHistory();
   const [booking, setBooking] = useState([]);
 
   useEffect(() => {
-    fetch(`getConfirmBookingsUser?User=abc@abc.com`, {
+    fetch(`getConfirmBookingsUser?User=${user}`, {
       method: "get",
       headers: {
         "Content-Type": "application/json",
@@ -29,27 +30,35 @@ const AllBookings = () => {
       <h1 className="brand-logo f-20 text-center mt-4">Booking History</h1>
       {booking.map((oneBooking) => {
         const Hotel = oneBooking.Hotel;
-        const DateOfBooking = oneBooking.DateOfBooking;
+        const DateOfBooking = oneBooking.DateOfBooking.split(" ");
+        const displayDate = DateOfBooking.splice(0, 4).join(" ");
+
         const BillingAmount = oneBooking.BillingAmount;
         const OrderId = oneBooking.OrderId;
         const PaymentTime = oneBooking.PaymentTime;
         const TimeSlot = oneBooking.TimeSlot;
         const TotalPersons = oneBooking.TotalPersons;
         const Type = oneBooking.Type;
-        const ArrivalTime = oneBooking.ArrivalTime;
+        const ArrivalTime = new Date(oneBooking.ArrivalTime);
+        const displayTime = ArrivalTime.toLocaleString("en-US", {
+          hour: "numeric",
+          hour12: true,
+          minute: "numeric",
+        }).toString();
 
         const previewFullBill = () => {
           const newarr = [
             Hotel,
-            DateOfBooking,
+            displayDate,
             BillingAmount,
             OrderId,
             PaymentTime,
             TimeSlot,
             TotalPersons,
             Type,
-            ArrivalTime,
+            displayTime,
           ];
+
           localStorage.setItem("OldBill", newarr);
           history.push("/oldBill/" + OrderId);
         };
@@ -58,7 +67,7 @@ const AllBookings = () => {
           <div>
             <style>{"body { background-color: #1a1b41; }"}</style>
             <div
-              className="hlist p-2 pt-4 "
+              className="blist p-2 pt-4 "
               style={{
                 gridGap: "8px",
               }}
@@ -70,7 +79,7 @@ const AllBookings = () => {
               </div>
               <div>
                 <p className="f-14 font-weight-bolder">Date Of Booking</p>
-                <p className="f-14">{DateOfBooking}</p>
+                <p className="f-14">{displayDate}</p>
               </div>
               <div>
                 <p className="f-14 font-weight-bolder">Billing Amount</p>

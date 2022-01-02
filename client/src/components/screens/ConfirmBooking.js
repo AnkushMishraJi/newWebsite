@@ -46,6 +46,7 @@ const ConfirmBooking = () => {
   const [isBlockedOn, setIsBlockedOn] = useState("");
   const [count, setCount] = useState(0);
   const [route, setRoute] = useState("");
+  const [back, setBack] = useState("");
   const isAuthenticated = localStorage.getItem("isAuthenticated");
   const history = useHistory();
 
@@ -75,6 +76,7 @@ const ConfirmBooking = () => {
     setRoom(localStorage.getItem("room"));
     setType(localStorage.getItem("type"));
     setRoute(localStorage.getItem("route"));
+    setBack(localStorage.getItem("back"));
     let localPrice = localStorage.getItem("price");
     let localNightPrice = localStorage.getItem("nightPrice");
     firstprice(localPrice, localNightPrice);
@@ -209,13 +211,23 @@ const ConfirmBooking = () => {
     localStorage.setItem("razor", JSON.stringify(data));
   }
 
+  const onDatepickerRef = (el) => {
+    if (el && el.input) {
+      el.input.readOnly = true;
+    }
+  };
+
+  const closeKeyboard = (event) => {
+    if (event.key == "Enter") {
+      console.log("Enter");
+      document.getElementById("tp").blur();
+    }
+  };
+
   return (
-    <div
-      className="d-flex flex-column align-items-center p-5 bg-brand"
-      style={{ height: "100%", height: "90vh" }}
-    >
+    <div className="d-flex flex-column align-items-center p-5 bg-brand">
       <p className="text-light f-18">Confirm Booking?</p>
-      <Link to={route}>
+      <Link to={back}>
         <FontAwesomeIcon
           className="back-arrow waves-effect"
           icon={faArrowLeft}
@@ -236,6 +248,7 @@ const ConfirmBooking = () => {
           dateFormat="dd-MMM-yyyy"
           minDate={new Date()}
           excludeDates={result}
+          ref={(el) => onDatepickerRef(el)}
         />
       </div>
       <div className="container-input mt-3">
@@ -260,6 +273,7 @@ const ConfirmBooking = () => {
       <div className="w-70 d-inline-flex mt-3">
         <p className="pt-3  mb-0 text-light f-15 w-100 ">Total Persons</p>
         <input
+          id="tp"
           className="tp-box"
           type="number"
           value={totalPersons}
@@ -269,6 +283,7 @@ const ConfirmBooking = () => {
           }}
           min="1"
           max="50"
+          onKeyPress={closeKeyboard}
         />
       </div>
       <div className="text-light text-center">
@@ -288,17 +303,20 @@ const ConfirmBooking = () => {
         onClick={() => {
           isAuthenticated ? displayRazorpay() : history.push("/usignin");
         }}
-        className="text-light w-40 mt-auto "
+        className="text-light w-40 mt-3 "
         style={{
+          position: "relative",
           backgroundColor: "#fe9124",
           height: "40px",
           borderRadius: "18px",
           border: "none",
-          marginLeft: "58vw",
+          bottom: "2.5em",
+          right: "0em",
         }}
       >
         Pay now
       </button>
+      <p className="mt-5">.</p>
     </div>
   );
 };
