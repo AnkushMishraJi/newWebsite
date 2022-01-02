@@ -29,50 +29,61 @@ function App() {
   script.src = "https://checkout.razorpay.com/v1/checkout.js";
   document.body.appendChild(script);
 
+  const userRoutes = ()=>{
+    return(
+      <div>
+        <NavigationBar />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/usignin">
+            <UserSignin />
+          </Route>
+          <Route path="/uphone">
+            <UserPhoneCheck />
+          </Route>
+          <Route path="/usignup">
+            <UserSignup />
+          </Route>
+          <Route path="/userHotel">
+            <UserHotel />
+          </Route>
+          <Route path="/hotelList">
+            <HotelList />
+          </Route>
+          <Route path="/confirmBooking">
+            <ConfirmBooking />
+          </Route>
+          <Route path="/bill">
+            <Bill />
+          </Route>
+          <ProtectedRoute exact path="/allBookings" component={AllBookings} />
+          <ProtectedRoute exact path="/oldBill" component={OldBill} />
+          <ProtectedRoute exact path="/bill" component={Bill} />
+          <ProtectedRoute exact path="/userpage" component={UserPage} />
+        </Switch>
+      </div>
+    )
+  }
+
   return (
     <BrowserRouter>
-      <NavigationBar />
-      <Route exact path="/">
-        <Home />
-      </Route>
-      <Route path="/bsignin">
-        <Signin />
-      </Route>
-      <Route path="/bsignup">
-        <Signup />
-      </Route>
-      <Route path="/usignin">
-        <UserSignin />
-      </Route>
-      <Route path="/uphone">
-        <UserPhoneCheck />
-      </Route>
-      <Route path="/usignup">
-        <UserSignup />
-      </Route>
-      <Route path="/hoteladmin">
-        <HotelDashboard />
-      </Route>
-      <Route path="/blocker">
-        <HotelBlocker />
-      </Route>
-      <Route path="/userHotel">
-        <UserHotel />
-      </Route>
-      <Route path="/hotelList">
-        <HotelList />
-      </Route>
-      <Route path="/BuploadPhoto">
-        <UploadPhoto />
-      </Route>
-      <Route path="/confirmBooking">
-        <ConfirmBooking />
-      </Route>
-
-      <ProtectedRoute exact path="/allBookings" component={AllBookings} />
-      <ProtectedRoute exact path="/oldBill" component={OldBill} />
-      <ProtectedRoute exact path="/bill" component={Bill} />
-      <ProtectedRoute exact path="/userpage" component={UserPage} />
+      <Switch>
+        <Route path="/bsignin">
+          <Signin />
+        </Route>
+        <Route path="/bsignup">
+          <Signup />
+        </Route>
+        <Route path="/BuploadPhoto">
+          <UploadPhoto />
+        </Route>
+        <Route path="/hoteladmin">
+          <HotelDashboard />
+        </Route>
+        <Route component={userRoutes}/>
+      </Switch>
     </BrowserRouter>
   );
 }
