@@ -8,7 +8,7 @@ const UserPhoneCheck = () => {
   const [phone, setPhone] = useState("");
 
   useEffect(() => {
-    localStorage.clear();
+    // localStorage.clear();
     localStorage.setItem("activePage", "login");
   }, []);
 

@@ -70,6 +70,7 @@ function NavigationBar() {
         className="mx-auto"
         onClick={() => {
           setActivePage("bookings");
+          localStorage.setItem("route", "/allBookings");
         }}
       >
         <FontAwesomeIcon
@@ -87,6 +88,7 @@ function NavigationBar() {
         to="/userpage"
         className="mx-auto"
         onClick={() => {
+          localStorage.setItem("route", "/userpage");
           setActivePage("login");
         }}
       >

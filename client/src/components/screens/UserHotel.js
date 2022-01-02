@@ -82,7 +82,7 @@ const UserHotel = () => {
         setLocationHotel(data[0].location);
         setAddress(data[0].address);
         setPic(data[0].mainPicUrl);
-        localStorage.setItem("route", location.pathname);
+
         localStorage.setItem("isBlockedOn", data[0].isBlockedOn);
         localStorage.getItem("isNightParty");
         localStorage.setItem("hotelEmail", data[0].email);

@@ -6,7 +6,10 @@ import sign_in from "../../images/login.svg";
 
 const UserSignin = () => {
   const [otp, setOtp] = useState("");
+  const [route, setRoute] = useState();
+
   useEffect(() => {
+    setRoute(localStorage.getItem("route"));
     if (!localStorage.getItem("phone")) {
       return history.push("/uphone");
     }
@@ -69,8 +72,9 @@ const UserSignin = () => {
           classes: "#d32f2f green darken-2",
         });
         console.log(JSON.stringify(user.providerId));
-        history.push("/");
         localStorage.setItem("isAuthenticated", "true");
+        history.push(route);
+
         // ...
       })
       .catch((error) => {

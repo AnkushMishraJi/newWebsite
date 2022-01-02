@@ -78,6 +78,7 @@ const ConfirmBooking = () => {
     let localPrice = localStorage.getItem("price");
     let localNightPrice = localStorage.getItem("nightPrice");
     firstprice(localPrice, localNightPrice);
+    localStorage.setItem("route", "/confirmBooking");
   }, []);
 
   // useEffect(() => {}, [price, room, ]);
@@ -96,8 +97,7 @@ const ConfirmBooking = () => {
   }, [time]);
 
   useEffect(() => {
-    if (count > 0)
-    personCheck();
+    if (count > 0) personCheck();
   }, [totalPersons]);
 
   const stringArray = isBlockedOn.split(",");
@@ -146,18 +146,16 @@ const ConfirmBooking = () => {
 
   const personCheck = () => {
     const arr = [];
-    if(medCap>0) arr.push(medCap)
-    if(smallCap>0) arr.push(smallCap)
-    if(largeCap>0) arr.push(largeCap)
+    if (medCap > 0) arr.push(medCap);
+    if (smallCap > 0) arr.push(smallCap);
+    if (largeCap > 0) arr.push(largeCap);
     const maxPersons = Math.max(...arr);
-    console.log(maxPersons, arr)
+    console.log(maxPersons, arr);
     if (totalPersons < 1 || totalPersons > 50) {
       setTotalPersons(1);
-    } else if (
-      totalPersons > maxPersons
-    ) {
-      if (largeCap>0) setTotalPersons(largeCap);
-      else if (medCap>0) setTotalPersons(medCap);
+    } else if (totalPersons > maxPersons) {
+      if (largeCap > 0) setTotalPersons(largeCap);
+      else if (medCap > 0) setTotalPersons(medCap);
       else setTotalPersons(smallCap);
     }
   };
@@ -210,7 +208,6 @@ const ConfirmBooking = () => {
     rzp1.open();
     localStorage.setItem("razor", JSON.stringify(data));
   }
-  
 
   return (
     <div
@@ -291,17 +288,17 @@ const ConfirmBooking = () => {
         onClick={() => {
           isAuthenticated ? displayRazorpay() : history.push("/usignin");
         }}
-          className="text-light w-40 mt-auto "
-          style={{
-            backgroundColor: "#fe9124",
-            height: "40px",
-            borderRadius: "18px",
-            border: "none",
-            marginLeft: "58vw",
-          }}
-        >
-          Pay now
-        </button>
+        className="text-light w-40 mt-auto "
+        style={{
+          backgroundColor: "#fe9124",
+          height: "40px",
+          borderRadius: "18px",
+          border: "none",
+          marginLeft: "58vw",
+        }}
+      >
+        Pay now
+      </button>
     </div>
   );
 };
