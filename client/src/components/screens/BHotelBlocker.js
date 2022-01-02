@@ -43,20 +43,24 @@ const HotelBlocker = () => {
   };
 
   return (
-    <>
-      <DatePicker
-        multiple
-        value={isBlockedOn}
-        format="ddd MMM DD YYYY"
-        onChange={setIsBlockedOn}
-      />
+    <div className="bg-brand text-light p-5 d-flex flex-column algn-items-center">
+      <p className="font-weight-bolder f-16">Select and Submit Dates of Unavailability</p>
+      <div className="bg-light px-2 py-0 mt-3">
+        <DatePicker
+        className="px-3"
+          multiple
+          value={isBlockedOn}
+          format="ddd MMM DD YYYY"
+          onChange={setIsBlockedOn}
+        />
+      </div>
       <botton
-        className="btn waves-effect waves-light #1e88e5 blue darken-1"
+        className="btn waves-effect bg-orange font-weight-bolder"
         onClick={Block}
       >
         Submit
       </botton>
-    </>
+    </div>
   );
 };
 

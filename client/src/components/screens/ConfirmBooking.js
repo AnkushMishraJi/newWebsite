@@ -19,33 +19,33 @@ const ConfirmBooking = () => {
   //   stringArray.map((date) => new Date(date));
 
   const isMounted = useRef(false);
-  const [hotelName, setHotelName] = useState();
-  const [address, setAddress] = useState();
+  const [hotelName, setHotelName] = useState("");
+  const [address, setAddress] = useState("");
 
   const [smallCap, setSmallCap] = useState();
-  const [smallPrice, setSmallPrice] = useState();
-  const [smallNightPrice, setSmallNightPrice] = useState();
+  const [smallPrice, setSmallPrice] = useState("");
+  const [smallNightPrice, setSmallNightPrice] = useState("");
 
   const [medCap, setMedCap] = useState();
-  const [medPrice, setMedPrice] = useState();
-  const [medNightPrice, setMedNightPrice] = useState();
+  const [medPrice, setMedPrice] = useState("");
+  const [medNightPrice, setMedNightPrice] = useState("");
 
   const [largeCap, setLargeCap] = useState();
-  const [largePrice, setLargePrice] = useState();
-  const [largeNightPrice, setLargeNightPrice] = useState();
+  const [largePrice, setLargePrice] = useState("");
+  const [largeNightPrice, setLargeNightPrice] = useState("");
 
-  const [totalPersons, setTotalPersons] = useState();
-  const [price, setPrice] = useState();
-  const [isNightParty, setIsNightParty] = useState();
+  const [totalPersons, setTotalPersons] = useState("");
+  const [price, setPrice] = useState("");
+  const [isNightParty, setIsNightParty] = useState("");
 
   const [date, setDate] = useState();
   const [time, setTime] = useState();
 
-  const [type, setType] = useState();
-  const [room, setRoom] = useState();
+  const [type, setType] = useState("");
+  const [room, setRoom] = useState("");
   const [isBlockedOn, setIsBlockedOn] = useState("");
   const [count, setCount] = useState(0);
-  const [route, setRoute] = useState();
+  const [route, setRoute] = useState("");
   const isAuthenticated = localStorage.getItem("isAuthenticated");
   const history = useHistory();
 
@@ -96,6 +96,7 @@ const ConfirmBooking = () => {
   }, [time]);
 
   useEffect(() => {
+    if (count > 0)
     personCheck();
   }, [totalPersons]);
 
@@ -138,21 +139,25 @@ const ConfirmBooking = () => {
       setPrice(largeNightPrice);
       setRoom("Large room");
     } else if (totalPersons <= largeCap && !isNightParty && largeCap) {
-      setPrice(largeNightPrice);
+      setPrice(largePrice);
       setRoom("Large room");
     }
   };
 
   const personCheck = () => {
+    const arr = [];
+    if(medCap>0) arr.push(medCap)
+    if(smallCap>0) arr.push(smallCap)
+    if(largeCap>0) arr.push(largeCap)
+    const maxPersons = Math.max(...arr);
+    console.log(maxPersons, arr)
     if (totalPersons < 1 || totalPersons > 50) {
       setTotalPersons(1);
     } else if (
-      totalPersons > smallCap &&
-      totalPersons > medCap &&
-      totalPersons > largeCap
+      totalPersons > maxPersons
     ) {
-      if (largeCap) setTotalPersons(largeCap);
-      else if (medCap) setTotalPersons(medCap);
+      if (largeCap>0) setTotalPersons(largeCap);
+      else if (medCap>0) setTotalPersons(medCap);
       else setTotalPersons(smallCap);
     }
   };
@@ -259,7 +264,6 @@ const ConfirmBooking = () => {
         <p className="pt-3  mb-0 text-light f-15 w-100 ">Total Persons</p>
         <input
           className="tp-box"
-          z
           type="number"
           value={totalPersons}
           onChange={(e) => {

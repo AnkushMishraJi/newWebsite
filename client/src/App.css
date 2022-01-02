@@ -112,7 +112,7 @@ a {
 }
 
 .bg-orange {
-  background-color: #fe9124;
+  background-color: #fe9124 !important;
 }
 .profilebox {
   margin: 40px 80px;
@@ -416,11 +416,11 @@ a {
 }
 
 .font-weight-bold {
-  font-weight: 500;
+  font-weight: 500 !important;
 }
 
 .font-weight-bolder {
-  font-weight: 600;
+  font-weight: 600 !important;
 }
 .rounded-7 {
   border-radius: 20px !important;

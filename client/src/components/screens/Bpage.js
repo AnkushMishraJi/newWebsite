@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
+import BHotelBlocker from "./BHotelBlocker";
 
 const HotelDashboard = () => {
+  const [activeState, setActiveState] = useState("bookings");
   //To refresh every minute
   //   const [seconds, setSeconds] = useState(0);
   //   const [isActive, setIsActive] = useState(false);
@@ -43,7 +45,7 @@ const HotelDashboard = () => {
       .then((res) => res.json())
       .then((data) => {
         setMyBookings(data);
-        // console.log(data);
+        console.log(data);
       })
       .catch((err) => {
         // console.log(err);
@@ -56,22 +58,29 @@ const HotelDashboard = () => {
   };
   return (
     <div className="wrapper">
-      <div className="left-sidebar">
-        <Link
-          to="/blocker"
-          className="waves-effect waves-light btn #e53935 red darken-1"
+      <div className="left-sidebar d-flex w-25 flex-column align-items-center">
+        <div
+          className="waves-effect waves-light btn font-weight-bolder bg-orange"
+          onClick={()=>{setActiveState("blocker")}}
         >
           Block/Unblock
-        </Link>
-        <Link to="/BuploadPhoto" className="waves-effect waves-light btn">
+        </div>
+        <div
+          className="waves-effect waves-light btn font-weight-bolder bg-orange"
+          onClick={()=>{setActiveState("bookings")}}
+        >
+          Bookings
+        </div>
+        {/* <Link to="/BuploadPhoto" className="waves-effect waves-light btn font-weight-bolder bg-orange">
           Upload Photos
-        </Link>
-        <button onClick={clickHandler} className="waves-effect waves-light btn">
+        </Link> */}
+        <button onClick={clickHandler} className="waves-effect waves-light btn font-weight-bolder bg-orange">
           Sign out
         </button>
       </div>
 
-      <div className="center-bar">
+      { activeState == "bookings" ?
+        <div className="center-bar w-100">
         {myBookings.map((item) => {
           return (
             <div className="booking-box">
@@ -86,6 +95,13 @@ const HotelDashboard = () => {
           );
         })}
       </div>
+      :
+      <div className="center-bar w-100 p-3">
+        <div className="mt-5">
+          <BHotelBlocker />
+        </div>
+      </div>
+      }
     </div>
   );
 };
