@@ -9,6 +9,7 @@ const booking = mongoose.model("Booking", bookingSchema);
 router.post("/booking", (req, res) => {
   const {
     name,
+    phone,
     totalPersons,
     girls,
     checkIn,
@@ -19,6 +20,7 @@ router.post("/booking", (req, res) => {
   } = req.body;
   const Booking = new booking({
     name,
+    phone,
     totalPersons,
     girls,
     checkIn,
