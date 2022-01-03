@@ -20,10 +20,21 @@ const AllBookings = () => {
         } else {
           // console.log("Searched Successfuly");
           setBooking(data);
+          console.log(data);
+          sortToDate(data);
+
           // console.log(data);
         }
       });
   }, []);
+
+  const sortToDate = (data) => {
+    data.sort(function (a, b) {
+      var c = new Date(a.DateOfBooking);
+      var d = new Date(b.DateOfBooking);
+      return console.log(c - d);
+    });
+  };
 
   return (
     <div>
@@ -78,7 +89,7 @@ const AllBookings = () => {
                 <p className="f-14">{Hotel}</p>
               </div>
               <div>
-                <p className="f-14 font-weight-bolder">Date Of Booking</p>
+                <p className="f-14 font-weight-bolder">Date Of Arrival</p>
                 <p className="f-14">{displayDate}</p>
               </div>
               <div>
@@ -89,6 +100,7 @@ const AllBookings = () => {
           </div>
         );
       })}
+      <p className="my-5">.</p>
     </div>
   );
 };

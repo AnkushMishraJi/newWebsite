@@ -139,6 +139,51 @@ a {
   height: 300px;
 }
 
+.overlay {
+  background-color: rgb(26, 27, 65, 0.5);
+  width: 100vw;
+  height: 20em;
+  margin-top: -15.5em;
+  z-index: 2;
+  border-radius: 4em;
+  position: relative;
+  line-height: 12px;
+  padding-top: 3.9em;
+  /* border-bottom: 0.5em solid #fe9124; */
+}
+
+#bday {
+  background-image: url("./images/bday.jpeg");
+  background-size: cover;
+}
+#brideToBe {
+  background-image: url("./images/bride_to_be.jpeg");
+  background-size: cover;
+}
+#date_night {
+  background-image: url("./images/date_night.jpeg");
+  background-size: cover;
+}
+#escapes {
+  background-image: url("./images/escapes.jpeg");
+  background-size: cover;
+}
+.tape {
+  height: 2em;
+  background-color: rgb(26, 27, 65, 0.5);
+  margin-top: 12em;
+  color: white;
+}
+.benefits {
+  align-items: center;
+  width: 80vw;
+  height: 17em;
+  background-color: white;
+  color: black;
+  border-radius: 1em;
+  display: inline-block;
+}
+
 .confirm-page {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -289,8 +334,8 @@ a {
   border: #fe9124 solid 0.1em;
   width: 14em !important;
   height: 2em;
-  margin-bottom: 2.5em;
   border-radius: 0.5em;
+  margin: 2em;
 }
 .nav-icon {
   opacity: 50% !important;

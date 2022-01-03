@@ -169,7 +169,7 @@ const Home = () => {
         </label>
       </div>
       <button
-        className="text-light w-70 mt-4"
+        className="text-light w-70 mt-4 font-weight-bolder"
         style={{
           backgroundColor: "#fe9124",
           height: "40px",

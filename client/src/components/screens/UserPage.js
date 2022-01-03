@@ -1,3 +1,4 @@
+import { textAlign } from "@mui/system";
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 
@@ -42,12 +43,21 @@ const UserPage = () => {
           <Link className="user-page-btn" to="#">
             Our Services
           </Link>
-          <Link className="user-page-btn" to="tel:91-8604601502">
+          <a className="user-page-btn" href="tel:9569736905">
             Customer Care
-          </Link>
+          </a>
         </div>
         <p
-          className="row user-page-btn line-ht-8 ps-2 brand-logo"
+          className=" user-page-btn px-auto font-weight-bolder pt-2"
+          style={{
+            color: "black",
+            background: "#fe9124",
+            height: "3em",
+            alignContent: "center",
+            textAlign: "center",
+            position: "absolute",
+            bottom: "5em",
+          }}
           onClick={logout}
         >
           Logout

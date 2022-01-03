@@ -48,7 +48,7 @@ function NavigationBar() {
         />
       </Link>
       <Link
-        to="#"
+        to="/services"
         className="mx-auto"
         onClick={() => {
           setActivePage("services");

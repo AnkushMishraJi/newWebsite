@@ -9,6 +9,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+import Swal from "sweetalert2";
+
 function UserSignup() {
   const history = useHistory();
   const [name, setName] = useState("");
@@ -25,20 +27,25 @@ function UserSignup() {
   const PostData = () => {
     console.log(name, email, dob, localStorage.getItem("phone"));
 
+    if (!name || !email || !dob) {
+      return Swal.fire({
+        icon: "warning",
+        text: "Please enter all fields",
+        confirmButtonColor: "#fe9124",
+        allowEnterKey: false,
+      });
+    }
     if (
       !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
         email
       )
     ) {
-      return M.toast({
-        html: "Invalid Email",
-        classes: "#d32f2f red darken-2",
-      });
-    }
-    if (!name || !email || !dob) {
-      return M.toast({
-        html: "Please enter all fields",
-        classes: "#d32f2f red darken-2",
+      return Swal.fire({
+        icon: "warning",
+        title: "Invalid Email",
+        text: "Please enter a valid Email Address",
+        confirmButtonColor: "#fe9124",
+        allowEnterKey: false,
       });
     }
     console.log("btn press");
@@ -59,17 +66,30 @@ function UserSignup() {
         // console.log(data);
         localStorage.setItem("name", data.name);
         if (data.error) {
-          M.toast({ html: data.error, classes: "#d32f2f red darken-2" });
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: data.error,
+          });
         } else {
-          M.toast({
-            html: "Saved Successfuly",
-            classes: "#43a047 green darken-1",
+          Swal.fire({
+            icon: "success",
+            title: "Saved",
+            text: "Welcome to the family!",
+            confirmButtonColor: "#fe9124",
+            allowEnterKey: false,
           });
           history.push("/usignin");
         }
       })
       .catch((err) => {
-        // console.log(err);
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "Something went wrong",
+          confirmButtonColor: "#fe9124",
+          allowEnterKey: false,
+        });
       });
   };
 

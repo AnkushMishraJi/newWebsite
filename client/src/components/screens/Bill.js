@@ -107,7 +107,7 @@ const Bill = () => {
           <p>{Hotel}</p>
         </div>
         <div>
-          <p className="f-12 font-weight-bolder">Date of Booking</p>
+          <p className="f-12 font-weight-bolder">Date of Arrival</p>
           <p>{displayDate}</p>
         </div>
         <div>

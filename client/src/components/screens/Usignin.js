@@ -4,6 +4,8 @@ import M from "materialize-css";
 import { useHistory } from "react-router";
 import sign_in from "../../images/login.svg";
 
+import Swal from "sweetalert2";
+
 const UserSignin = () => {
   const [otp, setOtp] = useState("");
   const [route, setRoute] = useState();
@@ -13,9 +15,12 @@ const UserSignin = () => {
     if (!localStorage.getItem("phone")) {
       return history.push("/uphone");
     }
-    M.toast({
-      html: "OTP sent Successfuly",
-      classes: "#43a047 green darken-1",
+    Swal.fire({
+      icon: "success",
+      title: "OTP sent",
+      text: "Please check your Phone",
+      confirmButtonColor: "#fe9124",
+      allowEnterKey: false,
     });
     onSignInSubmit();
   }, []);
@@ -67,9 +72,12 @@ const UserSignin = () => {
         // User signed in successfully.
         const user = result.user;
         // console.log(JSON.stringify(user));
-        M.toast({
-          html: "User is verified",
-          classes: "#d32f2f green darken-2",
+        Swal.fire({
+          icon: "success",
+          title: "OTP matched",
+          text: "You are logged in !",
+          confirmButtonColor: "#fe9124",
+          allowEnterKey: false,
         });
         console.log(JSON.stringify(user.providerId));
         localStorage.setItem("isAuthenticated", "true");
@@ -79,6 +87,13 @@ const UserSignin = () => {
       })
       .catch((error) => {
         // User couldn't sign in (bad verification code?)
+        Swal.fire({
+          icon: "error",
+          title: "Wrong OTP",
+          text: "Please enter correct OTP",
+          confirmButtonColor: "#fe9124",
+          allowEnterKey: false,
+        });
         // ...
       });
   };

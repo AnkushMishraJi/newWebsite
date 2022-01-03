@@ -23,7 +23,7 @@ const OldBill = () => {
       <div className="oldbill text-light ">
         <p>Hotel : </p>
         <p>{billData[0]}</p>
-        <p>Date of Booking : </p>
+        <p>Date of Arrival : </p>
         <p>{billData[1]}</p>
         <p>Time of Arrival : </p>
         <p>{billData[9]} </p>

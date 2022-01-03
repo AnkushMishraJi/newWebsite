@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import M from "materialize-css";
 import { useHistory } from "react-router-dom";
 import sign_in from "../../images/login.svg";
+import Swal from "sweetalert2";
 
 import { AlertTitle, Alert } from "@mui/material";
 
@@ -24,12 +25,13 @@ const UserPhoneCheck = () => {
   const onSubmitPhone = () => {
     localStorage.setItem("phone", phone);
     if (!/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(phone)) {
-      return (
-        <Alert severity="error">
-          <AlertTitle>Error</AlertTitle>
-          This is an error alert — <strong>check it out!</strong>
-        </Alert>
-      );
+      return Swal.fire({
+        icon: "warning",
+        title: "Invalid Phone Number",
+        text: "Please enter a valid Phone Number",
+        confirmButtonColor: "#fe9124",
+        allowEnterKey: false,
+      });
     }
     fetch("/checknum", {
       method: "post",

@@ -13,6 +13,8 @@ import TimePicker from "@mui/lab/TimePicker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
+import Swal from "sweetalert2";
+
 const shortid = require("shortid");
 
 const ConfirmBooking = () => {
@@ -188,9 +190,13 @@ const ConfirmBooking = () => {
       order_id: data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
       created_at: data.created_at,
       handler: function (response) {
-        alert(response.razorpay_payment_id);
-        alert(response.razorpay_order_id);
-        alert(response.razorpay_signature);
+        Swal.fire({
+          icon: "success",
+          title: "Payment Success",
+          text: "Your booking has been confirmed",
+          confirmButtonColor: "#fe9124",
+          allowEnterKey: false,
+        });
         // console.log(JSON.stringify(response));
         history.push("/bill");
       },

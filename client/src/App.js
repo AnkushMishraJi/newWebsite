@@ -21,6 +21,9 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import UserPage from "./components/screens/UserPage";
 import ConfirmBooking from "./components/screens/ConfirmBooking";
 import CarouselContainer from "./components/CarouselContainer";
+import Error404 from "./components/screens/Error404";
+import Error500 from "./components/screens/Error500";
+import LandingPage from "./components/screens/LandingPage";
 // import { reducer, initialState } from "./reducers/userReducer";
 import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
 
@@ -60,6 +63,15 @@ function App() {
           </Route>
           <Route path="/oldBill">
             <OldBill />
+          </Route>
+          <Route path="/error404">
+            <Error404 />
+          </Route>
+          <Route path="/error500">
+            <Error500 />
+          </Route>
+          <Route path="/services">
+            <LandingPage />
           </Route>
           <ProtectedRoute exact path="/allBookings" component={AllBookings} />
           <ProtectedRoute exact path="/oldBill" component={OldBill} />
