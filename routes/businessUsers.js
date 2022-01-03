@@ -6,7 +6,7 @@ const businessUserSchema = require("../models/businessUser");
 const businessUser = mongoose.model("BusinessUser", businessUserSchema);
 
 //Search Filter Home Page User
-router.get("/hotelList", (req, res) => {
+router.get("/api/hotelList", (req, res) => {
   var { date, totalPersons, girls, isNightParty } = req.query;
   totalPersons = parseInt(totalPersons);
   isNightParty = isNightParty === "true";
@@ -128,7 +128,7 @@ router.get("/hotelList", (req, res) => {
 });
 
 //BlockDate
-router.post("/blockUnblock", (req, res) => {
+router.post("/api/blockUnblock", (req, res) => {
   const { isBlockedOn, email } = req.body;
   businessUser
     .findOneAndUpdate(
@@ -151,7 +151,7 @@ router.post("/blockUnblock", (req, res) => {
 });
 
 //Get Block Dates
-router.get("/getBlockedDates", (req, res) => {
+router.get("/api/getBlockedDates", (req, res) => {
   const { email } = req.query;
   businessUser
     .find({ email: email })
@@ -165,7 +165,7 @@ router.get("/getBlockedDates", (req, res) => {
 });
 
 //Single Hotel
-router.get("/userHotel/:id", (req, res) => {
+router.get("/api/userHotel/:id", (req, res) => {
   const _id = req.params.id;
   // console.log(req.params.id);
   businessUser

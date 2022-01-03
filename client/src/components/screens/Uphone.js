@@ -33,7 +33,7 @@ const UserPhoneCheck = () => {
         allowEnterKey: false,
       });
     }
-    fetch("/checknum", {
+    fetch("/api/checknum", {
       method: "post",
       headers: {
         "Content-Type": "application/json",

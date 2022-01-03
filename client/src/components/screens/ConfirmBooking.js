@@ -167,7 +167,7 @@ const ConfirmBooking = () => {
   async function displayRazorpay() {
     // console.log("rzp Running");
 
-    const data = await fetch("/razorpay", {
+    const data = await fetch("/api/razorpay", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify({

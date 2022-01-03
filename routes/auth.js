@@ -22,7 +22,7 @@ const razorpay = new Razorpay({
 });
 
 //RazorPay
-router.post("/razorpay", async (req, res) => {
+router.post("/api/razorpay", async (req, res) => {
   // console.log(req.body);
 
   const response = await razorpay.orders.create(req.body);
@@ -35,7 +35,7 @@ router.post("/razorpay", async (req, res) => {
 });
 
 //Business User Sign-up
-router.post("/bsignup", (req, res) => {
+router.post("/api/bsignup", (req, res) => {
   const {
     hotelName,
     email,
@@ -86,7 +86,7 @@ router.post("/bsignup", (req, res) => {
 });
 
 //Business User Sign-in
-router.post("/bsignin", (req, res) => {
+router.post("/api/bsignin", (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
     return res.status(400).json({
@@ -112,7 +112,7 @@ router.post("/bsignin", (req, res) => {
 });
 
 //User Sign-in Phone number check in DB
-router.post("/checknum", (req, res) => {
+router.post("/api/checknum", (req, res) => {
   const { phoneNumber } = req.body;
   clientUser.findOne({ phoneNumber: phoneNumber }).then((savedClientUser) => {
     if (savedClientUser) {
@@ -130,7 +130,7 @@ router.post("/checknum", (req, res) => {
 });
 
 //User Signup
-router.put("/usignup", (req, res) => {
+router.put("/api/usignup", (req, res) => {
   const { name, email, dob, phoneNumber } = req.body;
   // if (!email || !name || !dob ) {
   //   return res.status(400).json({
@@ -152,7 +152,7 @@ router.put("/usignup", (req, res) => {
 });
 
 //Username get
-router.get("/getname", (req, res) => {
+router.get("/api/getname", (req, res) => {
   const { phoneNumber } = req.query;
   clientUser
     .findOne({ phoneNumber: phoneNumber })

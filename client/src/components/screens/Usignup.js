@@ -49,7 +49,7 @@ function UserSignup() {
       });
     }
     console.log("btn press");
-    fetch("/usignup", {
+    fetch("/api/usignup", {
       method: "put",
       headers: {
         "Content-Type": "application/json",

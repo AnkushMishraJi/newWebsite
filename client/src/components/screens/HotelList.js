@@ -16,7 +16,7 @@ const HotelList = () => {
     const isNightParty = localStorage.getItem("isNightParty");
 
     fetch(
-      `/hotelList?date=${date}&totalPersons=${totalPersons}&girls=${girls}&isNightParty=${isNightParty}`,
+      `/api/hotelList?date=${date}&totalPersons=${totalPersons}&girls=${girls}&isNightParty=${isNightParty}`,
       {
         method: "get",
         headers: {

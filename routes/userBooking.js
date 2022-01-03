@@ -20,7 +20,7 @@ const transporter = nodemailer.createTransport(
 );
 
 //Add confirmed booking to database
-router.post("/addConfirmBookingsUser", (req, res) => {
+router.post("/api/addConfirmBookingsUser", (req, res) => {
   const {
     User,
     Hotel,
@@ -106,7 +106,7 @@ router.post("/addConfirmBookingsUser", (req, res) => {
 });
 
 //Get All Bookings by user
-router.get("/getConfirmBookingsUser", (req, res) => {
+router.get("/api/getConfirmBookingsUser", (req, res) => {
   const { User } = req.query;
   confirmedUserBooking
     .find({ User: User })

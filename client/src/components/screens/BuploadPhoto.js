@@ -23,7 +23,7 @@ function UploadPhoto() {
         // console.log(picUrl);
       })
       .then(
-        fetch("/photoUpload", {
+        fetch("/api/photoUpload", {
           method: "post",
           headers: {
             "Content-Type": "application/json",

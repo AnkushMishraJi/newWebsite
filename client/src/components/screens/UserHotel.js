@@ -56,7 +56,7 @@ const UserHotel = () => {
   const history = useHistory();
 
   useEffect(() => {
-    fetch(location.pathname, {
+    fetch(`/api${location.pathname}`, {
       method: "get",
       headers: {
         "Content-Type": "application/json",

@@ -36,7 +36,7 @@ const Bill = () => {
   }
 
   useEffect(() => {
-    fetch("/addConfirmBookingsUser", {
+    fetch("/api/addConfirmBookingsUser", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -64,7 +64,7 @@ const Bill = () => {
         }
       });
 
-    fetch("/booking", {
+    fetch("/api/booking", {
       method: "post",
       headers: {
         "Content-Type": "application/json",

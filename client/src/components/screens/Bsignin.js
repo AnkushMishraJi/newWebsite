@@ -28,7 +28,7 @@ function Signin() {
     }
     localStorage.setItem("email", email);
     // console.log( localStorage.getItem("email"));
-    fetch("/bsignin", {
+    fetch("/api/bsignin", {
       method: "post",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("jwt"),

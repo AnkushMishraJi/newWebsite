@@ -85,7 +85,7 @@ function Signup() {
       });
     }
 
-    fetch("/bsignup", {
+    fetch("/api/bsignup", {
       method: "post",
       headers: {
         "Content-Type": "application/json",

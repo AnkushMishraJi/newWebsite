@@ -6,7 +6,7 @@ const HotelBlocker = () => {
   const email = localStorage.getItem("email");
 
   useEffect(() => {
-    fetch(`/getBlockedDates?email=${email}`, {
+    fetch(`/api/getBlockedDates?email=${email}`, {
       method: "get",
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +26,7 @@ const HotelBlocker = () => {
       return new Date(dateWithoutTime.setHours(0, 0, 0, 0)).toDateString();
     });
     // console.log(arrOfDates);
-    fetch("/blockUnblock", {
+    fetch("/api/blockUnblock", {
       method: "post",
       headers: {
         "Content-Type": "application/json",

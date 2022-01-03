@@ -6,7 +6,7 @@ const bookingSchema = require("../models/booking");
 const booking = mongoose.model("Booking", bookingSchema);
 
 //booking completed
-router.post("/booking", (req, res) => {
+router.post("/api/booking", (req, res) => {
   const {
     name,
     phone,
@@ -41,7 +41,7 @@ router.post("/booking", (req, res) => {
 });
 
 //hotel booking get completed
-router.get("/hotelBooking", (req, res) => {
+router.get("/api/hotelBooking", (req, res) => {
   const { hotelEmail } = req.query;
   booking
     .find({ hotelEmail: hotelEmail })

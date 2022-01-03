@@ -7,7 +7,7 @@ const AllBookings = () => {
   const [booking, setBooking] = useState([]);
 
   useEffect(() => {
-    fetch(`getConfirmBookingsUser?User=${user}`, {
+    fetch(`/api/getConfirmBookingsUser?User=${user}`, {
       method: "get",
       headers: {
         "Content-Type": "application/json",
