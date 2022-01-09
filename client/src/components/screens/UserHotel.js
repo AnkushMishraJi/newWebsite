@@ -70,8 +70,8 @@ const UserHotel = () => {
         setSmallNightPrice(parseInt(data[0].roomSmallData.smallNightPrice));
 
         setMedCap(parseInt(data[0].roomMediumData.mediumCapacity));
-        setMedPrice(parseInt(data[0].roomMediumData.medPrice));
-        setMedNightPrice(parseInt(data[0].roomMediumData.medNightPrice));
+        setMedPrice(parseInt(data[0].roomMediumData.mediumPrice));
+        setMedNightPrice(parseInt(data[0].roomMediumData.mediumNightPrice));
 
         setLargeCap(parseInt(data[0].roomLargeData.largeCapacity));
         setLargePrice(parseInt(data[0].roomLargeData.largePrice));

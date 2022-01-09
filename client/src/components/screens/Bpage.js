@@ -39,7 +39,7 @@ const HotelDashboard = () => {
   }, []);
 
   const clickHandler = () => {
-    history.push("/api/bsignin");
+    history.push("/bsignin");
     // console.log("signout");
   };
 

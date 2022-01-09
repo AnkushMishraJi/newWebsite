@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { UserContext } from "../../App";
 import M from "materialize-css";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 function Signin() {
   //comment
   const history = useHistory();
@@ -21,10 +21,10 @@ function Signin() {
       )
     ) {
       return Swal.fire({
-        icon: 'error',
+        icon: "error",
         title: "Invalid Email",
-        text: 'Please enter a valid Email Address',
-      })
+        text: "Please enter a valid Email Address",
+      });
     }
     localStorage.setItem("email", email);
     // console.log( localStorage.getItem("email"));

@@ -42,7 +42,7 @@ function NavigationBar() {
           style={
             activePage == "home"
               ? { color: "#1a1b41", outline: "none", opacity: "100%" }
-              : {}
+              : { color: "#1a1b41", outline: "none", opacity: "50%" }
           }
           icon={faHome}
         />
@@ -60,7 +60,7 @@ function NavigationBar() {
           style={
             activePage == "services"
               ? { color: "#1a1b41", outline: "none", opacity: "100%" }
-              : {}
+              : { color: "#1a1b41", outline: "none", opacity: "50%" }
           }
           icon={faConciergeBell}
         />
@@ -79,7 +79,7 @@ function NavigationBar() {
           style={
             activePage == "bookings"
               ? { color: "#1a1b41", outline: "none", opacity: "100%" }
-              : {}
+              : { color: "#1a1b41", outline: "none", opacity: "50%" }
           }
           icon={faBookmark}
         />
@@ -98,7 +98,7 @@ function NavigationBar() {
           style={
             activePage == "login"
               ? { color: "#1a1b41", outline: "none", opacity: "100%" }
-              : {}
+              : { color: "#1a1b41", outline: "none", opacity: "50%" }
           }
           icon={faUser}
         />
