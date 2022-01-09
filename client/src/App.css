@@ -85,6 +85,12 @@ h2 {
   border: none !important;
 }
 
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root{
+  border: none !important;
+  outline: none !important;
+
+}
+
 input:not([type]),
 input[type="text"]:not(.browser-default),
 input[type="password"]:not(.browser-default),
