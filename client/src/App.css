@@ -53,6 +53,8 @@ h2 {
 
 .container-input {
   width: 70% !important;
+  border: none;
+  outline: none;
   height: 3em !important;
   border-radius: 0.5em !important;
   background-color: white !important;
