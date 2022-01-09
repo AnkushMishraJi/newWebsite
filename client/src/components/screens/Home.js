@@ -132,7 +132,7 @@ const Home = () => {
             renderInput={(params) => (
               <TextField
                 className="text-center inside-box"
-                style={{ border: "none" }}
+                style={{ border: "none", outline:"none" }}
                 {...params}
               />
             )}

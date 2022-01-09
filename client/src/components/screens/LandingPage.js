@@ -11,10 +11,11 @@ import { faChevronCircleDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { Carousel } from "react-responsive-carousel";
-
+import {useHistory} from "react-router-dom";
 import { Link } from "react-scroll";
 
 const LandingPage = () => {
+  const history = useHistory();
   return (
     <div className="my-4 text-center text-light">
       <img
@@ -29,7 +30,7 @@ const LandingPage = () => {
         <p className="f-18 font-weight">Private Parties</p>
         <p className="f-18 font-weight">Customised for</p>
         <p className="f-24 font-weight-bolder">You.</p>
-        <button
+        <button onClick={()=>history.push("/")}
           className=" w-60 font-weight-bolder f-18"
           style={{
             color: "#1a1b41",

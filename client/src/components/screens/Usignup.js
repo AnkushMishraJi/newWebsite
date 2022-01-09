@@ -8,8 +8,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
+import moment from "moment";
 import Swal from "sweetalert2";
+import { getListSubheaderUtilityClass } from "@mui/material";
 
 function UserSignup() {
   const history = useHistory();
@@ -143,8 +144,11 @@ function UserSignup() {
                 setDob(dob);
               }}
               dateFormat="dd-MMM-yyyy"
-              minDate={new Date()}
               ref={(el) => onDatepickerRef(el)}
+              showMonthDropdown
+              showYearDropdown
+              maxDate={moment().toDate()}
+              yearDropdownItemNumber={8}
               placeholderText="Enter Date of Birth"
             />
           </Container>
