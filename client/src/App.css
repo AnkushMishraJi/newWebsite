@@ -53,8 +53,8 @@ h2 {
 
 .container-input {
   width: 70% !important;
-  border: none;
-  outline: none;
+  border: none !important;
+  outline: none !important;
   height: 3em !important;
   border-radius: 0.5em !important;
   background-color: white !important;
@@ -79,6 +79,7 @@ h2 {
   padding-bottom: 1.5em !important;
   top: 0em !important;
   border: none !important;
+  outline: none !important;
   height: 1em !important;
 }
 .css-1d3z3hw-MuiOutlinedInput-notchedOutline {

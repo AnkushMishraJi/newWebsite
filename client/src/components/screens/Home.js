@@ -124,7 +124,7 @@ const Home = () => {
       <div className="container-input mt-3">
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <TimePicker
-            className="p-0 mt-2 f-12 text-center bg-light"
+            className="mt-2 f-12"
             value={time}
             onChange={(time) => {
               setTime(time);
@@ -132,7 +132,6 @@ const Home = () => {
             renderInput={(params) => (
               <TextField
                 className="text-center inside-box"
-                style={{ border: "none", outline:"none" }}
                 {...params}
               />
             )}
