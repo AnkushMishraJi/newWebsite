@@ -76,9 +76,22 @@ h2 {
 }
 .MuiOutlinedInput-input {
   margin-left: 5% !important;
+  height: 2rem !important;
+  width: 17em !important;
+  margin-top: 3% !important;
   outline: none !important;
   border: none !important;
 }
+
+.MuiOutlinedInput-input:focus {
+  margin-left: 5% !important;
+  height: 2rem !important;
+  width: 17em !important;
+  margin-top: 3% !important;
+  outline: none !important;
+  border: none !important;
+}
+
 .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
   border: none !important;
 }
