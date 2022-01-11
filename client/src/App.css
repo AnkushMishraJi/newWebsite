@@ -74,13 +74,10 @@ h2 {
 .carousel {
   height: 35vh !important;
 }
-.inside-box {
-  padding-left: 1em !important;
-  padding-bottom: 1.5em !important;
-  top: 0em !important;
-  border: none !important;
+.MuiOutlinedInput-input {
+  margin-left: 5% !important;
   outline: none !important;
-  height: 1em !important;
+  border: none !important;
 }
 .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
   border: none !important;
