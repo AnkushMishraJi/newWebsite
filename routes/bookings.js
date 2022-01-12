@@ -29,15 +29,41 @@ router.post("/api/booking", (req, res) => {
     roomtype,
     totalBill,
   });
-  Booking.save()
-    .then((Booking) => {
-      res.status(201).json({
-        message: "User Booking has been generatd",
+  booking
+  .findOne({checkIn: checkIn})
+  .then((savedBooking)=>{
+    if(savedBooking){
+      if(savedBooking.phone == phone){
+        return res.status(409).json({
+          error: "Booking created already",
+      }
+    )}
+      else{
+        Booking.save()
+        .then((Booking) => {
+        res.status(201).json({
+          message: "User Booking has been generatd",
+        });
+      })
+      .catch((err) => {
+        // console.log(err);
       });
-    })
-    .catch((err) => {
-      // console.log(err);
-    });
+      }
+    }
+    else{
+      Booking.save()
+        .then((Booking) => {
+        res.status(201).json({
+          message: "User Booking has been generatd",
+        });
+      })
+      .catch((err) => {
+        // console.log(err);
+      });
+    }
+    
+});
+  
 });
 
 //hotel booking get completed
