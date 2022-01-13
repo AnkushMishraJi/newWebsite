@@ -20,7 +20,7 @@ const transporter = nodemailer.createTransport(
 );
 
 //Add confirmed booking to database
-router.post("/api/addConfirmBookingsUser", (req, res) => {
+router.post("/addConfirmBookingsUser", (req, res) => {
   const {
     User,
     Hotel,
@@ -47,21 +47,11 @@ router.post("/api/addConfirmBookingsUser", (req, res) => {
     TimeSlot,
     Type,
   });
-  confirmedUserBooking
-  .findOne({ArrivalTime: ArrivalTime})
-  .then((userBooking)=>{
-    if(userBooking){
-    if(userBooking.User){
-      return res.status(409).json({
-        error: "Booking created already",
-    })
-    }
-    else{
-      UserBookings.save()
+  UserBookings.save()
     .then((UserBookings) => {
       transporter
         .sendMail({
-          to: HotelEmail,
+          to: "meraaddacontact@gmail.com",
           from: "meraaddacontact@gmail.com",
           subject: "New Booking Recieved",
           html:
@@ -113,72 +103,10 @@ router.post("/api/addConfirmBookingsUser", (req, res) => {
     .catch((err) => {
       console.log(err);
     });
-    }
-    }
-    else{
-      UserBookings.save()
-      .then((UserBookings) => {
-        transporter
-          .sendMail({
-            to: HotelEmail,
-            from: "meraaddacontact@gmail.com",
-            subject: "New Booking Recieved",
-            html:
-              "<div>" +
-              "<b>" +
-              "You have a new booking!" +
-              "</b>" +
-              "<p>" +
-              "Hotel : " +
-              Hotel +
-              "</p>" +
-              "<p>" +
-              "Date Of Booking : " +
-              DateOfBooking +
-              "</p>" +
-              "<p>" +
-              "ArrivalTime : " +
-              ArrivalTime +
-              "</p>" +
-              "<p>" +
-              "Total Persons : " +
-              TotalPersons +
-              "</p>" +
-              "<p>" +
-              "Billing Amount : " +
-              BillingAmount +
-              "</p>" +
-              "<p>" +
-              "Payment Time : " +
-              PaymentTime +
-              "</p>" +
-              "<p>" +
-              "Time Slot : " +
-              TimeSlot +
-              "</p>" +
-              "<p>" +
-              "Type : " +
-              Type +
-              "</p>" +
-              "</div>",
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-        res.status(201).json({
-          message: "new confirmed booking saved to database",
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    }
-  })
-  
 });
 
 //Get All Bookings by user
-router.get("/api/getConfirmBookingsUser", (req, res) => {
+router.get("/getConfirmBookingsUser", (req, res) => {
   const { User } = req.query;
   confirmedUserBooking
     .find({ User: User })

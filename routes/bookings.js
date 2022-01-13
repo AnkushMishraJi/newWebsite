@@ -6,7 +6,7 @@ const bookingSchema = require("../models/booking");
 const booking = mongoose.model("Booking", bookingSchema);
 
 //booking completed
-router.post("/api/booking", (req, res) => {
+router.post("/booking", (req, res) => {
   const {
     name,
     phone,
@@ -29,45 +29,19 @@ router.post("/api/booking", (req, res) => {
     roomtype,
     totalBill,
   });
-  booking
-  .findOne({checkIn: checkIn})
-  .then((savedBooking)=>{
-    if(savedBooking){
-      if(savedBooking.phone == phone){
-        return res.status(409).json({
-          error: "Booking created already",
-      }
-    )}
-      else{
-        Booking.save()
-        .then((Booking) => {
-        res.status(201).json({
-          message: "User Booking has been generatd",
-        });
-      })
-      .catch((err) => {
-        // console.log(err);
+  Booking.save()
+    .then((Booking) => {
+      res.status(201).json({
+        message: "User Booking has been generatd",
       });
-      }
-    }
-    else{
-      Booking.save()
-        .then((Booking) => {
-        res.status(201).json({
-          message: "User Booking has been generatd",
-        });
-      })
-      .catch((err) => {
-        // console.log(err);
-      });
-    }
-    
-});
-  
+    })
+    .catch((err) => {
+      // console.log(err);
+    });
 });
 
 //hotel booking get completed
-router.get("/api/hotelBooking", (req, res) => {
+router.get("/hotelBooking", (req, res) => {
   const { hotelEmail } = req.query;
   booking
     .find({ hotelEmail: hotelEmail })
