@@ -47,7 +47,7 @@ const UserHotel = () => {
   const isAuthenticated = localStorage.getItem("isAuthenticated");
 
   const [nightPrice, setNightPrice] = useState();
-  const [pic, setPic] = useState();
+  const [hotel, setHotel] = useState({});
 
   //This is used by Razorpay (Shift all Razorpay functions to Confirmation Page)
   const [price, setPrice] = useState();
@@ -81,8 +81,7 @@ const UserHotel = () => {
         setHotelName(data[0].hotelName);
         setLocationHotel(data[0].location);
         setAddress(data[0].address);
-        setPic(data[0].mainPicUrl);
-
+        setHotel(data[0]);
         localStorage.setItem("isBlockedOn", data[0].isBlockedOn);
         localStorage.getItem("isNightParty");
         localStorage.setItem("hotelEmail", data[0].email);
@@ -116,6 +115,7 @@ const UserHotel = () => {
   useEffect(() => {
     setPrice(1000);
   }, [smallActive, medActive, largeActive, price]);
+
 
 
   const manualSmallSelect = () => {
@@ -179,7 +179,7 @@ const UserHotel = () => {
       <Link to="/hotelList">
         <FontAwesomeIcon className="back-arrow" icon={faArrowLeft} />
       </Link>
-      <CarouselContainer selectedRoom={roomType} />
+      <CarouselContainer selectedRoom={roomType} hotel={hotel}  />
       <div className="w-90 p-4 pb-2 ">
         <div className="user-hotel-box  w-90">
           <div>
