@@ -16,7 +16,7 @@ const HotelList = () => {
     const isNightParty = localStorage.getItem("isNightParty");
 
     fetch(
-      `/hotelList?date=${date}&totalPersons=${totalPersons}&girls=${girls}&isNightParty=${isNightParty}`,
+      `/api/hotelList?date=${date}&totalPersons=${totalPersons}&girls=${girls}&isNightParty=${isNightParty}`,
       {
         method: "get",
         headers: {
@@ -81,14 +81,24 @@ const HotelList = () => {
           }
         };
 
+        //src={`https://res.cloudinary.com/mera-adda/image/upload/v1641935556/hotel%20structure/hotel_charans_plaza/main.jpg`}
+
         return (
           <Link key={oneHotel._id} to={"/userHotel/" + oneHotel._id}>
             <div className="hlist">
+              { oneHotel.mainPic ?
               <img
                 className="hlist-img"
-                src={`http://res.cloudinary.com/mera-adda/image/upload/v1640882770/hotels/charans/main.jpg`}
+                src={oneHotel.mainPic}
                 alt={"hotel" + oneHotel.hotelName}
               />
+              :
+              <img
+                className="hlist-img"
+                src={`https://res.cloudinary.com/mera-adda/image/upload/v1641935556/hotel%20structure/hotel_charans_plaza/main.jpg`}
+                alt={"hotel" + oneHotel.hotelName}
+              />
+              }
               <div className="half-card">
                 <h5 className="f-16 font-weight-bolder ">
                   {oneHotel.hotelName}

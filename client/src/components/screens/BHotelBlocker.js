@@ -6,7 +6,7 @@ const HotelBlocker = () => {
   const email = localStorage.getItem("email");
 
   useEffect(() => {
-    fetch(`/getBlockedDates?email=${email}`, {
+    fetch(`/api/getBlockedDates?email=${email}`, {
       method: "get",
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +26,7 @@ const HotelBlocker = () => {
       return new Date(dateWithoutTime.setHours(0, 0, 0, 0)).toDateString();
     });
     // console.log(arrOfDates);
-    fetch("/blockUnblock", {
+    fetch("/api/blockUnblock", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -44,10 +44,12 @@ const HotelBlocker = () => {
 
   return (
     <div className="bg-brand text-light p-5 d-flex flex-column algn-items-center">
-      <p className="font-weight-bolder f-16">Select and Submit Dates of Unavailability</p>
+      <p className="font-weight-bolder f-16">
+        Select and Submit Dates of Unavailability
+      </p>
       <div className="bg-light px-2 py-0 mt-3">
         <DatePicker
-        className="px-3"
+          className="px-3"
           multiple
           value={isBlockedOn}
           format="ddd MMM DD YYYY"

@@ -53,6 +53,8 @@ h2 {
 
 .container-input {
   width: 70% !important;
+  border: none !important;
+  outline: none !important;
   height: 3em !important;
   border-radius: 0.5em !important;
   background-color: white !important;
@@ -72,15 +74,32 @@ h2 {
 .carousel {
   height: 35vh !important;
 }
-.inside-box {
-  padding-left: 1em !important;
-  padding-bottom: 1.5em !important;
-  top: 0em !important;
+.MuiOutlinedInput-input {
+  margin-left: 5% !important;
+  height: 2rem !important;
+  width: 17em !important;
+  margin-top: 3% !important;
+  outline: none !important;
   border: none !important;
-  height: 1em !important;
 }
+
+.MuiOutlinedInput-input:focus {
+  margin-left: 5% !important;
+  height: 2rem !important;
+  width: 17em !important;
+  margin-top: 3% !important;
+  outline: none !important;
+  border: none !important;
+}
+
 .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
   border: none !important;
+}
+
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root{
+  border: none !important;
+  outline: none !important;
+
 }
 
 input:not([type]),
@@ -511,3 +530,4 @@ a {
 .no-text-decor {
   text-decoration: none !important;
 }
+

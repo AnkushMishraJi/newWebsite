@@ -47,7 +47,7 @@ const UserHotel = () => {
   const isAuthenticated = localStorage.getItem("isAuthenticated");
 
   const [nightPrice, setNightPrice] = useState();
-  const [pic, setPic] = useState();
+  const [hotel, setHotel] = useState({});
 
   //This is used by Razorpay (Shift all Razorpay functions to Confirmation Page)
   const [price, setPrice] = useState();
@@ -56,7 +56,7 @@ const UserHotel = () => {
   const history = useHistory();
 
   useEffect(() => {
-    fetch(location.pathname, {
+    fetch(`/api${location.pathname}`, {
       method: "get",
       headers: {
         "Content-Type": "application/json",
@@ -70,8 +70,8 @@ const UserHotel = () => {
         setSmallNightPrice(parseInt(data[0].roomSmallData.smallNightPrice));
 
         setMedCap(parseInt(data[0].roomMediumData.mediumCapacity));
-        setMedPrice(parseInt(data[0].roomMediumData.medPrice));
-        setMedNightPrice(parseInt(data[0].roomMediumData.medNightPrice));
+        setMedPrice(parseInt(data[0].roomMediumData.mediumPrice));
+        setMedNightPrice(parseInt(data[0].roomMediumData.mediumNightPrice));
 
         setLargeCap(parseInt(data[0].roomLargeData.largeCapacity));
         setLargePrice(parseInt(data[0].roomLargeData.largePrice));
@@ -81,8 +81,7 @@ const UserHotel = () => {
         setHotelName(data[0].hotelName);
         setLocationHotel(data[0].location);
         setAddress(data[0].address);
-        setPic(data[0].mainPicUrl);
-
+        setHotel(data[0]);
         localStorage.setItem("isBlockedOn", data[0].isBlockedOn);
         localStorage.getItem("isNightParty");
         localStorage.setItem("hotelEmail", data[0].email);
@@ -117,82 +116,7 @@ const UserHotel = () => {
     setPrice(1000);
   }, [smallActive, medActive, largeActive, price]);
 
-  // async function displayRazorpay() {
-  //   // console.log("rzp Running");
 
-  //   const data = await fetch("/razorpay", {
-  //     method: "POST",
-  //     headers: { "Content-type": "application/json" },
-  //     body: JSON.stringify({
-  //       amount: price * 100,
-  //       currency: "INR",
-  //       payment_capture: 1,
-  //       receipt: shortid.generate(),
-  //     }),
-  //   }).then((res) => res.json());
-  //   console.log(data);
-  //   localStorage.setItem("Hotel", hotelName);
-
-  //   const options = {
-  //     key: "rzp_test_ZwIQoXjws19gWq", // Enter the Key ID generated from the Dashboard
-  //     amount: data.amount.toString(), // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-  //     currency: data.currency,
-  //     name: "Acme Corp",
-  //     description: "Test Transaction",
-  //     image: "https://example.com/your_logo",
-  //     order_id: data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-  //     created_at: data.created_at,
-  //     handler: function (response) {
-  //       alert(response.razorpay_payment_id);
-  //       alert(response.razorpay_order_id);
-  //       alert(response.razorpay_signature);
-  //       // console.log(JSON.stringify(response));
-  //       history.push("/bill");
-  //     },
-  //     prefill: {
-  //       name: "Gaurav Kumar",
-  //       email: "gaurav.kumar@example.com",
-  //       contact: "9999999999",
-  //     },
-  //     notes: {
-  //       address: "Razorpay Corporate Office",
-  //     },
-  //     theme: {
-  //       color: "#3399cc",
-  //     },
-  //   };
-  //   var rzp1 = new window.Razorpay(options);
-  //   rzp1.open();
-  //   localStorage.setItem("razor", JSON.stringify(data));
-  // }
-
-  const carouselContent = (selectedRoom) => {
-    return (
-      <Carousel>
-        <Carousel.Item interval={1000}>
-          <img
-            className="d-block w-100"
-            src={`http://res.cloudinary.com/mera-adda/image/upload/v1640882770/hotels/charans/${selectedRoom}/hotel1.jpg`}
-            alt="First slide"
-          />
-        </Carousel.Item>
-        <Carousel.Item interval={500}>
-          <img
-            className="d-block w-100"
-            src={`http://res.cloudinary.com/mera-adda/image/upload/v1640882770/hotels/charans/${selectedRoom}/hotel2.jpg`}
-            alt="Second slide"
-          />
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={`http://res.cloudinary.com/mera-adda/image/upload/v1640882770/hotels/charans/${selectedRoom}/hotel3.jpg`}
-            alt="Third slide"
-          />
-        </Carousel.Item>
-      </Carousel>
-    );
-  };
 
   const manualSmallSelect = () => {
     if (totalPersons <= smallCap) {
@@ -255,7 +179,7 @@ const UserHotel = () => {
       <Link to="/hotelList">
         <FontAwesomeIcon className="back-arrow" icon={faArrowLeft} />
       </Link>
-      <CarouselContainer selectedRoom={roomType} />
+      <CarouselContainer selectedRoom={roomType} hotel={hotel}  />
       <div className="w-90 p-4 pb-2 ">
         <div className="user-hotel-box  w-90">
           <div>

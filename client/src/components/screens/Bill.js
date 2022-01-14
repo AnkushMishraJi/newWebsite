@@ -1,8 +1,20 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+
+
+
+window.onbeforeunload = function() { 
+  if(window.location.pathname=="/bill"){
+    window.setTimeout(function () { 
+      window.location = '/';
+  }, 0); 
+  }
+  
+  window.onbeforeunload = null; // necessary to prevent infinite loop, that kills your browser 
+}
 
 const Bill = () => {
   const payment_info = JSON.parse(localStorage.getItem("razor"));
@@ -36,7 +48,7 @@ const Bill = () => {
   }
 
   useEffect(() => {
-    fetch("/addConfirmBookingsUser", {
+    fetch("/api/addConfirmBookingsUser", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -64,7 +76,7 @@ const Bill = () => {
         }
       });
 
-    fetch("/booking", {
+    fetch("/api/booking", {
       method: "post",
       headers: {
         "Content-Type": "application/json",

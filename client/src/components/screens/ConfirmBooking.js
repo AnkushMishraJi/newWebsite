@@ -167,7 +167,7 @@ const ConfirmBooking = () => {
   async function displayRazorpay() {
     // console.log("rzp Running");
 
-    const data = await fetch("/razorpay", {
+    const data = await fetch("/api/razorpay", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify({
@@ -260,6 +260,7 @@ const ConfirmBooking = () => {
       <div className="container-input mt-3">
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <TimePicker
+          className="mt-2 f-12"
             selected={time}
             value={time}
             onChange={(time) => {
@@ -268,8 +269,7 @@ const ConfirmBooking = () => {
             }}
             renderInput={(params) => (
               <TextField
-                className="text-center  "
-                style={{ border: "none", paddingLeft: "1em" }}
+                className=""
                 {...params}
               />
             )}

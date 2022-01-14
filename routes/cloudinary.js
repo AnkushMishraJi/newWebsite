@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const photosSchema = require("../models/photos");
 const photo = mongoose.model("Photo", photosSchema);
 
-router.post("/photoUpload", (req, res) => {
+router.post("/api/photoUpload", (req, res) => {
   const { title, picUrl } = req.body;
   const Photo = new photo({
     title,

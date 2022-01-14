@@ -40,33 +40,31 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/usignin">
+          <Route exact path="/usignin">
             <UserSignin />
           </Route>
-          <Route path="/uphone">
+          <Route exact path="/uphone">
             <UserPhoneCheck />
           </Route>
-          <Route path="/usignup">
+          <Route exact path="/usignup">
             <UserSignup />
           </Route>
           <Route path="/userHotel">
             <UserHotel />
           </Route>
-          <Route path="/hotelList">
+          <Route exact path="/hotelList">
             <HotelList />
           </Route>
-          <Route path="/confirmBooking">
+          <Route exact path="/confirmBooking">
             <ConfirmBooking />
           </Route>
-          <Route path="/bill">
+          <Route exact path="/bill">
             <Bill />
           </Route>
           <Route path="/oldBill">
             <OldBill />
           </Route>
-          <Route path="/error404">
-            <Error404 />
-          </Route>
+          
           <Route path="/error500">
             <Error500 />
           </Route>
@@ -77,6 +75,9 @@ function App() {
           <ProtectedRoute exact path="/oldBill" component={OldBill} />
           <ProtectedRoute exact path="/bill" component={Bill} />
           <ProtectedRoute exact path="/userpage" component={UserPage} />
+          <Route path="">
+            <Error404 />
+          </Route>
         </Switch>
       </div>
     );

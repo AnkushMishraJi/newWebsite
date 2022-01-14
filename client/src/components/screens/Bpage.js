@@ -45,7 +45,7 @@ const HotelDashboard = () => {
 
   const showbookings = () => {
     const hotelEmail = localStorage.getItem("email");
-    fetch(`/hotelBooking?hotelEmail=${hotelEmail}`, {
+    fetch(`/api/hotelBooking?hotelEmail=${hotelEmail}`, {
       method: "get",
       headers: {
         "Content-Type": "application/json",

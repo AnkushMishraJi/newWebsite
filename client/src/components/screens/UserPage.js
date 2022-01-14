@@ -13,7 +13,7 @@ const UserPage = () => {
 
   useEffect(() => {
     const phoneNumber = localStorage.getItem("phone");
-    fetch(`/getname?phoneNumber=${phoneNumber}`, {
+    fetch(`/api/getname?phoneNumber=${phoneNumber}`, {
       method: "get",
       headers: {
         "Content-Type": "application/json",
