@@ -37,7 +37,7 @@ const Bill = () => {
   var displayDate = splitDate.splice(0, 4).join(" ");
 
   var splitTime = ArrivalTime.split(" ");
-  var displayTime = splitTime.splice(3, 2).join(" ");
+  var displayTime = splitTime.splice(4, 1).join(" ");
 
   if (isNightParty == true) {
     time_slot = 6;
@@ -56,8 +56,8 @@ const Bill = () => {
       body: JSON.stringify({
         User,
         Hotel,
-        DateOfBooking,
-        ArrivalTime,
+        DateOfBooking : displayDate,
+        ArrivalTime : displayTime,
         TotalPersons,
         BillingAmount,
         OrderId,
