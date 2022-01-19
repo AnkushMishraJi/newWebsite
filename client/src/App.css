@@ -13,7 +13,14 @@
   text-decoration: none !important;
   opacity: 35%;
 }
-
+.logo-and-name {
+  position: absolute;
+  top: 1em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
 .back-arrow {
   position: absolute;
   color: white !important;
@@ -53,8 +60,6 @@ h2 {
 
 .container-input {
   width: 70% !important;
-  border: none !important;
-  outline: none !important;
   height: 3em !important;
   border-radius: 0.5em !important;
   background-color: white !important;
@@ -72,34 +77,24 @@ h2 {
 }
 
 .carousel {
-  height: 35vh !important;
+  height: inherit !important;
 }
-.MuiOutlinedInput-input {
-  margin-left: 5% !important;
-  height: 2rem !important;
-  width: 17em !important;
-  margin-top: 3% !important;
-  outline: none !important;
-  border: none !important;
+.carousel-outer .carousel .slide {
+  background: none !important;
+}
+.slider {
+  height: inherit !important;
 }
 
-.MuiOutlinedInput-input:focus {
-  margin-left: 5% !important;
-  height: 2rem !important;
-  width: 17em !important;
-  margin-top: 3% !important;
-  outline: none !important;
+.inside-box {
+  padding-left: 1em !important;
+  padding-bottom: 1.5em !important;
+  top: 0em !important;
   border: none !important;
+  height: 1em !important;
 }
-
 .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
   border: none !important;
-}
-
-.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root{
-  border: none !important;
-  outline: none !important;
-
 }
 
 input:not([type]),
@@ -170,17 +165,63 @@ a {
   padding-top: 3.9em;
   /* border-bottom: 0.5em solid #fe9124; */
 }
+#zebronics {
+  background-image: url("./images/decor/zebronics.jpg");
+  background-size: cover;
+}
 
-#bday {
-  background-image: url("./images/bday.jpeg");
+#iball {
+  background-image: url("./images/decor/iball.jpg");
   background-size: cover;
 }
-#brideToBe {
-  background-image: url("./images/bride_to_be.jpeg");
+
+#jbl {
+  background-image: url("./images/decor/jbl.jpg");
   background-size: cover;
 }
-#date_night {
-  background-image: url("./images/date_night.jpeg");
+#partybox {
+  background-image: url("./images/decor/partybox.jpg");
+  background-size: cover;
+}
+
+#bday1 {
+  background-image: url("./images/decor/bday1.jpg");
+  background-size: cover;
+}
+#bday2 {
+  background-image: url("./images/decor/bday2.jpg");
+  background-size: cover;
+}
+#bday3 {
+  background-image: url("./images/decor/bday3.jpg");
+  background-size: cover;
+}
+#brideToBe1 {
+  background-image: url("./images/decor/bride-to-be-1.jpg");
+  background-size: cover;
+}
+#brideToBe2 {
+  background-image: url("./images/decor/bride-to-be-2.jpg");
+  background-size: cover;
+}
+#brideToBe3 {
+  background-image: url("./images/decor/bride-to-be-3.jpg");
+  background-size: cover;
+}
+#date-night1 {
+  background-image: url("./images/decor/date_night1.jpg");
+  background-size: cover;
+}
+#date-night2 {
+  background-image: url("./images/decor/date_night2.jpg");
+  background-size: cover;
+}
+#date-night3 {
+  background-image: url("./images/decor/date_night3.jpg");
+  background-size: cover;
+}
+#custom {
+  background-image: url("./images/custom.png");
   background-size: cover;
 }
 #escapes {
@@ -188,10 +229,17 @@ a {
   background-size: cover;
 }
 .tape {
-  height: 2em;
+  display: flex;
+  height: inherit !important;
   background-color: rgb(26, 27, 65, 0.5);
-  margin-top: 12em;
+  width: 56%;
   color: white;
+  margin-right: -6%;
+  align-content: right;
+  align-items: flex-end;
+  flex-direction: column;
+
+  padding-right: 15px;
 }
 .benefits {
   align-items: center;
@@ -200,6 +248,32 @@ a {
   background-color: white;
   color: black;
   border-radius: 1em;
+  display: inline-block;
+  margin-top: 3em;
+  padding: 1em;
+}
+.benefits-custom {
+  align-items: center;
+  width: 75vw;
+  height: 30vh;
+  background-color: white;
+  color: black;
+  border-radius: 1em;
+  text-shadow: 1px 1px black;
+
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 1.5em;
+
+  padding: 1em;
+}
+.land-slide {
+  align-items: center;
+  width: 100vw;
+  height: 65vh !important;
+
+  background-color: white;
+  color: black;
   display: inline-block;
 }
 
@@ -531,3 +605,16 @@ a {
   text-decoration: none !important;
 }
 
+/* Text Flip Css */
+.landing-page-counter {
+  position: absolute;
+  top: 45vh;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 0.5em;
+  background-color: rgb(26, 27, 65, 0.8);
+  height: 22vh;
+  padding-top: 5vh;
+}
