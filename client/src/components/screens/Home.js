@@ -26,6 +26,8 @@ const Home = () => {
   const [totalPersons, setTotalPersons] = useState(0);
   const [girls, setGirls] = useState(false);
 
+  var currTime = new Date();
+
   useEffect(() => {
     localStorage.setItem("activePage", "home");
   }, []);
@@ -125,7 +127,8 @@ const Home = () => {
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <TimePicker
             className="mt-2 f-12"
-            value={time}
+            value={time.setHours(currTime.getHours()+4)}
+            minTime={new Date(0,0,0,currTime.getHours()+4)}
             onChange={(time) => {
               setTime(time);
             }}

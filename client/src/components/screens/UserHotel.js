@@ -94,17 +94,20 @@ const UserHotel = () => {
     if (totalPersons <= smallCap) {
       setSmallActive("room-type-active");
       setSelectedRoom("small");
+      setRoomType('small');
       localStorage.setItem("price", smallPrice);
       localStorage.setItem("nightPrice", smallNightPrice);
       localStorage.setItem("room", "Small Room");
     } else if (totalPersons <= medCap) {
       setMedActive("room-type-active");
       setSelectedRoom("medium");
+      setRoomType('medium');
       localStorage.setItem("price", medPrice);
       localStorage.setItem("nightPrice", medNightPrice);
       localStorage.setItem("room", "Medium Room");
     } else if (totalPersons <= largeCap) {
       setSelectedRoom("large");
+      setRoomType('large');
       setLargeActive("room-type-active");
       localStorage.setItem("room", "Large Room");
       localStorage.setItem("price", largePrice);

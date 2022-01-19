@@ -51,7 +51,8 @@ router.post("/addConfirmBookingsUser", (req, res) => {
     .then((UserBookings) => {
       transporter
         .sendMail({
-          to: "meraaddacontact@gmail.com",
+          to: HotelEmail,
+          cc: "meraaddacontact@gmail.com",
           from: "meraaddacontact@gmail.com",
           subject: "New Booking Recieved",
           html:
@@ -74,18 +75,6 @@ router.post("/addConfirmBookingsUser", (req, res) => {
             "<p>" +
             "Total Persons : " +
             TotalPersons +
-            "</p>" +
-            "<p>" +
-            "Billing Amount : " +
-            BillingAmount +
-            "</p>" +
-            "<p>" +
-            "Payment Time : " +
-            PaymentTime +
-            "</p>" +
-            "<p>" +
-            "Time Slot : " +
-            TimeSlot +
             "</p>" +
             "<p>" +
             "Type : " +

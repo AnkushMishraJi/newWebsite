@@ -40,7 +40,7 @@ const UserPage = () => {
           <Link className="user-page-btn" to="/">
             Browse Hotels
           </Link>
-          <Link className="user-page-btn" to="#">
+          <Link className="user-page-btn" to="/services">
             Our Services
           </Link>
           <a className="user-page-btn" href="tel:9569736905">

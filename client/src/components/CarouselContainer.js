@@ -7,7 +7,7 @@ import { Carousel } from "react-responsive-carousel";
 import M from "materialize-css";
 
 const CarouselContainer = (props) => {
- if(props.selectedRoom == "small" && props.hotel.roomSmallData){
+ if(props.selectedRoom == "small" && props.hotel.roomSmallData && props.hotel.roomSmallData.smallPic[0]!=""){
   return (
     <Carousel dynamicHeight={false} showThumbs={false} infiniteLoop={true}>
       <div>
@@ -28,7 +28,7 @@ const CarouselContainer = (props) => {
     </Carousel>
   );
  }
- else if(props.selectedRoom == "medium" && props.hotel.roomMediumData){
+ else if(props.selectedRoom == "medium" && props.hotel.roomMediumData && props.hotel.roomMediumData.mediumPic[0]!=""){
   return (
     <Carousel dynamicHeight={false} showThumbs={false} infiniteLoop={true}>
       <div>
@@ -49,7 +49,7 @@ const CarouselContainer = (props) => {
     </Carousel>
   );
  }
- else if(props.selectedRoom == "large" && props.hotel.roomLargeData){
+ else if(props.selectedRoom == "large" && props.hotel.roomLargeData && props.hotel.roomLargeData.largePic[0]!=""){
   return (
     <Carousel dynamicHeight={false} showThumbs={false} infiniteLoop={true}>
       <div>
@@ -70,7 +70,7 @@ const CarouselContainer = (props) => {
     </Carousel>
   );
  }
- else{
+ else if(props.selectedRoom){
    return(
     <Carousel dynamicHeight={false} showThumbs={false} infiniteLoop={true}>
       <div>

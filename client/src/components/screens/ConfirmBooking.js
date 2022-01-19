@@ -8,6 +8,7 @@ import TextField from "@mui/material/TextField";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 
+
 import TimePicker from "@mui/lab/TimePicker";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -24,7 +25,7 @@ const ConfirmBooking = () => {
   const [hotelName, setHotelName] = useState("");
   const [address, setAddress] = useState("");
 
-  const [smallCap, setSmallCap] = useState();
+  const [smallCap, setSmallCap] = useState("");
   const [smallPrice, setSmallPrice] = useState("");
   const [smallNightPrice, setSmallNightPrice] = useState("");
 
@@ -38,7 +39,7 @@ const ConfirmBooking = () => {
 
   const [totalPersons, setTotalPersons] = useState("");
   const [price, setPrice] = useState("");
-  const [isNightParty, setIsNightParty] = useState("");
+  const [isNightParty, setIsNightParty] = useState(true);
 
   const [date, setDate] = useState();
   const [time, setTime] = useState();
@@ -49,7 +50,9 @@ const ConfirmBooking = () => {
   const [count, setCount] = useState(0);
   const [route, setRoute] = useState("");
   const [back, setBack] = useState("");
+  const [firstPrice, setFirstPrice] = useState("")
   const isAuthenticated = localStorage.getItem("isAuthenticated");
+  var currTime= new Date();
   const history = useHistory();
 
   useEffect(() => {
@@ -79,9 +82,10 @@ const ConfirmBooking = () => {
     setType(localStorage.getItem("type"));
     setRoute(localStorage.getItem("route"));
     setBack(localStorage.getItem("back"));
-    let localPrice = localStorage.getItem("price");
-    let localNightPrice = localStorage.getItem("nightPrice");
-    firstprice(localPrice, localNightPrice);
+    
+    // const localPrice = localStorage.getItem("price");
+    // const localNightPrice = localStorage.getItem("nightPrice");
+    // firstprice(localPrice, localNightPrice);
     localStorage.setItem("route", "/confirmBooking");
   }, []);
 
@@ -91,6 +95,14 @@ const ConfirmBooking = () => {
     if (count > 0) {
       amountAndRoom();
     }
+    else{
+      if(isNightParty==="true")
+      setFirstPrice(localStorage.getItem("nightPrice"));
+      else if(isNightParty==="false")
+      setFirstPrice(localStorage.getItem("price"));
+    }
+
+    console.log(firstPrice,"first price")
   }, [totalPersons, isNightParty]);
 
   useEffect(() => {
@@ -117,32 +129,34 @@ const ConfirmBooking = () => {
     }
   };
 
-  const firstprice = (localPrice, localNightPrice) => {
-    if (isNightParty) setPrice(localPrice);
-    else setPrice(localNightPrice);
-  };
+  // const firstprice = (localPrice, localNightPrice) => {
+  //   if (type=="Day Party") 
+  //   setPrice(localPrice);
+  //   else setPrice(localNightPrice);
+
+  //   console.log(price,isNightParty);
+  // };
 
   const amountAndRoom = () => {
     console.log("amount running");
     console.log(isNightParty);
     console.log(totalPersons);
-
-    if (totalPersons <= smallCap && isNightParty && smallCap) {
+    if (totalPersons <= smallCap && isNightParty && parseInt(smallCap)) {
       setPrice(smallNightPrice);
       setRoom("Small room");
-    } else if (totalPersons <= smallCap && !isNightParty && smallCap) {
+    } else if (totalPersons <= smallCap && !isNightParty && parseInt(smallCap)) {
       setPrice(smallPrice);
       setRoom("Small room");
-    } else if (totalPersons <= medCap && isNightParty && medCap) {
+    } else if (totalPersons <= medCap && isNightParty && parseInt(medCap)) {
       setPrice(medNightPrice);
       setRoom("Medium room");
-    } else if (totalPersons <= medCap && !isNightParty && medCap) {
+    } else if (totalPersons <= medCap && !isNightParty && parseInt(medCap)) {
       setPrice(medPrice);
       setRoom("Medium room");
-    } else if (totalPersons <= largeCap && isNightParty && largeCap) {
+    } else if (totalPersons <= largeCap && isNightParty && parseInt(largeCap)) {
       setPrice(largeNightPrice);
       setRoom("Large room");
-    } else if (totalPersons <= largeCap && !isNightParty && largeCap) {
+    } else if (totalPersons <= largeCap && !isNightParty && parseInt(largeCap)) {
       setPrice(largePrice);
       setRoom("Large room");
     }
@@ -164,6 +178,8 @@ const ConfirmBooking = () => {
     }
   };
 
+  const liveRzpKey="rzp_live_S03VwKfzlY7FmS";
+  const testRzpKey="rzp_test_ZwIQoXjws19gWq";
   async function displayRazorpay() {
     // console.log("rzp Running");
 
@@ -171,7 +187,7 @@ const ConfirmBooking = () => {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify({
-        amount: price * 100,
+        amount: (count == 0 ? firstPrice : price) * 100,
         currency: "INR",
         payment_capture: 1,
         receipt: shortid.generate(),
@@ -179,13 +195,13 @@ const ConfirmBooking = () => {
     }).then((res) => res.json());
     console.log(data);
     localStorage.setItem("Hotel", hotelName);
-
+ 
     const options = {
-      key: "rzp_test_ZwIQoXjws19gWq", // Enter the Key ID generated from the Dashboard
+      key: liveRzpKey, // Enter the Key ID generated from the Dashboard
       amount: data.amount.toString(), // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
       currency: data.currency,
-      name: "Acme Corp",
-      description: "Test Transaction",
+      name: "Hasen Enterprises",
+      description: "Transaction",
       image: "https://example.com/your_logo",
       order_id: data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
       created_at: data.created_at,
@@ -201,12 +217,12 @@ const ConfirmBooking = () => {
         history.push("/bill");
       },
       prefill: {
-        name: "Gaurav Kumar",
-        email: "gaurav.kumar@example.com",
-        contact: "9999999999",
+        name: "Hasen Enterprises",
+        email: "meraaddacontact@gmail.com",
+        contact: "9569736905",
       },
       notes: {
-        address: "Razorpay Corporate Office",
+        address: "Lucknow",
       },
       theme: {
         color: "#3399cc",
@@ -263,6 +279,7 @@ const ConfirmBooking = () => {
           className="mt-2 f-12"
             selected={time}
             value={time}
+            minTime={new Date(0,0,0,currTime.getHours()+4)}
             onChange={(time) => {
               setTime(time);
               setCount(count + 1);
@@ -303,7 +320,7 @@ const ConfirmBooking = () => {
         <p className="font-weight-bolder">Room</p>
         <p className="right-text">{room}</p>
         <p className="font-weight-bolder">Amount</p>
-        <p className="right-text">Rs. {price}</p>
+        <p className="right-text">Rs. {count==0 ? firstPrice : price}</p>
       </div>
       <button
         onClick={() => {
