@@ -197,7 +197,7 @@ const ConfirmBooking = () => {
     localStorage.setItem("Hotel", hotelName);
  
     const options = {
-      key: testRzpKey, // Enter the Key ID generated from the Dashboard
+      key: liveRzpKey, // Enter the Key ID generated from the Dashboard
       amount: data.amount.toString(), // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
       currency: data.currency,
       name: "Hasen Enterprises",
