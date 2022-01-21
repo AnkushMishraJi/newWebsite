@@ -52,7 +52,6 @@ router.post("/addConfirmBookingsUser", (req, res) => {
       transporter
         .sendMail({
           to: HotelEmail,
-          cc: "meraaddacontact@gmail.com",
           from: "meraaddacontact@gmail.com",
           subject: "New Booking Recieved",
           html:

@@ -89,13 +89,13 @@ const LandingPage = () => {
         <p className="f-18 font-weight">Private Parties</p>
         <p className="f-18 font-weight">Customised for</p>
 
-        <p className="f-24 font-weight-bolder d-flex brand-logo ">
+        <div className="f-24 font-weight-bolder d-flex brand-logo ">
           <TextTransition
             className=" mx-auto"
             text={TEXTS[index % TEXTS.length]}
             springConfig={presets.stiff}
           />
-        </p>
+        </div>
       </div>
 
       <div className=" ">

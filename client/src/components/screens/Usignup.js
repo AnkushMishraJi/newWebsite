@@ -17,6 +17,7 @@ function UserSignup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [dob, setDob] = useState();
+  var currDate = new Date();
 
   const closeKeyboard = (event) => {
     if (event.key == "Enter") {
@@ -147,9 +148,9 @@ function UserSignup() {
               ref={(el) => onDatepickerRef(el)}
               showMonthDropdown
               showYearDropdown
-              maxDate={moment().toDate()}
               yearDropdownItemNumber={8}
               placeholderText="Enter Date of Birth"
+              maxDate= {new Date(currDate.getFullYear()-18,currDate.getMonth(), currDate.getDate()-1)}
             />
           </Container>
         </div>

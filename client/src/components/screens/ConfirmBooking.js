@@ -286,7 +286,7 @@ const ConfirmBooking = () => {
             }}
             renderInput={(params) => (
               <TextField
-                className=""
+                className="text-center inside-box"
                 {...params}
               />
             )}
@@ -309,10 +309,18 @@ const ConfirmBooking = () => {
           onKeyPress={closeKeyboard}
         />
       </div>
-      <div className="text-light text-center">
-        <p></p>
-      </div>
-      <div className="confirm-page text-light  w-63 f-16">
+      {/* <div className="text-light w-70 mt-5">
+        <p className="font-weight-bolder f-18">Customise</p>
+        <div className="d-flex justify-content-between">
+        <p className="font-weight-bolder">Decoration</p>
+        <p className="font-weight-bolder">+</p>
+        </div>
+        <div className="d-flex justify-content-between">
+        <p className="font-weight-bolder">Speaker</p>
+        <p className="font-weight-bolder">+</p>
+        </div>
+      </div> */}
+      <div className="confirm-page text-light  w-63 f-16 mt-4">
         <p className="font-weight-bolder">Total Persons</p>
         <p className="right-text">{totalPersons}</p>
         <p className="font-weight-bolder">Type</p>
@@ -339,7 +347,7 @@ const ConfirmBooking = () => {
       >
         Pay now
       </button>
-      <p className="mt-5">.</p>
+      <p className="text-light">By clicking on Pay Now you agree to our terms and conditions policy.<span style={{textDecoration:"underline", color:"orange"}}> <a href="/guest_policy.docx" >Click here</a> </span>to download.</p>
     </div>
   );
 };
