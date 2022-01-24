@@ -5,7 +5,6 @@ import "../../App.css";
 import TextField from "@mui/material/TextField";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
-
 import TimePicker from "@mui/lab/TimePicker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar } from "@fortawesome/free-solid-svg-icons";
@@ -25,6 +24,7 @@ const Home = () => {
   const [time, setTime] = useState(new Date());
   const [totalPersons, setTotalPersons] = useState(0);
   const [girls, setGirls] = useState(false);
+  const [minTime, setMinTime] = useState(new Date());
 
   var currTime = new Date();
 
@@ -77,6 +77,15 @@ const Home = () => {
     }
   };
 
+  // const handleTimeChange = ()=>{
+  //   if(currTime.getHours()<20){
+  //     setMinTime(currTime.setHours(currTime.getHours()+4));
+  //   }
+  //   else{
+  //     setMinTime(currTime.setHours())
+  //   }
+  // };
+
   return (
     <div
       className="d-flex flex-column align-items-center p-4 bg-brand"
@@ -123,24 +132,20 @@ const Home = () => {
           ref={(el) => onDatepickerRef(el)}
         />
       </div>
-      <div className="container-input mt-3">
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
+       <LocalizationProvider dateAdapter={AdapterDateFns}>
           <TimePicker
-            className="mt-2 f-12"
-            value={time.setHours(currTime.getHours()+4)}
-            minTime={new Date(0,0,0,currTime.getHours()+4)}
+            value={time}
             onChange={(time) => {
               setTime(time);
             }}
             renderInput={(params) => (
               <TextField
-                className="text-center inside-box"
+              className="timepicker bg-light w-70 mt-2"
                 {...params}
               />
             )}
           />
         </LocalizationProvider>
-      </div>
 
       <div className="w-70 d-inline-flex mt-3">
         <p className="pt-2 mt-2 mb-0 text-light f-18 w-100 ">Total Persons</p>

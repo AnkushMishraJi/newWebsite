@@ -9,7 +9,7 @@ const decorationSchema = require("../models/decorations");
 const { withCoalescedInvoke } = require("next/dist/lib/coalesced-function");
 const decoration = mongoose.model("Decoration", decorationSchema);
 
-router.post("/addSpeakers", (req, res) => {
+router.post("/api/addSpeakers", (req, res) => {
     const {
       speaker_name,
       speaker_price,
@@ -31,7 +31,7 @@ router.post("/addSpeakers", (req, res) => {
       });
   });
 
-  router.get("/getSpeakers", (req,res)=>{
+  router.get("/api/getSpeakers", (req,res)=>{
     speaker.find({})
     .populate()
     .then((speakers)=>{
@@ -42,7 +42,7 @@ router.post("/addSpeakers", (req, res) => {
     })
   })
 
-  router.post("/addDecorations",(req,res)=>{
+  router.post("/api/addDecorations",(req,res)=>{
     const {
       decoration_theme,
       decoration_tier,
@@ -85,7 +85,7 @@ router.post("/addSpeakers", (req, res) => {
       console.log(err);
     })
   });
-  router.get("/getDecorations", (req,res)=>{
+  router.get("/api/getDecorations", (req,res)=>{
     decoration.find({})
     .populate()
     .then((decorations)=>{

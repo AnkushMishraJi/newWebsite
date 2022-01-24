@@ -7,12 +7,13 @@ import "react-datepicker/dist/react-datepicker.css";
 import TextField from "@mui/material/TextField";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import { Carousel } from "react-responsive-carousel";
 
 
 import TimePicker from "@mui/lab/TimePicker";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faTimesCircle, faPlusCircle, faMinusCircle } from "@fortawesome/free-solid-svg-icons";
 
 import Swal from "sweetalert2";
 
@@ -51,7 +52,16 @@ const ConfirmBooking = () => {
   const [route, setRoute] = useState("");
   const [back, setBack] = useState("");
   const [firstPrice, setFirstPrice] = useState("")
+  const [showDecorCarousel, setShowDecorCarousel]= useState(false);
+  const [showSpeakerCarousel, setShowSpeakerCarousel]= useState(false);
   const isAuthenticated = localStorage.getItem("isAuthenticated");
+
+  const [speakers, setSpeakers] = useState([]);
+  const [decorations, setDecorations] = useState([]);
+  const [addedCost, setAddedCost] = useState(0);
+  const [addedDecorCost, setAddedDecorCost] = useState(0);
+  const [addedSpeakerCost, setAddedSpeakerCost] = useState(0);
+
   var currTime= new Date();
   const history = useHistory();
 
@@ -90,6 +100,25 @@ const ConfirmBooking = () => {
   }, []);
 
   // useEffect(() => {}, [price, room, ]);
+
+
+
+  useEffect(()=>{
+    fetch("/api/getSpeakers")
+    .then((res)=>res.json())
+    .then((data)=>setSpeakers(data))
+    .catch((err)=>{
+
+    });
+
+
+    fetch("/api/getDecorations")
+    .then((res)=>res.json())
+    .then((data)=>setDecorations(data))
+    .catch((err)=>{
+
+    });
+  },[])
 
   useEffect(() => {
     if (count > 0) {
@@ -247,7 +276,8 @@ const ConfirmBooking = () => {
   };
 
   return (
-    <div className="d-flex flex-column align-items-center p-5 bg-brand">
+    <>
+    <div className="d-flex flex-column align-items-center p-5 bg-brand" style={showDecorCarousel || showSpeakerCarousel ? {filter:"blur(8px)"} : null}> 
       <p className="text-light f-18">Confirm Booking?</p>
       <Link to={back}>
         <FontAwesomeIcon
@@ -273,26 +303,22 @@ const ConfirmBooking = () => {
           ref={(el) => onDatepickerRef(el)}
         />
       </div>
-      <div className="container-input mt-3">
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <TimePicker
-          className="mt-2 f-12"
             selected={time}
             value={time}
-            minTime={new Date(0,0,0,currTime.getHours()+4)}
             onChange={(time) => {
               setTime(time);
               setCount(count + 1);
             }}
             renderInput={(params) => (
               <TextField
-                className="text-center inside-box"
+              className="timepicker bg-light w-70 mt-2"
                 {...params}
               />
             )}
           />
         </LocalizationProvider>
-      </div>
       <div className="w-70 d-inline-flex mt-3">
         <p className="pt-3  mb-0 text-light f-15 w-100 ">Total Persons</p>
         <input
@@ -309,17 +335,53 @@ const ConfirmBooking = () => {
           onKeyPress={closeKeyboard}
         />
       </div>
-      {/* <div className="text-light w-70 mt-5">
+      <div className={showDecorCarousel||showSpeakerCarousel ? "text-light text-center w-100" : "text-light text-center w-75"}>
         <p className="font-weight-bolder f-18">Customise</p>
-        <div className="d-flex justify-content-between">
-        <p className="font-weight-bolder">Decoration</p>
-        <p className="font-weight-bolder">+</p>
+        <div>
+          <div className="d-flex justify-content-between mb-3">
+          <p className="font-weight-bolder">Decoration</p>
+          <div className="font-weight-bolder" >
+            {
+              addedDecorCost==0 ?
+              <FontAwesomeIcon
+                className="f-32"
+                style={{background:"#fe9124", borderRadius:"50%", color:"#1a1b41"}}
+                icon={faPlusCircle}
+                onClick={()=>setShowDecorCarousel(true)}
+              />
+              :
+              <FontAwesomeIcon
+                className="f-32"
+                style={{background:"#fe9124", borderRadius:"50%", color:"#1a1b41"}}
+                icon={faMinusCircle}
+                onClick={()=>setAddedDecorCost(0)}
+              />
+            }
         </div>
-        <div className="d-flex justify-content-between">
-        <p className="font-weight-bolder">Speaker</p>
-        <p className="font-weight-bolder">+</p>
+          </div>
+          <div className="d-flex justify-content-between">
+          <p className="font-weight-bolder">Speaker</p>
+          <div className="font-weight-bolder">
+          {
+              addedSpeakerCost==0 ?
+              <FontAwesomeIcon
+                className="f-32"
+                style={{background:"#fe9124", borderRadius:"50%", color:"#1a1b41"}}
+                icon={faPlusCircle}
+                onClick={()=>setShowSpeakerCarousel(true)}
+              />
+              :
+              <FontAwesomeIcon
+                className="f-32"
+                style={{background:"#fe9124", borderRadius:"50%", color:"#1a1b41"}}
+                icon={faMinusCircle}
+                onClick={()=>setAddedSpeakerCost(0)}
+              />
+            }
+          </div>
+          </div>
         </div>
-      </div> */}
+      </div>
       <div className="confirm-page text-light  w-63 f-16 mt-4">
         <p className="font-weight-bolder">Total Persons</p>
         <p className="right-text">{totalPersons}</p>
@@ -328,7 +390,7 @@ const ConfirmBooking = () => {
         <p className="font-weight-bolder">Room</p>
         <p className="right-text">{room}</p>
         <p className="font-weight-bolder">Amount</p>
-        <p className="right-text">Rs. {count==0 ? firstPrice : price}</p>
+        <p className="right-text">Rs. {count==0 ? parseInt(firstPrice)+addedDecorCost+addedSpeakerCost : price+addedDecorCost+addedSpeakerCost}</p>
       </div>
       <button
         onClick={() => {
@@ -347,8 +409,88 @@ const ConfirmBooking = () => {
       >
         Pay now
       </button>
-      <p className="text-light">By clicking on Pay Now you agree to our terms and conditions policy.<span style={{textDecoration:"underline", color:"orange"}}> <a href="/guest_policy.docx" >Click here</a> </span>to download.</p>
+      <p className="text-light mb-10">By clicking on Pay Now you agree to our terms and conditions policy.<span style={{textDecoration:"underline", color:"orange"}}> <a href="/guest_policy.docx" >Click here</a> </span>to download.</p>
     </div>
+    <div className="w-100" style={{position:"absolute", top:"30%"}}>
+      <div className={showDecorCarousel || showSpeakerCarousel ? "text-light" : "d-none"} style={{position:"absolute", left:"90%", zIndex:"1"}} onClick={()=>{setShowDecorCarousel(false); setShowSpeakerCarousel(false);}}>
+        <FontAwesomeIcon
+          className="f-32"
+          style={{background:"red", borderRadius:"50%", color:"#1a1b41"}}
+          icon={faTimesCircle}
+        />
+        </div>
+    {
+          showDecorCarousel ?
+          <Carousel
+          dynamicHeight={false}
+          showThumbs={false}
+          infiniteLoop={false}
+          showIndicators={false}
+          showStatus={false}
+          className="mb-5"
+          swipeScrollTolerance={50}
+          preventMovementUntilSwipeScrollTolerance={true}
+          centerMode={true}
+          centerSlidePercentage={80}
+          showArrows={true}
+        >
+          {
+            decorations.map((decoration)=>{
+              
+              let id = decoration.decoration_theme.replaceAll(" ","-");
+              id=id + "-" + decoration.decoration_tier;
+              console.log(id);
+              return(
+                <div onClick={()=>{setShowDecorCarousel(false);setAddedDecorCost(decoration.price)}} key={decoration._id} className="benefits-custom-selectpage" id={id}>
+                  <div className="tape w-50 py-5">
+                  <p className="font-weight-bolder f-18">{decoration.decoration_theme.charAt(0).toUpperCase()+decoration.decoration_theme.slice(1)}</p>
+                  <p className="font-weight-bolder f-16">{decoration.decoration_tier}</p>
+                  {/* <p className="f-14 my-auto text-start px-2">100 Baloons</p>
+                  <p className="f-14 my-auto text-start px-2">1 Love Foil</p>
+                  <p className="f-14 my-auto text-start px-2">2 Foil Baloons</p>
+                  <p className="f-14 my-auto text-start px-2">12 Candles LED</p> */}
+                  <p className="font-weight-bolder f-18">₹ {decoration.price}</p>
+                  </div>
+                </div>
+              )
+            })
+          }
+        </Carousel>
+        :
+        showSpeakerCarousel ?
+        <Carousel
+        dynamicHeight={false}
+        showThumbs={false}
+        infiniteLoop={false}
+        showIndicators={false}
+        showStatus={false}
+        className="mb-5"
+        swipeScrollTolerance={50}
+        preventMovementUntilSwipeScrollTolerance={true}
+        centerMode={true}
+        centerSlidePercentage={80}
+        showArrows={false}
+      >
+        {
+        speakers.map((speaker)=>{
+          let id = speaker.speaker_name;
+          return(
+            <div key={speaker._id} onClick={()=>{setShowSpeakerCarousel(false);setAddedSpeakerCost(speaker.speaker_price)}} className="benefits-custom-selectpage" id={id}>
+              <div className="tape w-40 py-5">
+              <p className="font-weight-bolder f-16">{speaker.speaker_name.toUpperCase()}</p>
+              <p className="font-weight-bolder f-16">{speaker.speaker_price == 0 ? "FREE" : `₹ ${speaker.speaker_price}`}</p>
+            </div>
+            </div>
+            )
+        })
+        }
+
+        </Carousel>
+        :
+        null
+      }
+    </div>
+    </>
   );
 };
 

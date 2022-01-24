@@ -256,7 +256,7 @@ const LandingPage = () => {
         centerSlidePercentage={80}
         showArrows={false}
       >
-        <div className="benefits-custom" id="bday1">
+        <div className="benefits-custom" id="birthday-regular">
           <div className="tape">
             <p className="font-weight-bolder f-18 my-auto">Birthday</p>
             <p className="font-weight-bolder f-14 my-auto">Regular</p>
@@ -267,7 +267,7 @@ const LandingPage = () => {
             <p className="font-weight-bolder f-18 my-auto">Rs. 1000</p>
           </div>
         </div>
-        <div className="benefits-custom" id="bday2">
+        <div className="benefits-custom" id="birthday-premium">
           <div className="tape">
             <p className="font-weight-bolder f-18 my-auto">Birthday</p>
             <p className="font-weight-bolder f-14 my-auto">Premium</p>
@@ -280,7 +280,7 @@ const LandingPage = () => {
             <p className="font-weight-bolder f-18 my-auto">Rs. 1500</p>
           </div>
         </div>
-        <div className="benefits-custom" id="bday3">
+        <div className="benefits-custom" id="birthday-epic">
           <div className="tape">
             <p className="font-weight-bolder f-18 my-auto">Birthday</p>
             <p className="font-weight-bolder f-14 my-auto">Epic</p>
@@ -296,7 +296,7 @@ const LandingPage = () => {
             <p className="font-weight-bolder f-18 my-auto">Rs. 2000</p>
           </div>
         </div>
-        <div className="benefits-custom" id="date-night1">
+        <div className="benefits-custom" id="date-night-regular">
           <div className="tape">
             <p className="font-weight-bolder f-18 my-auto">Date Night</p>
             <p className="font-weight-bolder f-14 my-auto">Regular</p>
@@ -307,7 +307,7 @@ const LandingPage = () => {
             <p className="font-weight-bolder f-18 my-auto">Rs. 1000</p>
           </div>
         </div>
-        <div className="benefits-custom" id="date-night2">
+        <div className="benefits-custom" id="date-night-premium">
           <div className="tape">
             <p className="font-weight-bolder f-18 my-auto">Date Night</p>
             <p className="font-weight-bolder f-14 my-auto">Premium</p>
@@ -322,7 +322,7 @@ const LandingPage = () => {
             <p className="font-weight-bolder f-18 my-auto">Rs. 1500</p>
           </div>
         </div>
-        <div className="benefits-custom" id="date-night3">
+        <div className="benefits-custom" id="date-night-epic">
           <div className="tape">
             <p className="font-weight-bolder f-18 my-auto">Date Night</p>
             <p className="font-weight-bolder f-14 my-auto">Epic</p>
@@ -338,7 +338,7 @@ const LandingPage = () => {
             <p className="font-weight-bolder f-18 my-auto">Rs. 2000</p>
           </div>
         </div>
-        <div className="benefits-custom" id="brideToBe1">
+        <div className="benefits-custom" id="bride-to-be-regular">
           <div className="tape">
             <p className="font-weight-bolder f-18 my-auto">Bride to Be</p>
             <p className="font-weight-bolder f-14 my-auto">Regular</p>
@@ -351,7 +351,7 @@ const LandingPage = () => {
             <p className="font-weight-bolder f-18 my-auto">Rs. 1000</p>
           </div>
         </div>
-        <div className="benefits-custom" id="brideToBe2">
+        <div className="benefits-custom" id="bride-to-be-premium">
           <div className="tape">
             <p className="font-weight-bolder f-18 my-auto">Bride to Be</p>
             <p className="font-weight-bolder f-14 my-auto">Premium</p>
@@ -365,7 +365,7 @@ const LandingPage = () => {
             <p className="font-weight-bolder f-18 my-auto">Rs. 1500</p>
           </div>
         </div>
-        <div className="benefits-custom" id="brideToBe3">
+        <div className="benefits-custom" id="bride-to-be-epic">
           <div className="tape">
             <p className="font-weight-bolder f-18 my-auto">Bride to Be</p>
             <p className="font-weight-bolder f-14 my-auto">Epic</p>

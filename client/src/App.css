@@ -63,6 +63,7 @@ h2 {
   height: 3em !important;
   border-radius: 0.5em !important;
   background-color: white !important;
+  
 }
 
 .tp-box {
@@ -87,16 +88,27 @@ h2 {
 }
 
 .inside-box {
-  padding-left: 1em !important;
-  padding-bottom: 1.5em !important;
-  top: 0em !important;
-  border: none !important;
-  height: 1em !important;
+  padding-left: 2% !important;
 }
 .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
   border: none !important;
+  outline: none !important;
+  
 }
 
+.timepicker{
+  height: 3em !important;
+  border-radius: 0.5em !important;
+}
+
+input:not([type]), input[type="text"]:not(.browser-default), input[type="password"]:not(.browser-default), input[type="email"]:not(.browser-default), input[type="url"]:not(.browser-default), input[type="time"]:not(.browser-default), input[type="date"]:not(.browser-default), input[type="datetime"]:not(.browser-default), input[type="datetime-local"]:not(.browser-default), input[type="tel"]:not(.browser-default), input[type="number"]:not(.browser-default), input[type="search"]:not(.browser-default), textarea.materialize-textarea{
+  padding-left: 1em !important;
+}
+
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root{
+  border-radius: 5px !important;
+  padding-left: 5% !important;
+}
 input:not([type]),
 input[type="text"]:not(.browser-default),
 input[type="password"]:not(.browser-default),
@@ -184,39 +196,39 @@ a {
   background-size: cover;
 }
 
-#bday1 {
+#birthday-regular {
   background-image: url("./images/decor/bday1.jpg");
   background-size: cover;
 }
-#bday2 {
+#birthday-premium {
   background-image: url("./images/decor/bday2.jpg");
   background-size: cover;
 }
-#bday3 {
+#birthday-epic {
   background-image: url("./images/decor/bday3.jpg");
   background-size: cover;
 }
-#brideToBe1 {
+#bride-to-be-regular {
   background-image: url("./images/decor/bride-to-be-1.jpg");
   background-size: cover;
 }
-#brideToBe2 {
+#bride-to-be-premium {
   background-image: url("./images/decor/bride-to-be-2.jpg");
   background-size: cover;
 }
-#brideToBe3 {
+#bride-to-be-epic {
   background-image: url("./images/decor/bride-to-be-3.jpg");
   background-size: cover;
 }
-#date-night1 {
+#date-night-regular{
   background-image: url("./images/decor/date_night1.jpg");
   background-size: cover;
 }
-#date-night2 {
+#date-night-premium {
   background-image: url("./images/decor/date_night2.jpg");
   background-size: cover;
 }
-#date-night3 {
+#date-night-epic {
   background-image: url("./images/decor/date_night3.jpg");
   background-size: cover;
 }
@@ -267,6 +279,14 @@ a {
 
   padding: 1em;
 }
+
+.benefits-custom-selectpage {
+  width: 74vw;
+  height: 24vh;
+  border-radius: 1em;
+  background-size: auto ;
+}
+
 .land-slide {
   align-items: center;
   width: 100vw;
@@ -617,4 +637,8 @@ a {
   background-color: rgb(26, 27, 65, 0.8);
   height: 22vh;
   padding-top: 5vh;
+}
+
+.mb-10{
+  margin-bottom: 5rem !important;
 }
