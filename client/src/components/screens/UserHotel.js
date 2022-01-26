@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import { Carousel } from "react-bootstrap";
 import M from "materialize-css";
-
 import CarouselContainer from "../CarouselContainer";
 
 import {
@@ -236,7 +235,9 @@ const UserHotel = () => {
                 <p className="font-weight-bolder">Rs {smallNightPrice}</p>
               </div>
             </div>
-          ) : null}
+          ) : null
+          
+          }
           {medCap ? (
             <div
               id="med"

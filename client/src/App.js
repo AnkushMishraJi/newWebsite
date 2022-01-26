@@ -1,4 +1,4 @@
-import React, { useEffect, createContext, useReducer, useContext } from "react";
+import React, { useEffect,useState } from "react";
 
 import Home from "./components/screens/Home";
 import NavigationBar from "./components/navbar";
@@ -20,14 +20,28 @@ import OldBill from "./components/screens/OldBill";
 import ProtectedRoute from "./components/ProtectedRoute";
 import UserPage from "./components/screens/UserPage";
 import ConfirmBooking from "./components/screens/ConfirmBooking";
-import CarouselContainer from "./components/CarouselContainer";
 import Error404 from "./components/screens/Error404";
 import Error500 from "./components/screens/Error500";
 import LandingPage from "./components/screens/LandingPage";
-// import { reducer, initialState } from "./reducers/userReducer";
+import DesktopNavbar from "./components/navbarDesktop";
 import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
 
+const isBrowser = () => typeof window !== "undefined"
+const isMobile = isBrowser() ? (window.innerWidth <= 980 ? true : false) :  false
+
 function App() {
+  const [width, setWidth] = useState(0)
+
+  useEffect(() => {
+    if (isBrowser()) {
+      setWidth(window.innerWidth);
+      const handleResize = () => setWidth(window.innerWidth)
+      window.addEventListener("resize", handleResize);
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
+  }, []);
   const script = document.createElement("script");
   script.src = "https://checkout.razorpay.com/v1/checkout.js";
   document.body.appendChild(script);
@@ -35,7 +49,12 @@ function App() {
   const userRoutes = () => {
     return (
       <div>
-        <NavigationBar />
+        {
+          isMobile || width <= 980 ?
+          <NavigationBar />
+          :
+          <DesktopNavbar />
+        }
         <Switch>
           <Route exact path="/">
             <Home />

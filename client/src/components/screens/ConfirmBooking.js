@@ -292,7 +292,7 @@ const ConfirmBooking = () => {
         {address}
       </h1>
 
-      <div className="container-input mt-3">
+      <div className="container-input mt-3 w-70">
         <DatePicker
           className="px-3"
           selected={date}

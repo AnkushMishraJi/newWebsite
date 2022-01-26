@@ -59,7 +59,6 @@ h2 {
 }
 
 .container-input {
-  width: 70% !important;
   height: 3em !important;
   border-radius: 0.5em !important;
   background-color: white !important;
@@ -129,6 +128,7 @@ textarea.materialize-textarea {
 a {
   color: inherit !important;
 }
+
 .location-border {
   width: 6em;
   height: 6em;
@@ -608,6 +608,11 @@ a {
 .font-weight-bolder {
   font-weight: 600 !important;
 }
+
+.font-weight-boldest {
+  font-weight: 800 !important;
+}
+
 .rounded-7 {
   border-radius: 20px !important;
 }

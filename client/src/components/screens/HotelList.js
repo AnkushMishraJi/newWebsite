@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Loading from "./Loading";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
@@ -7,9 +8,10 @@ import { faUser, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import M from "materialize-css";
 
 const HotelList = () => {
-  const [hotels, setHotels] = useState([]);
-
+  const [hotels, setHotels] = useState();
+  const [loading, setLoading]= useState(true);
   useEffect(() => {
+    setTimeout(() => setLoading(false), 1000);
     const date = new Date(localStorage.getItem("bookingDate")).toDateString();
     const totalPersons = localStorage.getItem("totalPersons");
     const girls = localStorage.getItem("girls");
@@ -33,6 +35,8 @@ const HotelList = () => {
   }, []);
 
   return (
+    <>
+    
     <div className="bg-brand">
       <Link to="/">
         <FontAwesomeIcon
@@ -42,8 +46,9 @@ const HotelList = () => {
       </Link>
 
       <div className="brand-logo f-20 my-5   text-center ">HOTEL LIST</div>
-
-      {hotels.map((oneHotel) => {
+      {
+      hotels ?
+      hotels.map((oneHotel) => {
         const smallPrice = oneHotel.roomSmallData.smallPrice;
         const medPrice = oneHotel.roomMediumData.mediumPrice;
         const largePrice = oneHotel.roomLargeData.largePrice;
@@ -120,10 +125,15 @@ const HotelList = () => {
             </div>
           </Link>
         );
-      })}
+      })
+      :
+      <Loading />
+
+      }
       <p className="mt-2">.</p>
       <p className="mt-4">.</p>
     </div>
+    </>
   );
 };
 
