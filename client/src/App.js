@@ -10,7 +10,6 @@ import HotelDashboard from "./components/screens/Bpage";
 import UserSignin from "./components/screens/Usignin";
 import UserPhoneCheck from "./components/screens/Uphone";
 import UserSignup from "./components/screens/Usignup";
-import HotelBlocker from "./components/screens/BHotelBlocker";
 import UserHotel from "./components/screens/UserHotel";
 import HotelList from "./components/screens/HotelList";
 import UploadPhoto from "./components/screens/BuploadPhoto";
@@ -24,7 +23,8 @@ import Error404 from "./components/screens/Error404";
 import Error500 from "./components/screens/Error500";
 import LandingPage from "./components/screens/LandingPage";
 import DesktopNavbar from "./components/navbarDesktop";
-import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
+import { BrowserRouter, Route, Switch, useHistory , withRouter} from "react-router-dom";
+
 
 const isBrowser = () => typeof window !== "undefined"
 const isMobile = isBrowser() ? (window.innerWidth <= 980 ? true : false) :  false

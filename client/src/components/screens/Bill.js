@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 
+import { TabTitle } from "../TitleSetter";
 
 
 window.onbeforeunload = function() { 
@@ -30,6 +31,9 @@ const Bill = () => {
   const BillingAmount = payment_info.amount / 100;
   const OrderId = payment_info.id;
   const PaymentTime = new Date(payment_info.created_at * 1000).toLocaleString();
+  const addedSpeakerName = localStorage.getItem("speaker");
+  const addedDecorTheme = localStorage.getItem("decoration_theme");
+  const addedDecorTier = localStorage.getItem("decoration_tier");
 
   var time_slot;
   var type;
@@ -38,6 +42,8 @@ const Bill = () => {
 
   var splitTime = ArrivalTime.split(" ");
   var displayTime = splitTime.splice(4, 1).join(" ");
+
+  TabTitle("Mera Adda | Receipt Generated");
 
   if (isNightParty == true) {
     time_slot = 6;
@@ -65,6 +71,8 @@ const Bill = () => {
         TimeSlot: time_slot,
         Type: type,
         HotelEmail,
+        Speaker: addedSpeakerName,
+        Decoration: addedDecorTheme + " " + addedDecorTier,
       }),
     })
       .then((res) => res.json())
@@ -149,6 +157,14 @@ const Bill = () => {
         <div>
           <p className="f-12 font-weight-bolder">Type</p>
           <p>{type}</p>
+        </div>
+        <div>
+          <p className="f-12 font-weight-bolder">Speaker</p>
+          <p>{addedSpeakerName}</p>
+        </div>
+        <div>
+          <p className="f-12 font-weight-bolder">Decoration</p>
+          <p>{addedDecorTheme + " " + addedDecorTier}</p>
         </div>
       </div>
     </>

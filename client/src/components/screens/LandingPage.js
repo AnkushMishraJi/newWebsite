@@ -23,6 +23,8 @@ import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-scroll";
 import TextTransition, { presets } from "react-text-transition";
 
+import  { TabTitle } from '../TitleSetter'; 
+
 const LandingPage = () => {
   const TEXTS = [
     "You",
@@ -33,6 +35,8 @@ const LandingPage = () => {
     "Weekend Soiree",
   ];
   const [index, setIndex] = React.useState(0);
+
+  TabTitle("Mera Adda | Customized Private Parties");
 
   React.useEffect(() => {
     const intervalId = setInterval(

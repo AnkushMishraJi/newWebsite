@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 
+import { TabTitle } from "../TitleSetter";
+
 const OldBill = () => {
   const getData = localStorage.getItem("OldBill");
   const billData = getData.split(",");
   const DateOfBooking = new Date(billData[1]).toDateString();
   const [show, setShow] = useState(false);
   const today = new Date().toDateString();
+
+  TabTitle("Mera Adda | Booking History");
   const isToday = () => {
     if (DateOfBooking == today) {
       setShow(true);

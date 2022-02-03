@@ -1,14 +1,27 @@
 import React, { useEffect, useState } from "react";
-import M from "materialize-css";
 import { useHistory } from "react-router-dom";
 import sign_in from "../../images/login.svg";
 import Swal from "sweetalert2";
-
-import { AlertTitle, Alert } from "@mui/material";
+import FooterDesktop from "../FooterDesktop";
+import { TabTitle } from "../TitleSetter";
+const isBrowser = () => typeof window !== "undefined"
+const isMobile = isBrowser() ? (window.innerWidth <= 980 ? true : false) :  false;
 
 const UserPhoneCheck = () => {
   const history = useHistory();
   const [phone, setPhone] = useState("");
+  const [width, setWidth] = useState(0)
+  TabTitle("Mera Adda | Sign In");
+  useEffect(() => {
+    if (isBrowser()) {
+      setWidth(window.innerWidth);
+      const handleResize = () => setWidth(window.innerWidth)
+      window.addEventListener("resize", handleResize);
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
+  }, []);
 
   const closeKeyboard = (event) => {
     if (event.key == "Enter") {
@@ -57,7 +70,8 @@ const UserPhoneCheck = () => {
       });
   };
   return (
-    <div className="h-90">
+    <>
+    <div className={isMobile || width <= 980 ? "h-90" : "w-50 mx-auto mb-5"}>
       <style>{"body { background-color: #1a1b41; }"}</style>
 
       <div className="">
@@ -74,7 +88,7 @@ const UserPhoneCheck = () => {
           <div>
             <input
               id="phoneNum"
-              className="input-field-name bg-white align-items-center  w-60"
+              className={`input-field-name bg-white align-items-center  w-60`}
               style={{ borderRadius: "0.5em" }}
               name="phoneNumber"
               type="number"
@@ -99,6 +113,13 @@ const UserPhoneCheck = () => {
         </div>
       </div>
     </div>
+    {
+      isMobile || width <= 980 ?
+      null
+      :
+      <FooterDesktop />
+    }
+    </>
   );
 };
 

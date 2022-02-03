@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
+import { TabTitle } from "../TitleSetter";
+
 const AllBookings = () => {
   const user = localStorage.getItem("phone");
   const history = useHistory();
   const [booking, setBooking] = useState([]);
+  TabTitle("Mera Adda | Booking History");
 
   useEffect(() => {
     fetch(`/api/getConfirmBookingsUser?User=${user}`, {

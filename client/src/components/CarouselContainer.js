@@ -9,6 +9,25 @@ import M from "materialize-css";
 const CarouselContainer = (props) => {
  if(props.selectedRoom == "small" && props.hotel.roomSmallData && props.hotel.roomSmallData.smallPic[0]!=""){
   return (
+    props.device == 'desktop' ?
+    <Carousel centerMode={true} autoPlay={true} centerSlidePercentage={50} dynamicHeight={false} showThumbs={false} infiniteLoop={true}>
+      <div>
+        <img
+          src={props.hotel.roomSmallData.smallPic[0]} style={{width:"90%", maxHeight:"350px"}}
+        />
+      </div>
+      <div>
+      <img
+          src={props.hotel.roomSmallData.smallPic[1]} style={{width:"90%", maxHeight:"350px"}}
+        />
+      </div>
+      <div>
+      <img
+          src={props.hotel.roomSmallData.smallPic[2]} style={{width:"90%", maxHeight:"350px"}}
+        />
+      </div>
+    </Carousel>
+    :
     <Carousel dynamicHeight={false} showThumbs={false} infiniteLoop={true}>
       <div>
         <img
@@ -30,10 +49,29 @@ const CarouselContainer = (props) => {
  }
  else if(props.selectedRoom == "medium" && props.hotel.roomMediumData && props.hotel.roomMediumData.mediumPic[0]!=""){
   return (
+    props.device=='desktop' ?
+    <Carousel centerMode={true} autoPlay={true} centerSlidePercentage={50} dynamicHeight={false} showThumbs={false} infiniteLoop={true}>
+      <div>
+        <img
+          src={props.hotel.roomMediumData.mediumPic[0]} style={{width:"90%", maxHeight:"350px"}}
+        />
+      </div>
+      <div>
+      <img
+          src={props.hotel.roomMediumData.mediumPic[1]} style={{width:"90%", maxHeight:"350px"}}
+        />
+      </div>
+      <div>
+      <img
+          src={props.hotel.roomMediumData.mediumPic[2]} style={{width:"90%", maxHeight:"350px"}}
+        />
+      </div>
+    </Carousel>
+    :
     <Carousel dynamicHeight={false} showThumbs={false} infiniteLoop={true}>
       <div>
         <img
-          src={props.hotel.roomMediumData.mediumPic[0]}
+          src={props.hotel.roomMediumData.mediumPic[0]} 
         />
       </div>
       <div>
@@ -51,6 +89,25 @@ const CarouselContainer = (props) => {
  }
  else if(props.selectedRoom == "large" && props.hotel.roomLargeData && props.hotel.roomLargeData.largePic[0]!=""){
   return (
+    props.device=='desktop' ?
+    <Carousel centerMode={true} autoPlay={true} centerSlidePercentage={50} dynamicHeight={false} showThumbs={false} infiniteLoop={true}>
+      <div>
+        <img
+          src={props.hotel.roomLargeData.largePic[0]} style={{width:"90%", maxHeight:"350px",}}
+        />
+      </div>
+      <div>
+      <img
+          src={props.hotel.roomLargeData.largePic[1]} style={{width:"90%", maxHeight:"350px"}}
+        />
+      </div>
+      <div>
+      <img
+          src={props.hotel.roomLargeData.largePic[2]} style={{width:"90%", maxHeight:"350px"}}
+        />
+      </div>
+    </Carousel>
+    :
     <Carousel dynamicHeight={false} showThumbs={false} infiniteLoop={true}>
       <div>
         <img

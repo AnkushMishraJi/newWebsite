@@ -364,8 +364,6 @@ a {
   margin: auto;
   margin-top: 15px;
   padding: 0px;
-  height: 40%;
-  width: 85%;
   border-radius: 2em;
   line-height: 0vmin;
   display: grid;
@@ -415,7 +413,6 @@ a {
   grid-template-columns: 3fr 3fr;
   padding: 2em;
   width: 88vw;
-  height: 15vh;
   background-color: white;
   text-decoration: none;
   color: black;
@@ -429,7 +426,6 @@ a {
   grid-template-columns: 3fr 3fr;
   padding: 2em;
   width: 88vw;
-  height: 15vh;
   background-color: white;
   text-decoration: none;
   color: black;
@@ -532,6 +528,10 @@ a {
 .w-90 {
   width: 90vw !important;
 }
+
+.w-85{
+  width: 95% !important;
+ }
 .w-100 {
   max-width: 100vw !important;
 }

@@ -13,9 +13,9 @@ const DesktopNavbar= ()=>{
         <div className="p-5 d-flex align-items-center justify-content-between">
             <div className="d-flex">
                 <Link to="/">
-                <img src={logo} alt="Logo" style={{ width: "4em", height: "4em" }}/>
+                    <img src={logo} alt="Logo" style={{ width: "4em", height: "4em" }}/>
                 </Link>
-                <p className="text-light f-32 my-auto font-weight-boldest m-3">MERA ADDA</p>
+                <a href='/' className="text-light f-32 my-auto font-weight-boldest m-3">MERA ADDA</a>
             </div>
             <Link to="/userpage" onClick={userClickHandler}>
                 <img src={user} alt="Logo" style={{ width: "4em", height: "4em" }}/>

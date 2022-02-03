@@ -6,12 +6,12 @@ import TextField from "@mui/material/TextField";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import TimePicker from "@mui/lab/TimePicker";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendar } from "@fortawesome/free-solid-svg-icons";
+
 import logo from "../../images/logo_ma.png";
 import FooterDesktop from "../FooterDesktop";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import  { TabTitle } from '../TitleSetter'; 
 
 const isBrowser = () => typeof window !== "undefined"
 const isMobile = isBrowser() ? (window.innerWidth <= 980 ? true : false) :  false;
@@ -29,6 +29,8 @@ const Home = () => {
   const [width, setWidth] = useState(0)
 
   var currTime = new Date();
+
+  TabTitle("Mera Adda | Book Now");
 
   useEffect(() => {
     if (isBrowser()) {
@@ -239,7 +241,7 @@ const Home = () => {
             </label>
           </div>
         </div>
-        <FooterDesktop />
+        <FooterDesktop position='fixed'/>
       </>
     )
   }

@@ -1,14 +1,32 @@
 import React, { useState, useEffect } from "react";
 import firebase from "../../firebase";
-import M from "materialize-css";
 import { useHistory } from "react-router";
 import sign_in from "../../images/login.svg";
 
 import Swal from "sweetalert2";
+import FooterDesktop from "../FooterDesktop";
+import { TabTitle } from "../TitleSetter";
+
+const isBrowser = () => typeof window !== "undefined"
+const isMobile = isBrowser() ? (window.innerWidth <= 980 ? true : false) :  false;
+
 
 const UserSignin = () => {
   const [otp, setOtp] = useState("");
   const [route, setRoute] = useState();
+  const [width, setWidth] = useState(0)
+  TabTitle("Mera Adda | Sign In");
+
+  useEffect(() => {
+    if (isBrowser()) {
+      setWidth(window.innerWidth);
+      const handleResize = () => setWidth(window.innerWidth)
+      window.addEventListener("resize", handleResize);
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
+  }, []);
 
   useEffect(() => {
     setRoute(localStorage.getItem("route"));
@@ -99,44 +117,52 @@ const UserSignin = () => {
   };
   return (
     <>
-      <style>{"body { background-color: #1a1b41; }"}</style>
-      <p className="brand-logo f-24 text-center mt-5">SUBMIT OTP</p>
-      <div className="imgDot d-flex mx-auto">
-        <img
-          className=" mb-4 d-flex mx-auto my-auto w-82"
-          src={sign_in}
-          alt="sign_in_img"
-        />
-      </div>
-      <div className="auth-card input-field ">
-        <div className="">
-          <form onSubmit={onSubmitOtp}>
-            <input
-              className="w-70 bg-white d-flex align-items-center mx-auto"
-              style={{ borderRadius: "0.5em" }}
-              name="otp"
-              type="text"
-              placeholder="Enter OTP"
-              required
-              value={otp}
-              onChange={(e) => setOtp(e.target.value)}
-            />
-            <button
-              type="submit"
-              className="text-light w-70 mt-3"
-              style={{
-                backgroundColor: "#fe9124",
-                height: "40px",
-                borderRadius: "0.5em",
-                border: "none",
-              }}
-            >
-              Submit
-            </button>
-          </form>
-          <div id="sign-in-button"></div>
+      <div className={isMobile || width <= 980 ? null : `w-50 mx-auto mb-5`}>
+        <style>{"body { background-color: #1a1b41; }"}</style>
+        <p className="brand-logo f-24 text-center mt-5">SUBMIT OTP</p>
+        <div className="imgDot d-flex mx-auto">
+          <img
+            className=" mb-4 d-flex mx-auto my-auto w-82"
+            src={sign_in}
+            alt="sign_in_img"
+          />
+        </div>
+        <div className="auth-card input-field ">
+          <div className="">
+            <form onSubmit={onSubmitOtp}>
+              <input
+                className="w-70 bg-white d-flex align-items-center mx-auto"
+                style={{ borderRadius: "0.5em" }}
+                name="otp"
+                type="text"
+                placeholder="Enter OTP"
+                required
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+              />
+              <button
+                type="submit"
+                className="text-light w-70 mt-3"
+                style={{
+                  backgroundColor: "#fe9124",
+                  height: "40px",
+                  borderRadius: "0.5em",
+                  border: "none",
+                }}
+              >
+                Submit
+              </button>
+            </form>
+            <div id="sign-in-button"></div>
+          </div>
         </div>
       </div>
+      {
+        isMobile || width <= 980 ? 
+        null
+        :
+        <FooterDesktop />
+      }
     </>
   );
 };

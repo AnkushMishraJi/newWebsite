@@ -1,10 +1,13 @@
 import { textAlign } from "@mui/system";
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { TabTitle } from "../TitleSetter";
 
 const UserPage = () => {
   const [name, setName] = useState(" ");
   const history = useHistory();
+
+  TabTitle("Mera Adda | User");
 
   const logout = () => {
     localStorage.clear();

@@ -11,13 +11,14 @@ import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 import Swal from "sweetalert2";
 import { getListSubheaderUtilityClass } from "@mui/material";
-
+import { TabTitle } from "../TitleSetter";
 function UserSignup() {
   const history = useHistory();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [dob, setDob] = useState();
   var currDate = new Date();
+  TabTitle("Mera Adda | Sign Up");
 
   const closeKeyboard = (event) => {
     if (event.key == "Enter") {
