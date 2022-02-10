@@ -6,9 +6,11 @@
   padding: 0px;
   color: "white";
   font-family: "Montserrat", sans-serif;
-  text-decoration: none !important;
 }
 
+*:not(.discount){
+  text-decoration: none !important;
+}
 .nav-icons {
   text-decoration: none !important;
   opacity: 35%;
@@ -441,10 +443,7 @@ a {
 }
 .user-page-btn {
   border: #fe9124 solid 0.1em;
-  width: 14em !important;
-  height: 2em;
   border-radius: 0.5em;
-  margin: 2em;
 }
 .nav-icon {
   opacity: 50% !important;

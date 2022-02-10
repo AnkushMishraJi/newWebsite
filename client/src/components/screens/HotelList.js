@@ -17,6 +17,7 @@ const isMobile = isBrowser() ? (window.innerWidth <= 980 ? true : false) :  fals
 const HotelList = () => {
   const [hotels, setHotels] = useState();
   const [width, setWidth] = useState(0)
+  
 
   TabTitle("Mera Adda | Hotels");
 
@@ -74,11 +75,16 @@ const HotelList = () => {
         const medPrice = oneHotel.roomMediumData.mediumPrice;
         const largePrice = oneHotel.roomLargeData.largePrice;
 
+        const smallDiscountPrice = oneHotel.roomSmallData.smallDiscountPrice;
+        const medDiscountPrice = oneHotel.roomMediumData.mediumDiscountPrice;
+        const largeDiscountPrice = oneHotel.roomLargeData.largeDiscountPrice;
+
         const smallCap = parseInt(oneHotel.roomSmallData.smallCapacity);
         const medCap = parseInt(oneHotel.roomMediumData.mediumCapacity);
         const largeCap = parseInt(oneHotel.roomLargeData.largeCapacity);
 
         const newtotal = parseInt(localStorage.getItem("totalPersons"));
+
 
         var maxPersons;
         if (largeCap) {
@@ -92,7 +98,7 @@ const HotelList = () => {
         // console.log(newtotal, " is new total");
         // console.log(smallCap, medCap, largeCap);
 
-        const price = () => {
+        const originalPrice = () => {
           if (newtotal <= smallCap) {
             // console.log("small running");
             return smallPrice;
@@ -104,6 +110,21 @@ const HotelList = () => {
           if (newtotal <= largeCap) {
             // console.log("large running");
             return largePrice;
+          }
+        };
+
+        const price = () => {
+          if (newtotal <= smallCap) {
+            // console.log("small running");
+            return (smallDiscountPrice ? smallDiscountPrice : smallPrice )
+          }
+          if (newtotal <= medCap) {
+            // console.log("med running");
+            return (medDiscountPrice ? medDiscountPrice : medPrice);
+          }
+          if (newtotal <= largeCap) {
+            // console.log("large running");
+            return (largeDiscountPrice ? largeDiscountPrice : largePrice);
           }
         };
         if(isMobile || width <= 980 ){
@@ -134,7 +155,10 @@ const HotelList = () => {
                               gridTemplateColumns: " 10fr 1fr 6fr",
                             }}
                           >
-                            <h5 className="f-14">Starting from Rs.{price()}</h5>
+                           { originalPrice() != price() ? 
+                           <p >Starting from <span className='f-14 discount'style={{textDecoration:'line-through',color:'red'}}>Rs.{originalPrice()}</span><span className='f-16 font-weight-bolder' style={{color:'green'}}>Rs.{price()}</span></p>
+                            :
+                            <p>Starting from< span className='f-16'> Rs.{price()}</span></p>}
                             <FontAwesomeIcon icon={faUser} />
                             <h5 className="f-14" style={{ textAlign: "left" }}>
                               Upto {maxPersons} people
@@ -174,7 +198,10 @@ const HotelList = () => {
                                     gridTemplateColumns: " 10fr 1fr 6fr",
                                   }}
                                 >
-                                  <h5 className="f-14">Starting from Rs.{price()}</h5>
+                                  { originalPrice() != price() ? 
+                                  <p className='f-14'>Starting from <span className='f-16 discount'style={{textDecoration:'line-through',color:'red'}}>Rs.{originalPrice()}</span><span className='f-18 font-weight-bolder' style={{color:'green'}}>Rs.{price()}</span></p>
+                                  :
+                                  <p>Starting from< span className='f-16'> Rs.{price()}</span></p>}
                                   <FontAwesomeIcon icon={faUser} />
                                   <h5 className="f-14" style={{ textAlign: "left" }}>
                                     Upto {maxPersons} people

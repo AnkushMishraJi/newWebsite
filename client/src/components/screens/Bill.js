@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 
 import { TabTitle } from "../TitleSetter";
+import FooterDesktop from "../FooterDesktop";
 
 
 window.onbeforeunload = function() { 
@@ -16,6 +16,9 @@ window.onbeforeunload = function() {
   
   window.onbeforeunload = null; // necessary to prevent infinite loop, that kills your browser 
 }
+
+const isBrowser = () => typeof window !== "undefined"
+const isMobile = isBrowser() ? (window.innerWidth <= 980 ? true : false) :  false;
 
 const Bill = () => {
   const payment_info = JSON.parse(localStorage.getItem("razor"));
@@ -44,6 +47,19 @@ const Bill = () => {
   var displayTime = splitTime.splice(4, 1).join(" ");
 
   TabTitle("Mera Adda | Receipt Generated");
+
+  const [width, setWidth] = useState(0)
+
+  useEffect(() => {
+    if (isBrowser()) {
+      setWidth(window.innerWidth);
+      const handleResize = () => setWidth(window.innerWidth)
+      window.addEventListener("resize", handleResize);
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
+  }, []);
 
   if (isNightParty == true) {
     time_slot = 6;
@@ -112,15 +128,16 @@ const Bill = () => {
 
   return (
     <>
+    <div className={isMobile || width <= 980 ? null : 'w-40 mx-auto'}>
       <style>{"body { background-color: #1a1b41; }"}</style>
-      <div className="brand-logo text-center mt-4 f-18 ">
+      <div className={`brand-logo text-center  ${isMobile || width <= 980 ? `f-18 mt-4` : `f-24 mt-0`}`}>
         Payment Successful
       </div>
       <FontAwesomeIcon
         className="title_text mx-auto d-flex my-3"
         icon={faCheckCircle}
       />
-      <p className="text-center brand-logo">Bill</p>
+      <p className={`text-center brand-logo ${isMobile || width <= 980 ? null : `f-24`}`}>Bill</p>
       <div className="bill text-light f-20">
         <div>
           <p className="f-12 font-weight-bolder">Hotel</p>
@@ -158,15 +175,29 @@ const Bill = () => {
           <p className="f-12 font-weight-bolder">Type</p>
           <p>{type}</p>
         </div>
+       { addedSpeakerName != 'undefined' ?
         <div>
-          <p className="f-12 font-weight-bolder">Speaker</p>
-          <p>{addedSpeakerName}</p>
-        </div>
-        <div>
+            <p className="f-12 font-weight-bolder">Speaker</p>
+            <p>{addedSpeakerName}</p>
+          </div>
+          :
+          null
+        }
+        { addedDecorTheme != 'undefined' ?
+          <div>
           <p className="f-12 font-weight-bolder">Decoration</p>
           <p>{addedDecorTheme + " " + addedDecorTier}</p>
         </div>
+        :
+        null
+      }
       </div>
+    </div>
+    {
+      isMobile || width <= 980 ?
+      null:
+      <FooterDesktop />
+    }
     </>
   );
 };

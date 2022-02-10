@@ -22,6 +22,7 @@ import { Carousel } from "react-responsive-carousel";
 
 import { Link } from "react-scroll";
 import TextTransition, { presets } from "react-text-transition";
+import { useHistory } from "react-router";
 
 import  { TabTitle } from '../TitleSetter'; 
 
@@ -35,6 +36,7 @@ const LandingPage = () => {
     "Weekend Soiree",
   ];
   const [index, setIndex] = React.useState(0);
+  const history = useHistory();
 
   TabTitle("Mera Adda | Customized Private Parties");
 
@@ -119,6 +121,7 @@ const LandingPage = () => {
             marginRight: "auto",
             zIndex: 400,
           }}
+          onClick={()=>history.push('/')}
         >
           BOOK NOW
         </button>

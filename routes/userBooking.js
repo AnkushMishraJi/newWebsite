@@ -11,7 +11,15 @@ const sendGridTransport = require("nodemailer-sendgrid-transport");
 require("dotenv").config();
 
 //Email Notification SendGrid
-const transporter = nodemailer.createTransport(
+const transporterHotel = nodemailer.createTransport(
+  sendGridTransport({
+    auth: {
+      api_key: process.env.EMAIL_API_KEY,
+    },
+  })
+);
+
+const transporterOperation = nodemailer.createTransport(
   sendGridTransport({
     auth: {
       api_key: process.env.EMAIL_API_KEY,
@@ -20,7 +28,7 @@ const transporter = nodemailer.createTransport(
 );
 
 //Add confirmed booking to database
-router.post("/addConfirmBookingsUser", (req, res) => {
+router.post("/api/addConfirmBookingsUser", (req, res) => {
   const {
     User,
     Hotel,
@@ -33,8 +41,10 @@ router.post("/addConfirmBookingsUser", (req, res) => {
     TimeSlot,
     Type,
     HotelEmail,
+    Speaker,
+    Decoration,
   } = req.body;
-
+  
   const UserBookings = new confirmedUserBooking({
     User,
     Hotel,
@@ -46,22 +56,25 @@ router.post("/addConfirmBookingsUser", (req, res) => {
     PaymentTime,
     TimeSlot,
     Type,
+    Speaker,
+    Decoration,
   });
+  console.log(User); 
   UserBookings.save()
     .then((UserBookings) => {
-      transporter
+      transporterHotel
         .sendMail({
           to: HotelEmail,
           from: "meraaddacontact@gmail.com",
-          subject: "New Booking Recieved",
+          subject: "New Booking Recieved - Hotel",
           html:
             "<div>" +
             "<b>" +
             "You have a new booking!" +
             "</b>" +
             "<p>" +
-            "Hotel : " +
-            Hotel +
+            "Customer Mobile Number : " +
+            User +
             "</p>" +
             "<p>" +
             "Date Of Booking : " +
@@ -81,9 +94,56 @@ router.post("/addConfirmBookingsUser", (req, res) => {
             "</p>" +
             "</div>",
         })
+        
         .catch((err) => {
           console.log(err);
         });
+          transporterOperation
+          .sendMail(
+            {
+            to: "ankush.rdso@gmail.com",
+            from: "meraaddacontact@gmail.com",
+            subject: "New Booking Recieved - Operations",
+            html:
+              "<div>" +
+              "<b>" +
+              "You have a new booking!" +
+              "</b>" +
+              "<p>" +
+              "Hotel : " +
+              Hotel +
+              "</p>" +
+              "<p>" +
+              "Date Of Booking : " +
+              DateOfBooking +
+              "</p>" +
+              "<p>" +
+              "ArrivalTime : " +
+              ArrivalTime +
+              "</p>" +
+              "<p>" +
+              "Total Persons : " +
+              TotalPersons +
+              "</p>" +
+              "<p>" +
+              "Type : " +
+              Type +
+              "</p>" +
+              "<p>" +
+              "Speaker : " +
+              Speaker +
+              "</p>" +
+              "<p>" +
+              "Decoration : " +
+              Decoration +
+              "</p>" +
+              "</div>",
+            }
+          )
+          .catch((err) => {
+            console.log(err);
+          });
+       
       res.status(201).json({
         message: "new confirmed booking saved to database",
       });
@@ -94,7 +154,7 @@ router.post("/addConfirmBookingsUser", (req, res) => {
 });
 
 //Get All Bookings by user
-router.get("/getConfirmBookingsUser", (req, res) => {
+router.get("/api/getConfirmBookingsUser", (req, res) => {
   const { User } = req.query;
   confirmedUserBooking
     .find({ User: User })

@@ -46,8 +46,8 @@ const ConfirmBooking = () => {
   const [price, setPrice] = useState("");
   const [isNightParty, setIsNightParty] = useState(true);
 
-  const [date, setDate] = useState();
-  const [time, setTime] = useState();
+  const [date, setDate] = useState(new Date());
+  const [time, setTime] = useState(new Date());
 
   const [type, setType] = useState("");
   const [room, setRoom] = useState("");
@@ -346,7 +346,7 @@ const ConfirmBooking = () => {
           selected={date}
           onChange={(date) => setDate(date)}
           dateFormat="dd-MMM-yyyy"
-          minDate={new Date()}
+          minDate={currTime.getHours()>20 ? new Date(currTime.getFullYear(),currTime.getMonth(),currTime.getDate()+1):new Date()}
           excludeDates={result}
           ref={(el) => onDatepickerRef(el)}
         />
@@ -354,7 +354,7 @@ const ConfirmBooking = () => {
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <TimePicker
             selected={time}
-            value={time}
+            value={time.getHours()==currTime.getHours() && currTime.getHours()>=6 && currTime.getHours()<20 ? new Date(0,0,0,currTime.getHours()+4,currTime.getMinutes()) : time.getHours()==currTime.getHours() && ( currTime.getHours()<6 || currTime.getHours()>20 ) ? new Date(0,0,0,10,0) : time}
             onChange={(time) => {
               setTime(time);
               setCount(count + 1);
@@ -365,6 +365,7 @@ const ConfirmBooking = () => {
                 {...params}
               />
             )}
+            minTime={currTime.getDate() == date.getDate() && currTime.getHours()>=6 ?  new Date(0,0,0,currTime.getHours()+4,currTime.getMinutes()) : new Date(0,0,0,10,0)}
           />
         </LocalizationProvider>
       <div className="w-70 d-inline-flex mt-3">
@@ -414,7 +415,7 @@ const ConfirmBooking = () => {
                 className="f-32"
                 style={{background:"#fe9124", borderRadius:"50%", color:"#1a1b41"}}
                 icon={faMinusCircle}
-                onClick={()=>setAddedDecorCost(0)}
+                onClick={()=>{setAddedDecorCost(0);setAddedDecorTheme('');setAddedDecorTier('');}}
               />
               </div>
             }

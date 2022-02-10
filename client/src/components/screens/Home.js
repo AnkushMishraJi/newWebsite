@@ -20,16 +20,16 @@ const Home = () => {
   const newdate = new Date();
   const history = useHistory();
 
-  const [date, setDate] = useState(new Date());
+  
 
-  const [time, setTime] = useState(new Date());
+  
   const [totalPersons, setTotalPersons] = useState(0);
   const [girls, setGirls] = useState(false);
-  const [minTime, setMinTime] = useState(new Date());
   const [width, setWidth] = useState(0)
 
-  var currTime = new Date();
-
+  const currTime = new Date();
+  const [date, setDate] = useState(currTime.getHours()>20 ? new Date(currTime.getFullYear(),currTime.getMonth(),currTime.getDate()+1):new Date());
+  const [time, setTime] = useState(new Date());
   TabTitle("Mera Adda | Book Now");
 
   useEffect(() => {
@@ -47,6 +47,12 @@ const Home = () => {
   useEffect(() => {
     personCheck();
   }, [totalPersons]);
+
+  useEffect(()=>{
+    {time.getHours()==currTime.getHours() && currTime.getHours()>=6 ? setTime(new Date(0,0,0,currTime.getHours()+4,currTime.getMinutes())) : time.getHours()==currTime.getHours() && currTime.getHours()<6 ? setTime(new Date(0,0,0,10,0)) : setTime(time)}
+    setDate(date)
+    setTime(time)
+  },[])
 
   const searchFilter = () => {
     localStorage.setItem("totalPersons", totalPersons);
@@ -86,6 +92,8 @@ const Home = () => {
     }
   };
 
+
+
   if(isMobile || width <= 980){
     return (
 
@@ -118,13 +126,13 @@ const Home = () => {
             }}
             value={date}
             dateFormat="dd-MMM-yyyy"
-            minDate={new Date()}
+            minDate={currTime.getHours()>20 ? new Date(currTime.getFullYear(),currTime.getMonth(),currTime.getDate()+1):new Date()}
             ref={(el) => onDatepickerRef(el)}
           />
         </div>
          <LocalizationProvider dateAdapter={AdapterDateFns}>
             <TimePicker
-              value={time}
+              value={time.getHours()==currTime.getHours() && currTime.getHours()>=6 && currTime.getHours()<20 ? new Date(0,0,0,currTime.getHours()+4,currTime.getMinutes()) : time.getHours()==currTime.getHours() && ( currTime.getHours()<6 || currTime.getHours()>20 ) ? new Date(0,0,0,10,0) : time}
               onChange={(time) => {
                 setTime(time);
               }}
@@ -133,8 +141,11 @@ const Home = () => {
                 className="timepicker bg-light w-70 mt-2"
                   {...params}
                 />
+                
               )}
-            />
+              minTime={currTime.getDate() == date.getDate() && currTime.getHours()>=6 ?  new Date(0,0,0,currTime.getHours()+4,currTime.getMinutes()) : new Date(0,0,0,10,0)}
+              
+              />
           </LocalizationProvider>
   
         <div className="w-70 d-inline-flex mt-3">
@@ -192,13 +203,13 @@ const Home = () => {
               <DatePicker className="px-3" selected={date} onClick={(date) => {setDate(date);}} onChange={(date) => {setDate(date);}}
                 value={date}
                 dateFormat="dd-MMM-yyyy"
-                minDate={new Date()}
+                minDate={currTime.getHours()>20 ? new Date(currTime.getFullYear(),currTime.getMonth(),currTime.getDate()+1):new Date()}
                 ref={(el) => onDatepickerRef(el)}
               />
             </div>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <TimePicker
-                value={time}
+                value={time.getHours()==currTime.getHours() && currTime.getHours()>=6 && currTime.getHours()<20 ? new Date(0,0,0,currTime.getHours()+4,currTime.getMinutes()) : time.getHours()==currTime.getHours() && ( currTime.getHours()<6 || currTime.getHours()>20 ) ? new Date(0,0,0,10,0) : time}
                 onChange={(time) => {
                   setTime(time);
                 }}
@@ -208,6 +219,7 @@ const Home = () => {
                     {...params}
                   />
                 )}
+                minTime={currTime.getDate() == date.getDate() && currTime.getHours()>=6 ?  new Date(0,0,0,currTime.getHours()+4,currTime.getMinutes()) : new Date(0,0,0,10,0)}
               />
             </LocalizationProvider>
             <input id="tp" className="tp-box mt-3 mx-3" type="number" value={totalPersons}

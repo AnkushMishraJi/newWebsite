@@ -43,7 +43,13 @@ function Signin() {
       .then((data) => {
         // console.log(data);
         if (data.error) {
-          M.toast({ html: data.error, classes: "#d32f2f red darken-2" });
+          Swal.fire({
+            icon: "error",
+            title: "ERROR",
+            text: 'Credentials do not match',
+            confirmButtonColor: "#fe9124",
+            allowEnterKey: false,
+          });
         } else {
           localStorage.setItem("jwt", data.token);
           localStorage.setItem("user", JSON.stringify(data.user));

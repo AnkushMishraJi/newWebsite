@@ -29,15 +29,23 @@ const UserHotel = () => {
   const [smallPrice, setSmallPrice] = useState();
   const [smallNightPrice, setSmallNightPrice] = useState();
 
+  const [smallOgPrice, setSmallOgPrice] = useState();
+  const [smallNightOgPrice, setSmallNightOgPrice] = useState();
+
   const [medCap, setMedCap] = useState();
   const [medPrice, setMedPrice] = useState();
   const [medNightPrice, setMedNightPrice] = useState();
+
+  const [medOgPrice, setMedOgPrice] = useState();
+  const [medNightOgPrice, setMedNightOgPrice] = useState();
 
   const [largeCap, setLargeCap] = useState();
   const [largePrice, setLargePrice] = useState();
   const [largeNightPrice, setLargeNightPrice] = useState();
 
-  const [isNightParty, setIsNightParty] = useState();
+  const [largeOgPrice, setLargeOgPrice] = useState();
+  const [largeNightOgPrice, setLargeNightOgPrice] = useState();
+
   const [totalPersons, setTotalPersons] = useState();
   const [roomType, setRoomType] = useState("small");
   const [selectedRoom, setSelectedRoom] = useState();
@@ -48,7 +56,6 @@ const UserHotel = () => {
 
   const isAuthenticated = localStorage.getItem("isAuthenticated");
 
-  const [nightPrice, setNightPrice] = useState();
   const [hotel, setHotel] = useState({});
   const [price, setPrice] = useState();
   const [width, setWidth] = useState(0)
@@ -80,16 +87,44 @@ const UserHotel = () => {
       .then((data) => {
         console.log(data);
         setSmallCap(parseInt(data[0].roomSmallData.smallCapacity));
-        setSmallPrice(parseInt(data[0].roomSmallData.smallPrice));
-        setSmallNightPrice(parseInt(data[0].roomSmallData.smallNightPrice));
+          if(data[0].roomSmallData.smallDiscountPrice){
+            setSmallPrice(parseInt(data[0].roomSmallData.smallDiscountPrice));
+            setSmallNightPrice(parseInt(data[0].roomSmallData.smallNightDiscountPrice));
+
+            setSmallOgPrice(parseInt(data[0].roomSmallData.smallPrice));
+            setSmallNightOgPrice(parseInt(data[0].roomSmallData.smallNightPrice));
+          }
+          else{
+            setSmallPrice(parseInt(data[0].roomSmallData.smallPrice));
+            setSmallNightPrice(parseInt(data[0].roomSmallData.smallNightPrice));
+          }
+        
 
         setMedCap(parseInt(data[0].roomMediumData.mediumCapacity));
-        setMedPrice(parseInt(data[0].roomMediumData.mediumPrice));
-        setMedNightPrice(parseInt(data[0].roomMediumData.mediumNightPrice));
+        if(data[0].roomMediumData.mediumDiscountPrice){
+          setMedPrice(parseInt(data[0].roomMediumData.mediumDiscountPrice));
+          setMedNightPrice(parseInt(data[0].roomMediumData.mediumNightDiscountPrice));
+
+          setMedOgPrice(parseInt(data[0].roomMediumData.mediumPrice));
+          setMedNightOgPrice(parseInt(data[0].roomMediumData.mediumNightPrice));
+        }
+        else{
+          setMedPrice(parseInt(data[0].roomMediumData.mediumPrice));
+          setMedNightPrice(parseInt(data[0].roomMediumData.mediumNightPrice));
+        }
 
         setLargeCap(parseInt(data[0].roomLargeData.largeCapacity));
-        setLargePrice(parseInt(data[0].roomLargeData.largePrice));
-        setLargeNightPrice(parseInt(data[0].roomLargeData.largeNightPrice));
+        if(data[0].roomLargeData.largeDiscountPrice){
+          setLargePrice(parseInt(data[0].roomLargeData.largeDiscountPrice));
+          setLargeNightPrice(parseInt(data[0].roomLargeData.largeNightDiscountPrice));
+
+          setLargeOgPrice(parseInt(data[0].roomLargeData.largePrice));
+          setLargeNightOgPrice(parseInt(data[0].roomLargeData.largeNightPrice));
+        }
+        else{
+          setLargePrice(parseInt(data[0].roomLargeData.largePrice));
+          setLargeNightPrice(parseInt(data[0].roomLargeData.largeNightPrice));
+        }
 
         setTotalPersons(parseInt(localStorage.getItem("totalPersons")));
         setHotelName(data[0].hotelName);
@@ -242,11 +277,21 @@ const UserHotel = () => {
               <p>Upto {smallCap} people</p>
               <div className="line-ht-0">
                 <p>Day-Price </p>
-                <p className="font-weight-bolder">Rs {smallPrice}</p>
+                {
+                  smallOgPrice ?
+                  <p className="font-weight-bolder">Rs<span className='discount' style={{textDecoration:'line-through',color:'red'}}>{smallOgPrice}</span><span className='f-18 font-weight-bolder' style={{color:'green'}}> {smallPrice}</span></p>
+                  :
+                  <p className="font-weight-bolder">Rs {smallPrice}</p>
+                }
               </div>
               <div className="line-ht-0">
                 <p>Night-Price</p>
-                <p className="font-weight-bolder">Rs {smallNightPrice}</p>
+                {
+                  smallNightOgPrice ?
+                  <p className="font-weight-bolder">Rs<span className='discount' style={{textDecoration:'line-through',color:'red'}}>{smallNightOgPrice}</span><span className='f-18 font-weight-bolder' style={{color:'green'}}> {smallNightPrice}</span></p>
+                  :
+                  <p className="font-weight-bolder">Rs {smallNightPrice}</p>
+                }
               </div>
             </div>
           ) : null
@@ -266,11 +311,21 @@ const UserHotel = () => {
               <p>Upto {medCap} people</p>
               <div className="line-ht-0">
                 <p>Day-Price </p>
-                <p className="font-weight-bolder">Rs {medPrice}</p>
+                {
+                  medOgPrice ?
+                  <p className="font-weight-bolder">Rs<span className='discount' style={{textDecoration:'line-through',color:'red'}}>{medOgPrice}</span><span className='f-18 font-weight-bolder' style={{color:'green'}}> {medPrice}</span></p>
+                  :
+                  <p className="font-weight-bolder">Rs {medPrice}</p>
+                }
               </div>
               <div className="line-ht-0">
                 <p>Night-Price</p>
-                <p className="font-weight-bolder">Rs {medNightPrice}</p>
+                {
+                  medNightOgPrice ?
+                  <p className="font-weight-bolder">Rs<span className='discount' style={{textDecoration:'line-through',color:'red'}}>{medNightOgPrice}</span><span className='f-18 font-weight-bolder' style={{color:'green'}}> {medNightPrice}</span></p>
+                  :
+                  <p className="font-weight-bolder">Rs {medNightPrice}</p>
+                }
               </div>
             </div>
           ) : null}
@@ -288,11 +343,21 @@ const UserHotel = () => {
               <p>Upto {largeCap} people</p>
               <div className="line-ht-0">
                 <p>Day-Price </p>
-                <p className="font-weight-bolder">Rs {largePrice}</p>
+                {
+                  largeOgPrice ?
+                  <p className="font-weight-bolder">Rs<span className='discount' style={{textDecoration:'line-through',color:'red'}}>{largeOgPrice}</span><span className='f-18 font-weight-bolder' style={{color:'green'}}> {largePrice}</span></p>
+                  :
+                  <p className="font-weight-bolder">Rs {largePrice}</p>
+                }
               </div>
               <div className="line-ht-0">
                 <p>Night-Price</p>
-                <p className="font-weight-bolder">Rs {largeNightPrice}</p>
+                {
+                  largeNightOgPrice ?
+                  <p className="font-weight-bolder">Rs<span className='discount' style={{textDecoration:'line-through',color:'red'}}>{largeNightOgPrice}</span><span className='f-18 font-weight-bolder' style={{color:'green'}}> {largeNightPrice}</span></p>
+                  :
+                  <p className="font-weight-bolder">Rs {largeNightPrice}</p>
+                }
               </div>
             </div>
           ) : null}
@@ -376,11 +441,21 @@ const UserHotel = () => {
               </div>
               <div className="d-flex justify-content-between">
                 <p>Day-Price </p>
-                <p className="">Rs {smallPrice}</p>
+                {
+                  smallOgPrice ?
+                  <p className="font-weight-bolder">Rs<span className='discount' style={{textDecoration:'line-through',color:'red'}}>{smallOgPrice}</span><span className='f-18 font-weight-bolder' style={{color:'green'}}> {smallPrice}</span></p>
+                  :
+                  <p className="font-weight-bolder">Rs {smallPrice}</p>
+                }
               </div>
               <div className="d-flex justify-content-between">
                 <p>Night-Price</p>
-                <p className="">Rs {smallNightPrice}</p>
+                {
+                  smallNightOgPrice ?
+                  <p className="font-weight-bolder">Rs<span className='discount' style={{textDecoration:'line-through',color:'red'}}>{smallNightOgPrice}</span><span className='f-18 font-weight-bolder' style={{color:'green'}}> {smallNightPrice}</span></p>
+                  :
+                  <p className="font-weight-bolder">Rs {smallNightPrice}</p>
+                }
               </div>
               </div>
             </Col>
@@ -404,11 +479,21 @@ const UserHotel = () => {
               </div>
               <div className="d-flex justify-content-between">
                 <p>Day-Price </p>
-                <p className="">Rs {medPrice}</p>
+                {
+                  medOgPrice ?
+                  <p className="font-weight-bolder">Rs<span className='discount' style={{textDecoration:'line-through',color:'red'}}>{medOgPrice}</span><span className='f-18 font-weight-bolder' style={{color:'green'}}> {medPrice}</span></p>
+                  :
+                  <p className="font-weight-bolder">Rs {medPrice}</p>
+                }
               </div>
               <div className="d-flex justify-content-between">
                 <p>Night-Price</p>
-                <p className="">Rs {medNightPrice}</p>
+                {
+                  medNightOgPrice ?
+                  <p className="font-weight-bolder">Rs<span className='discount' style={{textDecoration:'line-through',color:'red'}}>{medNightOgPrice}</span><span className='f-18 font-weight-bolder' style={{color:'green'}}> {medNightPrice}</span></p>
+                  :
+                  <p className="font-weight-bolder">Rs {medNightPrice}</p>
+                }
               </div>
               </div>
             </Col>
@@ -430,11 +515,21 @@ const UserHotel = () => {
               </div>
               <div className="d-flex justify-content-between">
                 <p>Day-Price </p>
-                <p className="">Rs {largePrice}</p>
+                {
+                  largeOgPrice ?
+                  <p className="font-weight-bolder">Rs<span className='discount' style={{textDecoration:'line-through',color:'red'}}>{largeOgPrice}</span><span className='f-18 font-weight-bolder' style={{color:'green'}}> {largePrice}</span></p>
+                  :
+                  <p className="font-weight-bolder">Rs {largePrice}</p>
+                }
               </div>
               <div className="d-flex justify-content-between">
                 <p>Night-Price</p>
-                <p className="">Rs {largeNightPrice}</p>
+                {
+                  largeNightOgPrice ?
+                  <p className="font-weight-bolder">Rs<span className='discount' style={{textDecoration:'line-through',color:'red'}}>{largeNightOgPrice}</span><span className='f-18 font-weight-bolder' style={{color:'green'}}> {largeNightPrice}</span></p>
+                  :
+                  <p className="font-weight-bolder">Rs {largeNightPrice}</p>
+                }
               </div>
               </div>
             </Col>

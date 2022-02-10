@@ -41,6 +41,14 @@ const userBookingsSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  Speaker:{
+    type: String,
+    required: false,
+  },
+  Decoration:{
+    type: String,
+    required: false,
+  }
 });
 
 module.exports = userBookingsSchema;

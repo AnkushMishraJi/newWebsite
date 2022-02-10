@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import M from "materialize-css";
+import Swal from "sweetalert2";
 
 function Signup() {
   const history = useHistory();
@@ -60,15 +61,21 @@ function Signup() {
         email
       )
     ) {
-      return M.toast({
-        html: "Invalid Email",
-        classes: "#d32f2f red darken-2",
+      Swal.fire({
+        icon: "error",
+        title: "Invalid Email",
+        text: "Please enter correct Email",
+        confirmButtonColor: "#fe9124",
+        allowEnterKey: false,
       });
     }
     if (password != confirm) {
-      return M.toast({
-        html: "Passwords do not match",
-        classes: "#d32f2f red darken-2",
+      return Swal.fire({
+        icon: "error",
+        title: "ERROR",
+        text: "Passwords do not match",
+        confirmButtonColor: "#fe9124",
+        allowEnterKey: false,
       });
     }
     if (
@@ -79,9 +86,12 @@ function Signup() {
       !location ||
       !address
     ) {
-      return M.toast({
-        html: "Please enter all fields",
-        classes: "#d32f2f red darken-2",
+      return Swal.fire({
+        icon: "error",
+        title: "Missing",
+        text: "Please enter all fields",
+        confirmButtonColor: "#fe9124",
+        allowEnterKey: false,
       });
     }
 
@@ -106,11 +116,20 @@ function Signup() {
       .then((res) => res.json())
       .then((data) => {
         if (data.error) {
-          M.toast({ html: data.error, classes: "#d32f2f red darken-2" });
+          Swal.fire({
+            icon: "error",
+            title: "ERROR",
+            text: data.error,
+            confirmButtonColor: "#fe9124",
+            allowEnterKey: false,
+          });
         } else {
-          M.toast({
-            html: "Saved Successfuly",
-            classes: "#43a047 green darken-1",
+          Swal.fire({
+            icon: "success",
+            title: "Saved",
+            text: "User Account Created",
+            confirmButtonColor: "#fe9124",
+            allowEnterKey: false,
           });
           history.push("/bsignin");
         }
