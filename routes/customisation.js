@@ -6,7 +6,7 @@ const speakerSchema = require("../models/speakers.js");
 const speaker = mongoose.model("Speaker", speakerSchema);
 
 const decorationSchema = require("../models/decorations");
-const { withCoalescedInvoke } = require("next/dist/lib/coalesced-function");
+// const { withCoalescedInvoke } = require("next/dist/lib/coalesced-function");
 const decoration = mongoose.model("Decoration", decorationSchema);
 
 router.post("/api/addSpeakers", (req, res) => {
