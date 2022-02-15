@@ -24,6 +24,7 @@ import Error500 from "./components/screens/Error500";
 import LandingPage from "./components/screens/LandingPage";
 import DesktopNavbar from "./components/navbarDesktop";
 import { BrowserRouter, Route, Switch, useHistory , withRouter} from "react-router-dom";
+import Admin from "./components/screens/Admin";
 
 
 const isBrowser = () => typeof window !== "undefined"
@@ -88,6 +89,9 @@ function App() {
           </Route>
           <Route path="/services">
             <LandingPage />
+          </Route>
+          <Route path="/adminin" >
+            <Admin />
           </Route>
           <ProtectedRoute exact path="/allBookings" component={AllBookings} />
           <ProtectedRoute exact path="/oldBill" component={OldBill} />
