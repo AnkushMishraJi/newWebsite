@@ -24,7 +24,8 @@ import Error500 from "./components/screens/Error500";
 import LandingPage from "./components/screens/LandingPage";
 import DesktopNavbar from "./components/navbarDesktop";
 import { BrowserRouter, Route, Switch, useHistory , withRouter} from "react-router-dom";
-import AdminDashboard from "./components/screens/AdminDashboard";
+// import AdminDashboard from "./components/screens/AdminDashboard";
+// import Admin from "./components/screens/Admin";
 
 
 const isBrowser = () => typeof window !== "undefined"
@@ -90,13 +91,16 @@ function App() {
           <Route path="/services">
             <LandingPage />
           </Route>
+          <Route path="/adminin" >
+            <Admin />
+          </Route>
+          <Route exact path="/admin">
+            <AdminDashboard />
+          </Route>
           <ProtectedRoute exact path="/allBookings" component={AllBookings} />
           <ProtectedRoute exact path="/oldBill" component={OldBill} />
           <ProtectedRoute exact path="/bill" component={Bill} />
           <ProtectedRoute exact path="/userpage" component={UserPage} />
-          <Route exact path="/admin">
-            <AdminDashboard />
-          </Route>
           <Route path="">
             <Error404 />
           </Route>

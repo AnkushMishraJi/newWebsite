@@ -49,9 +49,8 @@ const Home = () => {
   }, [totalPersons]);
 
   useEffect(()=>{
-    {time.getHours()==currTime.getHours() && currTime.getHours()>=6 ? setTime(new Date(0,0,0,currTime.getHours()+4,currTime.getMinutes())) : time.getHours()==currTime.getHours() && currTime.getHours()<6 ? setTime(new Date(0,0,0,10,0)) : setTime(time)}
-    setDate(date)
-    setTime(time)
+    {time.getHours()==currTime.getHours() && currTime.getHours()>=6 && currTime.getHours()<20 ? setTime(new Date(0,0,0,currTime.getHours()+4,currTime.getMinutes())) : time.getHours()==currTime.getHours() && (currTime.getHours()<6 || currTime.getHours()>=20) ? setTime(new Date(0,0,0,10,0)) : setTime(time)}
+    {currTime.getHours()>19 ? setDate(new Date(currTime.getFullYear(),currTime.getMonth(),currTime.getDate()+1)):setDate(new Date())}
   },[])
 
   const searchFilter = () => {
@@ -126,13 +125,13 @@ const Home = () => {
             }}
             value={date}
             dateFormat="dd-MMM-yyyy"
-            minDate={currTime.getHours()>20 ? new Date(currTime.getFullYear(),currTime.getMonth(),currTime.getDate()+1):new Date()}
+            minDate={currTime.getHours()>19 ? new Date(currTime.getFullYear(),currTime.getMonth(),currTime.getDate()+1):new Date()}
             ref={(el) => onDatepickerRef(el)}
           />
         </div>
          <LocalizationProvider dateAdapter={AdapterDateFns}>
             <TimePicker
-              value={time.getHours()==currTime.getHours() && currTime.getHours()>=6 && currTime.getHours()<20 ? new Date(0,0,0,currTime.getHours()+4,currTime.getMinutes()) : time.getHours()==currTime.getHours() && ( currTime.getHours()<6 || currTime.getHours()>20 ) ? new Date(0,0,0,10,0) : time}
+              value={time.getHours()==currTime.getHours() && currTime.getHours()>=6 && currTime.getHours()<20 ? new Date(0,0,0,currTime.getHours()+4,currTime.getMinutes()) : time.getHours()==currTime.getHours() && ( currTime.getHours()<6 || currTime.getHours()>19 ) ? new Date(0,0,0,10,0) : time}
               onChange={(time) => {
                 setTime(time);
               }}
@@ -143,7 +142,7 @@ const Home = () => {
                 />
                 
               )}
-              minTime={currTime.getDate() == date.getDate() && currTime.getHours()>=6 ?  new Date(0,0,0,currTime.getHours()+4,currTime.getMinutes()) : new Date(0,0,0,10,0)}
+              minTime={currTime.getDate() == date.getDate() && currTime.getHours()>=6 && currTime.getHours()<20 ?  new Date(0,0,0,currTime.getHours()+4,currTime.getMinutes()) : new Date(0,0,0,10,0)}
               
               />
           </LocalizationProvider>
