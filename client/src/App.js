@@ -24,8 +24,8 @@ import Error500 from "./components/screens/Error500";
 import LandingPage from "./components/screens/LandingPage";
 import DesktopNavbar from "./components/navbarDesktop";
 import { BrowserRouter, Route, Switch, useHistory , withRouter} from "react-router-dom";
-// import AdminDashboard from "./components/screens/AdminDashboard";
-// import Admin from "./components/screens/Admin";
+import AdminDashboard from "./components/screens/AdminDashboard";
+import Admin from "./components/screens/Admin";
 
 
 const isBrowser = () => typeof window !== "undefined"
