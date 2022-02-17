@@ -5,7 +5,7 @@ import  { TabTitle } from '../TitleSetter';
 
 const AdminDashboard = ()=>{
     const [code,setCode] = useState("");
-    const [discount,setDiscount] = useState(0);
+    const [discount,setDiscount] = useState("");
     const [ispercent,setIspercent] = useState(false);
     const [hotelid,setHotelid] = useState("");
     const [dtype,setDtype] = useState("Percent/Flat");
@@ -68,7 +68,7 @@ const AdminDashboard = ()=>{
                     body: JSON.stringify({
                         coupon_code: code,
                         hotel_id: hotelid,
-                        percent_discount: discount,
+                        percent_discount: parseInt(discount),
                     }),
                 })
                 .then((res) => res.json())
@@ -101,7 +101,7 @@ const AdminDashboard = ()=>{
                 body: JSON.stringify({
                     coupon_code: code,
                     hotel_id: hotelid,
-                    flat_discount: discount
+                    flat_discount: parseInt(discount)
                 }),
             })
             .then((res) => res.json())

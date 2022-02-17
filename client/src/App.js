@@ -94,7 +94,7 @@ function App() {
           <Route path="/adminin" >
             <Admin />
           </Route>
-          <Route exact path="/admin">
+          <Route exact path="/setCoupon">
             <AdminDashboard />
           </Route>
           <ProtectedRoute exact path="/allBookings" component={AllBookings} />
