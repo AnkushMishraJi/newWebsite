@@ -83,12 +83,17 @@ const AdminDashboard = ()=>{
                         });
                     }
                     Swal.fire({
-                          icon: "success",
-                          title: "Saved",
-                          text: "Coupon Added!",
-                          confirmButtonColor: "#fe9124",
-                          allowEnterKey: false,
-                        });
+                        icon: "success",
+                        title: "Saved",
+                        text: "Coupon Added!",
+                        confirmButtonColor: "#fe9124",
+                        allowEnterKey: false,
+                    });
+                    setCode("");
+                    setDiscount("");
+                    setIspercent(false);
+                    setHotelid("");
+                    setDtype("Percent/Flat");
                 });
             }
         }
@@ -122,6 +127,11 @@ const AdminDashboard = ()=>{
                       confirmButtonColor: "#fe9124",
                       allowEnterKey: false,
                     });
+                    setCode("");
+                    setDiscount("");
+                    setIspercent(false);
+                    setHotelid("");
+                    setDtype("Percent/Flat");
                 }
             });
         }
