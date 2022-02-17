@@ -11,6 +11,8 @@ app.use(require("./routes/businessUsers"));
 app.use(require("./routes/cloudinary"));
 app.use(require("./routes/userBooking"));
 app.use(require("./routes/customisation"));
+app.use(require("./routes/admin"));
+
 
 if (process.env.NODE_ENV == "production") {
   app.use(express.static("client/build"));

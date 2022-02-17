@@ -156,10 +156,10 @@ const HotelList = () => {
                             }}
                           >
                            { originalPrice() != price() ? 
-                           <p >Starting from <span className='f-14 discount'style={{textDecoration:'line-through',color:'red'}}>Rs.{originalPrice()}</span><span className='f-16 font-weight-bolder' style={{color:'green'}}>Rs.{price()}</span></p>
+                           <p className='f-14'>Starting from <span className='f-14 discount'style={{textDecoration:'line-through',color:'red'}}>Rs.{originalPrice()}</span><span className='f-16 font-weight-bolder' style={{color:'green'}}>Rs.{price()}</span></p>
                             :
-                            <p>Starting from< span className='f-16'> Rs.{price()}</span></p>}
-                            <FontAwesomeIcon icon={faUser} />
+                            <p className='f-14'>Starting from< span className='f-16'> Rs.{price()}</span></p>}
+                            <FontAwesomeIcon  icon={faUser} />
                             <h5 className="f-14" style={{ textAlign: "left" }}>
                               Upto {maxPersons} people
                             </h5>
