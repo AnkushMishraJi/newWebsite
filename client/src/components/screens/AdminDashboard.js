@@ -5,20 +5,20 @@ import  { TabTitle } from '../TitleSetter';
 
 const AdminDashboard = ()=>{
     const [code,setCode] = useState("");
-    const [discount,setDiscount] = useState("");
+    const [discount,setDiscount] = useState(0);
     const [ispercent,setIspercent] = useState(false);
-    const [hotelname,setHotelname] = useState("");
+    const [hotelid,setHotelid] = useState("");
     const [dtype,setDtype] = useState("Percent/Flat");
+    const [hotels,setHotels] = useState([]);
     TabTitle("Mera Adda | Admin Dashboard");
-    
 
     useEffect(() => {
         getHotels();
-    },[]);
+    }, []);
 
     const getHotels = ()=>{
         fetch(
-          "http://localhost:3000/api/hotelList?date=&totalPersons=1&girls=false&isNightParty=false",
+          "/api/hotelList?date=&totalPersons=1&girls=false&isNightParty=false",
           {
             method: "get",
             headers: {
@@ -28,12 +28,12 @@ const AdminDashboard = ()=>{
         )
         .then((res) => res.json())
         .then((data) => {
-            console.log(data)
+            setHotels(data);
         });
     }
 
     const PostData = ()=>{
-        if(!code || !hotelname || !discount){
+        if(!code || !hotelid || !discount){
             return Swal.fire({
                 icon: "warning",
                 text: "Please fill all the details!",
@@ -41,9 +41,17 @@ const AdminDashboard = ()=>{
                 allowEnterKey: false,
             });
         }
-        console.log(code)
+        if(isNaN(discount)){
+            return Swal.fire({
+                icon: "warning",
+                text: "Discount should be in digits!",
+                confirmButtonColor: "#fe9124",
+                allowEnterKey: false,
+            });
+        }
+
         if(ispercent){
-            if(discount<0 && discount>100 ){
+            if(discount>100){
                 return Swal.fire({
                     icon: "warning",
                     text: "Discount can't be more than 100%",
@@ -52,22 +60,69 @@ const AdminDashboard = ()=>{
                 });
             }
             else{
-                Swal.fire({
-                    icon: "success",
-                    title: "Saved",
-                    text: "Coupen added!",
-                    confirmButtonColor: "#fe9124",
-                    allowEnterKey: false,
+                fetch("/api/addVoucher", {
+                    method: "post",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        coupon_code: code,
+                        hotel_id: hotelid,
+                        percent_discount: discount,
+                    }),
+                })
+                .then((res) => res.json())
+                .then((data) => {
+                    if (data.error) {
+                        return Swal.fire({
+                          icon: "error",
+                          title: "ERROR",
+                          text: data.error,
+                          confirmButtonColor: "#fe9124",
+                          allowEnterKey: false,
+                        });
+                    }
+                    Swal.fire({
+                          icon: "success",
+                          title: "Saved",
+                          text: "Coupon Added!",
+                          confirmButtonColor: "#fe9124",
+                          allowEnterKey: false,
+                        });
                 });
             }
         }
         else{
-            Swal.fire({
-                icon: "success",
-                title: "Saved",
-                text: "Coupen added!",
-                confirmButtonColor: "#fe9124",
-                allowEnterKey: false,
+            fetch("/api/addVoucher", {
+                method: "post",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    coupon_code: code,
+                    hotel_id: hotelid,
+                    flat_discount: discount
+                }),
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.error) {
+                    Swal.fire({
+                      icon: "error",
+                      title: "ERROR",
+                      text: data.error,
+                      confirmButtonColor: "#fe9124",
+                      allowEnterKey: false,
+                    });
+                } else {
+                    Swal.fire({
+                      icon: "success",
+                      title: "Saved",
+                      text: "Coupon Added!",
+                      confirmButtonColor: "#fe9124",
+                      allowEnterKey: false,
+                    });
+                }
             });
         }
     }
@@ -77,7 +132,6 @@ const AdminDashboard = ()=>{
         <div className="container mt-3">
         <div className="row  d-flex mx-auto w-60">
             <h2 className="d-flex mx-auto my-3">Coupon Details</h2>
-            <form>
             <div className="col-10 col-mid-4 mt-3">
                 <p style={{color: "white"}}>Coupon Code</p>
                 <input
@@ -96,7 +150,7 @@ const AdminDashboard = ()=>{
             <div className="col-10 col-mid-4 mt-3 ">
                 <p style={{color: "white"}}>Hotel</p>
                 <select
-                onChange={(e) => setHotelname(e.target.value)}
+                onClick={(e) => setHotelid(e.target.value)}
                 style={{
                     backgroundColor: "white",
                     height: "40px",
@@ -106,10 +160,10 @@ const AdminDashboard = ()=>{
                 className="form-select form-select-lg mb-3 w-"
                 aria-label=".form-select-lg example"
                 >
-                    <option defaultValue={"Select Hotel"}>Select Hotel</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    {
+                        hotels.map( h => 
+                        <option key={h._id} value={h._id}>{h.hotelName}</option> )
+                    }
                 </select>
             </div>
             <div className="mx-auto mt-3">
@@ -166,7 +220,6 @@ const AdminDashboard = ()=>{
                 Submit
             </button>
             </div>
-            </form>
         </div>
         </div>
         </>
