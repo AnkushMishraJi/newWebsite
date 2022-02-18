@@ -30,7 +30,7 @@ router.post("/api/postSuperAdmin", (req, res) => {
       });
 });
 
-  router.get("/api/getSuperAdmin", (req, res) => {
+  router.post("/api/getSuperAdmin", (req, res) => {
     const { email, password } = req.body;
     if (!email || !password) {
       return res.status(400).json({
