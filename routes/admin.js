@@ -75,6 +75,19 @@ router.post("/api/postSuperAdmin", (req, res) => {
       });
   });
 
+  router.get("/api/getVoucher/userHotel/:id", (req, res) => {
+    const _id = req.params.id;
+    // console.log(req.params.id);
+    voucher
+      .find({ hotel_id: _id })
+      .then((vouchers) => {
+        return res.status(200).json(vouchers);
+      })
+      .catch((err) => {
+        // console.log(err);
+      });
+  });
+
   module.exports = router;
   
 

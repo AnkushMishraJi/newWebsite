@@ -13,7 +13,7 @@ import { Carousel } from "react-responsive-carousel";
 import TimePicker from "@mui/lab/TimePicker";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faTimesCircle, faPlusCircle, faMinusCircle } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faTimesCircle, faPlusCircle, faMinusCircle, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 import Swal from "sweetalert2";
 import FooterDesktop from "../FooterDesktop";
@@ -54,7 +54,7 @@ const ConfirmBooking = () => {
   const [isBlockedOn, setIsBlockedOn] = useState("");
   const [count, setCount] = useState(0);
   const [route, setRoute] = useState("");
-  const [back, setBack] = useState("");
+  const [back, setBack] = useState(localStorage.getItem("back"));
   const [firstPrice, setFirstPrice] = useState("")
   const [showDecorCarousel, setShowDecorCarousel]= useState(false);
   const [showSpeakerCarousel, setShowSpeakerCarousel]= useState(false);
@@ -69,6 +69,7 @@ const ConfirmBooking = () => {
   const [addedDecorTheme,setAddedDecorTheme] = useState();
   const [addedDecorTier,setAddedDecorTier] = useState();
   const [addedSpeakerName, setAddedSpeakerName] = useState();
+  const [coupons, setCoupons] = useState([])
 
 
   var currTime= new Date();
@@ -113,7 +114,6 @@ const ConfirmBooking = () => {
     setRoom(localStorage.getItem("room"));
     setType(localStorage.getItem("type"));
     setRoute(localStorage.getItem("route"));
-    setBack(localStorage.getItem("back"));
     
     // const localPrice = localStorage.getItem("price");
     // const localNightPrice = localStorage.getItem("nightPrice");
@@ -138,6 +138,16 @@ const ConfirmBooking = () => {
     fetch("/api/getDecorations")
     .then((res)=>res.json())
     .then((data)=>setDecorations(data))
+    .catch((err)=>{
+
+    });
+
+    fetch(`/api/getVoucher${back}`)
+    .then((res)=>res.json())
+    .then((data)=>{
+      setCoupons(data)
+      }
+    )
     .catch((err)=>{
 
     });
@@ -189,6 +199,69 @@ const ConfirmBooking = () => {
   //   console.log(price,isNightParty);
   // };
 
+  const [havePromoCode, setHavePromoCode] = useState(false);
+  const [input_coupon, setInputCoupon] = useState("");
+  const [promoCodeTried, setPromoCodeTried] = useState(false);
+  const [promoFlatDiscount, setPromoFlatDiscount] = useState(0)
+  const [promoPercentDiscount, setPromoPercentDiscount] = useState(0)
+
+  const myCoupon = "Ankush70" ;
+
+  const renderPromoCode = ()=>{
+    
+    return(
+      <>
+        {
+          havePromoCode ?
+          <div className='bg-light w-80'>
+              <div className='d-flex align-items-center justify-content-between px-2 bg-brand'>
+                <input className='container-input w-60' placeholder="Enter Coupon Code"  onChange={(e)=>setInputCoupon(e.target.value)}/>
+                <button className='user-page-btn bg-orange font-weight-bolder px-2 py-2 my-1' onClick={()=>{setPromoCodeTried(true);setHavePromoCode(false);calculateDiscount()}}>Submit</button>
+              </div>
+          </div>
+          :
+          promoCodeTried && coupons.some(coupon => coupon['coupon_code'].toUpperCase()==input_coupon.toUpperCase()) ? 
+          <div className='d-flex justify-content-around w-50 py-auto'>
+            <p className='f-16 title_text'>{input_coupon.toUpperCase()}</p>
+            <FontAwesomeIcon onClick={()=>{setPromoCodeTried(false);setPromoFlatDiscount(0);setPromoPercentDiscount(0)}}  className="waves-effect text-light" icon={faTrash}/>
+          </div>
+          :
+          promoCodeTried ?
+          <p className='f-16 title_text'>Invalid Code <span className='discount'  style={{textDecoration:'underline'}} onClick={()=>{setHavePromoCode(true);}}>Try Again</span></p>
+          :
+          <p className='f-16 title_text discount' style={{textDecoration:'underline'}} onClick={()=>{setHavePromoCode(true)}}>Have a Promo Code?</p>
+        }
+      </>
+    )
+  }
+
+  const calculateDiscount = async ()=>{
+    for(let i=0;i<coupons.length;i=i+1){
+      if(coupons[i].coupon_code.toUpperCase()==input_coupon.toUpperCase()){
+        if(coupons[i].flat_discount){
+          setPromoFlatDiscount(parseInt(coupons[i].flat_discount));
+          Swal.fire({
+            icon: "success",
+            title: `Coupon Applied - ${input_coupon.toUpperCase()}`,
+            text: `₹ ${coupons[i].flat_discount} OFF`,
+            confirmButtonColor: "#fe9124",
+            allowEnterKey: false,
+          });
+        }
+        else{
+          setPromoPercentDiscount(parseInt(coupons[i].percent_discount))
+          Swal.fire({
+            icon: "success",
+            title: `Coupon Applied - ${input_coupon.toUpperCase()}`,
+            text: `${coupons[i].percent_discount}% OFF`,
+            confirmButtonColor: "#fe9124",
+            allowEnterKey: false,
+          });
+        }
+      }
+    }
+  }
+
   const amountAndRoom = () => {
     console.log("amount running");
     console.log(isNightParty);
@@ -238,7 +311,7 @@ const ConfirmBooking = () => {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify({
-        amount: (count == 0 ? firstPrice : price) * 100,
+        amount: (count == 0 ? parseInt((firstPrice*(100-promoPercentDiscount)/100))+addedDecorCost+addedSpeakerCost-promoFlatDiscount : parseInt((price*(100-promoPercentDiscount)/100))+addedDecorCost+addedSpeakerCost-promoFlatDiscount) * 100,
         currency: "INR",
         payment_capture: 1,
         receipt: shortid.generate(),
@@ -456,6 +529,9 @@ const ConfirmBooking = () => {
       :
       null
     }
+    
+    {renderPromoCode()}
+
       <div className={`confirm-page text-light ${isMobile || width <= 980 ? `w-63` : `w-60`} f-16 mt-4`}>
         <p className="font-weight-bolder">Total Persons</p>
         <p className="right-text">{totalPersons}</p>
@@ -464,7 +540,7 @@ const ConfirmBooking = () => {
         <p className="font-weight-bolder">Room</p>
         <p className="right-text">{room}</p>
         <p className="font-weight-bolder">Amount</p>
-        <p className="right-text">Rs. {count==0 ? parseInt(firstPrice)+addedDecorCost+addedSpeakerCost : parseInt(price)+addedDecorCost+addedSpeakerCost}</p>
+        <p className="right-text">Rs. {count==0 ? parseInt((firstPrice*(100-promoPercentDiscount)/100))+addedDecorCost+addedSpeakerCost-promoFlatDiscount : parseInt((price*(100-promoPercentDiscount)/100))+addedDecorCost+addedSpeakerCost-promoFlatDiscount}</p>
       </div>
       <button
         onClick={() => {

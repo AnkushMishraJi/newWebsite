@@ -27,6 +27,7 @@ import { BrowserRouter, Route, Switch, useHistory , withRouter} from "react-rout
 import AdminDashboard from "./components/screens/AdminDashboard";
 import Admin from "./components/screens/Admin";
 import AdminCouponDetails from "./components/screens/AdminCouponDetails";
+import AdminProtectedRoute from "./components/AdminProtectedRoute";
 
 
 const isBrowser = () => typeof window !== "undefined"
@@ -95,16 +96,12 @@ function App() {
           <Route path="/adminin" >
             <Admin />
           </Route>
-          <Route exact path="/admin/create-coupon">
-            <AdminDashboard />
-          </Route>
-          <Route exact path="/admin/coupon-details">
-            <AdminCouponDetails />
-          </Route>
           <ProtectedRoute exact path="/allBookings" component={AllBookings} />
           <ProtectedRoute exact path="/oldBill" component={OldBill} />
           <ProtectedRoute exact path="/bill" component={Bill} />
           <ProtectedRoute exact path="/userpage" component={UserPage} />
+          <AdminProtectedRoute exact path="/admin/create-coupon" component={AdminDashboard} />
+          <AdminProtectedRoute exact path="/admin/coupon-details" component={AdminCouponDetails} />
           <Route path="">
             <Error404 />
           </Route>

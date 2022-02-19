@@ -71,6 +71,8 @@ const Admin = () => {
                   });
             }
             else{
+                localStorage.setItem("isAdminAuthenticated","true")
+                history.push("/admin/create-coupon")
                 Swal.fire({
                     icon: "success",
                     title: "Login successful",
@@ -116,7 +118,7 @@ const Admin = () => {
            className="w-70 bg-white d-flex align-items-center mx-auto"
            style={{ borderRadius: "0.5em" }}
            name="password"
-           type="text"
+           type="password"
            placeholder="Enter password"
            value={password}
            onChange={(e)=>{
