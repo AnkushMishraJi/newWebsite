@@ -26,6 +26,7 @@ import DesktopNavbar from "./components/navbarDesktop";
 import { BrowserRouter, Route, Switch, useHistory , withRouter} from "react-router-dom";
 import AdminDashboard from "./components/screens/AdminDashboard";
 import Admin from "./components/screens/Admin";
+import AdminCouponDetails from "./components/screens/AdminCouponDetails";
 
 
 const isBrowser = () => typeof window !== "undefined"
@@ -96,6 +97,9 @@ function App() {
           </Route>
           <Route exact path="/admin/create-coupon">
             <AdminDashboard />
+          </Route>
+          <Route exact path="/admin/coupon-details">
+            <AdminCouponDetails />
           </Route>
           <ProtectedRoute exact path="/allBookings" component={AllBookings} />
           <ProtectedRoute exact path="/oldBill" component={OldBill} />
