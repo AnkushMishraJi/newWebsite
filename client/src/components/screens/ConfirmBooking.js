@@ -213,7 +213,7 @@ const ConfirmBooking = () => {
       <>
         {
           havePromoCode ?
-          <div className='bg-light w-80'>
+          <div className={`bg-light ${isMobile || width <= 980 ? `w-80` : `w-70`}`}>
               <div className='d-flex align-items-center justify-content-between px-2 bg-brand'>
                 <input className='container-input w-60' placeholder="Enter Coupon Code"  onChange={(e)=>setInputCoupon(e.target.value)}/>
                 <button className='user-page-btn bg-orange font-weight-bolder px-2 py-2 my-1' onClick={()=>{setPromoCodeTried(true);setHavePromoCode(false);calculateDiscount()}}>Submit</button>
@@ -221,13 +221,16 @@ const ConfirmBooking = () => {
           </div>
           :
           promoCodeTried && coupons.some(coupon => coupon['coupon_code'].toUpperCase()==input_coupon.toUpperCase()) ? 
-          <div className='d-flex justify-content-around w-50 py-auto'>
-            <p className='f-16 title_text'>{input_coupon.toUpperCase()}</p>
-            <FontAwesomeIcon onClick={()=>{setPromoCodeTried(false);setPromoFlatDiscount(0);setPromoPercentDiscount(0)}}  className="waves-effect text-light" icon={faTrash}/>
+          <div className='d-flex align-items-center justfy-content-between mt-2'>
+            <p className='f-16 px-2 text-light font-weight-bolder'>Coupon Applied</p>
+            <div className='d-flex w-50'>
+            <p className='f-16 title_text px-2 font-weight-bolder'>{input_coupon.toUpperCase()}</p>
+            <FontAwesomeIcon onClick={()=>{setPromoCodeTried(false);setPromoFlatDiscount(0);setPromoPercentDiscount(0);setInputCoupon("")}}  className="waves-effect text-light mt-1" icon={faTrash}/>
+            </div>
           </div>
           :
           promoCodeTried ?
-          <p className='f-16 title_text'>Invalid Code <span className='discount'  style={{textDecoration:'underline'}} onClick={()=>{setHavePromoCode(true);}}>Try Again</span></p>
+          <p className='f-16 text-light'>Invalid Code <span className='discount title_text'  style={{textDecoration:'underline'}} onClick={()=>{setHavePromoCode(true);}}>Try Again</span></p>
           :
           <p className='f-16 title_text discount' style={{textDecoration:'underline'}} onClick={()=>{setHavePromoCode(true)}}>Have a Promo Code?</p>
         }
