@@ -215,8 +215,8 @@ const ConfirmBooking = () => {
           havePromoCode ?
           <div className={`bg-light ${isMobile || width <= 980 ? `w-80` : `w-70`}`}>
               <div className='d-flex align-items-center justify-content-between px-2 bg-brand'>
-                <input className='container-input w-60' placeholder="Enter Coupon Code"  onChange={(e)=>setInputCoupon(e.target.value)}/>
-                <button className='user-page-btn bg-orange font-weight-bolder px-2 py-2 my-1' onClick={()=>{setPromoCodeTried(true);setHavePromoCode(false);calculateDiscount()}}>Submit</button>
+                <input className="container-input w-60" placeholder="Enter Coupon Code" onChange={(e)=>setInputCoupon(e.target.value)}/>
+                <button className='user-page-btn bg-orange font-weight-bolder px-2 py-2 my-1' style={{color: "white"}} onClick={()=>{setPromoCodeTried(true);setHavePromoCode(false);calculateDiscount()}}>Submit</button>
               </div>
           </div>
           :
