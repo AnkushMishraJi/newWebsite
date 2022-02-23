@@ -8,6 +8,7 @@ import {
   faConciergeBell,
   faBookmark,
 } from "@fortawesome/free-solid-svg-icons";
+import Footer from "react-multi-date-picker/plugins/range_picker_footer";
 
 function NavigationBar() {
   const login = localStorage.getItem("businessLoggedIn");
@@ -18,7 +19,7 @@ function NavigationBar() {
   );
 
   return (
-    <div
+      <div
       className="d-flex w-100 align-items-center "
       style={{
         position: "fixed",

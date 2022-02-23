@@ -210,6 +210,14 @@ function Signup() {
             />
             <span>Is Night Party Allowed ?</span>
           </label>
+          <br/>
+
+          <label>
+            <input
+              type="checkbox"
+            />
+            <span>Is Customizable?</span>
+          </label>
 
           <div>
             <label>
