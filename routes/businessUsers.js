@@ -178,4 +178,33 @@ router.get("/api/userHotel/:id", (req, res) => {
     });
 });
 
+
+router.put("/api/userHotel/updatePrices", (req, res) => {
+  const {smallPrice, mediumPrice, largePrice, 
+        smallNightPrice, mediumNightPrice, largeNightPrice, 
+        smallDiscountPrice, mediumDiscountPrice, largeDiscountPrice, 
+        smallNightDiscountPrice, mediumNightDiscountPrice, largeNightDiscountPrice, 
+  _id} = req.body;
+  // if (!email || !name || !dob ) {
+  //   return res.status(400).json({
+  //     "error":"Please enter all fields"
+  //     });
+  // }
+  businessUser.findOneAndUpdate(
+    { _id: _id },
+    { $set: {"roomSmallData.smallPrice":smallPrice, "roomMediumData.mediumPrice":mediumPrice, "roomLargeData.largePrice":largePrice, 
+            "roomSmallData.smallNightPrice":smallNightPrice, "roomMediumData.mediumNightPrice":mediumNightPrice, "roomLargeData.largeNightPrice":largeNightPrice,
+            "roomSmallData.smallDiscountPrice":smallDiscountPrice, "roomMediumData.mediumDiscountPrice":mediumDiscountPrice, "roomLargeData.largeDiscountPrice":largeDiscountPrice,
+            "roomSmallData.smallNightDiscountPrice":smallNightDiscountPrice, "roomMediumData.mediumNightDiscountPrice":mediumNightDiscountPrice, "roomLargeData.largeNightDiscountPrice":largeNightDiscountPrice,
+      _id} },
+      { new: true}
+  )
+  .exec((err, result) => {
+    if (err) {
+      return res.status(422).json({ error: err });
+    } else {
+      res.json(result);
+    }
+  });
+});
 module.exports = router;

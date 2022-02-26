@@ -47,6 +47,7 @@ router.post("/api/bsignup", (req, res) => {
     roomSmallData,
     roomMediumData,
     roomLargeData,
+    isCustomisable,
   } = req.body;
   if (!email || !password || !hotelName || !location) {
     return res.status(400).json({
@@ -71,6 +72,7 @@ router.post("/api/bsignup", (req, res) => {
         roomSmallData,
         roomMediumData,
         roomLargeData,
+        isCustomisable,
       });
       BusinessUser.save()
         .then((BusinessUser) => {

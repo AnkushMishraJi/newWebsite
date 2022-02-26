@@ -94,6 +94,10 @@ const businessUserSchema = new mongoose.Schema({
     type: roomSchemaLarge,
     required: false,
   },
+  isCustomisable:{
+    type: Boolean,
+    required: true,
+  }
 });
 
 module.exports = businessUserSchema;

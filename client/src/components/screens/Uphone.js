@@ -11,6 +11,9 @@ const UserPhoneCheck = () => {
   const history = useHistory();
   const [phone, setPhone] = useState("");
   const [width, setWidth] = useState(0)
+  const [name, setName]=useState("")
+
+
   TabTitle("Mera Adda | Sign In");
   useEffect(() => {
     if (isBrowser()) {
@@ -33,6 +36,18 @@ const UserPhoneCheck = () => {
   useEffect(() => {
     // localStorage.clear();
     localStorage.setItem("activePage", "login");
+    const phoneNumber = localStorage.getItem("phone");
+    fetch(`/api/getname?phoneNumber=${phoneNumber}`, {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setName(data);
+        console.log(data);
+      });
   }, []);
 
   const onSubmitPhone = () => {
@@ -58,7 +73,7 @@ const UserPhoneCheck = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.isUser == true) {
+        if (data.isUser == true && name != "") {
           history.push("/usignin");
           localStorage.setItem("phone", data.phoneNumber);
         } else {
