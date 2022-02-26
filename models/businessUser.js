@@ -5,6 +5,9 @@ const roomSchemaSmall = new mongoose.Schema({
   smallPrice: {
     type: String,
   },
+  smallDiscountPrice:{
+    type: String,
+  },
   smallPic: {
     type: [String],
   },
@@ -14,10 +17,16 @@ const roomSchemaSmall = new mongoose.Schema({
   smallNightPrice: {
     type: String,
   },
+  smallNightDiscountPrice: {
+    type: String,
+  },
 });
 
 const roomSchemaMedium = new mongoose.Schema({
   mediumPrice: {
+    type: String,
+  },
+  mediumDiscountPrice: {
     type: String,
   },
   mediumPic: {
@@ -29,10 +38,16 @@ const roomSchemaMedium = new mongoose.Schema({
   mediumNightPrice: {
     type: String,
   },
+  mediumNightDiscountPrice: {
+    type: String,
+  },
 });
 
 const roomSchemaLarge = new mongoose.Schema({
   largePrice: {
+    type: String,
+  },
+  largeDiscountPrice: {
     type: String,
   },
   largePic: {
@@ -42,6 +57,9 @@ const roomSchemaLarge = new mongoose.Schema({
     type: Number,
   },
   largeNightPrice: {
+    type: String,
+  },
+  largeNightDiscountPrice: {
     type: String,
   },
 });

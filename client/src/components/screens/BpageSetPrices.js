@@ -14,6 +14,8 @@ const SetPrices = () => {
     const [largeDiscountPrice, setLargeDiscountPrice] = useState("");
     const [largeNightPrice, setLargeNightPrice] = useState("");
     const [largeNightDiscountPrice, setLargeNightDiscountPrice] = useState("");
+    const _id = localStorage.getItem("b_id");
+
 
     useEffect(() => {
       fetch(`/api/userHotel/${localStorage.getItem("b_id")}`, {
@@ -40,6 +42,43 @@ const SetPrices = () => {
           setLargeNightDiscountPrice(data[0].roomLargeData.largeNightDiscountPrice);
         });
     }, []);
+
+    const PostData = ()=>{
+      fetch("/api/userHotel/updatePrices",{
+        method: "put",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+        smallPrice, mediumPrice, largePrice, 
+        smallNightPrice, mediumNightPrice, largeNightPrice, 
+        smallDiscountPrice, mediumDiscountPrice, largeDiscountPrice, 
+        smallNightDiscountPrice, mediumNightDiscountPrice, largeNightDiscountPrice, 
+         _id 
+        }),
+      })
+      .then(res=>res.json())
+      .then(data=>{
+        if(data.error){
+          Swal.fire({
+            icon: "error",
+            title: "ERROR",
+            text: data.error,
+            confirmButtonColor: "#fe9124",
+            allowEnterKey: false,
+          });
+        }
+        else{
+          Swal.fire({
+            icon: "success",
+            title: "Saved",
+            text: "User Account Created",
+            confirmButtonColor: "#fe9124",
+            allowEnterKey: false,
+          });
+        }
+      })
+    }
 
     return (
         <div>
@@ -212,7 +251,7 @@ const SetPrices = () => {
                 borderRadius: "8px",
                 border: "none",
               }}
-              //onClick={PostData}
+              onClick={()=>PostData()}
             >
               Submit
             </a>
