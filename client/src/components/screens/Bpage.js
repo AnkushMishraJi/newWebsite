@@ -1,35 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import BHotelBlocker from "./BHotelBlocker";
+import SetPrices from "./BpageSetPrices";
 
 
 const HotelDashboard = () => {
   const [activeState, setActiveState] = useState("blocker");
-  //To refresh every minute
-  //   const [seconds, setSeconds] = useState(0);
-  //   const [isActive, setIsActive] = useState(false);
-
-  //   function toggle() {
-  //     setIsActive(!isActive);
-  //   }
-
-  //   function reset() {
-  //     setSeconds(0);
-  //     setIsActive(false);
-  //   }
-
-  //   useEffect(() => {
-  //     let interval = null;
-  //     if (isActive) {
-  //       interval = setInterval(() => {
-  //         setSeconds(seconds => seconds + 1);
-  //       }, 1000);
-  //     } else if (!isActive && seconds !== 0) {
-  //       clearInterval(interval);
-  //     }
-  //     return () => clearInterval(interval);
-  //   }, [isActive, seconds]);
-  //To refresh every minute
 
   const [myBookings, setMyBookings] = useState([]);
   const [isBlockedOn, setIsBlockedOn] = useState([""]);
@@ -51,7 +27,8 @@ const HotelDashboard = () => {
       .then((res) => res.json())
       .then((data) => {
         setIsBlockedOn(data[0].isBlockedOn);
-        // console.log(data[0].isBlockedOn);
+        localStorage.setItem("b_id", data[0]._id);
+        //console.log(data[0].isBlockedOn);
       });
   }, [activeState]);
 
@@ -78,44 +55,9 @@ const HotelDashboard = () => {
       });
   };
 
-  // var splitDate = DateOfBooking.split(" ");
-  // var displayDate = splitDate.splice(0, 4).join(" ");
-
-  // var splitTime = ArrivalTime.split(" ");
-  // var displayTime = splitTime.splice(3, 2).join(" ");
-
-  return (
-    <div className="">
-      <div className="d-flex flex-column w-25 mr-auto">
-        <div
-          className="waves-effect waves-light btn font-weight-bolder bg-orange"
-          onClick={() => {
-            setActiveState("blocker");
-          }}
-        >
-          Block/Unblock
-        </div>
-        {/* <div
-          className="waves-effect waves-light btn font-weight-bolder bg-orange"
-          onClick={() => {
-            setActiveState("bookings");
-            showbookings();
-          }}
-        >
-          Bookings
-        </div> */}
-        {/* <Link to="/BuploadPhoto" className="waves-effect waves-light btn font-weight-bolder bg-orange">
-          Upload Photos
-        </Link> */}
-        <button
-          onClick={clickHandler}
-          className="waves-effect waves-light btn font-weight-bolder bg-orange"
-        >
-          Sign out
-        </button>
-      </div>
-
-      {activeState == "bookings" ? (
+  const render = () =>{
+    if(activeState=="bookings"){
+      return(
         <div className="">
           {myBookings.map((item) => {
             return (
@@ -129,7 +71,17 @@ const HotelDashboard = () => {
             );
           })}
         </div>
-      ) : (
+      );
+    }
+    else if(activeState=="setPrice"){
+      return(
+        <div>
+          <SetPrices />
+        </div>
+      );
+    }
+    else {
+      return(
         <div>
           <div className="mt-5 w-50 mx-auto">
             <BHotelBlocker />
@@ -146,7 +98,39 @@ const HotelDashboard = () => {
               </div>
           </div>
         </div>
-      )}
+      );
+    }
+  }
+
+  return (
+    <div className="">
+      <div className="d-flex flex-column w-25 mr-auto">
+        <div
+          className="waves-effect waves-light btn font-weight-bolder bg-orange"
+          onClick={() => {
+            setActiveState("blocker");
+          }}
+        >
+          Block/Unblock
+        </div>
+
+        <div
+          className="waves-effect waves-light btn font-weight-bolder bg-orange"
+          onClick={() => {
+            setActiveState("setPrice");
+          }}
+        >
+          Set/Update Prices
+        </div>
+
+        <button
+          onClick={clickHandler}
+          className="waves-effect waves-light btn font-weight-bolder bg-orange"
+        >
+          Sign out
+        </button>
+      </div>
+      {render()}
     </div>
   );
 };

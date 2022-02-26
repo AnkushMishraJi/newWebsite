@@ -770,8 +770,10 @@ const LandingPage = () => {
             </div>
           </div>
         </Carousel>
-        <p>.</p>
-        <p>.</p>
+        <p> </p><br/>
+        <p> </p><br/>
+        <p> </p><br/>
+        <p> </p><br/>
       </div>
     );
   }

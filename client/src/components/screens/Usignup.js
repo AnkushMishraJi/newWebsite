@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useReducer } from "react";
 import { useHistory, Link } from "react-router-dom";
-import M from "materialize-css";
+//import M from "materialize-css";
 import { Container } from "react-materialize";
 
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
@@ -8,9 +8,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import moment from "moment";
+//import moment from "moment";
 import Swal from "sweetalert2";
-import { getListSubheaderUtilityClass } from "@mui/material";
+//import { getListSubheaderUtilityClass } from "@mui/material";
 import { TabTitle } from "../TitleSetter";
 function UserSignup() {
   const history = useHistory();
@@ -108,7 +108,7 @@ function UserSignup() {
           <FontAwesomeIcon className="back-arrow" icon={faArrowLeft} />
         </Link>
         <h2 className="text-center mt-3">Welcome !</h2>
-        <div className="container-input ps-2 mx-auto">
+        <div className="container-input ps-2 mx-auto w-40">
           <input
             id="name"
             type="text"
@@ -121,7 +121,7 @@ function UserSignup() {
           />
         </div>
 
-        <div className="container-input ps-2  mx-auto">
+        <div className="container-input ps-2 mx-auto w-40">
           <input
             id="email"
             type="text"
@@ -134,7 +134,7 @@ function UserSignup() {
           />
         </div>
 
-        <div className="container-input mx-auto">
+        <div className="container-input ps-2 mx-auto w-40">
           <Container>
             <DatePicker
               selected={dob}
@@ -157,7 +157,7 @@ function UserSignup() {
         </div>
 
         <a
-          className="text-light w-70 mt-5 mx-auto text-center pt-2 font-weight-bolder"
+          className="text-light w-40 mt-5 mx-auto text-center pt-2 font-weight-bolder"
           style={{
             backgroundColor: "#fe9124",
             height: "40px",

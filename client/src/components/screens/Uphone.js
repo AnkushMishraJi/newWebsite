@@ -113,12 +113,19 @@ const UserPhoneCheck = () => {
         </div>
       </div>
     </div>
+    <p></p><br/>
+    <p></p><br/>
+    <p></p><br/>
+    <p></p><br/>
+    <p></p><br/>
+    <footer>
     {
       isMobile || width <= 980 ?
       null
       :
-      <FooterDesktop />
+      <FooterDesktop position='fixed'/>
     }
+    </footer>
     </>
   );
 };

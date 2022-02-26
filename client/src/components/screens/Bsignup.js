@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import M from "materialize-css";
+// import M from "materialize-css";
 import Swal from "sweetalert2";
 
 function Signup() {
@@ -212,12 +212,12 @@ function Signup() {
           </label>
           <br/>
 
-          <label>
+          {/* <label>
             <input
               type="checkbox"
             />
             <span>Is Customizable?</span>
-          </label>
+          </label> */}
 
           <div>
             <label>
