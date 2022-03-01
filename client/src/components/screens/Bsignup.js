@@ -12,6 +12,7 @@ function Signup() {
   const [location, setLocation] = useState("");
   const [address, setAddress] = useState("");
   const [girlsWithBoys, setGirlsWithBoys] = useState(false);
+  const [isCustomisable, setIsCustomisable] = useState(false);
   const [isNightPartyAllowed, setIsNightPartyAllowed] = useState(false);
 
   const [smallPrice, setSmallPrice] = useState("");
@@ -108,6 +109,7 @@ function Signup() {
         address,
         girlsWithBoys,
         isNightPartyAllowed,
+        isCustomisable,
         roomSmallData,
         roomMediumData,
         roomLargeData,
@@ -212,12 +214,16 @@ function Signup() {
           </label>
           <br/>
 
-          {/* <label>
+          <label>
             <input
               type="checkbox"
+              value={isCustomisable}
+              onClick={(e) => {
+                setIsCustomisable(!isCustomisable);
+              }}
             />
             <span>Is Customizable?</span>
-          </label> */}
+          </label>
 
           <div>
             <label>
