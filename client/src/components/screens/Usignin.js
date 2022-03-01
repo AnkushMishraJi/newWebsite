@@ -43,6 +43,20 @@ const UserSignin = () => {
     onSignInSubmit();
   }, []);
 
+  useEffect(() => {
+    const phoneNumber = localStorage.getItem("phone");
+    fetch(`/api/getname?phoneNumber=${phoneNumber}`, {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        localStorage.setItem("UserName",data);
+      });
+  }, []);
+
   const history = useHistory();
 
   const configureCaptcha = () => {

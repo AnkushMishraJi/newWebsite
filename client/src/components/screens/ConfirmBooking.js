@@ -13,7 +13,7 @@ import { Carousel } from "react-responsive-carousel";
 import TimePicker from "@mui/lab/TimePicker";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faTimesCircle, faPlusCircle, faMinusCircle, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faTimesCircle, faPlusCircle, faMinusCircle, faTrash, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 import Swal from "sweetalert2";
 import FooterDesktop from "../FooterDesktop";
@@ -69,7 +69,13 @@ const ConfirmBooking = () => {
   const [addedDecorTheme,setAddedDecorTheme] = useState();
   const [addedDecorTier,setAddedDecorTier] = useState();
   const [addedSpeakerName, setAddedSpeakerName] = useState();
-  const [coupons, setCoupons] = useState([])
+  const [coupons, setCoupons] = useState([]);
+  const [showPaymentModal, setShowPaymentModal] = useState(false)
+  const [havePromoCode, setHavePromoCode] = useState(false);
+  const [input_coupon, setInputCoupon] = useState("");
+  const [promoCodeTried, setPromoCodeTried] = useState(false);
+  const [promoFlatDiscount, setPromoFlatDiscount] = useState(0)
+  const [promoPercentDiscount, setPromoPercentDiscount] = useState(0)
 
 
   var currTime= new Date();
@@ -164,7 +170,6 @@ const ConfirmBooking = () => {
       setFirstPrice(localStorage.getItem("price"));
     }
 
-    console.log(firstPrice,"first price")
   }, [totalPersons, isNightParty]);
 
   useEffect(() => {
@@ -199,13 +204,8 @@ const ConfirmBooking = () => {
   //   console.log(price,isNightParty);
   // };
 
-  const [havePromoCode, setHavePromoCode] = useState(false);
-  const [input_coupon, setInputCoupon] = useState("");
-  const [promoCodeTried, setPromoCodeTried] = useState(false);
-  const [promoFlatDiscount, setPromoFlatDiscount] = useState(0)
-  const [promoPercentDiscount, setPromoPercentDiscount] = useState(0)
 
-  const myCoupon = "Ankush70" ;
+
 
   const renderPromoCode = ()=>{
     
@@ -308,13 +308,36 @@ const ConfirmBooking = () => {
 
   const liveRzpKey="rzp_live_S03VwKfzlY7FmS";
   const testRzpKey="rzp_test_ZwIQoXjws19gWq";
-  async function displayRazorpay() {
+
+  const displayAmount = (payMethod)=>{
+    let amount=0;
+    if(payMethod=="service" && count == 0){
+      amount=parseInt(firstPrice)/10+addedDecorCost+addedSpeakerCost;
+      localStorage.setItem("CollectAmountHotel",parseInt(firstPrice))
+    }
+    else if(payMethod=="service" && count != 0){
+      amount=parseInt(price)/10+addedDecorCost+addedSpeakerCost;
+      localStorage.setItem("CollectAmountHotel",parseInt(price))
+    }
+    else if(payMethod=="complete" && count == 0){
+      amount=parseInt((firstPrice*(100-promoPercentDiscount)/100))+addedDecorCost+addedSpeakerCost-promoFlatDiscount+firstPrice/10;
+      localStorage.setItem("CollectAmountHotel","0")
+    }
+    else{
+      amount=parseInt((price*(100-promoPercentDiscount)/100))+addedDecorCost+addedSpeakerCost-promoFlatDiscount+price/10;
+      localStorage.setItem("CollectAmountHotel","0")
+    }
+
+    return amount;
+  }
+
+  async function displayRazorpay(payMethod) {
     // console.log("rzp Running");
     const data = await fetch("/api/razorpay", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify({
-        amount: (count == 0 ? parseInt((firstPrice*(100-promoPercentDiscount)/100))+addedDecorCost+addedSpeakerCost-promoFlatDiscount : parseInt((price*(100-promoPercentDiscount)/100))+addedDecorCost+addedSpeakerCost-promoFlatDiscount) * 100,
+        amount: displayAmount(payMethod) * 100,
         currency: "INR",
         payment_capture: 1,
         receipt: shortid.generate(),
@@ -390,11 +413,73 @@ const ConfirmBooking = () => {
     
   }
 
+  const openPaymentModal = ()=>{
+    return(
+      <div className={`${isMobile || width <= 980 ?`w-70`:`w-25`} mx-auto`} style={{marginTop:"10%"}} >
+      <div className={`${isMobile || width <= 980 ?`w-70`:`w-25`} bg-light p-4`} style={{position:"absolute",borderRadius:"10px"}}>
+        <div className='d-flex justify-content-between'>
+          <p className='font-weight-bolder f-16'>Payment Method</p>
+          <FontAwesomeIcon
+            className="f-32"
+            style={{background:"#1A1B41", borderRadius:"50%", color:"white"}}
+            icon={faTimesCircle}
+            onClick={()=>{setShowPaymentModal(false)}}
+          />
+        </div>
+        <div className='d-flex justify-content-between mt-3'>
+          <div>
+            <p className='f-16 line-ht-0'>Reserve for Rs {displayAmount("service")}</p>
+            <p className='f-14 line-ht-0'>& Pay rest at Hotel</p>
+          </div>
+          <button className="text-light px-5 font-weight-bolder"
+              style={{
+                backgroundColor: "#fe9124",
+                borderRadius: "8px",
+                border: "none",
+              }}
+              onClick={() => {
+                isAuthenticated ? displayRazorpay("service") : history.push("/usignin");
+              }}
+            >
+              <FontAwesomeIcon
+              className="f-22"
+              style={{background:"#fe9124", color:"white"}}
+              icon={faArrowRight}
+              />
+            </button>
+        </div>
+        <div className='d-flex justify-content-between mt-3'>
+          <div>
+          <p className='f-16 line-ht-0'>Pay full in advance</p>
+          <p className='f-16 line-ht-0'>Rs {displayAmount("complete")}</p>
+          </div>
+          <button className="text-light px-5 font-weight-bolder"
+              style={{
+                backgroundColor: "#1A1B41",
+                borderRadius: "8px",
+                border: "none",
+              }}
+              onClick={() => {
+                isAuthenticated ? displayRazorpay("complete") : history.push("/usignin");
+              }}
+            >
+              <FontAwesomeIcon
+              className="f-22"
+              style={{background:"#1A1B41", color:"white"}}
+              icon={faArrowRight}
+              />
+            </button>
+        </div>
+      </div>
+      </div>
+    )
+  }
+
   return (
     <>
     <div className={`d-flex flex-column align-items-center p-5 bg-brand ${isMobile || width <= 980 ? null : `w-40 mx-auto`}`} 
-    style={showDecorCarousel || showSpeakerCarousel ? {filter:"blur(8px)"} : null}
-    onClick={()=>{if(showDecorCarousel || showSpeakerCarousel){setShowDecorCarousel(false);setShowSpeakerCarousel(false);}}}
+    style={showDecorCarousel || showSpeakerCarousel || showPaymentModal ? {filter:"blur(8px)"} : null}
+    onClick={()=>{if(showDecorCarousel || showSpeakerCarousel || showPaymentModal){setShowDecorCarousel(false);setShowSpeakerCarousel(false);setShowPaymentModal(false)}}}
     > 
       <p className="text-light f-18">Confirm Booking?</p>
       {
@@ -543,11 +628,12 @@ const ConfirmBooking = () => {
         <p className="font-weight-bolder">Room</p>
         <p className="right-text">{room}</p>
         <p className="font-weight-bolder">Amount</p>
-        <p className="right-text">Rs. {count==0 ? parseInt((firstPrice*(100-promoPercentDiscount)/100))+addedDecorCost+addedSpeakerCost-promoFlatDiscount : parseInt((price*(100-promoPercentDiscount)/100))+addedDecorCost+addedSpeakerCost-promoFlatDiscount}</p>
+        <p className="right-text">Rs. {displayAmount("complete")}</p>
       </div>
       <button
         onClick={() => {
-          isAuthenticated ? displayRazorpay() : history.push("/usignin");
+          // isAuthenticated ? displayRazorpay() : history.push("/usignin");
+          setShowPaymentModal(true)
         }}
         className="text-light w-40 mt-3 "
         style={{
@@ -638,6 +724,9 @@ const ConfirmBooking = () => {
         }
 
         </Carousel>
+        :
+        showPaymentModal ?
+        openPaymentModal()
         :
         null
       }

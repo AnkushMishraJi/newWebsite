@@ -6,6 +6,7 @@ import FooterDesktop from "../FooterDesktop";
 import { TabTitle } from "../TitleSetter";
 const isBrowser = () => typeof window !== "undefined"
 const isMobile = isBrowser() ? (window.innerWidth <= 980 ? true : false) :  false;
+const phoneNumber = localStorage.getItem("phone");
 
 const UserPhoneCheck = () => {
   const history = useHistory();
@@ -36,7 +37,6 @@ const UserPhoneCheck = () => {
   useEffect(() => {
     // localStorage.clear();
     localStorage.setItem("activePage", "login");
-    const phoneNumber = localStorage.getItem("phone");
     fetch(`/api/getname?phoneNumber=${phoneNumber}`, {
       method: "get",
       headers: {
@@ -48,7 +48,7 @@ const UserPhoneCheck = () => {
         setName(data);
         console.log(data);
       });
-  }, []);
+  }, [phone]);
 
   const onSubmitPhone = () => {
     localStorage.setItem("phone", phone);

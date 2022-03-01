@@ -129,7 +129,7 @@ const HotelList = () => {
         };
         if(isMobile || width <= 980 ){
                   return (
-                    <Link key={oneHotel._id} to={"/userHotel/" + oneHotel._id}>
+                    <Link key={oneHotel._id} key={oneHotel._id} to={"/userHotel/" + oneHotel._id}>
                       <div className="hlist" style={{width:"85%"}}>
                         { oneHotel.mainPic ?
                         <img
@@ -171,7 +171,7 @@ const HotelList = () => {
                 }
                 else{
                   return(
-                        <Col lg="4" md="6" sm="12">
+                        <Col lg="4" md="6" sm="12" key={oneHotel._id}>
                           <Link  to={"/userHotel/" + oneHotel._id} >
                             <div className="hlist my-3" style={{width:"98%"}}>
                               { oneHotel.mainPic ?

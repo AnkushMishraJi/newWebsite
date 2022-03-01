@@ -37,6 +37,8 @@ const Bill = () => {
   const addedSpeakerName = localStorage.getItem("speaker");
   const addedDecorTheme = localStorage.getItem("decoration_theme");
   const addedDecorTier = localStorage.getItem("decoration_tier");
+  const UserName = localStorage.getItem("UserName")
+  const CollectAmountHotel = localStorage.getItem("CollectAmountHotel");
 
   var time_slot;
   var type;
@@ -89,6 +91,8 @@ const Bill = () => {
         HotelEmail,
         Speaker: addedSpeakerName,
         Decoration: addedDecorTheme + " " + addedDecorTier,
+        UserName,
+        CollectAmountHotel,
       }),
     })
       .then((res) => res.json())

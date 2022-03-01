@@ -48,6 +48,14 @@ const userBookingsSchema = new mongoose.Schema({
   Decoration:{
     type: String,
     required: false,
+  },
+  UserName: {
+    type: String,
+    required: true,
+  },
+  CollectAmountHotel: {
+    type: Number,
+    required: false,
   }
 });
 

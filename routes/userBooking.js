@@ -43,6 +43,8 @@ router.post("/api/addConfirmBookingsUser", (req, res) => {
     HotelEmail,
     Speaker,
     Decoration,
+    UserName,
+    CollectAmount,
   } = req.body;
   
   const UserBookings = new confirmedUserBooking({
@@ -58,6 +60,8 @@ router.post("/api/addConfirmBookingsUser", (req, res) => {
     Type,
     Speaker,
     Decoration,
+    UserName,
+    CollectAmount,
   });
   console.log(User); 
   UserBookings.save()
@@ -66,6 +70,7 @@ router.post("/api/addConfirmBookingsUser", (req, res) => {
         .sendMail({
           to: HotelEmail,
           from: "meraaddacontact@gmail.com",
+          cc: "meraaddacontact@gmail.com",
           subject: "New Booking Recieved - Hotel",
           html:
             "<div>" +
@@ -73,12 +78,20 @@ router.post("/api/addConfirmBookingsUser", (req, res) => {
             "You have a new booking!" +
             "</b>" +
             "<p>" +
+            "Customer Name : " +
+            UserName +
+            "</p>" +
+            "<p>" +
             "Customer Mobile Number : " +
             User +
             "</p>" +
             "<p>" +
             "Date Of Booking : " +
             DateOfBooking +
+            "</p>" +
+            "<p>" +
+            "Collect Amount : " +
+            CollectAmount +
             "</p>" +
             "<p>" +
             "ArrivalTime : " +
@@ -92,6 +105,14 @@ router.post("/api/addConfirmBookingsUser", (req, res) => {
             "Type : " +
             Type +
             "</p>" +
+            "<p>" +
+            "Speaker : " +
+            Speaker +
+            "</p>" +
+            "<p>" +
+            "Decoration : " +
+            Decoration +
+            "</p>" +
             "</div>",
         })
         
@@ -103,6 +124,7 @@ router.post("/api/addConfirmBookingsUser", (req, res) => {
             {
             to: "ankush.rdso@gmail.com",
             from: "meraaddacontact@gmail.com",
+            cc: "meraaddacontact@gmail.com",
             subject: "New Booking Recieved - Operations",
             html:
               "<div>" +
