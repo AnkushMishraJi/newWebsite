@@ -225,6 +225,54 @@ const UserHotel = () => {
 
     history.push("/confirmBooking");
   };
+
+  const renderTags = ()=>{
+    return(
+      <Row>
+        <Col sm="4" lg="4" md="4" xs="4" className='p-2'
+          >
+            <div className="text-light bg-orange p-2 f-14"
+            style={{
+              border: "none",
+              borderRadius:"12px"
+            }}>
+            No Smoking
+            </div>
+          </Col>
+          <Col sm="4" lg="4" md="4" xs="4" className='p-2'
+          >
+            <div className="text-light bg-orange p-2 f-14"
+            style={{
+              border: "none",
+              borderRadius:"12px"
+            }}>
+            Couple Friendly
+            </div>
+          </Col>
+          <Col sm="4" lg="4" md="4" xs="4" className='p-2'
+          >
+            <div className="text-light bg-orange p-2 f-14"
+            style={{
+              border: "none",
+              borderRadius:"12px"
+            }}>
+            Not Couple Friendly
+            </div>
+          </Col>
+          <Col sm="4" lg="4" md="4" xs="4" className='p-2'
+          >
+            <div className="text-light bg-orange p-2 f-14"
+            style={{
+              border: "none",
+              borderRadius:"12px"
+            }}>
+            Outside food not allowed
+            </div>
+          </Col>
+        </Row>
+    )
+  }
+
   if(isMobile || width <= 980 ){
   return (
     <div className="w-100 text-light bg-brand">
@@ -253,6 +301,9 @@ const UserHotel = () => {
         <h4 className="f-16 w-90 text-center pt-3">
         Night charges will be applied on bookings after 6pm
         </h4>
+        <div className="w-90 p-4 pb-2 ">
+          {renderTags()}
+        </div>
         <div className="d-flex pt-4">
           <h4 className="f-16 px-2">Choose one</h4>
           <FontAwesomeIcon
