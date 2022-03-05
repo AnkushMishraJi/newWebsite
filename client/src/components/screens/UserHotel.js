@@ -53,6 +53,7 @@ const UserHotel = () => {
   const [smallActive, setSmallActive] = useState("room-type");
   const [medActive, setMedActive] = useState("room-type");
   const [largeActive, setLargeActive] = useState("room-type");
+  const [hotelTags, setHotelTags] = useState([]);
 
   const isAuthenticated = localStorage.getItem("isAuthenticated");
 
@@ -131,6 +132,7 @@ const UserHotel = () => {
         setLocationHotel(data[0].location);
         setAddress(data[0].address);
         setHotel(data[0]);
+        setHotelTags(data[0].hotelWarningTags)
         localStorage.setItem("isBlockedOn", data[0].isBlockedOn);
         localStorage.getItem("isNightParty");
         localStorage.setItem("hotelEmail", data[0].email);
@@ -228,48 +230,16 @@ const UserHotel = () => {
 
   const renderTags = ()=>{
     return(
-      <Row>
-        <Col sm="4" lg="4" md="4" xs="4" className='p-2'
-          >
-            <div className="text-light bg-orange p-2 f-14"
-            style={{
-              border: "none",
-              borderRadius:"12px"
-            }}>
-            No Smoking
+            <div>
+              { hotelTags.map((hotelTag)=>{
+                return(
+                <div className='bg-orange d-inline-block px-2 m-1' style={{borderRadius:"12px"}}>
+                  {hotelTag.tag_name}
+                </div>
+                )
+              })
+              }
             </div>
-          </Col>
-          <Col sm="4" lg="4" md="4" xs="4" className='p-2'
-          >
-            <div className="text-light bg-orange p-2 f-14"
-            style={{
-              border: "none",
-              borderRadius:"12px"
-            }}>
-            Couple Friendly
-            </div>
-          </Col>
-          <Col sm="4" lg="4" md="4" xs="4" className='p-2'
-          >
-            <div className="text-light bg-orange p-2 f-14"
-            style={{
-              border: "none",
-              borderRadius:"12px"
-            }}>
-            Not Couple Friendly
-            </div>
-          </Col>
-          <Col sm="4" lg="4" md="4" xs="4" className='p-2'
-          >
-            <div className="text-light bg-orange p-2 f-14"
-            style={{
-              border: "none",
-              borderRadius:"12px"
-            }}>
-            Outside food not allowed
-            </div>
-          </Col>
-        </Row>
     )
   }
 
