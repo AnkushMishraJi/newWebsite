@@ -64,6 +64,17 @@ const roomSchemaLarge = new mongoose.Schema({
   },
 });
 
+const hotelWarningTagsSchema = new mongoose.Schema(
+  {
+    tag_name:{
+      type:String,
+    },
+    tag_description:{
+      type: String,
+    }
+  }
+);
+
 //Business User Schema
 const businessUserSchema = new mongoose.Schema({
   hotelName: {
@@ -115,6 +126,10 @@ const businessUserSchema = new mongoose.Schema({
   isCustomisable:{
     type: Boolean,
     required: true,
+  },
+  hotelWarningTags:{
+    type: [hotelWarningTagsSchema],
+    required: false,
   }
 });
 

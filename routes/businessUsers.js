@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
+const { makePublicRouterInstance } = require("next/router");
 
 const businessUserSchema = require("../models/businessUser");
 const businessUser = mongoose.model("BusinessUser", businessUserSchema);
@@ -207,4 +208,31 @@ router.put("/api/userHotel/updatePrices", (req, res) => {
     }
   });
 });
+
+router.post("/api/userHotel/addTags", (req, res) => {
+  const { tag_name, tag_description, _id } = req.body;
+  businessUser
+    .findOneAndUpdate(
+      { _id: _id },
+      {
+        $push: { 
+          hotelWarningTags : {
+            tag_name,
+            tag_description,
+          }
+         },
+      },
+      {
+        new: true,
+      }
+    )
+    .exec((err, result) => {
+      if (err) {
+        return res.status(422).json({ error: err });
+      } else {
+        return res.status(201).json({"success":"new tag added"});
+      }
+    });
+});
+
 module.exports = router;
