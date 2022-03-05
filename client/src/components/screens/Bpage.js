@@ -103,7 +103,8 @@ const HotelDashboard = () => {
   }
 
   return (
-    <div className="">
+    <>
+    {/* <div className="">
       <div className="d-flex flex-column w-25 mr-auto">
         <div
           className="waves-effect waves-light btn font-weight-bolder bg-orange"
@@ -131,7 +132,47 @@ const HotelDashboard = () => {
         </button>
       </div>
       {render()}
+    </div> */}
+    <div className="mx-auto" style={{ display: "grid", gridGap: "25px" }}>
+    
+      <div className="container">
+        <div className="row">
+          <div className="col-md-3 col-10 col-xxl-3 mx-auto" style={{borderRight: "2px solid black"}}>
+              <div className="d-flex flex-column w-75 mr-auto">
+                <div
+                  className="waves-effect waves-light btn font-weight-bolder bg-orange"
+                  onClick={() => {
+                    setActiveState("blocker");
+                  }}
+                >
+                  Block/Unblock
+                </div>
+                <br/>
+                <div
+                  className="waves-effect waves-light btn font-weight-bolder bg-orange"
+                  onClick={() => {
+                    setActiveState("setPrice");
+                  }}
+                >
+                  Set/Update Prices
+                </div>
+                <br/>
+                <button
+                  onClick={clickHandler}
+                  className="waves-effect waves-light btn font-weight-bolder bg-orange"
+                >
+                  Sign out
+                </button>
+              </div>
+              
+          </div>
+          <div className="col-md-9 col-10 col-xxl-9 mx-auto">
+            {render()}
+          </div>
+        </div>
+      </div>
     </div>
+    </>
   );
 };
 
