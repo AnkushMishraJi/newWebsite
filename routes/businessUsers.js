@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-const { makePublicRouterInstance } = require("next/router");
 
 const businessUserSchema = require("../models/businessUser");
 const businessUser = mongoose.model("BusinessUser", businessUserSchema);

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
+import Addtag from "../Btags";
 import BHotelBlocker from "./BHotelBlocker";
 import SetPrices from "./BpageSetPrices";
 
@@ -80,6 +81,13 @@ const HotelDashboard = () => {
         </div>
       );
     }
+    else if(activeState=="addtags"){
+      return(
+        <div>
+          <Addtag />
+        </div>
+      );
+    }
     else {
       return(
         <div>
@@ -155,6 +163,15 @@ const HotelDashboard = () => {
                   }}
                 >
                   Set/Update Prices
+                </div>
+                <br/>
+                <div
+                  className="waves-effect waves-light btn font-weight-bolder bg-orange"
+                  onClick={() => {
+                    setActiveState("addtags");
+                  }}
+                >
+                  Add Tags
                 </div>
                 <br/>
                 <button

@@ -421,360 +421,40 @@ const LandingPage = () => {
   }
   else{
     return (
-      <div className=" text-center text-light">
-        <Carousel
-          showThumbs={false}
-          infiniteLoop={true}
-          showIndicators={false}
-          showStatus={false}
-          showArrows={false}
-          interval={5000}
-          autoPlay={true}
-          animationHandler={"fade"}
-          swipeable={false}
-          id="mains"
-        >
-          <div className="land-slide mb-3 ">
-            <img src={you} alt="" />
-          </div>
-          <div className="land-slide mb-3 ">
-            <img src={bdayArt} alt="" />
-          </div>
-          <div className="land-slide mb-3 ">
-            <img src={dateNight} alt="" />
-          </div>
-          <div className="land-slide mb-3 ">
-            <img src={brideToBe} alt="" />
-          </div>
-          <div className="land-slide mb-3 ">
-            <img src={stag_night} alt="" />
-          </div>
-          <div className="land-slide mb-3 ">
-            <img src={weekend_night} alt="" />
-          </div>
-        </Carousel>
-        <div className="logo-and-name">
-          <img
-            className=" mb-2"
-            src={logo}
-            alt="Logo"
-            style={{ width: "3em", height: "3em" }}
-          />
-  
-          <h2 className="brand-logo f-28 text-light">MERA ADDA</h2>
-        </div>
-        <div className="landing-page-counter text-light ">
-          <p className="f-18 font-weight">Private Parties</p>
-          <p className="f-18 font-weight">Customised for</p>
-  
-          <div className="f-24 font-weight-bolder d-flex brand-logo ">
-            <TextTransition
-              className=" mx-auto"
-              text={TEXTS[index % TEXTS.length]}
-              springConfig={presets.stiff}
-            />
-          </div>
-        </div>
-  
-        <div className=" ">
-          <button
-            className=" w-60 font-weight-bolder f-18"
-            style={{
-              position: "absolute",
-              color: "#1a1b41",
-              backgroundColor: "#fe9124",
-              height: "40px",
-              borderRadius: "8px",
-              border: "none",
-              top: "62vh",
-              left: 0,
-              right: 0,
-              marginLeft: "auto",
-              marginRight: "auto",
-              zIndex: 400,
-            }}
-            onClick={()=>history.push('/')}
-          >
-            BOOK NOW
-          </button>
-          <Link to="scrollHere" smooth={true} duration={100}>
-            <p className="mt-3">Know More</p>
-            <FontAwesomeIcon
-              style={{ color: "#fe9124", width: "2em", height: "2em" }}
-              icon={faChevronCircleDown}
-            />
-          </Link>
-        </div>
-        <div className="mx-auto">
-          <p className="brand-logo f-24 mt-5" id="scrollHere">
-            {" "}
-            Why Us?
-          </p>
-          <div className="benefits">
-            <img
-              className=" "
-              src={custom}
-              alt="Logo"
-              style={{ width: "8em", height: "8em" }}
-            />
-            <p className="font-weight-bolder f-18">Unprecedented Customisation</p>
-            <p>Have it your way</p>
-          </div>
-          <div className="benefits">
-            <img
-              className=" "
-              src={chips}
-              alt="Logo"
-              style={{ width: "8em", height: "8em" }}
-            />
-            <p className="font-weight-bolder f-18">
-              Complimentary Snacks and Drinks
-            </p>
-            <p>Free snacks put smile on everybody's face.</p>
-          </div>
-          <div className="benefits">
-            <img
-              className="mt-4 "
-              src={lock}
-              alt="lock"
-              style={{ width: "5em", height: "5em" }}
-            />
-            <p className="font-weight-bolder f-18 ">Unmatched Privacy</p>
-            <p>
-              Enjoy your parties private, free from prying eyes & loud mouths.
-            </p>
-          </div>
-          <div className="benefits">
-            <img
-              className=" "
-              src={drinks}
-              alt="recordPlayer"
-              style={{ width: "8em", height: "8em" }}
-            />
-            <p className="font-weight-bolder f-18 mt-3">We set the bar high</p>
-            <p className="px-1">Complete bar setup at the venue</p>
-          </div>
-          <div className="benefits">
-            <img
-              className=" "
-              src={recordPlayer}
-              alt="recordPlayer"
-              style={{ width: "8em", height: "8em" }}
-            />
-            <p className="font-weight-bolder f-18 mt-3">Play your own music</p>
-            <p className="px-1">
-              BT enabled music speakers so you can listen to your own taste.
-            </p>
-          </div>
-          <div className="benefits">
-            <img
-              className=" "
-              src={playingCards}
-              alt="playingCards"
-              style={{ width: "8em", height: "8em" }}
-            />
-            <p className="font-weight-bolder f-18 mt-3">Exciting Games</p>
-            <p className="px-1">UNO, Playing cards, ball games provided</p>
-          </div>
-        </div>
-        <p className="brand-logo f-24 mt-5">The Customisables</p>
-        <a className="font-weight-bolder f-18  my-auto" href="tel:9569736905">
-          For customisation & help call at Customer Care (+91-9569736905)
-        </a>
-  
-        <p className="brand-logo f-18 mt-2">Speakers</p>
-        <Carousel
-          dynamicHeight={false}
-          showThumbs={false}
-          infiniteLoop={false}
-          showIndicators={false}
-          showStatus={false}
-          className="mb-5"
-          swipeScrollTolerance={50}
-          preventMovementUntilSwipeScrollTolerance={true}
-          centerMode={true}
-          centerSlidePercentage={80}
-          showArrows={false}
-        >
-          <div className="benefits-custom" id="zebronics">
-            <div className="tape">
-              <p className="font-weight-bolder f-18 my-auto">Zebronics</p>
-              <p className="font-weight-bolder f-16 my-auto">Complimentary</p>
-            </div>
-          </div>
-          <div className="benefits-custom" id="iball">
-            <div className="tape">
-              <p className="font-weight-bolder f-18 my-auto">Iball</p>
-              <p className="font-weight-bolder f-16 my-auto">Rs 250</p>
-            </div>
-          </div>
-          <div className="benefits-custom" id="jbl">
-            <div className="tape">
-              <p className="font-weight-bolder f-18 my-auto">JBL Flip 4</p>
-              <p className="font-weight-bolder f-16 my-auto">Rs 500</p>
-            </div>
-          </div>
-          <div className="benefits-custom" id="partybox">
-            <div className="tape">
-              <p className="font-weight-bolder f-18 my-auto">Party Boombox</p>
-              <p className="font-weight-bolder f-16 my-auto">Rs 1500</p>
-            </div>
-          </div>
-        </Carousel>
-        <p className="brand-logo f-18 mt-2">Decorations</p>
-        <Carousel
-          dynamicHeight={false}
-          showThumbs={false}
-          infiniteLoop={false}
-          showIndicators={false}
-          showStatus={false}
-          className="mb-5"
-          swipeScrollTolerance={50}
-          preventMovementUntilSwipeScrollTolerance={true}
-          centerMode={true}
-          centerSlidePercentage={80}
-          showArrows={false}
-        >
-          <div className="benefits-custom" id="birthday-regular">
-            <div className="tape">
-              <p className="font-weight-bolder f-18 my-auto">Birthday</p>
-              <p className="font-weight-bolder f-14 my-auto">Regular</p>
-              <p className="f-14 my-auto text-start px-2">100 Baloons</p>
-              <p className="f-14 my-auto text-start px-2">1 Birthday Foil</p>
-              <p className="f-14 my-auto text-start px-2">2 Curtains</p>
-              <p className="f-14 my-auto text-start px-2">2 Foil Baloons</p>
-              <p className="font-weight-bolder f-18 my-auto">Rs. 1000</p>
-            </div>
-          </div>
-          <div className="benefits-custom" id="birthday-premium">
-            <div className="tape">
-              <p className="font-weight-bolder f-18 my-auto">Birthday</p>
-              <p className="font-weight-bolder f-14 my-auto">Premium</p>
-              <p className="f-14 my-auto text-start px-2">200 Baloons</p>
-              <p className="f-14 my-auto text-start px-2">1 Birthday Foil</p>
-              <p className="f-14 my-auto text-start px-2">2 Curtains</p>
-              <p className="f-14 my-auto text-start px-2">4 Foil Baloons</p>
-              <p className="f-14 my-auto text-start px-2">1 Fairy Light</p>
-              <p className="f-14 my-auto text-start px-2">12 Hanging Photos</p>
-              <p className="font-weight-bolder f-18 my-auto">Rs. 1500</p>
-            </div>
-          </div>
-          <div className="benefits-custom" id="birthday-epic">
-            <div className="tape">
-              <p className="font-weight-bolder f-18 my-auto">Birthday</p>
-              <p className="font-weight-bolder f-14 my-auto">Epic</p>
-              <p className="f-14 my-auto text-start px-2">300 Baloons</p>
-              <p className="f-14 my-auto text-start px-2">1 Birthday Foil</p>
-              <p className="f-14 my-auto text-start px-2">1 Name Foil</p>
-              <p className="f-14 my-auto text-start px-2">2 Curtains</p>
-              <p className="f-14 my-auto text-start px-2">4 Foil Baloons</p>
-              <p className="f-14 my-auto text-start px-2">1 Fairy Light</p>
-              <p className="f-14 my-auto text-start px-2">12 Hanging Photos</p>
-              <p className="f-14 my-auto text-start px-2">1 Kg Rose Petals</p>
-              <p className="f-14 my-auto text-start px-2">12 Candles LED</p>
-              <p className="font-weight-bolder f-18 my-auto">Rs. 2000</p>
-            </div>
-          </div>
-          <div className="benefits-custom" id="date-night-regular">
-            <div className="tape">
-              <p className="font-weight-bolder f-18 my-auto">Date Night</p>
-              <p className="font-weight-bolder f-14 my-auto">Regular</p>
-              <p className="f-14 my-auto text-start px-2">100 Baloons</p>
-              <p className="f-14 my-auto text-start px-2">1 Love Foil</p>
-              <p className="f-14 my-auto text-start px-2">2 Foil Baloons</p>
-              <p className="f-14 my-auto text-start px-2">12 Candles LED</p>
-              <p className="font-weight-bolder f-18 my-auto">Rs. 1000</p>
-            </div>
-          </div>
-          <div className="benefits-custom" id="date-night-premium">
-            <div className="tape">
-              <p className="font-weight-bolder f-18 my-auto">Date Night</p>
-              <p className="font-weight-bolder f-14 my-auto">Premium</p>
-              <p className="f-14 my-auto text-start px-2">
-                200 Baloons & Ribbons
-              </p>
-              <p className="f-14 my-auto text-start px-2">1 Love Foil</p>
-  
-              <p className="f-14 my-auto text-start px-2">2 Foil Baloons</p>
-  
-              <p className="f-14 my-auto text-start px-2">24 Candles LED</p>
-              <p className="font-weight-bolder f-18 my-auto">Rs. 1500</p>
-            </div>
-          </div>
-          <div className="benefits-custom" id="date-night-epic">
-            <div className="tape">
-              <p className="font-weight-bolder f-18 my-auto">Date Night</p>
-              <p className="font-weight-bolder f-14 my-auto">Epic</p>
-              <p className="f-14 my-auto text-start px-2">
-                300 baloons & ribbons
-              </p>
-              <p className="f-14 my-auto text-start px-2">1 Love Foil</p>
-  
-              <p className="f-14 my-auto text-start px-2">4 Foil Baloons</p>
-  
-              <p className="f-14 my-auto text-start px-2">40 Candles LED</p>
-              <p className="f-14 my-auto text-start px-2">1 Kg Rose Petal</p>
-              <p className="font-weight-bolder f-18 my-auto">Rs. 2000</p>
-            </div>
-          </div>
-          <div className="benefits-custom" id="bride-to-be-regular">
-            <div className="tape">
-              <p className="font-weight-bolder f-18 my-auto">Bride to Be</p>
-              <p className="font-weight-bolder f-14 my-auto">Regular</p>
-              <p className="f-14 my-auto text-start px-2">
-                100 baloons & ribbons
-              </p>
-              <p className="f-14 my-auto text-start px-2">1 bride to be foil</p>
-              <p className="f-14 my-auto text-start px-2">2 Curtains</p>
-              <p className="f-14 my-auto text-start px-2">2 foil baloons</p>
-              <p className="font-weight-bolder f-18 my-auto">Rs. 1000</p>
-            </div>
-          </div>
-          <div className="benefits-custom" id="bride-to-be-premium">
-            <div className="tape">
-              <p className="font-weight-bolder f-18 my-auto">Bride to Be</p>
-              <p className="font-weight-bolder f-14 my-auto">Premium</p>
-              <p className="f-14 my-auto text-start px-2">
-                200 baloons & ribbons
-              </p>
-              <p className="f-14 my-auto text-start px-2">1 bride to be foil</p>
-              <p className="f-14 my-auto text-start px-2">2 Curtains</p>
-              <p className="f-14 my-auto text-start px-2">4 foil baloons</p>
-              <p className="f-14 my-auto text-start px-2">12 Hanging Photos</p>
-              <p className="font-weight-bolder f-18 my-auto">Rs. 1500</p>
-            </div>
-          </div>
-          <div className="benefits-custom" id="bride-to-be-epic">
-            <div className="tape">
-              <p className="font-weight-bolder f-18 my-auto">Bride to Be</p>
-              <p className="font-weight-bolder f-14 my-auto">Epic</p>
-              <p className="f-14 my-auto text-start px-2">
-                300 baloons & ribbons
-              </p>
-              <p className="f-14 my-auto text-start px-2">1 bride to be foil</p>
-              <p className="f-14 my-auto text-start px-2">2 Curtains</p>
-              <p className="f-14 my-auto text-start px-2">8 foil baloons</p>
-              <p className="f-14 my-auto text-start px-2">1 fairy light</p>
-              <p className="f-14 my-auto text-start px-2">12 Hanging Photos</p>
-              <p className="f-14 my-auto text-start px-2">12 Candles LED</p>
-              <p className="font-weight-bolder f-18 my-auto">Rs. 3000</p>
-            </div>
-          </div>
-          <div className="benefits-custom" id="custom">
-            <div className="tape">
-              <p className="font-weight-bolder f-18 my-auto">Custom</p>
-  
-              <p className="f-14 my-auto text-start px-2">
-                If you can think it we can do it!
-              </p>
-            </div>
-          </div>
-        </Carousel>
-        <p> </p><br/>
-        <p> </p><br/>
-        <p> </p><br/>
-        <p> </p><br/>
+      <>
+      <div
+      style={{
+        backgroundColor: 'black',
+        width: '100vw',
+        height: '100vh'
+      }}
+      >
+        
+        {/* <div className="container services">
+            		<div className="row my-5">
+            			<div className="col-md-4 col-10 col-xxl-4 mx-auto">
+            				<div className="card mb-3" style="max-width: 540px;">
+                                <div className="row">
+                                    <div className="col-md-4">
+                                        <img src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F36029%2Faroni-arsa-children-little.jpg%3Fauto%3Dcompress%26cs%3Dtinysrgb%26dpr%3D1%26w%3D500&imgrefurl=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Fcute%2520baby%2F&tbnid=GThwwJ1xbB2ZlM&vet=12ahUKEwjb2K2-sa_2AhV8UWwGHU_pB24QMygDegUIARDMAQ..i&docid=Vh31VJ4bpVqZCM&w=500&h=746&q=pic&ved=2ahUKEwjb2K2-sa_2AhV8UWwGHU_pB24QMygDegUIARDMAQ"/>
+                                    </div>
+                                    <div className="col-md-8">
+                                        <div className="card-body">
+                                            <h5 className="card-title">Card title</h5>
+                                            <p className="card-text">This is a wider card with supporting text.</p>
+                                            <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+            			</div>
+            			<div className="col-xxl-12 text-center my-5">
+            				<button type="button" className="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="right" title="Who Am I">Check More</button>
+            			</div>
+            		</div>
+            	</div> */}
       </div>
+      </>
     );
   }
 };
