@@ -88,25 +88,81 @@ const LandingPage = () => {
           Hear it from our customers!
         </p>
         <Row className='w-50 mx-auto text-light'>
-          <Col lg='4' md='6'>
-            <div style={{backgroundColor:'#101010'}}>
-              <p className='f-14'>
-                In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
-              </p>
-            </div>
-          </Col>
-          <Col lg='4' md='6' style={{backgroundColor:'#101010'}}>
-            <p className='f-14'>
+          <Col lg='4' md='6' className='mx-1' style={{backgroundColor:'#101010'}}>
+            <p className='f-14 mt-2'>
               In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
             </p>
+            <div style={{display:"flex",justifyContent:"space-around",margin:"18px 0px"}}>
+                <div>
+                    <img style={{width:"40px",height:"40px",borderRadius:"80px"}} src="https://images.unsplash.com/photo-1520183802803-06f731a2059f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcnNvbnxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60"/>
+                </div>
+                <div>
+                    <h6 className="mt-2">Victor Brimstone</h6>
+                </div>
+              </div>
           </Col>
-          <Col lg='4' md='6' style={{backgroundColor:'#101010'}}>
-            <p className='f-14'>
+          <Col lg='4' md='6' className='mx-1' style={{backgroundColor:'#101010'}}>
+            <p className='f-14 mt-2'>
               In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
             </p>
+            <div style={{display:"flex",justifyContent:"space-around",margin:"18px 0px"}}>
+                <div>
+                    <img style={{width:"40px",height:"40px",borderRadius:"80px"}} src="https://images.unsplash.com/photo-1520183802803-06f731a2059f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcnNvbnxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60"/>
+                </div>
+                <div>
+                    <h6 className="mt-2">Victor Brimstone</h6>
+                </div>
+              </div>
+          </Col>
+          <Col lg='4' md='6' className='mx-1' style={{backgroundColor:'#101010'}}>
+            <p className='f-14 mt-2'>
+              In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
+            </p>
+            <div style={{display:"flex",justifyContent:"space-around",margin:"18px 0px"}}>
+                <div>
+                    <img style={{width:"40px",height:"40px",borderRadius:"80px"}} src="https://images.unsplash.com/photo-1520183802803-06f731a2059f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcnNvbnxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60"/>
+                </div>
+                <div>
+                    <h6 className="mt-2">Victor Brimstone</h6>
+                </div>
+              </div>
           </Col>
         </Row>
       </div>
+    )
+  }
+
+  const about = () => {
+    return(
+      <section>
+            	<div className="text-center">
+            		<hr className="w-25 mx-auto"/>
+            	</div>
+            	<div className="container">
+            		<div className="row my-5">
+            			<div className="col-lg-6 col-md-6 col-12 col-xxl-6">
+            				<figure>
+            					<img src="https://images.unsplash.com/photo-1520183802803-06f731a2059f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcnNvbnxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60"
+                      alt="about images"
+                      style={{borderRadius: '8px',width: '500px', height: '300px',borderRadius: '8px',
+                      background: '#5cc0ff',
+                      boxshadow:  '27px 27px 0px #4ea3d9'}}
+                      />
+            				</figure>
+            			</div>
+            			<div className="col-lg-6 col-md-6 col-12 col-xxl-6 d-flex justify-content-center align-items-start flex-column">
+                  <p className='text-light f-24'>
+                    Unmatched Privacy
+                  </p>
+            				<p className='f-16 text-light'>
+                      In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
+                    </p>
+            				<button type="button" className="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="right" title="More journeys">Learn More</button>
+            			</div>
+            		</div>
+            		
+            	</div>
+      </section>
     )
   }
 
@@ -472,6 +528,7 @@ const LandingPage = () => {
         <div style={{backgroundColor:'black'}}>
           {videoSection()}
           {testiimonialSection()}
+          {about()}
         </div>
       </>
     );

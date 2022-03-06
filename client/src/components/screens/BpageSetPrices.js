@@ -24,26 +24,35 @@ const SetPrices = () => {
 
 
     useEffect(() => {
-      fetch(`/api/userHotel/${localStorage.getItem("b_id")}`, {
-        method: "get",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+        fetch(`/api/userHotel/${localStorage.getItem("b_id")}`, {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
         .then((res) => res.json())
         .then((data) => {
           setSmallPrice(data[0].roomSmallData.smallPrice);
           setSmallDiscountPrice(data[0].roomSmallData.smallDiscountPrice);
+          if(data[0].roomSmallData.smallDiscountPrice !=""){
+            setIsSmallDiscount(true)
+          }
           setSmallNightPrice(data[0].roomSmallData.smallNightPrice);
           setSmallNightDiscountPrice(data[0].roomSmallData.smallNightDiscountPrice);
           
           setMediumPrice(data[0].roomMediumData.mediumPrice);
           setMediumDiscountPrice(data[0].roomMediumData.mediumDiscountPrice);
+          if(data[0].roomSmallData.mediumDiscountPrice !=""){
+            setIsMediumDiscount(true)
+          }
           setMediumNightPrice(data[0].roomMediumData.mediumNightPrice);
           setMediumNightDiscountPrice(data[0].roomMediumData.mediumNightDiscountPrice);
           
           setLargePrice(data[0].roomLargeData.largePrice);
           setLargeDiscountPrice(data[0].roomLargeData.largeDiscountPrice);
+          if(data[0].roomSmallData.largeDiscountPrice !=""){
+            setIsLargeDiscount(true)
+          }
           setLargeNightPrice(data[0].roomLargeData.largeNightPrice);
           setLargeNightDiscountPrice(data[0].roomLargeData.largeNightDiscountPrice);
         });
@@ -120,16 +129,30 @@ const SetPrices = () => {
                           }}
                         />
                       </div>
-                      <div className="mx-auto mt-1 text-center">
+                      {isSmallDiscount ?
+                        <div className="mx-auto mt-1 text-center">
+                          <label>
+                            <input type="checkbox"
+                              defaultChecked
+                              onClick={() => {
+                                setIsSmallDiscount(!isSmallDiscount);
+                              }}
+                            />
+                            <span className="mt-1 text-light" id="span-checkbox">Discount</span>
+                          </label>
+                        </div>
+                        :
+                        <div className="mx-auto mt-1 text-center">
                         <label>
-                          <input type="checkbox"
-                            onClick={() => {
-                              setIsSmallDiscount(!isSmallDiscount);
-                            }}
-                          />
-                          <span className="mt-1 text-light" id="span-checkbox">Discount</span>
-                        </label>
-                      </div>
+                            <input type="checkbox"
+                              onClick={() => {
+                                setIsSmallDiscount(!isSmallDiscount);
+                              }}
+                            />
+                           <span className="mt-1 text-light" id="span-checkbox">Discount</span>
+                          </label>
+                        </div>
+                      }
                       { isSmallDiscount ?
                         <>
                         <h6 className="text-center mt-3" style={{color:"white"}}>Small Discount Price</h6>
@@ -189,16 +212,30 @@ const SetPrices = () => {
                           }}
                         />
                       </div>
-                      <div className="mx-auto mt-1 text-center">
+                      {isMediumDiscount ?
+                        <div className="mx-auto mt-1 text-center">
+                          <label>
+                            <input type="checkbox"
+                              defaultChecked
+                              onClick={() => {
+                                setIsMediumDiscount(!isMediumDiscount);
+                              }}
+                            />
+                            <span className="mt-1 text-light" id="span-checkbox">Discount</span>
+                          </label>
+                        </div>
+                        :
+                        <div className="mx-auto mt-1 text-center">
                         <label>
-                          <input type="checkbox"
-                            onClick={() => {
-                              setIsMediumDiscount(!isMediumDiscount);
-                            }}
-                          />
-                          <span className="mt-1 text-light" id="span-checkbox">Discount</span>
-                        </label>
-                      </div>
+                            <input type="checkbox"
+                              onClick={() => {
+                                setIsMediumDiscount(!isMediumDiscount);
+                              }}
+                            />
+                           <span className="mt-1 text-light" id="span-checkbox">Discount</span>
+                          </label>
+                        </div>
+                      }
                       {isMediumDiscount ?
                       <>
                       <h6 className="text-center mt-3" style={{color:"white"}}>Medium Discount Price</h6>
@@ -258,16 +295,30 @@ const SetPrices = () => {
                           }}
                         />
                       </div>
-                      <div className="mx-auto mt-1 text-center">
+                      {isLargeDiscount ?
+                        <div className="mx-auto mt-1 text-center">
+                          <label>
+                            <input type="checkbox"
+                              defaultChecked
+                              onClick={() => {
+                                setIsLargeDiscount(!isLargeDiscount);
+                              }}
+                            />
+                            <span className="mt-1 text-light" id="span-checkbox">Discount</span>
+                          </label>
+                        </div>
+                        :
+                        <div className="mx-auto mt-1 text-center">
                         <label>
-                          <input type="checkbox"
-                            onClick={() => {
-                              setIsLargeDiscount(!isLargeDiscount);
-                            }}
-                          />
-                          <span className="mt-1 text-light" id="span-checkbox">Discount</span>
-                        </label>
-                      </div>
+                            <input type="checkbox"
+                              onClick={() => {
+                                setIsLargeDiscount(!isLargeDiscount);
+                              }}
+                            />
+                           <span className="mt-1 text-light" id="span-checkbox">Discount</span>
+                          </label>
+                        </div>
+                      }
                       {isLargeDiscount ? 
                       <>
                       <h6 className="text-center mt-3" style={{color:"white"}}>Large Discount Price</h6>
