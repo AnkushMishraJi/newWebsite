@@ -14,9 +14,12 @@ import brideToBe from "../../images/landingPage/brideToBe.png";
 import stag_night from "../../images/landingPage/stag_night.png";
 import weekend_night from "../../images/landingPage/weekend_night.png";
 import you from "../../images/landingPage/you.png";
+import {Row, Col} from 'react-bootstrap'
 
 import { faChevronCircleDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "video-react/dist/video-react.css";
+import ReactPlayer from "react-player"
 
 import { Carousel } from "react-responsive-carousel";
 
@@ -62,6 +65,50 @@ const LandingPage = () => {
       };
     }
   }, []);
+
+  const videoSection = ()=>{
+    return(
+      <div style={{position:'relative'}}>
+        <iframe  width="100%" height="500" src="https://gdurl.com/01vL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+          
+        </iframe>
+        <div className='text-light' style={{ position:'absolute', top:'50%', left:'2%'}}>
+            <p className='f-32 font-weight-bolder line-ht-0'>Private Parties</p>
+            <p>Customized for you</p>
+            <button className='text-light p-2 f-14' style={{backgroundColor:'#FF3030',border:'none', outline:'none', borderRadius:'6px'}}>Book Now</button>
+          </div>
+      </div>
+    )
+  }
+
+  const testiimonialSection = ()=>{
+    return(
+      <div className='d-flex flex-column mt-5 px-5'>
+        <p className='text-light mx-auto f-24'>
+          Hear it from our customers!
+        </p>
+        <Row className='w-50 mx-auto text-light'>
+          <Col lg='4' md='6'>
+            <div style={{backgroundColor:'#101010'}}>
+              <p className='f-14'>
+                In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
+              </p>
+            </div>
+          </Col>
+          <Col lg='4' md='6' style={{backgroundColor:'#101010'}}>
+            <p className='f-14'>
+              In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
+            </p>
+          </Col>
+          <Col lg='4' md='6' style={{backgroundColor:'#101010'}}>
+            <p className='f-14'>
+              In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
+            </p>
+          </Col>
+        </Row>
+      </div>
+    )
+  }
 
   if(isMobile || width <= 980){
     return (
@@ -422,38 +469,10 @@ const LandingPage = () => {
   else{
     return (
       <>
-      <div
-      style={{
-        backgroundColor: 'black',
-        width: '100vw',
-        height: '100vh'
-      }}
-      >
-        
-        {/* <div className="container services">
-            		<div className="row my-5">
-            			<div className="col-md-4 col-10 col-xxl-4 mx-auto">
-            				<div className="card mb-3" style="max-width: 540px;">
-                                <div className="row">
-                                    <div className="col-md-4">
-                                        <img src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F36029%2Faroni-arsa-children-little.jpg%3Fauto%3Dcompress%26cs%3Dtinysrgb%26dpr%3D1%26w%3D500&imgrefurl=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Fcute%2520baby%2F&tbnid=GThwwJ1xbB2ZlM&vet=12ahUKEwjb2K2-sa_2AhV8UWwGHU_pB24QMygDegUIARDMAQ..i&docid=Vh31VJ4bpVqZCM&w=500&h=746&q=pic&ved=2ahUKEwjb2K2-sa_2AhV8UWwGHU_pB24QMygDegUIARDMAQ"/>
-                                    </div>
-                                    <div className="col-md-8">
-                                        <div className="card-body">
-                                            <h5 className="card-title">Card title</h5>
-                                            <p className="card-text">This is a wider card with supporting text.</p>
-                                            <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-            			</div>
-            			<div className="col-xxl-12 text-center my-5">
-            				<button type="button" className="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="right" title="Who Am I">Check More</button>
-            			</div>
-            		</div>
-            	</div> */}
-      </div>
+        <div style={{backgroundColor:'black'}}>
+          {videoSection()}
+          {testiimonialSection()}
+        </div>
       </>
     );
   }

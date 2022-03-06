@@ -436,6 +436,9 @@ const UserHotel = () => {
         <h4 className="f-16 w-90 text-center pt-3">
           Night charges will be applied on bookings after 6pm
         </h4>
+        <div className="f-16 w-90 text-center pt-3">
+          {renderTags()}
+        </div>
         <div className="d-flex pt-4">
           <h4 className="f-16 px-2">Choose one</h4>
           <FontAwesomeIcon
