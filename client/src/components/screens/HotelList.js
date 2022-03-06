@@ -7,9 +7,11 @@ import { faUser, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import FooterDesktop from "../FooterDesktop";
 import { Col } from "react-bootstrap";
 import { Row } from "react-bootstrap";
+import LayoutMobile from "../LayoutMobile";
 
 import M from "materialize-css";
 import  { TabTitle } from '../TitleSetter'; 
+import LayoutHeader from "../LayoutHeader";
 
 const isBrowser = () => typeof window !== "undefined"
 const isMobile = isBrowser() ? (window.innerWidth <= 980 ? true : false) :  false;
@@ -59,6 +61,7 @@ const HotelList = () => {
   }
   return (
     <>
+    {isMobile || width <= 980 ? null : <LayoutHeader />}
     <div className="bg-brand">
       <Link to="/" className={isMobile || width <= 980 ? null : 'd-none'}>
         <FontAwesomeIcon
@@ -225,7 +228,7 @@ const HotelList = () => {
           </div>
           {
             isMobile || width <= 980 ?
-            null
+            <LayoutMobile />
             :
               hotels ?
               <FooterDesktop />

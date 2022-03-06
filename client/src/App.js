@@ -53,12 +53,6 @@ function App() {
   const userRoutes = () => {
     return (
       <div>
-        {
-          isMobile || width <= 980 ?
-          <NavigationBar />
-          :
-          <DesktopNavbar />
-        }
         <Switch>
           <Route exact path="/">
             <Home />

@@ -1,10 +1,9 @@
 import FooterDesktop from "./FooterDesktop";
 import DesktopNavbar from "./navbarDesktop";
 
-export default function Layout({ children }) {
+export default function LayoutFooter({ children }) {
     return (
         <>
-            <DesktopNavbar />
             <main>
                 {children}
             </main>

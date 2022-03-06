@@ -18,6 +18,8 @@ import { faArrowLeft, faTimesCircle, faPlusCircle, faMinusCircle, faTrash, faArr
 import Swal from "sweetalert2";
 import FooterDesktop from "../FooterDesktop";
 import { TabTitle } from "../TitleSetter";
+import LayoutHeader from "../LayoutHeader";
+import LayoutMobile from "../LayoutMobile";
 
 const isBrowser = () => typeof window !== "undefined"
 const isMobile = isBrowser() ? (window.innerWidth <= 980 ? true : false) :  false;
@@ -477,6 +479,7 @@ const ConfirmBooking = () => {
 
   return (
     <>
+    {isMobile || width <= 980 ? null : <LayoutHeader />}
     <div className={`d-flex flex-column align-items-center p-5 bg-brand ${isMobile || width <= 980 ? null : `w-40 mx-auto`}`} 
     style={showDecorCarousel || showSpeakerCarousel || showPaymentModal ? {filter:"blur(8px)"} : null}
     onClick={()=>{if(showDecorCarousel || showSpeakerCarousel || showPaymentModal){setShowDecorCarousel(false);setShowSpeakerCarousel(false);setShowPaymentModal(false)}}}
@@ -733,7 +736,7 @@ const ConfirmBooking = () => {
     </div>
     {
       isMobile || width <= 980 ?
-      null:
+      <LayoutMobile />:
       <FooterDesktop />
     }
     </>

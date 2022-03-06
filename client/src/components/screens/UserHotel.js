@@ -14,6 +14,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FooterDesktop from "../FooterDesktop";
+import Layout from "../Layout";
+import LayoutMobile from "../LayoutMobile";
 
 const isBrowser = () => typeof window !== "undefined"
 const isMobile = isBrowser() ? (window.innerWidth <= 980 ? true : false) :  false;
@@ -245,6 +247,7 @@ const UserHotel = () => {
 
   if(isMobile || width <= 980 ){
   return (
+    <LayoutMobile>
     <div className="w-100 text-light bg-brand">
       <Link to="/hotelList">
         <FontAwesomeIcon className="back-arrow" icon={faArrowLeft} />
@@ -409,11 +412,12 @@ const UserHotel = () => {
         </button>
       </div>
     </div>
+    </LayoutMobile>
   );
   }
   else{
     return(
-      <>
+      <Layout>
         <div className="w-90 text-light bg-brand mx-auto">
         <div className="d-flex justify-content-between mb-3">
           <div>
@@ -572,8 +576,7 @@ const UserHotel = () => {
         </button>
       </div>
     </div>
-    <FooterDesktop />
-      </>
+    </Layout>
     )
   }
 };

@@ -12,6 +12,8 @@ import FooterDesktop from "../FooterDesktop";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import  { TabTitle } from '../TitleSetter'; 
+import LayoutHeader from "../LayoutHeader";
+import LayoutMobile from "../LayoutMobile";
 
 const isBrowser = () => typeof window !== "undefined"
 const isMobile = isBrowser() ? (window.innerWidth <= 980 ? true : false) :  false;
@@ -95,7 +97,7 @@ const Home = () => {
 
   if(isMobile || width <= 980){
     return (
-
+      <LayoutMobile>
       <div
         className="d-flex flex-column align-items-center p-4 bg-brand"
         style={{ height: "100%", height: "90vh" }}
@@ -188,11 +190,13 @@ const Home = () => {
           GO!
         </button>
       </div>
+      </LayoutMobile>
     );
   }
   else{
     return(
       <>
+      <LayoutHeader>
         <div className="d-flex flex-column mt-5">
           <div className="mx-auto">
             <p className="f-36 font-weight-bold text-light">When are you coming to party?</p>
@@ -252,6 +256,7 @@ const Home = () => {
             </label>
           </div>
         </div>
+        </LayoutHeader>
         <FooterDesktop position='fixed'/>
       </>
     )

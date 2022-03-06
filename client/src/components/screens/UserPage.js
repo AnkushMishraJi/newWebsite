@@ -2,6 +2,8 @@ import { textAlign } from "@mui/system";
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import FooterDesktop from "../FooterDesktop";
+import LayoutHeader from "../LayoutHeader";
+import LayoutMobile from "../LayoutMobile";
 import { TabTitle } from "../TitleSetter";
 
 const isBrowser = () => typeof window !== "undefined"
@@ -46,6 +48,7 @@ const UserPage = () => {
   }, []);
   return (
     <>
+    {isMobile || width <= 980 ? null : <LayoutHeader />}
       <div className={`text-light mx-auto ${isMobile || width <= 980 ? `w-90` : `w-40`}`}>
         <style>{"body { background-color: #1a1b41; }"}</style>
         <div className="row py-5 line-ht-2 ">
@@ -94,7 +97,7 @@ const UserPage = () => {
       </div>
       {
         isMobile || width <= 980 ?
-        null
+        <LayoutMobile />
         :
         <FooterDesktop />
       }

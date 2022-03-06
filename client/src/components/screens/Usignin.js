@@ -6,6 +6,8 @@ import sign_in from "../../images/login.svg";
 import Swal from "sweetalert2";
 import FooterDesktop from "../FooterDesktop";
 import { TabTitle } from "../TitleSetter";
+import LayoutHeader from "../LayoutHeader";
+import LayoutMobile from "../LayoutMobile";
 
 const isBrowser = () => typeof window !== "undefined"
 const isMobile = isBrowser() ? (window.innerWidth <= 980 ? true : false) :  false;
@@ -131,6 +133,7 @@ const UserSignin = () => {
   };
   return (
     <>
+    {isMobile || width <= 980 ? null : <LayoutHeader />}
       <div className={isMobile || width <= 980 ? null : `w-50 mx-auto mb-5`}>
         <style>{"body { background-color: #1a1b41; }"}</style>
         <p className="brand-logo f-24 text-center mt-5">SUBMIT OTP</p>
@@ -179,7 +182,7 @@ const UserSignin = () => {
     <footer>
       {
         isMobile || width <= 980 ?
-        null
+        <LayoutMobile />
         :
         <FooterDesktop position='fixed'/>
       }

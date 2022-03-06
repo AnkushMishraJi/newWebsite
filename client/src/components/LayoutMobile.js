@@ -1,14 +1,13 @@
-import FooterDesktop from "./FooterDesktop";
+import Navbar from "./navbar";
 import DesktopNavbar from "./navbarDesktop";
 
-export default function Layout({ children }) {
+export default function LayoutMobile({ children }) {
     return (
         <>
-            <DesktopNavbar />
             <main>
                 {children}
             </main>
-            <FooterDesktop/>
+            <Navbar />
         </>
     )
 }
