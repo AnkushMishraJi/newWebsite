@@ -4,7 +4,8 @@ import { Link, useHistory, useLocation, NavLink } from "react-router-dom";
 const FooterDesktop = (props)=>{
     return(
         <>
-            <div style={props.position == 'fixed' ? {bottom:"0", position:"fixed", paddingLeft:"10%", paddingRight:"10%"} : {bottom:"0", paddingLeft:"10%", paddingRight:"10%"}} className="bg-light d-flex justify-content-between w-100 py-4">
+            <div style={props.position == 'fixed' ? {bottom:"0", position:"fixed", paddingLeft:"10%", paddingRight:"10%"} : {bottom:"0", paddingLeft:"10%", paddingRight:"10%"}} 
+            className={`${props.page=='landing' ? `bg-black text-light` : `bg-light`} d-flex justify-content-between w-100 py-4`}>
                 <div className="d-flex flex-column">
                     <div>
                         <p className="font-weight-bolder f-18">Support</p>

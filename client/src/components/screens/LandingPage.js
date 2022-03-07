@@ -7,6 +7,8 @@ import lock from "../../images/lock.svg";
 import playingCards from "../../images/playingCards.svg";
 import recordPlayer from "../../images/recordPlayer.svg";
 import custom from "../../images/custom.png";
+import arrow_left from "../../images/arrow_right.svg";
+import FooterDesktop from "../FooterDesktop";
 
 import bdayArt from "../../images/landingPage/bday_art.png";
 import dateNight from "../../images/landingPage/date_night.png";
@@ -16,10 +18,11 @@ import weekend_night from "../../images/landingPage/weekend_night.png";
 import you from "../../images/landingPage/you.png";
 import {Row, Col} from 'react-bootstrap'
 
-import { faChevronCircleDown } from "@fortawesome/free-solid-svg-icons";
+import { faChevronCircleDown, faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "video-react/dist/video-react.css";
 import ReactPlayer from "react-player"
+
 
 import { Carousel } from "react-responsive-carousel";
 
@@ -28,6 +31,7 @@ import TextTransition, { presets } from "react-text-transition";
 import { useHistory } from "react-router";
 
 import  { TabTitle } from '../TitleSetter'; 
+import DesktopNavbar from "../navbarDesktop";
 
 const isBrowser = () => typeof window !== "undefined"
 const isMobile = isBrowser() ? (window.innerWidth <= 980 ? true : false) :  false;
@@ -83,86 +87,93 @@ const LandingPage = () => {
 
   const testiimonialSection = ()=>{
     return(
-      <div className='d-flex flex-column mt-5 px-5'>
+      <div className='d-flex flex-column mt-5 px-5 w-60 mx-auto' style={{position:'relative'}}>
         <p className='text-light mx-auto f-24'>
           Hear it from our customers!
         </p>
-        <Row className='w-50 mx-auto text-light'>
-          <Col lg='4' md='6' className='mx-1' style={{backgroundColor:'#101010'}}>
-            <p className='f-14 mt-2'>
-              In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
-            </p>
-            <div style={{display:"flex",justifyContent:"space-around",margin:"18px 0px"}}>
-                <div>
-                    <img style={{width:"40px",height:"40px",borderRadius:"80px"}} src="https://images.unsplash.com/photo-1520183802803-06f731a2059f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcnNvbnxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60"/>
-                </div>
-                <div>
-                    <h6 className="mt-2">Victor Brimstone</h6>
-                </div>
-              </div>
-          </Col>
-          <Col lg='4' md='6' className='mx-1' style={{backgroundColor:'#101010'}}>
-            <p className='f-14 mt-2'>
-              In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
-            </p>
-            <div style={{display:"flex",justifyContent:"space-around",margin:"18px 0px"}}>
-                <div>
-                    <img style={{width:"40px",height:"40px",borderRadius:"80px"}} src="https://images.unsplash.com/photo-1520183802803-06f731a2059f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcnNvbnxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60"/>
-                </div>
-                <div>
-                    <h6 className="mt-2">Victor Brimstone</h6>
+        <img style={{width:'2vw', position:'absolute', top:'50%', left:'0%'}} src={arrow_left} />
+        <Row className='mx-auto text-light'>
+          <Col lg='4' md='6' >
+            <div className='mx-1 p-2' style={{backgroundColor:'#101010'}}>
+              <p className='f-14 mt-2'>
+                In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
+              </p>
+              <div style={{display:"flex",justifyContent:"space-around",margin:"18px 0px"}}>
+                  <div>
+                      <img style={{width:"40px",height:"40px",borderRadius:"80px"}} src="https://images.unsplash.com/photo-1520183802803-06f731a2059f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcnNvbnxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60"/>
+                  </div>
+                  <div>
+                      <h6 className="mt-2">Victor Brimstone</h6>
+                  </div>
                 </div>
               </div>
           </Col>
-          <Col lg='4' md='6' className='mx-1' style={{backgroundColor:'#101010'}}>
-            <p className='f-14 mt-2'>
-              In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
-            </p>
-            <div style={{display:"flex",justifyContent:"space-around",margin:"18px 0px"}}>
-                <div>
-                    <img style={{width:"40px",height:"40px",borderRadius:"80px"}} src="https://images.unsplash.com/photo-1520183802803-06f731a2059f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcnNvbnxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60"/>
+          <Col lg='4' md='6' >
+            <div className='mx-1 p-2' style={{backgroundColor:'#101010'}}>
+              <p className='f-14 mt-2'>
+                In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
+              </p>
+              <div style={{display:"flex",justifyContent:"space-around",margin:"18px 0px"}}>
+                  <div>
+                      <img style={{width:"40px",height:"40px",borderRadius:"80px"}} src="https://images.unsplash.com/photo-1520183802803-06f731a2059f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcnNvbnxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60"/>
+                  </div>
+                  <div>
+                      <h6 className="mt-2">Victor Brimstone</h6>
+                  </div>
                 </div>
-                <div>
-                    <h6 className="mt-2">Victor Brimstone</h6>
+              </div>
+          </Col>
+          <Col lg='4' md='6' >
+            <div className='mx-1 p-2' style={{backgroundColor:'#101010'}}>
+              <p className='f-14 mt-2'>
+                In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
+              </p>
+              <div style={{display:"flex",justifyContent:"space-around",margin:"18px 0px"}}>
+                  <div>
+                      <img style={{width:"40px",height:"40px",borderRadius:"80px"}} src="https://images.unsplash.com/photo-1520183802803-06f731a2059f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcnNvbnxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60"/>
+                  </div>
+                  <div>
+                      <h6 className="mt-2">Victor Brimstone</h6>
+                  </div>
                 </div>
               </div>
           </Col>
         </Row>
+        <img style={{width:'2vw', position:'absolute', top:'50%', right:'0%' , transform:'rotate(180deg)'}} src={arrow_left} />
       </div>
     )
   }
 
   const about = () => {
     return(
-      <section>
-            	<div className="text-center">
-            		<hr className="w-25 mx-auto"/>
-            	</div>
-            	<div className="container">
-            		<div className="row my-5">
-            			<div className="col-lg-6 col-md-6 col-12 col-xxl-6">
-            				<figure>
-            					<img src="https://images.unsplash.com/photo-1520183802803-06f731a2059f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcnNvbnxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60"
+            		<div className="d-flex align-items-center w-80 pb-5">
+            			<div className='px-5 mx-5'>
+            				<div>
+            					<img className='about-image-shadow-1' src="https://images.unsplash.com/photo-1520183802803-06f731a2059f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcnNvbnxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60"
                       alt="about images"
                       style={{borderRadius: '8px',width: '500px', height: '300px',borderRadius: '8px',
                       background: '#5cc0ff',
                       boxshadow:  '27px 27px 0px #4ea3d9'}}
                       />
-            				</figure>
+            				</div>
             			</div>
-            			<div className="col-lg-6 col-md-6 col-12 col-xxl-6 d-flex justify-content-center align-items-start flex-column">
-                  <p className='text-light f-24'>
+            			<div className="mx-5">
+                  <p className='text-light f-24 font-weight-bolder'>
                     Unmatched Privacy
                   </p>
-            				<p className='f-16 text-light'>
+            				<p className='f-14 text-light'>
                       In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
                     </p>
-            				<button type="button" className="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="right" title="More journeys">Learn More</button>
+            				<div className='d-flex align-items-center'>
+                    <FontAwesomeIcon
+                      className='f-18'
+                      style={{ color: "#FF602E" }}
+                      icon={faChevronCircleRight}
+                    />
+                    <p className='text-light my-auto mx-2 f-16 font-weight-bolder'>Learn More</p>
+                    </div>
             			</div>
             		</div>
-            		
-            	</div>
-      </section>
     )
   }
 
@@ -525,11 +536,13 @@ const LandingPage = () => {
   else{
     return (
       <>
+        <DesktopNavbar page='landing'/>
         <div style={{backgroundColor:'black'}}>
           {videoSection()}
           {testiimonialSection()}
           {about()}
         </div>
+        <FooterDesktop page='landing'/>
       </>
     );
   }

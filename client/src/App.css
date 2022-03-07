@@ -650,3 +650,9 @@ a {
   text-align: center;
   margin-right: 30px;
 }
+
+.about-image-shadow-1{
+  -webkit-box-shadow: 31px 29px 0px 0px rgba(255,96,46,1);
+  -moz-box-shadow: 31px 29px 0px 0px rgba(255,96,46,1);
+  box-shadow: 31px 29px 0px 0px rgba(255,96,46,1);
+}
