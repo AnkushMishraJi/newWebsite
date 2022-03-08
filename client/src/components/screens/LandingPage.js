@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import logo from "../../images/logo_ma.png";
 import backDrop from "../../images/back-drop.png";
 import chips from "../../images/chips.svg";
@@ -54,6 +54,9 @@ const LandingPage = () => {
   const [index, setIndex] = React.useState(0);
   const history = useHistory();
   const [width, setWidth] = useState(0);
+  const [play, setPlay] = useState(false);
+
+  const videoRef = useRef(null);
 
   TabTitle("Mera Adda | Customized Private Parties");
 
@@ -79,13 +82,22 @@ const LandingPage = () => {
   const videoSection = ()=>{
     return(
       <div style={{position:'relative'}}>
-        <iframe  width="100%" height="500" src="https://gdurl.com/01vL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
-          
-        </iframe>
+        <video ref={videoRef} onClick={(e)=>{e.target.pause()}} width="100%" height="500" src="https://gdurl.com/01vL" title="YouTube video player" frameborder="0" allow="">
+        </video>
         <div className='text-light' style={{ position:'absolute', top:'50%', left:'2%'}}>
           <p className='f-32 font-weight-bolder line-ht-0'>Private Parties</p>
           <p>Customized for you</p>
-          <button className='text-light p-2 f-14' style={{backgroundColor:'#FF3030',border:'none', outline:'none', borderRadius:'6px'}}>Book Now</button>
+          <div className='d-flex align-items-center'>
+            <button className='text-light p-2 f-14' style={{backgroundColor:'#FF3030',border:'none', outline:'none', borderRadius:'6px'}}>Book Now</button>
+            <div className='d-flex mx-3' onClick={()=>{videoRef.current.play()}}>
+              <FontAwesomeIcon
+                className='f-18 mx-1'
+                style={{ color: 'white' }}
+                icon={faChevronCircleRight}
+                />
+                <p className='my-auto'>Watch Video</p>
+              </div>
+            </div>
         </div>
       </div>
     )
@@ -97,78 +109,6 @@ const LandingPage = () => {
         <p className='text-light mx-auto f-24'>
           Hear it from our customers!
         </p>
-        {/* <Carousel
-          showThumbs={false}
-          infiniteLoop={true}
-          showIndicators={false}
-          showStatus={false}
-          showArrows={false}
-          animationHandler={"fade"}
-          swipeable={false}
-          centerMode={true}
-          centerSlidePercentage={100}
-        >
-          <div>
-          <div className='mx-1 p-2' style={{backgroundColor:'#101010'}}>
-              <p className='f-14 mt-2'>
-                In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
-              </p>
-              <div style={{display:"flex",justifyContent:"space-around",margin:"18px 0px"}}>
-                  <div>
-                      <img style={{width:"40px",height:"40px",borderRadius:"80px"}} src="https://images.unsplash.com/photo-1520183802803-06f731a2059f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcnNvbnxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60"/>
-                  </div>
-                  <div>
-                      <h6 className="mt-2">Victor Brimstone</h6>
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div>
-          <div className='mx-1 p-2' style={{backgroundColor:'#101010'}}>
-              <p className='f-14 mt-2'>
-                In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
-              </p>
-              <div style={{display:"flex",justifyContent:"space-around",margin:"18px 0px"}}>
-                  <div>
-                      <img style={{width:"40px",height:"40px",borderRadius:"80px"}} src="https://images.unsplash.com/photo-1520183802803-06f731a2059f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcnNvbnxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60"/>
-                  </div>
-                  <div>
-                      <h6 className="mt-2">Victor Brimstone</h6>
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div>
-          <div className='mx-1 p-2' style={{backgroundColor:'#101010'}}>
-              <p className='f-14 mt-2'>
-                In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
-              </p>
-              <div style={{display:"flex",justifyContent:"space-around",margin:"18px 0px"}}>
-                  <div>
-                      <img style={{width:"40px",height:"40px",borderRadius:"80px"}} src="https://images.unsplash.com/photo-1520183802803-06f731a2059f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcnNvbnxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60"/>
-                  </div>
-                  <div>
-                      <h6 className="mt-2">Victor Brimstone</h6>
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div>
-          <div className='mx-1 p-2' style={{backgroundColor:'#101010'}}>
-              <p className='f-14 mt-2'>
-                In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
-              </p>
-              <div style={{display:"flex",justifyContent:"space-around",margin:"18px 0px"}}>
-                  <div>
-                      <img style={{width:"40px",height:"40px",borderRadius:"80px"}} src="https://images.unsplash.com/photo-1520183802803-06f731a2059f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcnNvbnxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60"/>
-                  </div>
-                  <div>
-                      <h6 className="mt-2">Victor Brimstone</h6>
-                  </div>
-                </div>
-              </div>
-          </div>
-        </Carousel> */}
         <img style={{width:'2vw', position:'absolute', top:'50%', left:'0%'}} src={arrow_left} />
         <Row className='mx-auto text-light'>
           <Col lg='4' md='6' >
@@ -252,7 +192,7 @@ const LandingPage = () => {
         </div>
       </div>
 
-      <div className="d-flex align-items-center w-80 pb-5">
+      <div className="d-flex align-items-center pb-5 w-80 ms-auto">
         <div className="mx-5">
           <p className='text-light f-24 font-weight-bolder'>
             Complimentary Snacks and Drinks
@@ -306,7 +246,7 @@ const LandingPage = () => {
         </div>
       </div>
       
-      <div className="d-flex align-items-center w-80 pb-5">
+      <div className="d-flex align-items-center w-80 pb-5 ms-auto">
         <div className="mx-5">
           <p className='text-light f-24 font-weight-bolder'>
             We set the bar high
@@ -360,7 +300,7 @@ const LandingPage = () => {
         </div>
       </div>
 
-      <div className="d-flex align-items-center w-80 pb-5">
+      <div className="d-flex align-items-center w-80 pb-5 ms-auto">
         <div className="mx-5">
           <p className='text-light f-24 font-weight-bolder'>
             Exciting games

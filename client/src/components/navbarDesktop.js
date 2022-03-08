@@ -11,7 +11,7 @@ const DesktopNavbar= (props)=>{
     if(props.page=='landing'){
         return (
             <>
-            <div className="px-5 py-4 d-flex align-items-center justify-content-between w-100" style={{position:'absolute',zIndex:'999'}}>
+            <div className="px-5 py-4 d-flex align-items-center justify-content-between w-100" style={{position:'absolute',zIndex:'999',backgroundColor:'rgba(0, 0, 0, 0.2)'}}>
                 <div className="d-flex">
                     <Link to="/">
                         <img src={logo} alt="Logo" style={{ width: "3em", height: "3em" }}/>
