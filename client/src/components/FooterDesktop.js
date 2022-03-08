@@ -1,11 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useHistory, useLocation, NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import logo from "../images/logo_ma.png";
 
 const FooterDesktop = (props)=>{
     return(
         <>
             <div style={props.position == 'fixed' ? {bottom:"0", position:"fixed", paddingLeft:"10%", paddingRight:"10%"} : {bottom:"0", paddingLeft:"10%", paddingRight:"10%"}} 
             className={`${props.page=='landing' ? `bg-black text-light` : `bg-light`} d-flex justify-content-between w-100 py-4`}>
+                <div className="d-flex">
+                    <Link to="/">
+                        <img src={logo} alt="Logo" style={{ width: "4em", height: "4em" }}/>
+                    </Link>
+                </div>
                 <div className="d-flex flex-column">
                     <div>
                         <p className="font-weight-bolder f-18">Support</p>
@@ -51,6 +58,9 @@ const FooterDesktop = (props)=>{
                             <p className='mb-0'>A-91, Shivani Vihar, Kalyanpur, </p>
                             <p>Lucknow, Uttar Pradesh - 226022</p>
                         </div> 
+                    </div>
+                    <div className="d-flex">
+                    <FontAwesomeIcon icon="f082" />
                     </div>
                 </div>
                 <div className="d-flex flex-column">
