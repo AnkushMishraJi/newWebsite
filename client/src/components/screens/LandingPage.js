@@ -105,9 +105,9 @@ const LandingPage = () => {
               </div>
             </div>
         </div>
-        <div className='text-light' style={{ position:'absolute', top:'85%', left:'47.9%'}}>
-          <p className="f-18 font-weight-bolder mx-auto mb-5">Scroll</p>
-          <div className="bounce-object" style={{ position:'absolute', left:'27%'}}>
+        <div className='text-light' style={{ position:'absolute', top:'85%', left:'45.5%'}}>
+          <p className="f-18 font-weight-bolder mx-auto mb-5">Know More</p>
+          <div className="bounce-object" style={{ position:'absolute', left:'40%'}}>
             <img src={arrowdown} onClick={scrollHandler}/>
           </div>
         </div>
