@@ -2,9 +2,10 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, useHistory, useLocation, NavLink } from "react-router-dom";
 import "../App.css";
 import logo from "../images/logo_ma.png";
-import user from "../images/user_icon.svg";
+import user from "../images/person.svg";
 
 const DesktopNavbar= (props)=>{
+    const history = useHistory();
     const userClickHandler = ()=>{
         localStorage.setItem("route", "/userpage");
     }
@@ -19,12 +20,11 @@ const DesktopNavbar= (props)=>{
                     {/* <a href='/' className="text-light f-24 my-auto font-weight-boldest m-3">MERA ADDA</a> */}
                 </div>
                 <div className='d-flex w-50 align-items-center justify-content-around'>
-                    <p className='text-light f-18 font-weight-bolder my-auto'>Our Story</p>
                     <Link className='px-3 d-flex align-items-center text-light' to="/userpage" onClick={userClickHandler}>
-                        <img src={user} alt="Logo" style={{ width: "3em", height: "3em" }}/>
+                        <img src={user} alt="Logo" style={{ width: "2em", height: "2em" }}/>
                         <p className='my-auto'>Log In/Sign Up</p>
                     </Link>
-                    <button className='text-light p-2 f-14 px-3' style={{backgroundColor:'#FF3030',border:'none', outline:'none', borderRadius:'6px'}}>Book Now</button>
+                    <button className='text-light p-2 f-16 px-3' onClick={()=>{history.push("/uphone")}} style={{backgroundColor:'#FF3030',border:'none', outline:'none', borderRadius:'6px'}}>Book Now</button>
                 </div>
             </div>
             </>

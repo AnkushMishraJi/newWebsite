@@ -21,10 +21,11 @@ import gamesImage from "../../images/games.jpg";
 import musicImage from "../../images/speaker.jpg";
 import stag_night from "../../images/landingPage/stag_night.png";
 import weekend_night from "../../images/landingPage/weekend_night.png";
+import arrowdown from "../../images/arrow_down.svg";
 import you from "../../images/landingPage/you.png";
 import {Row, Col} from 'react-bootstrap'
 
-import { faChevronCircleDown, faChevronCircleRight, } from "@fortawesome/free-solid-svg-icons";
+import { faChevronCircleDown, faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "video-react/dist/video-react.css";
 import ReactPlayer from "react-player"
@@ -82,13 +83,13 @@ const LandingPage = () => {
   const videoSection = ()=>{
     return(
       <div style={{position:'relative'}}>
-        <video ref={videoRef} onClick={(e)=>{e.target.pause()}} width="100%" height="500" src="https://gdurl.com/01vL" title="YouTube video player" frameborder="0" allow="">
+        <video ref={videoRef} onClick={(e)=>{e.target.pause()}} width="100%" height="500%"  src="https://gdurl.com/01vL" title="YouTube video player" frameborder="0" allow="">
         </video>
-        <div className='text-light' style={{ position:'absolute', top:'50%', left:'2%'}}>
-          <p className='f-32 font-weight-bolder line-ht-0'>Private Parties</p>
-          <p>Customized for you</p>
+        <div className='text-light' style={{ position:'absolute', top:'40%', left:'5%'}}>
+          <p className='f-44 font-weight-bolder line-ht-0'>Private Parties</p>
+          <p className="f-20 font-weight-bolder py-2">Customized for you.</p>
           <div className='d-flex align-items-center'>
-            <button className='text-light p-2 f-14' style={{backgroundColor:'#FF3030',border:'none', outline:'none', borderRadius:'6px'}}>Book Now</button>
+            <button className='text-light p-2 f-14' onClick={()=>{history.push("/uphone")}} style={{backgroundColor:'#FF3030',border:'none', outline:'none', borderRadius:'6px'}}>Book Now</button>
             <div className='d-flex mx-3' onClick={()=>{videoRef.current.play()}}>
               <FontAwesomeIcon
                 className='f-18 mx-1'
@@ -98,6 +99,12 @@ const LandingPage = () => {
                 <p className='my-auto'>Watch Video</p>
               </div>
             </div>
+        </div>
+        <div className='text-light' style={{ position:'absolute', top:'85%', left:'47.9%'}}>
+          <p className="f-18 font-weight-bolder mx-auto mb-5">Scroll</p>
+          <div className="bounce-object" style={{ position:'absolute', left:'27%'}}>
+            <img src={arrowdown}/>
+          </div>
         </div>
       </div>
     )
@@ -165,7 +172,7 @@ const LandingPage = () => {
   const about = () => {
     return(
       <>
-      <div className="d-flex align-items-center w-80 pb-5">
+      <div className="d-flex align-items-center w-80 pb-5 py-5">
         <div className='px-5 mx-5'>
           <div>
           	<img className='about-image-shadow-1' src={letsparty}
@@ -176,40 +183,36 @@ const LandingPage = () => {
         </div>
         <div className="mx-5">
           <p className='text-light f-24 font-weight-bolder'>
-            Unprecedented Customisation
+            Get your parties customised
           </p>
           <p className='f-14 text-light'>
-            Have it your way
+            Need the space decorated we have got the most diversified decoration 
+            packages that suit all your needs. From birthdays to anniversary 
+            celebrations to bachelorette party. You just name it. We got it.
           </p>
-          <div className='d-flex align-items-center'>
+          {/* <div className='d-flex align-items-center'>
             <FontAwesomeIcon
             className='f-18'
             style={{ color: "#0a75ed" }}
             icon={faChevronCircleRight}
             />
             <p className='text-light my-auto mx-2 f-16 font-weight-bolder'>Learn More</p>
-          </div>
+          </div> */}
         </div>
       </div>
 
-      <div className="d-flex align-items-center pb-5 w-80 ms-auto">
+      <div className="d-flex align-items-center pb-5 w-80 ms-auto py-5">
         <div className="mx-5">
           <p className='text-light f-24 font-weight-bolder'>
             Complimentary Snacks and Drinks
           </p>
           <p className='f-14 text-light'>
-            Free snacks put smile on everybody's face.
+            Watch out for tags of premises that offer complimentary snacks for
+            parties. It ain't no party without good food. All the listed premises
+            got their own kitchen so you get pipin hot food at your beck and call.
           </p>
-          <div className='d-flex align-items-center'>
-            <FontAwesomeIcon
-            className='f-18'
-            style={{ color: "#fcff2e" }}
-            icon={faChevronCircleRight}
-            />
-            <p className='text-light my-auto mx-2 f-16 font-weight-bolder'>Learn More</p>
-          </div>
         </div>
-        <div className='px-5 mx-5'>
+        <div className='px-5 mx-5 ms-auto'>
           <div>
           	<img className='about-image-shadow-2' src={snackimage}
             alt="about images"
@@ -219,64 +222,10 @@ const LandingPage = () => {
         </div>
       </div>
 
-      <div className="d-flex align-items-center w-80 pb-5">
+      <div className="d-flex align-items-center w-80 pb-5 py-5">
         <div className='px-5 mx-5'>
           <div>
-          	<img className='about-image-shadow-3' src={unprivacy}
-            alt="about images"
-            style={{borderRadius: '8px',width: '500px', height: '300px'}}
-            />
-          </div>
-        </div>
-        <div className="mx-5">
-          <p className='text-light f-24 font-weight-bolder'>
-            Unmatched Privacy
-          </p>
-          <p className='f-14 text-light'>
-            Enjoy your parties private, free from prying eyes & loud mouths.
-          </p>
-          <div className='d-flex align-items-center'>
-            <FontAwesomeIcon
-            className='f-18'
-            style={{ color: "#FF602E" }}
-            icon={faChevronCircleRight}
-            />
-            <p className='text-light my-auto mx-2 f-16 font-weight-bolder'>Learn More</p>
-          </div>
-        </div>
-      </div>
-      
-      <div className="d-flex align-items-center w-80 pb-5 ms-auto">
-        <div className="mx-5">
-          <p className='text-light f-24 font-weight-bolder'>
-            We set the bar high
-          </p>
-          <p className='f-14 text-light'>
-            Complete bar setup at the venue.
-          </p>
-          <div className='d-flex align-items-center'>
-            <FontAwesomeIcon
-            className='f-18'
-            style={{ color: "#bfccb8" }}
-            icon={faChevronCircleRight}
-            />
-            <p className='text-light my-auto mx-2 f-16 font-weight-bolder'>Learn More</p>
-          </div>
-        </div>
-        <div className='px-5 mx-5'>
-          <div>
-          	<img className='about-image-shadow-4' src={barImage}
-            alt="about images"
-            style={{borderRadius: '8px',width: '500px', height: '300px'}}
-            />
-          </div>
-        </div>
-      </div>
-
-      <div className="d-flex align-items-center w-80 pb-5">
-        <div className='px-5 mx-5'>
-          <div>
-          	<img className='about-image-shadow-5' src={musicImage}
+          	<img className='about-image-shadow-3' src={musicImage}
             alt="about images"
             style={{borderRadius: '8px',width: '500px', height: '300px'}}
             />
@@ -287,39 +236,26 @@ const LandingPage = () => {
             Play your own music
           </p>
           <p className='f-14 text-light'>
-            BT enabled music speakers so you can listen to your own taste.
+          Tired of being forced to listen to those same generic songs at club.
+          Why bother listen to your own music. Bluetooth enabled music speakers
+          so you can listen to your own taste.
           </p>
-          <div className='d-flex align-items-center'>
-            <FontAwesomeIcon
-            className='f-18'
-            style={{ color: "#b92eff" }}
-            icon={faChevronCircleRight}
-            />
-            <p className='text-light my-auto mx-2 f-16 font-weight-bolder'>Learn More</p>
-          </div>
         </div>
       </div>
 
-      <div className="d-flex align-items-center w-80 pb-5 ms-auto">
+      <div className="d-flex align-items-center w-80 pb-5 ms-auto py-5">
         <div className="mx-5">
           <p className='text-light f-24 font-weight-bolder'>
             Exciting games
           </p>
           <p className='f-14 text-light'>
-            UNO, Playing cards, ball games provided
+            Spice up your parties with fun activities. UNO, Playing cards, ball games,
+            etc. are provided at venues so that the party keeps kicking. 
           </p>
-          <div className='d-flex align-items-center'>
-            <FontAwesomeIcon
-            className='f-18'
-            style={{ color: "#31d2de" }}
-            icon={faChevronCircleRight}
-            />
-            <p className='text-light my-auto mx-2 f-16 font-weight-bolder'>Learn More</p>
-          </div>
         </div>
-        <div className='px-5 mx-5'>
+        <div className='px-5 mx-5 ms-auto'>
           <div>
-          	<img className='about-image-shadow-6' src={gamesImage}
+          	<img className='about-image-shadow-4' src={gamesImage}
             alt="about images"
             style={{borderRadius: '8px',width: '500px', height: '300px'}}
             />

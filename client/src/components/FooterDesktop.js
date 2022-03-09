@@ -2,6 +2,9 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, useHistory, useLocation, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo from "../images/logo_ma.png";
+import fblogo from "../images/Fb-logo.png";
+import twitterlogo from "../images/twitterlogo.png";
+import instalogo from "../images/instalogo.png";
 
 const FooterDesktop = (props)=>{
     return(
@@ -57,10 +60,24 @@ const FooterDesktop = (props)=>{
                         <div>
                             <p className='mb-0'>A-91, Shivani Vihar, Kalyanpur, </p>
                             <p>Lucknow, Uttar Pradesh - 226022</p>
-                        </div> 
+                        </div>
                     </div>
                     <div className="d-flex">
-                    <FontAwesomeIcon icon="f082" />
+                        <div className="mx-1">
+                            <a href="https://m.facebook.com/Mera-Adda-101860575547637" target="_blank">
+                                <img src={fblogo} style={{color: "#FFFFFF"}}/>
+                            </a>
+                        </div>
+                        <div className="mx-1">
+                            <a href="https://twitter.com/adda_mera" target="_blank">
+                                <img src={twitterlogo} style={{color: "#FFFFFF"}}/>
+                            </a> 
+                        </div>
+                        <div className="mx-1">
+                            <a href="">
+                                <img src={instalogo} style={{color: "#FFFFFF"}}/>
+                            </a>
+                        </div> 
                     </div>
                 </div>
                 <div className="d-flex flex-column">

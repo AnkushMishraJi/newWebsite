@@ -664,27 +664,31 @@ a {
 }
 
 .about-image-shadow-3{
-  -webkit-box-shadow: 31px 29px 0px 0px rgba(255,96,46,1);
-  -moz-box-shadow: 31px 29px 0px 0px rgba(255,96,46,1);
-  box-shadow: 31px 29px 0px 0px rgba(255,96,46,1);
-}
-
-.about-image-shadow-4{
-  -webkit-box-shadow: -31px 29px 0px 0px rgb(191, 204, 184);
-  -moz-box-shadow: -31px 29px 0px 0px rgb(191, 204, 184);
-  box-shadow: -31px 29px 0px 0px rgb(191, 204, 184);
-}
-
-.about-image-shadow-5{
   -webkit-box-shadow: 31px 29px 0px 0px rgba(185, 46, 255, 1);
   -moz-box-shadow: 31px 29px 0px 0px rgba(185, 46, 255, 1);
   box-shadow: 31px 29px 0px 0px rgba(185, 46, 255, 1);
 }
 
-.about-image-shadow-6{
+.about-image-shadow-4{
   -webkit-box-shadow: -31px 29px 0px 0px rgba(49 , 210, 222,1);
   -moz-box-shadow: -31px 29px 0px 0px rgba(49 , 210, 222,1);
   box-shadow: -31px 29px 0px 0px rgba(49 , 210, 222,1);
+}
+
+.bounce-object {
+  animation: MoveUpDown 0.8s linear infinite;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+@keyframes MoveUpDown {
+  0%, 100% {
+    bottom: 0;
+  }
+  50% {
+    bottom: 10px;
+  }
 }
 
 /* .arrow {
