@@ -80,6 +80,11 @@ const LandingPage = () => {
     }
   }, []);
 
+  const scrollHandler = ()=>{
+    var elmnt = document.getElementById("content");
+    elmnt.scrollIntoView();
+  }
+
   const videoSection = ()=>{
     return(
       <div style={{position:'relative'}}>
@@ -103,7 +108,7 @@ const LandingPage = () => {
         <div className='text-light' style={{ position:'absolute', top:'85%', left:'47.9%'}}>
           <p className="f-18 font-weight-bolder mx-auto mb-5">Scroll</p>
           <div className="bounce-object" style={{ position:'absolute', left:'27%'}}>
-            <img src={arrowdown}/>
+            <img src={arrowdown} onClick={scrollHandler}/>
           </div>
         </div>
       </div>
@@ -172,7 +177,7 @@ const LandingPage = () => {
   const about = () => {
     return(
       <>
-      <div className="d-flex align-items-center w-80 pb-5 py-5">
+      <div className="d-flex align-items-center w-80 pb-5 py-5" id="content">
         <div className='px-5 mx-5'>
           <div>
           	<img className='about-image-shadow-1' src={letsparty}
