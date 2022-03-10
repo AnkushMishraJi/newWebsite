@@ -56,6 +56,9 @@ const LandingPage = () => {
   const history = useHistory();
   const [width, setWidth] = useState(0);
   const [play, setPlay] = useState(false);
+  const [x,setX] = useState("5%");
+  const [y,setY] = useState("0px");
+  const [showScrollButton,SetShowScrollButoon] = useState(true);
 
   const videoRef = useRef(null);
 
@@ -84,18 +87,19 @@ const LandingPage = () => {
     var elmnt = document.getElementById("content");
     elmnt.scrollIntoView();
   }
+  
 
   const videoSection = ()=>{
     return(
       <div style={{position:'relative'}}>
-        <video ref={videoRef} onClick={(e)=>{e.target.pause()}} width="100%" height="500%"  src="https://gdurl.com/01vL" title="YouTube video player" frameborder="0" allow="">
+        <video ref={videoRef} onClick={(e)=>{e.target.pause(); setX("5%"); setY("0px"); SetShowScrollButoon(true)}} width="100%" height="500%"  src="https://gdurl.com/01vL" title="YouTube video player" frameborder="0" allow="">
         </video>
-        <div className='text-light' style={{ position:'absolute', top:'40%', left:'5%'}}>
+        <div className='text-light' style={{ position:'absolute', top:'40%', left:`${x}`,transitionProperty: x, transitionDuration: '0.8s'}}>
           <p className='f-44 font-weight-bolder line-ht-0'>Private Parties</p>
           <p className="f-20 font-weight-bolder py-2">Customized for you.</p>
           <div className='d-flex align-items-center'>
             <button className='text-light p-2 f-14' onClick={()=>{history.push("/uphone")}} style={{backgroundColor:'#FF3030',border:'none', outline:'none', borderRadius:'6px'}}>Book Now</button>
-            <div className='d-flex mx-3' onClick={()=>{videoRef.current.play()}}>
+            <div className='d-flex mx-3' onClick={()=>{videoRef.current.play(); setX("-30%"); setY("-120px"); SetShowScrollButoon(false)}}>
               <FontAwesomeIcon
                 className='f-18 mx-1'
                 style={{ color: 'white' }}
@@ -105,12 +109,18 @@ const LandingPage = () => {
               </div>
             </div>
         </div>
+        {showScrollButton?
+        <>
         <div className='text-light' style={{ position:'absolute', top:'85%', left:'45.5%'}}>
           <p className="f-18 font-weight-bolder mx-auto mb-5">Know More</p>
           <div className="bounce-object" style={{ position:'absolute', left:'40%'}}>
             <img src={arrowdown} onClick={scrollHandler}/>
           </div>
         </div>
+        </>
+        : null
+        }
+        
       </div>
     )
   }
@@ -267,10 +277,6 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
-
-        {/* <div className="arrow bounce">
-          <a className="fa fa-arrow-down fa-2x" href="#"></a>
-        </div> */}
       </>
     )
   }
@@ -634,7 +640,9 @@ const LandingPage = () => {
   else{
     return (
       <>
-        <DesktopNavbar page='landing'/>
+        <div style={{position:"relative", top:`${y}`, transitionProperty: y, transitionDuration: '0.8s'}}>
+          <DesktopNavbar page='landing'/>
+        </div>
         <div style={{backgroundColor:'black'}}>
           {videoSection()}
           {testiimonialSection()}
