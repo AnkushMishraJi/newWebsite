@@ -106,7 +106,7 @@ const LandingPage = () => {
           <p className='f-44 font-weight-bolder line-ht-0'>Private Parties</p>
           <p className="f-20 font-weight-bolder py-2">Customized for you.</p>
           <div className='d-flex align-items-center'>
-            <button className='text-light p-2 f-14' onClick={()=>{history.push("/uphone")}} style={{backgroundColor:'#FF3030',border:'none', outline:'none', borderRadius:'6px'}}>Book Now</button>
+            <button className='text-light p-2 f-14' onClick={()=>{history.push("/")}} style={{backgroundColor:'#FF3030',border:'none', outline:'none', borderRadius:'6px'}}>Book Now</button>
             <div className='d-flex mx-3 pointer' onClick={()=>{videoRef.current.play(); setX("-30%"); setY("-120px"); SetShowScrollButoon(false); setPlay(true)}}>
               <FontAwesomeIcon
                 className='f-18 mx-1'

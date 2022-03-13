@@ -24,7 +24,7 @@ const DesktopNavbar= (props)=>{
                         <img src={user} alt="Logo" style={{ width: "2em", height: "2em" }}/>
                         <p className='my-auto'>Log In/Sign Up</p>
                     </Link>
-                    <button className='text-light p-2 f-16 px-3' onClick={()=>{history.push("/uphone")}} style={{backgroundColor:'#FF3030',border:'none', outline:'none', borderRadius:'6px'}}>Book Now</button>
+                    <button className='text-light p-2 f-16 px-3' onClick={()=>{history.push("/")}} style={{backgroundColor:'#FF3030',border:'none', outline:'none', borderRadius:'6px'}}>Book Now</button>
                 </div>
             </div>
             </>

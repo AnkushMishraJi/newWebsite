@@ -686,6 +686,10 @@ a {
   cursor: pointer !important;
 }
 
+.bg-light-black{
+  background-color: rgb(0,0,0,0.7);
+}
+
 @keyframes MoveUpDown {
   0%, 100% {
     bottom: 0;

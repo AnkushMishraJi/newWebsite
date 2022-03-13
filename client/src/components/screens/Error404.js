@@ -23,7 +23,7 @@ const Error404 = () => {
           width: "15em",
           borderRadius: "8px",
           border: "none",
-          color: "#1a1b41",
+          color: "black",
           paddingTop: "0.7em",
           textAlign: "center",
           margin: "0 auto",

@@ -423,7 +423,7 @@ const ConfirmBooking = () => {
           <p className='font-weight-bolder f-16'>Payment Method</p>
           <FontAwesomeIcon
             className="f-32"
-            style={{background:"#1A1B41", borderRadius:"50%", color:"white"}}
+            style={{background:"black", borderRadius:"50%", color:"white"}}
             icon={faTimesCircle}
             onClick={()=>{setShowPaymentModal(false)}}
           />
@@ -457,7 +457,7 @@ const ConfirmBooking = () => {
           </div>
           <button className="text-light px-5 font-weight-bolder"
               style={{
-                backgroundColor: "#1A1B41",
+                backgroundColor: "black",
                 borderRadius: "8px",
                 border: "none",
               }}
@@ -467,7 +467,7 @@ const ConfirmBooking = () => {
             >
               <FontAwesomeIcon
               className="f-22"
-              style={{background:"#1A1B41", color:"white"}}
+              style={{background:"black", color:"white"}}
               icon={faArrowRight}
               />
             </button>
@@ -569,7 +569,7 @@ const ConfirmBooking = () => {
               addedDecorCost==0 ?
               <FontAwesomeIcon
                 className="f-32"
-                style={{background:"#fe9124", borderRadius:"50%", color:"#1a1b41"}}
+                style={{background:"#fe9124", borderRadius:"50%", color:"black"}}
                 icon={faPlusCircle}
                 onClick={()=>setShowDecorCarousel(true)}
               />
@@ -577,7 +577,7 @@ const ConfirmBooking = () => {
               <div className='d-flex'>
               <FontAwesomeIcon
                 className="f-32"
-                style={{background:"#fe9124", borderRadius:"50%", color:"#1a1b41"}}
+                style={{background:"#fe9124", borderRadius:"50%", color:"black"}}
                 icon={faMinusCircle}
                 onClick={()=>{setAddedDecorCost(0);setAddedDecorTheme('');setAddedDecorTier('');}}
               />
@@ -601,14 +601,14 @@ const ConfirmBooking = () => {
               !addedSpeakerName ?
               <FontAwesomeIcon
                 className="f-32"
-                style={{background:"#fe9124", borderRadius:"50%", color:"#1a1b41"}}
+                style={{background:"#fe9124", borderRadius:"50%", color:"black"}}
                 icon={faPlusCircle}
                 onClick={()=>setShowSpeakerCarousel(true)}
               />
               :
               <FontAwesomeIcon
                 className="f-32"
-                style={{background:"#fe9124", borderRadius:"50%", color:"#1a1b41"}}
+                style={{background:"#fe9124", borderRadius:"50%", color:"black"}}
                 icon={faMinusCircle}
                 onClick={()=>{setAddedSpeakerCost(0); setAddedSpeakerName('')}}
               />
