@@ -34,7 +34,7 @@
 }
 
 .bg-brand {
-  background-color: #1a1b41 !important;
+  background-color: black !important;
 }
 .brand-logo,h3,h4,h6
 h2 {
@@ -680,6 +680,10 @@ a {
   position: absolute;
   left: 0;
   bottom: 0;
+}
+
+.pointer{
+  cursor: pointer !important;
 }
 
 @keyframes MoveUpDown {
