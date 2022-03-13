@@ -87,19 +87,27 @@ const LandingPage = () => {
     var elmnt = document.getElementById("content");
     elmnt.scrollIntoView();
   }
+
+  const handleScroll = (direction, id)=>{
+    var element = document.getElementById(id);
+    if(direction=="left")
+    element.scrollLeft = element.scrollLeft - 300;
+    else if(direction=="right")
+    element.scrollLeft = element.scrollLeft + 300;
+  }
   
 
   const videoSection = ()=>{
     return(
-      <div style={{position:'relative'}}>
-        <video ref={videoRef} onClick={(e)=>{e.target.pause(); setX("5%"); setY("0px"); SetShowScrollButoon(true)}} width="100%" height="500%"  src="https://gdurl.com/01vL" title="YouTube video player" frameborder="0" allow="">
+      <div className={`${play ? `pointer` : null}`} style={{position:'relative'}}>
+        <video ref={videoRef} onClick={(e)=>{e.target.pause(); setX("5%"); setY("0px"); SetShowScrollButoon(true); setPlay(false)}} width="100%" height="500%"  src="https://gdurl.com/01vL" title="YouTube video player" frameborder="0" allow="" preload="false">
         </video>
         <div className='text-light' style={{ position:'absolute', top:'40%', left:`${x}`,transitionProperty: x, transitionDuration: '0.8s'}}>
           <p className='f-44 font-weight-bolder line-ht-0'>Private Parties</p>
           <p className="f-20 font-weight-bolder py-2">Customized for you.</p>
           <div className='d-flex align-items-center'>
-            <button className='text-light p-2 f-14' onClick={()=>{history.push("/uphone")}} style={{backgroundColor:'#FF3030',border:'none', outline:'none', borderRadius:'6px'}}>Book Now</button>
-            <div className='d-flex mx-3' onClick={()=>{videoRef.current.play(); setX("-30%"); setY("-120px"); SetShowScrollButoon(false)}}>
+            <button className='text-light p-2 f-14' onClick={()=>{history.push("/")}} style={{backgroundColor:'#FF3030',border:'none', outline:'none', borderRadius:'6px'}}>Book Now</button>
+            <div className='d-flex mx-3 pointer' onClick={()=>{videoRef.current.play(); setX("-30%"); setY("-120px"); SetShowScrollButoon(false); setPlay(true)}}>
               <FontAwesomeIcon
                 className='f-18 mx-1'
                 style={{ color: 'white' }}
@@ -127,13 +135,13 @@ const LandingPage = () => {
 
   const testiimonialSection = ()=>{
     return(
-      <div className='d-flex flex-column mt-5 px-5 w-60 mx-auto' style={{position:'relative'}}>
+      <div className='d-flex flex-column mt-5 w-50 px-5 mx-auto' style={{position:'relative'}}>
         <p className='text-light mx-auto f-24'>
           Hear it from our customers!
         </p>
-        <img style={{width:'2vw', position:'absolute', top:'50%', left:'0%'}} src={arrow_left} />
-        <Row className='mx-auto text-light'>
-          <Col lg='4' md='6' >
+        <img className='pointer' style={{width:'2vw', position:'absolute', top:'50%', left:'0%'}} src={arrow_left} onClick={()=>{handleScroll("left","testimonial-div")}}/>
+        <div id="testimonial-div" className='mx-auto text-light d-flex' style={{overflowX:'scroll', maxWidth:'100%', scrollBehavior:'smooth'}}>
+          <div style={{minWidth:'33%'}}>
             <div className='mx-1 p-2' style={{backgroundColor:'#101010'}}>
               <p className='f-14 mt-2'>
                 In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
@@ -147,8 +155,8 @@ const LandingPage = () => {
                   </div>
                 </div>
               </div>
-          </Col>
-          <Col lg='4' md='6' >
+          </div>
+          <div style={{minWidth:'33%'}}>
             <div className='mx-1 p-2' style={{backgroundColor:'#101010'}}>
               <p className='f-14 mt-2'>
                 In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
@@ -162,8 +170,8 @@ const LandingPage = () => {
                   </div>
                 </div>
               </div>
-          </Col>
-          <Col lg='4' md='6' >
+          </div>
+          <div style={{minWidth:'33%'}}>
             <div className='mx-1 p-2' style={{backgroundColor:'#101010'}}>
               <p className='f-14 mt-2'>
                 In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
@@ -177,9 +185,54 @@ const LandingPage = () => {
                   </div>
                 </div>
               </div>
-          </Col>
-        </Row>
-        <img style={{width:'2vw', position:'absolute', top:'50%', right:'0%' , transform:'rotate(180deg)'}} src={arrow_left} />
+          </div>
+          <div style={{minWidth:'33%'}}>
+            <div className='mx-1 p-2' style={{backgroundColor:'#101010'}}>
+              <p className='f-14 mt-2'>
+                In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
+              </p>
+              <div style={{display:"flex",justifyContent:"space-around",margin:"18px 0px"}}>
+                  <div>
+                      <img style={{width:"40px",height:"40px",borderRadius:"80px"}} src="https://images.unsplash.com/photo-1520183802803-06f731a2059f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcnNvbnxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60"/>
+                  </div>
+                  <div>
+                      <h6 className="mt-2">Victor Brimstone</h6>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div style={{minWidth:'33%'}}>
+            <div className='mx-1 p-2' style={{backgroundColor:'#101010'}}>
+              <p className='f-14 mt-2'>
+                In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
+              </p>
+              <div style={{display:"flex",justifyContent:"space-around",margin:"18px 0px"}}>
+                  <div>
+                      <img style={{width:"40px",height:"40px",borderRadius:"80px"}} src="https://images.unsplash.com/photo-1520183802803-06f731a2059f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcnNvbnxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60"/>
+                  </div>
+                  <div>
+                      <h6 className="mt-2">Victor Brimstone</h6>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div style={{minWidth:'33%'}}>
+            <div className='mx-1 p-2' style={{backgroundColor:'#101010'}}>
+              <p className='f-14 mt-2'>
+                In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
+              </p>
+              <div style={{display:"flex",justifyContent:"space-around",margin:"18px 0px"}}>
+                  <div>
+                      <img style={{width:"40px",height:"40px",borderRadius:"80px"}} src="https://images.unsplash.com/photo-1520183802803-06f731a2059f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcnNvbnxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60"/>
+                  </div>
+                  <div>
+                      <h6 className="mt-2">Victor Brimstone</h6>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+        <img className='pointer' style={{width:'2vw', position:'absolute', top:'50%', right:'0%' , transform:'rotate(180deg)'}} src={arrow_left} onClick={()=>{handleScroll("right","testimonial-div")}}/>
       </div>
     )
   }

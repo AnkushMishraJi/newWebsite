@@ -90,7 +90,7 @@ const UserPhoneCheck = () => {
     <>
     {isMobile || width <= 980 ? null : <LayoutHeader />}
     <div className={isMobile || width <= 980 ? "h-90" : "w-50 mx-auto mb-5"}>
-      <style>{"body { background-color: #1a1b41; }"}</style>
+      <style>{"body { background-color: black; }"}</style>
 
       <div className="">
         <p className="text-center brand-logo f-24 mt-5   ">HEY THERE!</p>
@@ -123,7 +123,7 @@ const UserPhoneCheck = () => {
                 borderRadius: "0.5em",
                 border: "none",
               }}
-              onClick={onSubmitPhone}
+              onClick={()=>{setTimeout(()=>onSubmitPhone(),0)}}
             >
               Sign-in / Sign-up
             </button>

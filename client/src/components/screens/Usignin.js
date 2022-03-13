@@ -135,7 +135,7 @@ const UserSignin = () => {
     <>
     {isMobile || width <= 980 ? null : <LayoutHeader />}
       <div className={isMobile || width <= 980 ? null : `w-50 mx-auto mb-5`}>
-        <style>{"body { background-color: #1a1b41; }"}</style>
+        <style>{"body { background-color: black; }"}</style>
         <p className="brand-logo f-24 text-center mt-5">SUBMIT OTP</p>
         <div className="imgDot d-flex mx-auto">
           <img
