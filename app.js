@@ -12,6 +12,7 @@ app.use(require("./routes/cloudinary"));
 app.use(require("./routes/userBooking"));
 app.use(require("./routes/customisation"));
 app.use(require("./routes/admin"));
+app.use(require("./routes/testimonials"));
 
 
 if (process.env.NODE_ENV == "production") {

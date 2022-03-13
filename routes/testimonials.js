@@ -41,3 +41,5 @@ router.get("/api/testimonial/landing-page",(req,res)=>{
         )
     })
 })
+
+module.exports = router;
