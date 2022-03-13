@@ -28,6 +28,7 @@ import AdminDashboard from "./components/screens/AdminDashboard";
 import Admin from "./components/screens/Admin";
 import AdminCouponDetails from "./components/screens/AdminCouponDetails";
 import AdminProtectedRoute from "./components/AdminProtectedRoute";
+import CreateTesrimonial from "./components/screens/CreateTestimonial";
 
 
 const isBrowser = () => typeof window !== "undefined"
@@ -89,6 +90,9 @@ function App() {
           </Route>
           <Route path="/adminin" >
             <Admin />
+          </Route>
+          <Route path="/admin/create-testimonial" >
+            <CreateTesrimonial />
           </Route>
           <ProtectedRoute exact path="/allBookings" component={AllBookings} />
           <ProtectedRoute exact path="/oldBill" component={OldBill} />
