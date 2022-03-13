@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 
 const testimonialsSchema = require("../models/testimonials");
-const testimonial = mongoose.model("BusinessUser", testimonialsSchema);
+const testimonial = mongoose.model("Testimonial", testimonialsSchema);
 
 
 router.post("/api/create/testimonial/landing-page",(req,res)=>{
