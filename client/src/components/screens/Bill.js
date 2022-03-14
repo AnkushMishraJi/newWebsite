@@ -136,7 +136,7 @@ const Bill = () => {
     <>
     {isMobile || width <= 980 ? null : <LayoutHeader />}
     <div className={isMobile || width <= 980 ? null : 'w-40 mx-auto'}>
-      <style>{"body { background-color: #1a1b41; }"}</style>
+      <style>{"body { background-color: black; }"}</style>
       <div className={`brand-logo text-center  ${isMobile || width <= 980 ? `f-18 mt-4` : `f-24 mt-0`}`}>
         Payment Successful
       </div>

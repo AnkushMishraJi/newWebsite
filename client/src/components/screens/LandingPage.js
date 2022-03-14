@@ -39,6 +39,7 @@ import { useHistory } from "react-router";
 
 import  { TabTitle } from '../TitleSetter'; 
 import DesktopNavbar from "../navbarDesktop";
+import LayoutMobile from "../LayoutMobile";
 
 const isBrowser = () => typeof window !== "undefined"
 const isMobile = isBrowser() ? (window.innerWidth <= 980 ? true : false) :  false;
@@ -59,6 +60,7 @@ const LandingPage = () => {
   const [x,setX] = useState("5%");
   const [y,setY] = useState("0px");
   const [showScrollButton,SetShowScrollButoon] = useState(true);
+  const [testimonials, setTestimonials] = useState([]);
 
   const videoRef = useRef(null);
 
@@ -81,7 +83,29 @@ const LandingPage = () => {
         window.removeEventListener("resize", handleResize);
       };
     }
+
+    
   }, []);
+
+  useEffect(()=>{
+    fetchTestimonial();
+  },[])
+
+  const fetchTestimonial = ()=>{
+    fetch("/api/testimonial/landing-page",
+      {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+    .then((res)=>res.json())
+    .then((data)=>{
+      setTestimonials(data);
+      console.log(data)
+    })
+  }
 
   const scrollHandler = ()=>{
     var elmnt = document.getElementById("content");
@@ -100,7 +124,7 @@ const LandingPage = () => {
   const videoSection = ()=>{
     return(
       <div className={`${play ? `pointer` : null}`} style={{position:'relative'}}>
-        <video ref={videoRef} onClick={(e)=>{e.target.pause(); setX("5%"); setY("0px"); SetShowScrollButoon(true); setPlay(false)}} width="100%" height="500%"  src="https://gdurl.com/01vL" title="YouTube video player" frameborder="0" allow="" preload="false">
+        <video ref={videoRef} onClick={(e)=>{e.target.pause(); setX("5%"); setY("0px"); SetShowScrollButoon(true); setPlay(false)}} width="100%" height="500%"  src="https://gdurl.com/01vL" title="YouTube video player" frameBorder="0" allow="" preload="false">
         </video>
         <div className='text-light' style={{ position:'absolute', top:'40%', left:`${x}`,transitionProperty: x, transitionDuration: '0.8s'}}>
           <p className='f-44 font-weight-bolder line-ht-0'>Private Parties</p>
@@ -141,96 +165,29 @@ const LandingPage = () => {
         </p>
         <img className='pointer' style={{width:'2vw', position:'absolute', top:'50%', left:'0%'}} src={arrow_left} onClick={()=>{handleScroll("left","testimonial-div")}}/>
         <div id="testimonial-div" className='mx-auto text-light d-flex' style={{overflowX:'scroll', maxWidth:'100%', scrollBehavior:'smooth'}}>
-          <div style={{minWidth:'33%'}}>
-            <div className='mx-1 p-2' style={{backgroundColor:'#101010'}}>
-              <p className='f-14 mt-2'>
-                In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
-              </p>
-              <div style={{display:"flex",justifyContent:"space-around",margin:"18px 0px"}}>
-                  <div>
-                      <img style={{width:"40px",height:"40px",borderRadius:"80px"}} src="https://images.unsplash.com/photo-1520183802803-06f731a2059f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcnNvbnxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60"/>
-                  </div>
-                  <div>
-                      <h6 className="mt-2">Victor Brimstone</h6>
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div style={{minWidth:'33%'}}>
-            <div className='mx-1 p-2' style={{backgroundColor:'#101010'}}>
-              <p className='f-14 mt-2'>
-                In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
-              </p>
-              <div style={{display:"flex",justifyContent:"space-around",margin:"18px 0px"}}>
-                  <div>
-                      <img style={{width:"40px",height:"40px",borderRadius:"80px"}} src="https://images.unsplash.com/photo-1520183802803-06f731a2059f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcnNvbnxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60"/>
-                  </div>
-                  <div>
-                      <h6 className="mt-2">Victor Brimstone</h6>
+          {
+            testimonials.map((testimonial)=>{
+              return(
+                <div style={{minWidth:'33%'}}>
+                  <div className='mx-1 p-2' style={{backgroundColor:'#101010'}}>
+                    <p className='f-14 mt-2'>
+                      {testimonial.content}
+                    </p>
+                    <div style={{display:"flex",justifyContent:"space-around",margin:"18px 0px"}}>
+                        <div>
+                            <img style={{width:"40px",height:"40px",borderRadius:"80px"}} src={testimonial.picUrl}/>
+                        </div>
+                        <div>
+                            <h6 className="mt-2">{testimonial.name}</h6>
+                        </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-          </div>
-          <div style={{minWidth:'33%'}}>
-            <div className='mx-1 p-2' style={{backgroundColor:'#101010'}}>
-              <p className='f-14 mt-2'>
-                In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
-              </p>
-              <div style={{display:"flex",justifyContent:"space-around",margin:"18px 0px"}}>
-                  <div>
-                      <img style={{width:"40px",height:"40px",borderRadius:"80px"}} src="https://images.unsplash.com/photo-1520183802803-06f731a2059f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcnNvbnxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60"/>
-                  </div>
-                  <div>
-                      <h6 className="mt-2">Victor Brimstone</h6>
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div style={{minWidth:'33%'}}>
-            <div className='mx-1 p-2' style={{backgroundColor:'#101010'}}>
-              <p className='f-14 mt-2'>
-                In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
-              </p>
-              <div style={{display:"flex",justifyContent:"space-around",margin:"18px 0px"}}>
-                  <div>
-                      <img style={{width:"40px",height:"40px",borderRadius:"80px"}} src="https://images.unsplash.com/photo-1520183802803-06f731a2059f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcnNvbnxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60"/>
-                  </div>
-                  <div>
-                      <h6 className="mt-2">Victor Brimstone</h6>
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div style={{minWidth:'33%'}}>
-            <div className='mx-1 p-2' style={{backgroundColor:'#101010'}}>
-              <p className='f-14 mt-2'>
-                In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
-              </p>
-              <div style={{display:"flex",justifyContent:"space-around",margin:"18px 0px"}}>
-                  <div>
-                      <img style={{width:"40px",height:"40px",borderRadius:"80px"}} src="https://images.unsplash.com/photo-1520183802803-06f731a2059f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcnNvbnxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60"/>
-                  </div>
-                  <div>
-                      <h6 className="mt-2">Victor Brimstone</h6>
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div style={{minWidth:'33%'}}>
-            <div className='mx-1 p-2' style={{backgroundColor:'#101010'}}>
-              <p className='f-14 mt-2'>
-                In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is\
-              </p>
-              <div style={{display:"flex",justifyContent:"space-around",margin:"18px 0px"}}>
-                  <div>
-                      <img style={{width:"40px",height:"40px",borderRadius:"80px"}} src="https://images.unsplash.com/photo-1520183802803-06f731a2059f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcnNvbnxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60"/>
-                  </div>
-                  <div>
-                      <h6 className="mt-2">Victor Brimstone</h6>
-                  </div>
-                </div>
-              </div>
-          </div>
+              )
+            })
+            
+          
+          }
         </div>
         <img className='pointer' style={{width:'2vw', position:'absolute', top:'50%', right:'0%' , transform:'rotate(180deg)'}} src={arrow_left} onClick={()=>{handleScroll("right","testimonial-div")}}/>
       </div>
@@ -336,6 +293,7 @@ const LandingPage = () => {
 
   if(isMobile || width <= 980){
     return (
+      <LayoutMobile>
       <div className=" text-center text-light">
         <Carousel
           showThumbs={false}
@@ -396,7 +354,7 @@ const LandingPage = () => {
             className=" w-60 font-weight-bolder f-18"
             style={{
               position: "absolute",
-              color: "#1a1b41",
+              color: "black",
               backgroundColor: "#fe9124",
               height: "40px",
               borderRadius: "8px",
@@ -688,6 +646,7 @@ const LandingPage = () => {
         <p>.</p>
         <p>.</p>
       </div>
+      </LayoutMobile>
     );
   }
   else{
