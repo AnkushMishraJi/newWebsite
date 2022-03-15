@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import LayoutMobile from "../LayoutMobile";
 
 import { TabTitle } from "../TitleSetter";
 
@@ -40,6 +41,7 @@ const AllBookings = () => {
   };
 
   return (
+    <LayoutMobile>
     <div>
       <h1 className="brand-logo f-20 text-center mt-4">Booking History</h1>
       {booking.map((oneBooking) => {
@@ -79,7 +81,7 @@ const AllBookings = () => {
 
         return (
           <div>
-            <style>{"body { background-color: #1a1b41; }"}</style>
+            <style>{"body { background-color: black; }"}</style>
             <div
               className="blist p-2 pt-4 "
               style={{
@@ -105,6 +107,7 @@ const AllBookings = () => {
       })}
       <p className="my-5">.</p>
     </div>
+    </LayoutMobile>
   );
 };
 
