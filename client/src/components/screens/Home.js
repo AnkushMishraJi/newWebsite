@@ -197,7 +197,7 @@ const Home = () => {
     return(
       <>
       <LayoutHeader>
-        <div className="d-flex flex-column mt-5 bg-brand">
+        <div className="d-flex flex-column bg-brand" style={{marginTop: "200px"}}>
           <div className="mx-auto">
             <p className="f-36 font-weight-bold text-light">When are you coming to party?</p>
           </div>

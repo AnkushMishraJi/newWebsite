@@ -701,7 +701,7 @@ const LandingPage = () => {
           {testiimonialSection()}
           {about()}
         </div>
-        <FooterDesktop page='landing'/>
+        <FooterDesktop/>
       </>
     );
   }

@@ -49,7 +49,7 @@ const UserPage = () => {
   return (
     <>
     {isMobile || width <= 980 ? null : <LayoutHeader />}
-      <div className={`text-light mx-auto ${isMobile || width <= 980 ? `w-90` : `w-40`}`}>
+      <div className={`text-light mx-auto ${isMobile || width <= 980 ? `w-90` : `w-40`}`} style={{marginTop: `${isMobile || width <= 980 ? "0px" : "60px"}`}}>
         <style>{"body { background-color: black; }"}</style>
         <div className="row py-5 line-ht-2 ">
           <p>Hello</p>

@@ -10,7 +10,7 @@ const FooterDesktop = (props)=>{
     return(
         <>
             <div style={props.position == 'fixed' ? {bottom:"0", position:"fixed", paddingLeft:"10%", paddingRight:"10%"} : {bottom:"0", paddingLeft:"10%", paddingRight:"10%"}} 
-            className={`${props.page=='landing' ? `bg-light-black text-light` : `bg-light`} d-flex justify-content-between w-100 py-4`}>
+            className="bg-light-black text-light d-flex justify-content-between w-100 py-4">
                 <div className="d-flex">
                     <Link to="/">
                         <img src={logo} alt="Logo" style={{ width: "4em", height: "4em" }}/>

@@ -126,7 +126,7 @@ const CreateTesrimonial = () => {
         <div style={{backgroundColor:'black'}}>
           {inputTestimonial()}
         </div>
-        <FooterDesktop page='landing'/>
+        <FooterDesktop/>
       </>
     );
 };

@@ -89,7 +89,7 @@ const UserPhoneCheck = () => {
   return (
     <>
     {isMobile || width <= 980 ? null : <LayoutHeader />}
-    <div className={isMobile || width <= 980 ? "h-90" : "w-50 mx-auto mb-5"}>
+    <div className={isMobile || width <= 980 ? "h-90" : "w-50 mx-auto mb-5"} style={{marginTop: `${isMobile || width <= 980 ? "0px" : "60px"}`}}>
       <style>{"body { background-color: black; }"}</style>
 
       <div className="">

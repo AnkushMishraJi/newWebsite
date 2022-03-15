@@ -62,7 +62,7 @@ const HotelList = () => {
   return (
     <>
     {isMobile || width <= 980 ? null : <LayoutHeader />}
-    <div className="bg-brand">
+    <div className="bg-brand" style={{marginTop: "80px"}}>
       <Link to="/" className={isMobile || width <= 980 ? null : 'd-none'}>
         <FontAwesomeIcon
           className="back-arrow waves-effect"
