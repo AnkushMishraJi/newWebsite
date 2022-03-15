@@ -418,7 +418,7 @@ const UserHotel = () => {
   else{
     return(
       <Layout>
-        <div className="w-90 text-light bg-brand mx-auto">
+        <div className="w-90 text-light bg-brand mx-auto" style={{marginTop: "80px"}}>
         <div className="d-flex justify-content-between mb-3">
           <div>
             <h2 className='f-44'>{hotelName}</h2>
