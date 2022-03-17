@@ -480,7 +480,7 @@ const ConfirmBooking = () => {
   return (
     <>
     {isMobile || width <= 980 ? null : <LayoutHeader />}
-    <div className={`d-flex flex-column align-items-center p-5 bg-brand ${isMobile || width <= 980 ? null : `w-40 mx-auto`}`} 
+    <div className={`d-flex flex-column align-items-center p-5 bg-brand mt-2 ${isMobile || width <= 980 ? null : `w-40 mx-auto`}`} 
     style={showDecorCarousel || showSpeakerCarousel || showPaymentModal ? {filter:"blur(8px)"} : null}
     onClick={()=>{if(showDecorCarousel || showSpeakerCarousel || showPaymentModal){setShowDecorCarousel(false);setShowSpeakerCarousel(false);setShowPaymentModal(false)}}}
     > 
@@ -548,7 +548,74 @@ const ConfirmBooking = () => {
           onKeyPress={closeKeyboard}
         />
       </div>
-      { 
+      <div className={showDecorCarousel||showSpeakerCarousel ? "text-light text-center w-100" : "text-light text-center w-75"}>
+        <p className="font-weight-bolder f-18">Customise</p>
+        <div>
+          <div className="d-flex justify-content-between mb-3">
+          <p className="font-weight-bolder">Decoration</p>
+          {
+            addedDecorCost==0 ?
+            null
+            :
+            <div className='f-12 line-ht-0 my-auto'>
+              <p>{addedDecorTheme}</p>
+              <p>{addedDecorTier}</p>
+            </div>
+          }
+          <div className="font-weight-bolder" >
+            {
+              addedDecorCost==0 ?
+              <FontAwesomeIcon
+                className="f-32"
+                style={{background:"#fe9124", borderRadius:"50%", color:"black"}}
+                icon={faPlusCircle}
+                onClick={()=>setShowDecorCarousel(true)}
+              />
+              :
+              <div className='d-flex'>
+              <FontAwesomeIcon
+                className="f-32"
+                style={{background:"#fe9124", borderRadius:"50%", color:"black"}}
+                icon={faMinusCircle}
+                onClick={()=>{setAddedDecorCost(0);setAddedDecorTheme('');setAddedDecorTier('');}}
+              />
+              </div>
+            }
+        </div>
+          </div>
+          <div className="d-flex justify-content-between">
+          <p className="font-weight-bolder">Speaker</p>
+          {
+            !addedSpeakerName ?
+            null
+            :
+            <div className='f-12 line-ht-0 my-auto'>
+              <p>Speaker added</p>
+              <p>{addedSpeakerName}</p>
+            </div>
+          }
+          <div className="font-weight-bolder">
+          {
+              !addedSpeakerName ?
+              <FontAwesomeIcon
+                className="f-32"
+                style={{background:"#fe9124", borderRadius:"50%", color:"black"}}
+                icon={faPlusCircle}
+                onClick={()=>setShowSpeakerCarousel(true)}
+              />
+              :
+              <FontAwesomeIcon
+                className="f-32"
+                style={{background:"#fe9124", borderRadius:"50%", color:"black"}}
+                icon={faMinusCircle}
+                onClick={()=>{setAddedSpeakerCost(0); setAddedSpeakerName('')}}
+              />
+            }
+          </div>
+          </div>
+        </div>
+      </div>
+      {/* { 
         isMobile || width <= 980 ?
         <div className={showDecorCarousel||showSpeakerCarousel ? "text-light text-center w-100" : "text-light text-center w-75"}>
         <p className="font-weight-bolder f-18">Customise</p>
@@ -619,7 +686,7 @@ const ConfirmBooking = () => {
       </div>
       :
       null
-    }
+    } */}
     
     {renderPromoCode()}
 
@@ -705,19 +772,19 @@ const ConfirmBooking = () => {
         infiniteLoop={false}
         showIndicators={false}
         showStatus={false}
-        className="mb-5"
+        className="mb-5" style={{width: "70%", height: "30%"}}
         swipeScrollTolerance={50}
         preventMovementUntilSwipeScrollTolerance={true}
         centerMode={true}
         centerSlidePercentage={80}
-        showArrows={false}
+        showArrows={true}
       >
         {
         speakers.map((speaker)=>{
           let id = speaker.speaker_name;
           return(
-            <div key={speaker._id} onClick={()=>handleSelectSpeaker(speaker)} className="benefits-custom-selectpage" id={id}>
-              <div className="tape w-40 py-5">
+            <div key={speaker._id} onClick={()=>handleSelectSpeaker(speaker)} className="benefits-custom-selectpage" id={id} >
+              <div className="tape w-40 py-5" >
               <p className="font-weight-bolder f-16">{speaker.speaker_name.toUpperCase()}</p>
               <p className="font-weight-bolder f-16">{speaker.speaker_price == 0 ? "FREE" : `₹ ${speaker.speaker_price}`}</p>
             </div>
