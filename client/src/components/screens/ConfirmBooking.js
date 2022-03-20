@@ -720,10 +720,10 @@ const ConfirmBooking = () => {
       </button>
       <p className={isMobile || width <= 980 ? `text-light mb-10` :`text-light mb-10 w-60`}>By clicking on Pay Now you agree to our terms and conditions policy.<span style={{textDecoration:"underline", color:"orange"}}> <a href="/policies.docx" >Click here</a> </span>to download.</p>
     </div>
-    <div className="w-100" style={{position:"absolute", top:"30%"}}>
-      <div className={showDecorCarousel || showSpeakerCarousel ? "text-light" : "d-none"} style={{position:"absolute", top:"-90%", left:"90%", zIndex:"1"}} onClick={()=>{setShowDecorCarousel(false); setShowSpeakerCarousel(false);}}>
+    <div className={`w-100`} style={{position:"absolute", top:"30%"}}>
+      <div className={showDecorCarousel || showSpeakerCarousel ? "text-light" : "d-none"} style={isMobile || width <= 980 ? {position:"absolute", top:"-90%", left:"90%", zIndex:"1"} : {position:"absolute", top:"-30%", left:"95%"}} onClick={()=>{setShowDecorCarousel(false); setShowSpeakerCarousel(false);}}>
         <FontAwesomeIcon
-          className="f-32"
+          className="f-32 pointer"
           style={{background:"red", borderRadius:"50%", color:"white"}}
           icon={faTimesCircle}
         />
@@ -736,11 +736,11 @@ const ConfirmBooking = () => {
           infiniteLoop={false}
           showIndicators={false}
           showStatus={false}
-          className="mb-5"
+          className="mb-5 pointer" 
           swipeScrollTolerance={50}
           preventMovementUntilSwipeScrollTolerance={true}
           centerMode={true}
-          centerSlidePercentage={80}
+          centerSlidePercentage={isMobile || width <= 980 ? 80 : 65}
           showArrows={true}
         >
           {
@@ -749,7 +749,7 @@ const ConfirmBooking = () => {
               id=id + "-" + decoration.decoration_tier;
               console.log(id);
               return(
-                <div onClick={()=>handleSelectDecor(decoration)} key={decoration._id} className="benefits-custom-selectpage" id={id}>
+                <div onClick={()=>handleSelectDecor(decoration)} key={decoration._id} className={`benefits-custom-selectpage ${isMobile || width <= 980 ? null : `w-50`}`} id={id} style={isMobile || width <= 980 ? null : {height:'350px'}}>
                   <div className="tape w-50 py-5">
                   <p className="font-weight-bolder f-18">{decoration.decoration_theme.charAt(0).toUpperCase()+decoration.decoration_theme.slice(1)}</p>
                   <p className="font-weight-bolder f-16">{decoration.decoration_tier}</p>
@@ -772,18 +772,18 @@ const ConfirmBooking = () => {
         infiniteLoop={false}
         showIndicators={false}
         showStatus={false}
-        className="mb-5" style={{width: "70%", height: "30%"}}
+        className="mb-5 pointer" style={{width: "70%", height: "30%"}}
         swipeScrollTolerance={50}
         preventMovementUntilSwipeScrollTolerance={true}
         centerMode={true}
-        centerSlidePercentage={80}
+        centerSlidePercentage={isMobile || width <= 980 ? 80 : 65}
         showArrows={true}
       >
         {
         speakers.map((speaker)=>{
           let id = speaker.speaker_name;
           return(
-            <div key={speaker._id} onClick={()=>handleSelectSpeaker(speaker)} className="benefits-custom-selectpage" id={id} >
+            <div key={speaker._id} onClick={()=>handleSelectSpeaker(speaker)} className={`benefits-custom-selectpage ${isMobile || width <= 980 ? null : `w-50`}`} id={id} style={isMobile || width <= 980 ? null : {height:'350px'}}>
               <div className="tape w-40 py-5" >
               <p className="font-weight-bolder f-16">{speaker.speaker_name.toUpperCase()}</p>
               <p className="font-weight-bolder f-16">{speaker.speaker_price == 0 ? "FREE" : `₹ ${speaker.speaker_price}`}</p>
