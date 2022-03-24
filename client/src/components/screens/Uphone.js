@@ -59,7 +59,7 @@ const UserPhoneCheck = () => {
         icon: "warning",
         title: "Invalid Phone Number",
         text: "Please enter a valid Phone Number",
-        confirmButtonColor: "#fe9124",
+        confirmButtonColor: "#FF3030",
         allowEnterKey: false,
       });
     }
@@ -118,7 +118,7 @@ const UserPhoneCheck = () => {
             <button
               className="text-light w-60 mt-3"
               style={{
-                backgroundColor: "#fe9124",
+                backgroundColor: "#FF3030",
                 height: "40px",
                 borderRadius: "0.5em",
                 border: "none",

@@ -31,7 +31,7 @@ const CreateTesrimonial = () => {
                 icon: "error",
                 title: "ERROR",
                 text: data.error,
-                confirmButtonColor: "#fe9124",
+                confirmButtonColor: "#FF3030",
                 allowEnterKey: false,
             });
             } else {
@@ -39,7 +39,7 @@ const CreateTesrimonial = () => {
                 icon: "success",
                 title: "Saved",
                 text: "Testimonial Created Successfully",
-                confirmButtonColor: "#fe9124",
+                confirmButtonColor: "#FF3030",
                 allowEnterKey: false,
             });
             }
@@ -55,11 +55,11 @@ const CreateTesrimonial = () => {
         <div className="d-flex dflex-column">
             <div className="container">
             <div className="row">
-                <h2 className="text-center mt-3 py-5" style={{color: "#fe9124"}}>Add Testimonial</h2>
+                <h2 className="text-center mt-3 py-5" style={{color: "#FF3030"}}>Add Testimonial</h2>
                 
                 <div className="col-md-12 col-10 col-xxl-12 mx-auto">
                     <div className="mx-auto w-60">
-                        <h3 style={{color: "#fe9124"}}>Name :</h3>
+                        <h3 style={{color: "#FF3030"}}>Name :</h3>
                         <input
                             id="name"
                             type="text"
@@ -75,7 +75,7 @@ const CreateTesrimonial = () => {
                 
                 <div className="col-md-12 col-10 col-xxl-12 mx-auto">
                     <div className="mx-auto w-60">
-                        <h3 style={{color: "#fe9124"}}>Profile Pic :</h3>
+                        <h3 style={{color: "#FF3030"}}>Profile Pic :</h3>
                         <input
                             id="url"
                             type="text"
@@ -91,7 +91,7 @@ const CreateTesrimonial = () => {
                 
                 <div className="col-md-12 col-10 col-xxl-12 mx-auto">
                     <div className="mx-auto w-60">
-                        <h3 style={{color: "#fe9124"}}>Feedback :</h3>
+                        <h3 style={{color: "#FF3030"}}>Feedback :</h3>
                         <textarea
                         id="myBox"
                         placeholder="ENTER DISCRIPTION"

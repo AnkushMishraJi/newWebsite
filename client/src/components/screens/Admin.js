@@ -45,7 +45,7 @@ const Admin = () => {
                 icon: "error",
                 title: "Invalid Email",
                 text: "Please enter correct Email",
-                confirmButtonColor: "#fe9124",
+                confirmButtonColor: "#FF3030",
                 allowEnterKey: false,
               });
              
@@ -66,7 +66,7 @@ const Admin = () => {
                     icon: "error",
                     title: "ERROR",
                     text: 'Credentials do not match',
-                    confirmButtonColor: "#fe9124",
+                    confirmButtonColor: "#FF3030",
                     allowEnterKey: false,
                   });
             }
@@ -77,7 +77,7 @@ const Admin = () => {
                     icon: "success",
                     title: "Login successful",
                     text: "Account logged in",
-                    confirmButtonColor: "#fe9124",
+                    confirmButtonColor: "#FF3030",
                     allowEnterKey: false,
                   });
                 
@@ -132,7 +132,7 @@ const Admin = () => {
                 }}
                
                style={{
-                  backgroundColor: "#fe9124",
+                  backgroundColor: "#FF3030",
                   height: "40px",
                   borderRadius: "0.5em",
                   border: "none",

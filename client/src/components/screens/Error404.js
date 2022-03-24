@@ -18,7 +18,7 @@ const Error404 = () => {
         href="/"
         className="mt-3 mx-auto font-weight-bolder  d-inline-block "
         style={{
-          backgroundColor: "#fe9124",
+          backgroundColor: "#FF3030",
           height: "3em",
           width: "15em",
           borderRadius: "8px",

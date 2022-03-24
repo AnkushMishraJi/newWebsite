@@ -39,7 +39,7 @@ const UserSignin = () => {
       icon: "success",
       title: "OTP sent",
       text: "Please check your Phone",
-      confirmButtonColor: "#fe9124",
+      confirmButtonColor: "#FF3030",
       allowEnterKey: false,
     });
     onSignInSubmit();
@@ -110,7 +110,7 @@ const UserSignin = () => {
           icon: "success",
           title: "OTP matched",
           text: "You are logged in !",
-          confirmButtonColor: "#fe9124",
+          confirmButtonColor: "#FF3030",
           allowEnterKey: false,
         });
         console.log(JSON.stringify(user.providerId));
@@ -125,7 +125,7 @@ const UserSignin = () => {
           icon: "error",
           title: "Wrong OTP",
           text: "Please enter correct OTP",
-          confirmButtonColor: "#fe9124",
+          confirmButtonColor: "#FF3030",
           allowEnterKey: false,
         });
         // ...
@@ -161,7 +161,7 @@ const UserSignin = () => {
                 type="submit"
                 className="text-light w-70 mt-3"
                 style={{
-                  backgroundColor: "#fe9124",
+                  backgroundColor: "#FF3030",
                   height: "40px",
                   borderRadius: "0.5em",
                   border: "none",

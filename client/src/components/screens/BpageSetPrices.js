@@ -79,7 +79,7 @@ const SetPrices = () => {
             icon: "error",
             title: "ERROR",
             text: data.error,
-            confirmButtonColor: "#fe9124",
+            confirmButtonColor: "#FF3030",
             allowEnterKey: false,
           });
         }
@@ -88,7 +88,7 @@ const SetPrices = () => {
             icon: "success",
             title: "Saved",
             text: "User Account Created",
-            confirmButtonColor: "#fe9124",
+            confirmButtonColor: "#FF3030",
             allowEnterKey: false,
           });
         }
@@ -98,7 +98,7 @@ const SetPrices = () => {
     return (
         <div>
           <div className="mx-auto" style={{ display: "grid", gridGap: "25px" }}>
-            <h2 className="text-center mt-3 py-5" style={{color: "#fe9124"}}>Set/Update Prices</h2>
+            <h2 className="text-center mt-3 py-5" style={{color: "#FF3030"}}>Set/Update Prices</h2>
             
             <div className="container">
                 <div className="row gy-2 my-5">
@@ -357,7 +357,7 @@ const SetPrices = () => {
             <a
               className="text-light w-40 mt-5 mx-auto text-center pt-2 font-weight-bolder"
               style={{
-                backgroundColor: "#fe9124",
+                backgroundColor: "#FF3030",
                 height: "40px",
                 borderRadius: "8px",
                 border: "none",

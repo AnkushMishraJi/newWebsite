@@ -39,7 +39,7 @@
 .brand-logo,h3,h4,h6
 h2 {
   font-family: "Poppins", sans-serif !important;
-  color: #fe9124;
+  color: #FF3030;
 }
 
 .auth-card {
@@ -139,7 +139,7 @@ a {
 }
 
 .bg-orange {
-  background-color: #fe9124 !important;
+  background-color: #FF3030 !important;
 }
 .profilebox {
   margin: 40px 80px;
@@ -176,7 +176,7 @@ a {
   position: relative;
   line-height: 12px;
   padding-top: 3.9em;
-  /* border-bottom: 0.5em solid #fe9124; */
+  /* border-bottom: 0.5em solid #FF3030; */
 }
 #zebronics {
   background-image: url("./images/decor/zebronics.jpg");
@@ -301,7 +301,7 @@ a {
 .confirm-page {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border: #fe9124 solid 0.1em;
+  border: #FF3030 solid 0.1em;
   padding: 1em;
   border-radius: 1em;
 }
@@ -432,7 +432,7 @@ a {
   color: black;
   line-height: 4vmin;
   border-radius: 1em;
-  border-bottom: #fe9124 solid 0.5em;
+  border-bottom: #FF3030 solid 0.5em;
   outline: none;
 }
 .confirmBtn {
@@ -441,7 +441,7 @@ a {
   height: 2em;
 }
 .user-page-btn {
-  border: #fe9124 solid 0.1em;
+  border: #FF3030 solid 0.1em;
   border-radius: 0.5em;
 }
 .nav-icon {
@@ -450,7 +450,7 @@ a {
 }
 .nav-icon-active {
   opacity: 100% !important;
-  color: #fe9124 !important;
+  color: #FF3030 !important;
 }
 
 .half-card {
@@ -544,7 +544,7 @@ a {
   width: 100vw;
 }
 .title_text {
-  color: #fe9124;
+  color: #FF3030;
 }
 
 .f-10 {
@@ -697,4 +697,8 @@ a {
   50% {
     bottom: 10px;
   }
+}
+
+button {
+  background-color: #FF3030;
 }

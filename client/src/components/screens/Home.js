@@ -180,7 +180,7 @@ const Home = () => {
         <button
           className="text-light w-70 mt-4 font-weight-bolder"
           style={{
-            backgroundColor: "#fe9124",
+            backgroundColor: "#FF3030",
             height: "40px",
             borderRadius: "8px",
             border: "none",
@@ -235,7 +235,7 @@ const Home = () => {
             />
             <button className="text-light px-5 mt-3 mb-2 font-weight-bolder"
               style={{
-                backgroundColor: "#fe9124",
+                backgroundColor: "#FF3030",
                 borderRadius: "8px",
                 border: "none",
               }}

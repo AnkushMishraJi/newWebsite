@@ -13,7 +13,7 @@ const Addtag= ()=>{
             icon: "error",
             title: "Invalid",
             text: "Tag is too long",
-            confirmButtonColor: "#fe9124",
+            confirmButtonColor: "#FF3030",
             allowEnterKey: false,
         });
         }
@@ -25,7 +25,7 @@ const Addtag= ()=>{
             icon: "error",
             title: "Missing",
             text: "Please enter all fields",
-            confirmButtonColor: "#fe9124",
+            confirmButtonColor: "#FF3030",
             allowEnterKey: false,
         });
         }
@@ -48,7 +48,7 @@ const Addtag= ()=>{
                 icon: "error",
                 title: "ERROR",
                 text: data.error,
-                confirmButtonColor: "#fe9124",
+                confirmButtonColor: "#FF3030",
                 allowEnterKey: false,
             });
             } else {
@@ -56,7 +56,7 @@ const Addtag= ()=>{
                 icon: "success",
                 title: "Saved",
                 text: "Tag Added Successfully",
-                confirmButtonColor: "#fe9124",
+                confirmButtonColor: "#FF3030",
                 allowEnterKey: false,
             });
             }
@@ -69,7 +69,7 @@ const Addtag= ()=>{
         <>
         <div className="container">
             <div className="row">
-                <h2 className="text-center mt-3 py-5" style={{color: "#fe9124"}}>Add Tag</h2>
+                <h2 className="text-center mt-3 py-5" style={{color: "#FF3030"}}>Add Tag</h2>
 
                 <div className="col-md-8 col-10 col-xxl-8 mx-auto">
                     <div className="mx-auto w-50 mt-3">

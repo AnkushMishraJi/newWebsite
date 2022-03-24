@@ -249,7 +249,7 @@ const ConfirmBooking = () => {
             icon: "success",
             title: `Coupon Applied - ${input_coupon.toUpperCase()}`,
             text: `₹ ${coupons[i].flat_discount} OFF`,
-            confirmButtonColor: "#fe9124",
+            confirmButtonColor: "#FF3030",
             allowEnterKey: false,
           });
         }
@@ -259,7 +259,7 @@ const ConfirmBooking = () => {
             icon: "success",
             title: `Coupon Applied - ${input_coupon.toUpperCase()}`,
             text: `${coupons[i].percent_discount}% OFF`,
-            confirmButtonColor: "#fe9124",
+            confirmButtonColor: "#FF3030",
             allowEnterKey: false,
           });
         }
@@ -364,7 +364,7 @@ const ConfirmBooking = () => {
           icon: "success",
           title: "Payment Success",
           text: "Your booking has been confirmed",
-          confirmButtonColor: "#fe9124",
+          confirmButtonColor: "#FF3030",
           allowEnterKey: false,
         });
         // console.log(JSON.stringify(response));
@@ -435,7 +435,7 @@ const ConfirmBooking = () => {
           </div>
           <button className="text-light px-5 font-weight-bolder"
               style={{
-                backgroundColor: "#fe9124",
+                backgroundColor: "#FF3030",
                 borderRadius: "8px",
                 border: "none",
               }}
@@ -445,7 +445,7 @@ const ConfirmBooking = () => {
             >
               <FontAwesomeIcon
               className="f-22"
-              style={{background:"#fe9124", color:"white"}}
+              style={{background:"#FF3030", color:"white"}}
               icon={faArrowRight}
               />
             </button>
@@ -567,7 +567,7 @@ const ConfirmBooking = () => {
               addedDecorCost==0 ?
               <FontAwesomeIcon
                 className="f-32"
-                style={{background:"#fe9124", borderRadius:"50%", color:"black"}}
+                style={{background:"#FF3030", borderRadius:"50%", color:"black"}}
                 icon={faPlusCircle}
                 onClick={()=>setShowDecorCarousel(true)}
               />
@@ -575,7 +575,7 @@ const ConfirmBooking = () => {
               <div className='d-flex'>
               <FontAwesomeIcon
                 className="f-32"
-                style={{background:"#fe9124", borderRadius:"50%", color:"black"}}
+                style={{background:"#FF3030", borderRadius:"50%", color:"black"}}
                 icon={faMinusCircle}
                 onClick={()=>{setAddedDecorCost(0);setAddedDecorTheme('');setAddedDecorTier('');}}
               />
@@ -599,14 +599,14 @@ const ConfirmBooking = () => {
               !addedSpeakerName ?
               <FontAwesomeIcon
                 className="f-32"
-                style={{background:"#fe9124", borderRadius:"50%", color:"black"}}
+                style={{background:"#FF3030", borderRadius:"50%", color:"black"}}
                 icon={faPlusCircle}
                 onClick={()=>setShowSpeakerCarousel(true)}
               />
               :
               <FontAwesomeIcon
                 className="f-32"
-                style={{background:"#fe9124", borderRadius:"50%", color:"black"}}
+                style={{background:"#FF3030", borderRadius:"50%", color:"black"}}
                 icon={faMinusCircle}
                 onClick={()=>{setAddedSpeakerCost(0); setAddedSpeakerName('')}}
               />
@@ -636,7 +636,7 @@ const ConfirmBooking = () => {
               addedDecorCost==0 ?
               <FontAwesomeIcon
                 className="f-32"
-                style={{background:"#fe9124", borderRadius:"50%", color:"black"}}
+                style={{background:"#FF3030", borderRadius:"50%", color:"black"}}
                 icon={faPlusCircle}
                 onClick={()=>setShowDecorCarousel(true)}
               />
@@ -644,7 +644,7 @@ const ConfirmBooking = () => {
               <div className='d-flex'>
               <FontAwesomeIcon
                 className="f-32"
-                style={{background:"#fe9124", borderRadius:"50%", color:"black"}}
+                style={{background:"#FF3030", borderRadius:"50%", color:"black"}}
                 icon={faMinusCircle}
                 onClick={()=>{setAddedDecorCost(0);setAddedDecorTheme('');setAddedDecorTier('');}}
               />
@@ -668,14 +668,14 @@ const ConfirmBooking = () => {
               !addedSpeakerName ?
               <FontAwesomeIcon
                 className="f-32"
-                style={{background:"#fe9124", borderRadius:"50%", color:"black"}}
+                style={{background:"#FF3030", borderRadius:"50%", color:"black"}}
                 icon={faPlusCircle}
                 onClick={()=>setShowSpeakerCarousel(true)}
               />
               :
               <FontAwesomeIcon
                 className="f-32"
-                style={{background:"#fe9124", borderRadius:"50%", color:"black"}}
+                style={{background:"#FF3030", borderRadius:"50%", color:"black"}}
                 icon={faMinusCircle}
                 onClick={()=>{setAddedSpeakerCost(0); setAddedSpeakerName('')}}
               />
@@ -708,7 +708,7 @@ const ConfirmBooking = () => {
         className="text-light w-40 mt-3 "
         style={{
           position: "relative",
-          backgroundColor: "#fe9124",
+          backgroundColor: "#FF3030",
           height: "40px",
           borderRadius: "18px",
           border: "none",

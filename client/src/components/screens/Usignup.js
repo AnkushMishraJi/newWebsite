@@ -34,7 +34,7 @@ function UserSignup() {
       return Swal.fire({
         icon: "warning",
         text: "Please enter all fields",
-        confirmButtonColor: "#fe9124",
+        confirmButtonColor: "#FF3030",
         allowEnterKey: false,
       });
     }
@@ -47,7 +47,7 @@ function UserSignup() {
         icon: "warning",
         title: "Invalid Email",
         text: "Please enter a valid Email Address",
-        confirmButtonColor: "#fe9124",
+        confirmButtonColor: "#FF3030",
         allowEnterKey: false,
       });
     }
@@ -79,7 +79,7 @@ function UserSignup() {
             icon: "success",
             title: "Saved",
             text: "Welcome to the family!",
-            confirmButtonColor: "#fe9124",
+            confirmButtonColor: "#FF3030",
             allowEnterKey: false,
           });
           history.push("/usignin");
@@ -90,7 +90,7 @@ function UserSignup() {
           icon: "error",
           title: "Error",
           text: "Something went wrong",
-          confirmButtonColor: "#fe9124",
+          confirmButtonColor: "#FF3030",
           allowEnterKey: false,
         });
       });
@@ -159,7 +159,7 @@ function UserSignup() {
         <a
           className="text-light w-40 mt-5 mx-auto text-center pt-2 font-weight-bolder"
           style={{
-            backgroundColor: "#fe9124",
+            backgroundColor: "#FF3030",
             height: "40px",
             borderRadius: "8px",
             border: "none",

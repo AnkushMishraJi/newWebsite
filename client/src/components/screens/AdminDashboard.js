@@ -37,7 +37,7 @@ const AdminDashboard = ()=>{
             return Swal.fire({
                 icon: "warning",
                 text: "Please fill all the details!",
-                confirmButtonColor: "#fe9124",
+                confirmButtonColor: "#FF3030",
                 allowEnterKey: false,
             });
         }
@@ -45,7 +45,7 @@ const AdminDashboard = ()=>{
             return Swal.fire({
                 icon: "warning",
                 text: "Discount should be in digits!",
-                confirmButtonColor: "#fe9124",
+                confirmButtonColor: "#FF3030",
                 allowEnterKey: false,
             });
         }
@@ -55,7 +55,7 @@ const AdminDashboard = ()=>{
                 return Swal.fire({
                     icon: "warning",
                     text: "Discount can't be more than 100%",
-                    confirmButtonColor: "#fe9124",
+                    confirmButtonColor: "#FF3030",
                     allowEnterKey: false,
                 });
             }
@@ -78,7 +78,7 @@ const AdminDashboard = ()=>{
                           icon: "error",
                           title: "ERROR",
                           text: data.error,
-                          confirmButtonColor: "#fe9124",
+                          confirmButtonColor: "#FF3030",
                           allowEnterKey: false,
                         });
                     }
@@ -86,7 +86,7 @@ const AdminDashboard = ()=>{
                         icon: "success",
                         title: "Saved",
                         text: "Coupon Added!",
-                        confirmButtonColor: "#fe9124",
+                        confirmButtonColor: "#FF3030",
                         allowEnterKey: false,
                     });
                     setCode("");
@@ -116,7 +116,7 @@ const AdminDashboard = ()=>{
                       icon: "error",
                       title: "ERROR",
                       text: data.error,
-                      confirmButtonColor: "#fe9124",
+                      confirmButtonColor: "#FF3030",
                       allowEnterKey: false,
                     });
                 } else {
@@ -124,7 +124,7 @@ const AdminDashboard = ()=>{
                       icon: "success",
                       title: "Saved",
                       text: "Coupon Added!",
-                      confirmButtonColor: "#fe9124",
+                      confirmButtonColor: "#FF3030",
                       allowEnterKey: false,
                     });
                     setCode("");
@@ -220,7 +220,7 @@ const AdminDashboard = ()=>{
             type="submit"
             className="text-light w-40 mt-3"
             style={{
-                backgroundColor: "#fe9124",
+                backgroundColor: "#FF3030",
                 height: "40px",
                 borderRadius: "0.5em",
                 border: "none",

@@ -263,7 +263,7 @@ const UserHotel = () => {
             <div className="location-border ">
               <FontAwesomeIcon
                 className="d-flex mx-auto my-2"
-                style={{ color: "#fe9124", width: "2.5em", height: "2.5em" }}
+                style={{ color: "#FF3030", width: "2.5em", height: "2.5em" }}
                 icon={faMapMarkedAlt}
               />
               <p className="text-center brand-logo">Look Map</p>
@@ -281,7 +281,7 @@ const UserHotel = () => {
           <h4 className="f-16 px-2">Choose one</h4>
           <FontAwesomeIcon
             className=""
-            style={{ color: "#fe9124", width: "1em", height: "1em" }}
+            style={{ color: "#FF3030", width: "1em", height: "1em" }}
             icon={faCheckCircle}
           />
         </div>
@@ -399,7 +399,7 @@ const UserHotel = () => {
           type="submit"
           className="text-light w-40 mt-5 "
           style={{
-            backgroundColor: "#fe9124",
+            backgroundColor: "#FF3030",
             height: "40px",
             borderRadius: "18px",
             border: "none",
@@ -428,7 +428,7 @@ const UserHotel = () => {
             <div className="location-border">
               <FontAwesomeIcon
                 className="d-flex mx-auto my-2"
-                style={{ color: "#fe9124", width: "2.5em", height: "2.5em" }}
+                style={{ color: "#FF3030", width: "2.5em", height: "2.5em" }}
                 icon={faMapMarkedAlt}
               />
               <p className="text-center brand-logo">Look Map</p>
@@ -447,7 +447,7 @@ const UserHotel = () => {
           <h4 className="f-16 px-2">Choose one</h4>
           <FontAwesomeIcon
             className=""
-            style={{ color: "#fe9124", width: "1em", height: "1em" }}
+            style={{ color: "#FF3030", width: "1em", height: "1em" }}
             icon={faCheckCircle}
           />
         </div>
@@ -567,7 +567,7 @@ const UserHotel = () => {
           type="submit"
           className="text-light w-20 py-3 mb-10 mt-4 font-weight-bolder"
           style={{
-            backgroundColor: "#fe9124",
+            backgroundColor: "#FF3030",
             border: "none",
           }}
           onClick={confirm}

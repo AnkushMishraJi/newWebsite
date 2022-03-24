@@ -66,7 +66,7 @@ function Signup() {
         icon: "error",
         title: "Invalid Email",
         text: "Please enter correct Email",
-        confirmButtonColor: "#fe9124",
+        confirmButtonColor: "#FF3030",
         allowEnterKey: false,
       });
     }
@@ -75,7 +75,7 @@ function Signup() {
         icon: "error",
         title: "ERROR",
         text: "Passwords do not match",
-        confirmButtonColor: "#fe9124",
+        confirmButtonColor: "#FF3030",
         allowEnterKey: false,
       });
     }
@@ -91,7 +91,7 @@ function Signup() {
         icon: "error",
         title: "Missing",
         text: "Please enter all fields",
-        confirmButtonColor: "#fe9124",
+        confirmButtonColor: "#FF3030",
         allowEnterKey: false,
       });
     }
@@ -122,7 +122,7 @@ function Signup() {
             icon: "error",
             title: "ERROR",
             text: data.error,
-            confirmButtonColor: "#fe9124",
+            confirmButtonColor: "#FF3030",
             allowEnterKey: false,
           });
         } else {
@@ -130,7 +130,7 @@ function Signup() {
             icon: "success",
             title: "Saved",
             text: "User Account Created",
-            confirmButtonColor: "#fe9124",
+            confirmButtonColor: "#FF3030",
             allowEnterKey: false,
           });
           history.push("/bsignin");

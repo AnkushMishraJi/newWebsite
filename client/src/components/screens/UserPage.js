@@ -73,7 +73,7 @@ const UserPage = () => {
           className=" user-page-btn font-weight-bolder py-2 w-40 mt-8"
           style={isMobile || width <= 980 ? {
             color: "black",
-            background: "#fe9124",
+            background: "#FF3030",
             alignContent: "center",
             textAlign: "center",
             marginTop:'90%'
@@ -81,7 +81,7 @@ const UserPage = () => {
           :
           {
             color: "black",
-            background: "#fe9124",
+            background: "#FF3030",
             alignContent: "center",
             textAlign: "center",
             marginTop:'40%'
