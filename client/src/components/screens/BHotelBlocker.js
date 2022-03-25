@@ -70,7 +70,7 @@ const HotelBlocker = () => {
         </div>
       </div>
       <botton
-        className="btn waves-effect bg-orange font-weight-bolder mt-5 px-5"
+        className="btn waves-effect bg-red font-weight-bolder mt-5 px-5"
         onClick={Block}
       >
         Submit

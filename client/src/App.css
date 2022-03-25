@@ -133,12 +133,12 @@ a {
 .location-border {
   width: 6em;
   height: 6em;
-  border: orange 0.2em solid;
+  border: #FF3030 0.2em solid;
   border-radius: 0.5em;
   justify-self: right !important;
 }
 
-.bg-orange {
+.bg-red {
   background-color: #FF3030 !important;
 }
 .profilebox {
@@ -479,7 +479,7 @@ a {
   display: grid;
   grid-template-columns: 5fr 1fr;
   padding-bottom: 1em;
-  border-bottom: orange 0.2em solid;
+  border-bottom: #FF3030 0.2em solid;
 }
 
 ::-webkit-input-placeholder {

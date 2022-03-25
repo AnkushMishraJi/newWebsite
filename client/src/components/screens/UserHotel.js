@@ -235,7 +235,7 @@ const UserHotel = () => {
             <div>
               { hotelTags.map((hotelTag)=>{
                 return(
-                <div key={hotelTag._id} className='bg-orange d-inline-block px-2 m-1' style={{borderRadius:"12px"}}>
+                <div key={hotelTag._id} className='bg-red d-inline-block px-2 m-1' style={{borderRadius:"12px"}}>
                   {hotelTag.tag_name}
                 </div>
                 )

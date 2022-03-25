@@ -115,7 +115,7 @@ const HotelDashboard = () => {
     {/* <div className="">
       <div className="d-flex flex-column w-25 mr-auto">
         <div
-          className="waves-effect waves-light btn font-weight-bolder bg-orange"
+          className="waves-effect waves-light btn font-weight-bolder bg-red"
           onClick={() => {
             setActiveState("blocker");
           }}
@@ -124,7 +124,7 @@ const HotelDashboard = () => {
         </div>
 
         <div
-          className="waves-effect waves-light btn font-weight-bolder bg-orange"
+          className="waves-effect waves-light btn font-weight-bolder bg-red"
           onClick={() => {
             setActiveState("setPrice");
           }}
@@ -134,7 +134,7 @@ const HotelDashboard = () => {
 
         <button
           onClick={clickHandler}
-          className="waves-effect waves-light btn font-weight-bolder bg-orange"
+          className="waves-effect waves-light btn font-weight-bolder bg-red"
         >
           Sign out
         </button>
@@ -148,7 +148,7 @@ const HotelDashboard = () => {
           <div className="col-md-3 col-10 col-xxl-3 mx-auto" style={{borderRight: "2px solid black"}}>
               <div className="d-flex flex-column w-75 mr-auto">
                 <div
-                  className="waves-effect waves-light btn font-weight-bolder bg-orange"
+                  className="waves-effect waves-light btn font-weight-bolder bg-red"
                   onClick={() => {
                     setActiveState("blocker");
                   }}
@@ -157,7 +157,7 @@ const HotelDashboard = () => {
                 </div>
                 <br/>
                 <div
-                  className="waves-effect waves-light btn font-weight-bolder bg-orange"
+                  className="waves-effect waves-light btn font-weight-bolder bg-red"
                   onClick={() => {
                     setActiveState("setPrice");
                   }}
@@ -166,7 +166,7 @@ const HotelDashboard = () => {
                 </div>
                 <br/>
                 <div
-                  className="waves-effect waves-light btn font-weight-bolder bg-orange"
+                  className="waves-effect waves-light btn font-weight-bolder bg-red"
                   onClick={() => {
                     setActiveState("addtags");
                   }}
@@ -176,7 +176,7 @@ const HotelDashboard = () => {
                 <br/>
                 <button
                   onClick={clickHandler}
-                  className="waves-effect waves-light btn font-weight-bolder bg-orange"
+                  className="waves-effect waves-light btn font-weight-bolder bg-red"
                 >
                   Sign out
                 </button>

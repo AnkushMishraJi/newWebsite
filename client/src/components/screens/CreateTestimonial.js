@@ -104,7 +104,7 @@ const CreateTesrimonial = () => {
                 </div>
 
                 <div className="col-md-12 col-10 col-xxl-12 mx-auto text-center">
-                    <botton className="btn waves-effect bg-orange font-weight-bolder px-2"
+                    <botton className="btn waves-effect bg-red font-weight-bolder px-2"
                     onClick={(e) => PostData()}
                     style={{width: "140px",height: "45px"}}>
                         Submit

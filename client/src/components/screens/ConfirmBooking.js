@@ -218,7 +218,7 @@ const ConfirmBooking = () => {
           <div className={`bg-light ${isMobile || width <= 980 ? `w-80` : `w-70`}`}>
               <div className='d-flex align-items-center justify-content-between px-2 bg-brand'>
                 <input className="container-input w-60" placeholder="Enter Coupon Code" onChange={(e)=>setInputCoupon(e.target.value)}/>
-                <button className='user-page-btn bg-orange font-weight-bolder px-2 py-2 my-1' style={{color: "white"}} onClick={()=>{setPromoCodeTried(true);setHavePromoCode(false);calculateDiscount()}}>Submit</button>
+                <button className='user-page-btn bg-red font-weight-bolder px-2 py-2 my-1' style={{color: "white"}} onClick={()=>{setPromoCodeTried(true);setHavePromoCode(false);calculateDiscount()}}>Submit</button>
               </div>
           </div>
           :
@@ -718,7 +718,7 @@ const ConfirmBooking = () => {
       >
         Pay now
       </button>
-      <p className={isMobile || width <= 980 ? `text-light mb-10` :`text-light mb-10 w-60`}>By clicking on Pay Now you agree to our terms and conditions policy.<span style={{textDecoration:"underline", color:"orange"}}> <a href="/policies.docx" >Click here</a> </span>to download.</p>
+      <p className={isMobile || width <= 980 ? `text-light mb-10` :`text-light mb-10 w-60`}>By clicking on Pay Now you agree to our terms and conditions policy.<span style={{textDecoration:"underline", color:"#FF3030"}}> <a href="/policies.docx" >Click here</a> </span>to download.</p>
     </div>
     <div className={`w-100`} style={{position:"absolute", top:"30%"}}>
       <div className={showDecorCarousel || showSpeakerCarousel ? "text-light" : "d-none"} style={isMobile || width <= 980 ? {position:"absolute", top:"-90%", left:"90%", zIndex:"1"} : {position:"absolute", top:"-30%", left:"95%"}} onClick={()=>{setShowDecorCarousel(false); setShowSpeakerCarousel(false);}}>
