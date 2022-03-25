@@ -675,6 +675,12 @@ a {
   box-shadow: -31px 29px 0px 0px rgba(49 , 210, 222,1);
 }
 
+.about-image-shadow-5{
+  -webkit-box-shadow: 31px 29px 0px 0px #FF602E;
+  -moz-box-shadow: 31px 29px 0px 0px #FF602E;
+  box-shadow: 31px 29px 0px 0px #FF602E;
+}
+
 .bounce-object {
   animation: MoveUpDown 0.8s linear infinite;
   position: absolute;

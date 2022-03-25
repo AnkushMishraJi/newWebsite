@@ -15,6 +15,10 @@ import dateNight from "../../images/landingPage/date_night.png";
 import brideToBe from "../../images/landingPage/brideToBe.png";
 import snackimage from "../../images/chips.jpg";
 import unprivacy from "../../images/unmatched_privacy.jpg";
+import mv1 from "../../images/mv1.png";
+import mv2 from "../../images/mv2.jpg";
+import mv3 from "../../images/mv3.png";
+
 import letsparty from "../../images/lets-party.jpg";
 import barImage from "../../images/barImage.jpg";
 import gamesImage from "../../images/games.jpg";
@@ -24,7 +28,6 @@ import weekend_night from "../../images/landingPage/weekend_night.png";
 import arrowdown from "../../images/arrow_down.svg";
 import you from "../../images/landingPage/you.png";
 import {Row, Col} from 'react-bootstrap'
-import bgimage from "../../images/mv_landpage.png";
 
 import { faChevronCircleDown, faChevronCircleRight , faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -295,10 +298,11 @@ const LandingPage = () => {
   if(isMobile || width <= 980){
     return (
       <LayoutMobile>
-        <img src={bgimage} alt="bgland" style={{width: "100%", height: "400px"}}/>;
+        <video ref={videoRef} onClick={(e)=>{setPlay(!play); {play? e.target.play() : e.target.pause()}}} width="100%" height="500%"  src="https://gdurl.com/01vL" title="YouTube video player" frameBorder="0" allow="" preload="false">
+        </video>
         <div className='text-light' style={{width: "400px",marginTop: "50px"}}>
-          <p className='f-36 line-ht-0' style={{fontWeight: "500"}}>Hangout Rooms</p>
-          <p className="f-32 py-2" style={{fontWeight: "500"}}>Great Prices</p>
+          <p className='f-44 mx-4 line-ht-0' style={{fontWeight: "500"}}>Hangout Rooms</p>
+          <p className="f-36 mx-4 py-2" style={{fontWeight: "500"}}>Great Prices</p>
         </div>
         <div className='text-light text-center' style={{marginTop: "10px"}}>
           <p className="f-18 text-centre">Know More</p>
@@ -310,9 +314,125 @@ const LandingPage = () => {
                 icon={faChevronDown}
                 />
         <br/>
-        <button className='text-light p-2 f-14 mt-2' onClick={()=>{history.push("/")}} style={{backgroundColor:'#FF3030',border:'none', outline:'none', borderRadius:'6px'}}>Book Now</button>
+        <button className='text-light p-2 f-18 mt-2' onClick={()=>{history.push("/")}} style={{backgroundColor:'#FF3030',border:'none', outline:'none', borderRadius:'8px', width: '340px', height: '50px'}}>Book Now</button>
         </div>
         
+        <hr className='mx-auto' style={{width: '311.01px', height: '10px', color: '#FF3030', marginTop: '70px'}} />
+        
+        <div className='text-light text-center' style={{marginTop: '100px'}}>
+          <p className="f-24 text-centre">To much of a hussle to</p>
+          <p className="f-24 text-centre">hangout in a hotel room</p>
+          <p className="f-24 text-centre">with your friends?</p>
+          <p className="f-36 text-centre" style={{marginTop: '40px',fontWeight: '600'}}>We Got You!</p>
+        </div>
+        
+        <hr className='mx-auto' style={{width: '311.01px', height: '10px', color: '#FF3030', marginTop: '70px'}} />
+
+        <div className='text-light text-center'>
+        <p className="f-36 text-centre" style={{marginTop: '40px',fontWeight: '500'}}>Our Customers!</p>
+        </div>
+       
+       
+        {/* testimonial */}
+        <div className='d-flex flex-column mt-5 px-5 mx-auto' style={{position:'relative'}}>
+          <div id="testimonial-div" className='mx-auto text-light d-flex' style={{overflowX:'scroll', maxWidth:'100%', scrollBehavior:'smooth'}}>
+            {
+              testimonials.map((testimonial)=>{
+                return(
+                  <div style={{minWidth:'50%'}}>
+                    <div className='mx-1 p-2' style={{backgroundColor:'#101010'}}>
+                      <p className='f-14 mt-2'>
+                        {testimonial.content}
+                      </p>
+                      <div style={{display:"flex",justifyContent:"space-around",margin:"18px 0px"}}>
+                          <div>
+                              <img style={{width:"40px",height:"40px",borderRadius:"80px"}} src={testimonial.picUrl}/>
+                          </div>
+                          <div>
+                              <h6 className="mt-2">{testimonial.name}</h6>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })
+              
+            
+            }
+          </div>
+        </div>
+
+        <hr className='mx-auto' style={{width: '311.01px', height: '10px', color: '#FF3030', marginTop: '10px'}} />
+
+        <div className='text-light' style={{marginLeft: '50px'}}>
+          <p className="f-36 text-centre" style={{marginTop: '40px',fontWeight: '550'}}>Why Us?</p>
+        </div>
+        
+        
+        {/* about */}
+        <div className="d-flex flex-column align-items-left pb-5 py-5" id="content">
+        <div className='mx-4'>
+          <div>
+          	<img className='about-image-shadow-5' src={mv1}
+            alt="about images"
+            style={{borderRadius: '8px',width: '313.75px', height: '203.08px'}}
+            />
+          </div>
+        </div>
+        <div className="mx-4 mt-5 text-start">
+          <p className='f-32 font-weight-bolder' style={{color: '#FF602E'}}>
+            Cut the Crowd
+          </p>
+          <p className='f-20 text-light'>
+            Just you and your friends, no prying eyes, no loud mouths.
+          </p>
+        </div>
+      </div>
+
+      <div className="d-flex flex-column align-items-left pb-5 py-5">
+        
+        <div className='mx-4 ms-auto'>
+          <div>
+          	<img className='about-image-shadow-2' src={mv2}
+            alt="about images"
+            style={{borderRadius: '8px',width: '313.75px', height: '203.08px'}}
+            />
+          </div>
+        </div>
+        <div className="mx-4 mt-5 text-end">
+          <p className='f-32 font-weight-bolder' style={{color: '#fcff2e'}}>
+            Best Prices Always
+          </p>
+          <p className='f-20 text-light'>
+            The best in class prices for party rooms. Nothing comes close
+          </p>
+        </div>
+      </div>
+
+      <div className="d-flex flex-column align-items-left pb-5 py-5">
+        <div className='mx-4'>
+          <div>
+          	<img className='about-image-shadow-1' src={mv3}
+            alt="about images"
+            style={{borderRadius: '8px',width: '313.75px', height: '203.08px'}}
+            />
+          </div>
+        </div>
+        <div className="mx-4 mt-5 text-start">
+          <p className='f-32 font-weight-bolder' style={{color: '#0a75ed'}}>
+            As comfy as home
+          </p>
+          <p className='f-20 text-light'>
+          Relax, Gossip, have fun ; all within your comfort zone
+          </p>
+        </div>
+      </div>
+      <hr className='mx-auto' style={{width: '311.01px', height: '10px', color: '#0a75ed', marginTop: '10px'}} />
+
+
+        <p></p><br/>
+        <p></p><br/>
+        <p></p><br/>
       </LayoutMobile>
     );
   }
