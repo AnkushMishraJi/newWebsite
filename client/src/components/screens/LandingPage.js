@@ -300,9 +300,9 @@ const LandingPage = () => {
       <LayoutMobile>
         <video ref={videoRef} onClick={(e)=>{setPlay(!play); {play? e.target.play() : e.target.pause()}}} width="100%" height="500%"  src="https://gdurl.com/01vL" title="YouTube video player" frameBorder="0" allow="" preload="false">
         </video>
-        <div className='text-light' style={{width: "400px",marginTop: "50px"}}>
-          <p className='f-44 mx-4 line-ht-0' style={{fontWeight: "500"}}>Hangout Rooms</p>
-          <p className="f-36 mx-4 py-2" style={{fontWeight: "500"}}>Great Prices</p>
+        <div className='text-light text-center mx-auto' style={{width: "400px",marginTop: "50px"}}>
+          <p className='f-36 mx-4 line-ht-0' style={{fontWeight: "500"}}>Hangout Rooms</p>
+          <p className="f-32 mx-4 py-2" style={{fontWeight: "500"}}>Great Prices</p>
         </div>
         <div className='text-light text-center' style={{marginTop: "10px"}}>
           <p className="f-18 text-centre">Know More</p>
@@ -312,21 +312,22 @@ const LandingPage = () => {
                 className='f-16'
                 style={{ color: 'white' }}
                 icon={faChevronDown}
+                onClick={scrollHandler}
                 />
         <br/>
-        <button className='text-light p-2 f-18 mt-2' onClick={()=>{history.push("/")}} style={{backgroundColor:'#FF3030',border:'none', outline:'none', borderRadius:'8px', width: '340px', height: '50px'}}>Book Now</button>
+        <button className='text-light p-2 f-18 mt-4' onClick={()=>{history.push("/")}} style={{backgroundColor:'#FF3030',border:'none', outline:'none', borderRadius:'8px', width: '300px', height: '48px'}}>Book Now</button>
         </div>
         
         <hr className='mx-auto' style={{width: '311.01px', height: '10px', color: '#FF3030', marginTop: '70px'}} />
         
-        <div className='text-light text-center' style={{marginTop: '100px'}}>
-          <p className="f-24 text-centre">To much of a hussle to</p>
+        <div className='text-light text-center' style={{marginTop: '70px'}}>
+          <p className="f-24 text-centre">To much of a hustle to</p>
           <p className="f-24 text-centre">hangout in a hotel room</p>
           <p className="f-24 text-centre">with your friends?</p>
-          <p className="f-36 text-centre" style={{marginTop: '40px',fontWeight: '600'}}>We Got You!</p>
+          <p className="f-36 text-centre" style={{marginTop: '35px',fontWeight: '500'}}>We Got You!</p>
         </div>
         
-        <hr className='mx-auto' style={{width: '311.01px', height: '10px', color: '#FF3030', marginTop: '70px'}} />
+        <hr className='mx-auto' style={{width: '311.01px', height: '10px', color: '#FF3030', marginTop: '63px'}} />
 
         <div className='text-light text-center'>
         <p className="f-36 text-centre" style={{marginTop: '40px',fontWeight: '500'}}>Our Customers!</p>
@@ -334,7 +335,7 @@ const LandingPage = () => {
        
        
         {/* testimonial */}
-        <div className='d-flex flex-column mt-5 px-5 mx-auto' style={{position:'relative'}}>
+        <div className='d-flex flex-column mt-4 px-5 mx-auto' style={{position:'relative', width: '400px'}}>
           <div id="testimonial-div" className='mx-auto text-light d-flex' style={{overflowX:'scroll', maxWidth:'100%', scrollBehavior:'smooth'}}>
             {
               testimonials.map((testimonial)=>{
@@ -365,13 +366,13 @@ const LandingPage = () => {
         <hr className='mx-auto' style={{width: '311.01px', height: '10px', color: '#FF3030', marginTop: '10px'}} />
 
         <div className='text-light' style={{marginLeft: '50px'}}>
-          <p className="f-36 text-centre" style={{marginTop: '40px',fontWeight: '550'}}>Why Us?</p>
+          <p className="f-36 text-centre" style={{marginTop: '40px',fontWeight: '550'}}  id="content">Why Us?</p>
         </div>
         
         
         {/* about */}
-        <div className="d-flex flex-column align-items-left pb-5 py-5" id="content">
-        <div className='mx-4'>
+        <div className="d-flex flex-column align-items-left pb-5 py-5">
+        <div className='mx-4 mx-auto'>
           <div>
           	<img className='about-image-shadow-5' src={mv1}
             alt="about images"
@@ -379,52 +380,61 @@ const LandingPage = () => {
             />
           </div>
         </div>
-        <div className="mx-4 mt-5 text-start">
-          <p className='f-32 font-weight-bolder' style={{color: '#FF602E'}}>
-            Cut the Crowd
-          </p>
-          <p className='f-20 text-light'>
-            Just you and your friends, no prying eyes, no loud mouths.
-          </p>
+        <div className='mx-auto' style={{width: '313.75px'}}>
+          <div className="mt-5 text-start">
+            <p className='f-24 font-weight-bolder' style={{color: '#FF602E'}}>
+              Cut the Crowd
+            </p>
+            <p className='f-18 text-light'>
+              Just you and your friends, no prying eyes, no loud mouths.
+            </p>
+          </div>
         </div>
+        
       </div>
 
       <div className="d-flex flex-column align-items-left pb-5 py-5">
         
-        <div className='mx-4 ms-auto'>
+        <div className='mx-4 mx-auto'>
           <div>
-          	<img className='about-image-shadow-2' src={mv2}
+          	<img className='about-image-shadow-6' src={mv2}
             alt="about images"
             style={{borderRadius: '8px',width: '313.75px', height: '203.08px'}}
             />
           </div>
         </div>
-        <div className="mx-4 mt-5 text-end">
-          <p className='f-32 font-weight-bolder' style={{color: '#fcff2e'}}>
-            Best Prices Always
-          </p>
-          <p className='f-20 text-light'>
-            The best in class prices for party rooms. Nothing comes close
-          </p>
+
+        <div className='mx-auto' style={{width: '313.75px'}}>
+          <div className="mt-5 text-start">
+            <p className='f-24 font-weight-bolder' style={{color: '#fcff2e'}}>
+              Best Prices Always
+            </p>
+            <p className='f-18 text-light'>
+              The best in class prices for party rooms. Nothing comes close
+            </p>
+          </div>
         </div>
+        
       </div>
 
       <div className="d-flex flex-column align-items-left pb-5 py-5">
-        <div className='mx-4'>
+        <div className='mx-4 mx-auto'>
           <div>
-          	<img className='about-image-shadow-1' src={mv3}
+          	<img className='about-image-shadow-7' src={mv3}
             alt="about images"
             style={{borderRadius: '8px',width: '313.75px', height: '203.08px'}}
             />
           </div>
         </div>
-        <div className="mx-4 mt-5 text-start">
-          <p className='f-32 font-weight-bolder' style={{color: '#0a75ed'}}>
-            As comfy as home
-          </p>
-          <p className='f-20 text-light'>
-          Relax, Gossip, have fun ; all within your comfort zone
-          </p>
+        <div className='mx-auto' style={{width: '313.75px'}}>
+          <div className="mt-5 text-start">
+            <p className='f-24 font-weight-bolder' style={{color: '#0a75ed'}}>
+              As comfy as home
+            </p>
+            <p className='f-18 text-light'>
+              Relax, Gossip, have fun ; all within your comfort zone
+            </p>
+          </div>
         </div>
       </div>
       <hr className='mx-auto' style={{width: '311.01px', height: '10px', color: '#0a75ed', marginTop: '10px'}} />

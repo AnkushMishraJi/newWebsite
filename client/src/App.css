@@ -676,9 +676,21 @@ a {
 }
 
 .about-image-shadow-5{
-  -webkit-box-shadow: 31px 29px 0px 0px #FF602E;
-  -moz-box-shadow: 31px 29px 0px 0px #FF602E;
-  box-shadow: 31px 29px 0px 0px #FF602E;
+  -webkit-box-shadow: 25px 20px 0px 0px #FF602E;
+  -moz-box-shadow: 25px 20px 0px 0px #FF602E;
+  box-shadow: 25px 20px 0px 0px #FF602E;
+}
+
+.about-image-shadow-6{
+  -webkit-box-shadow: 25px 20px 0px 0px rgb(252, 255, 46);
+  -moz-box-shadow: 25px 20px 0px 0px rgb(252, 255, 46);
+  box-shadow: 25px 20px 0px 0px rgb(252, 255, 46);
+}
+
+.about-image-shadow-7{
+  -webkit-box-shadow: 25px 20px 0px 0px rgba(10, 117, 237, 1);
+  -moz-box-shadow: 25px 20px 0px 0px rgba(10, 117, 237, 1);
+  box-shadow: 25px 20px 0px 0px rgba(10, 117, 237, 1);
 }
 
 .bounce-object {
